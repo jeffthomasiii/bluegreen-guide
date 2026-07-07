@@ -26,6 +26,16 @@ The current prototype uses `data/launch-points.json` as a lightweight stand-in f
 | `sourceUrls` | array | Official park, marina, city, tourism, or outfitter references |
 | `sourceNotes` | string | Short caution or verification note shown in the detail view |
 
+## Optional Supported Fields
+
+These fields are supported by the app but do not need to be present on every Phase 1 seed record.
+
+| Field | Type | Purpose |
+|---|---:|---|
+| `photoStatus` | string | `representative` for placeholder photos or `location` for verified launch photos |
+| `photoUrls` | array | Photo objects with URL, alt text, credit, credit URL, license, and license URL |
+| `photoNotes` | string | Short note explaining whether the image is representative or location-specific |
+
 ## Future Fields
 
 | Field | Type | Notes |
@@ -39,7 +49,7 @@ The current prototype uses `data/launch-points.json` as a lightweight stand-in f
 | `windSensitivity` | string | Low, moderate, high |
 | `tideImpact` | string | None, low, moderate, high |
 | `hazards` | array | Boat traffic, surf launch, cold water, wind, currents |
-| `photoCredits` | array | Required for any external imagery |
+| `photoCredits` | array | Optional normalized credit list if photo metadata is moved out of `photoUrls` |
 
 ## Data Principle
 
@@ -51,3 +61,6 @@ For Phase 1, seed launch points should default to:
 - `lastVerified`: `null`
 - `sourceUrls`: `[]`
 - `sourceNotes`: a clear reminder to check official sources for access, parking, fees, rentals, rules, tides, wind, and hazards
+- `photoStatus`: `representative` until an image is confirmed to show the actual launch point
+- `photoUrls`: public or user-provided images with visible credit and license metadata
+- `photoNotes`: a clear reminder when the image is not verified as the exact launch point
