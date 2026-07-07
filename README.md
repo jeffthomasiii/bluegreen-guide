@@ -15,6 +15,7 @@ This repo currently contains a static browser-based POC:
 - Popularity, difficulty, and best-time guidance
 - Launch-point cards
 - Launch detail view with verification status and source links
+- Credited representative images for Phase 1 photo placeholders
 - Map view filtering
 - Mobile layout that keeps the map reachable before the full result list
 - Blue-primary visual system with green-space accent colors
@@ -69,3 +70,5 @@ This repo is designed to work with GitHub Pages from the root folder.
 This is not production software yet. It is a working Phase 1 prototype intended to validate the concept, data model, UI direction, and future development phases.
 
 See [docs/phase-roadmap.md](docs/phase-roadmap.md) for the planned buildout.
+
+See [docs/image-strategy.md](docs/image-strategy.md) for how representative photos should be replaced with verified launch-point photos over time.
