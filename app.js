@@ -3,6 +3,7 @@ const state = {
   filteredLaunches: [],
   markers: new Map(),
   showOnlyBounds: false,
+  selectedLaunchId: null,
 };
 
 const map = L.map("map", {
@@ -28,6 +29,7 @@ const els = {
   location: document.querySelector("#locationButton"),
   count: document.querySelector("#resultCount"),
   results: document.querySelector("#resultsList"),
+  detail: document.querySelector("#detailPanel"),
   template: document.querySelector("#launchCardTemplate"),
 };
 
@@ -76,6 +78,12 @@ function bindEvents() {
   });
 
   els.location.addEventListener("click", useLocation);
+  els.detail.addEventListener("click", handleDetailClick);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeLaunchDetail();
+    }
+  });
 
   map.on("moveend zoomend", () => {
     if (state.showOnlyBounds) {
@@ -149,12 +157,13 @@ function renderMarkers(launches) {
       }),
       title: launch.name,
     }).bindPopup(`
-      <h3 class="popup-title">${launch.name}</h3>
-      <p class="popup-detail">${launch.region}, ${launch.state}</p>
-      <p class="popup-detail">Difficulty ${launch.difficulty}/5 &bull; Popularity ${launch.popularity}/5</p>
-      <p class="popup-detail">Best time: ${launch.bestTime}</p>
+      <h3 class="popup-title">${escapeHtml(launch.name)}</h3>
+      <p class="popup-detail">${escapeHtml(launch.region)}, ${escapeHtml(launch.state)}</p>
+      <p class="popup-detail">Difficulty ${escapeHtml(launch.difficulty)}/5 &bull; Popularity ${escapeHtml(launch.popularity)}/5</p>
+      <p class="popup-detail">Best time: ${escapeHtml(launch.bestTime)}</p>
     `);
 
+    marker.on("click", () => openLaunchDetail(launch.id, { focusMap: false }));
     marker.addTo(markerLayer);
     state.markers.set(launch.id, marker);
   }
@@ -174,6 +183,7 @@ function renderCards(launches) {
     const title = card.querySelector("h2");
     const pill = card.querySelector(".pill");
     const meta = card.querySelector(".launch-meta");
+    const verification = card.querySelector(".verification-line");
     const ratings = card.querySelector(".rating-row");
     const description = card.querySelector(".launch-description");
     const tags = card.querySelector(".tag-row");
@@ -186,6 +196,7 @@ function renderCards(launches) {
     title.textContent = launch.name;
     pill.textContent = launch.skillLevel;
     meta.textContent = `${launch.region}, ${launch.state} | ${launch.waterType} | Best: ${launch.bestTime}`;
+    verification.textContent = verificationSummary(launch);
     description.textContent = launch.description;
     ratings.innerHTML = `
       <div class="rating"><strong>Popularity</strong>${starRating(launch.popularity)} ${launch.popularity}/5</div>
@@ -199,8 +210,43 @@ function renderCards(launches) {
       tags.append(el);
     });
 
-    button.addEventListener("click", () => focusLaunch(launch.id));
+    button.addEventListener("click", () => openLaunchDetail(launch.id));
     els.results.append(card);
+  }
+}
+
+function openLaunchDetail(id, options = {}) {
+  const launch = state.allLaunches.find((item) => item.id === id);
+  if (!launch) return;
+
+  state.selectedLaunchId = id;
+  document.body.classList.add("detail-open");
+  els.detail.hidden = false;
+  els.detail.innerHTML = detailMarkup(launch);
+
+  if (options.focusMap !== false) {
+    focusLaunch(id);
+  }
+}
+
+function closeLaunchDetail() {
+  state.selectedLaunchId = null;
+  document.body.classList.remove("detail-open");
+  els.detail.hidden = true;
+  els.detail.innerHTML = "";
+}
+
+function handleDetailClick(event) {
+  if (event.target.closest("[data-close-detail]")) {
+    closeLaunchDetail();
+    return;
+  }
+
+  const sourceLink = event.target.closest("a");
+  if (sourceLink) return;
+
+  if (event.target === els.detail) {
+    closeLaunchDetail();
   }
 }
 
@@ -215,6 +261,105 @@ function focusLaunch(id) {
   if (marker) {
     setTimeout(() => marker.openPopup(), 250);
   }
+}
+
+function detailMarkup(launch) {
+  const sourceUrls = Array.isArray(launch.sourceUrls)
+    ? launch.sourceUrls
+        .map((source) => (typeof source === "string" ? { label: source, url: source } : source))
+        .filter((source) => source && source.url)
+    : [];
+  const sourceItems = sourceUrls.length
+    ? sourceUrls
+        .map(
+          (source) =>
+            `<li><a href="${escapeAttribute(source.url)}" target="_blank" rel="noopener">${escapeHtml(source.label || source.url)}</a></li>`
+        )
+        .join("")
+    : '<li class="muted-list-item">No official source added yet.</li>';
+
+  return `
+    <div class="detail-card" role="dialog" aria-modal="false" aria-labelledby="detailTitle">
+      <button class="detail-close" type="button" aria-label="Close launch details" data-close-detail>&times;</button>
+      <div class="detail-kicker">${escapeHtml(launch.region)}, ${escapeHtml(launch.state)}</div>
+      <h2 id="detailTitle">${escapeHtml(launch.name)}</h2>
+      <p class="detail-subtitle">${escapeHtml(launch.waterType)} | ${escapeHtml(formatList(launch.activities))} | ${escapeHtml(launch.skillLevel)}</p>
+
+      <div class="detail-status ${verificationClass(launch)}">
+        <strong>${escapeHtml(launch.verificationStatus || "Needs verification")}</strong>
+        <span>${escapeHtml(lastVerifiedText(launch))}</span>
+      </div>
+
+      <p>${escapeHtml(launch.description)}</p>
+
+      <dl class="detail-grid">
+        <div>
+          <dt>Best Time</dt>
+          <dd>${escapeHtml(launch.bestTime || "Unknown")}</dd>
+        </div>
+        <div>
+          <dt>Difficulty</dt>
+          <dd>${escapeHtml(launch.difficulty)}/5</dd>
+        </div>
+        <div>
+          <dt>Popularity</dt>
+          <dd>${escapeHtml(launch.popularity)}/5</dd>
+        </div>
+        <div>
+          <dt>Coordinates</dt>
+          <dd>${escapeHtml(launch.lat)}, ${escapeHtml(launch.lng)}</dd>
+        </div>
+      </dl>
+
+      <section class="detail-section">
+        <h3>Amenities</h3>
+        <p>${escapeHtml(formatList(launch.amenities))}</p>
+      </section>
+
+      <section class="detail-section">
+        <h3>Planning Notes</h3>
+        <p>${escapeHtml(formatList(launch.tags))}</p>
+      </section>
+
+      <section class="detail-section">
+        <h3>Sources</h3>
+        <ul class="source-list">${sourceItems}</ul>
+        <p class="source-note">${escapeHtml(launch.sourceNotes || "Check official sources before relying on access, fees, parking, rentals, rules, tides, wind, or hazard details.")}</p>
+      </section>
+    </div>
+  `;
+}
+
+function verificationSummary(launch) {
+  const status = launch.verificationStatus || "Needs verification";
+  const date = launch.lastVerified ? `Last checked ${launch.lastVerified}` : "Official source pending";
+  return `${status} | ${date}`;
+}
+
+function verificationClass(launch) {
+  const status = (launch.verificationStatus || "").trim().toLowerCase();
+  return status === "verified" ? "is-verified" : "needs-verification";
+}
+
+function lastVerifiedText(launch) {
+  return launch.lastVerified ? `Last checked ${launch.lastVerified}` : "Access, fees, rules, and conditions need official-source review.";
+}
+
+function formatList(value) {
+  return Array.isArray(value) && value.length ? value.join(", ") : "Unknown";
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function escapeAttribute(value) {
+  return escapeHtml(value).replace(/`/g, "&#096;");
 }
 
 function fitToLaunches(launches) {
