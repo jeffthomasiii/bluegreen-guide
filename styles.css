@@ -195,6 +195,9 @@ select:focus {
 }
 
 .launch-image {
+  position: relative;
+  display: flex;
+  align-items: end;
   min-height: 120px;
   background:
     linear-gradient(135deg, rgba(15, 79, 103, 0.82), rgba(111, 143, 99, 0.42)),
@@ -202,6 +205,16 @@ select:focus {
     linear-gradient(150deg, #8fc9dd, #d7ebdd);
   background-position: center;
   background-size: cover;
+}
+
+.photo-badge {
+  margin: 8px;
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: rgba(16, 37, 46, 0.76);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
 }
 
 .launch-body {
@@ -371,6 +384,30 @@ select:focus {
 
 .detail-subtitle {
   margin: 8px 44px 0 0;
+}
+
+.detail-photo {
+  margin: 16px 0 0;
+}
+
+.detail-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.detail-photo figcaption {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.detail-photo a {
+  color: var(--blue-dark);
+  font-weight: 800;
 }
 
 .detail-status {
