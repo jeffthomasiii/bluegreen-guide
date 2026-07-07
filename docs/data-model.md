@@ -21,6 +21,10 @@ The current prototype uses `data/launch-points.json` as a lightweight stand-in f
 | `amenities` | array | Parking, restrooms, rentals, etc. |
 | `tags` | array | Searchable condition or experience labels |
 | `description` | string | Short practical summary |
+| `verificationStatus` | string | Current source-review state, such as `Needs verification` or `Verified` |
+| `lastVerified` | string/null | Date the entry was last checked against sources, or `null` when not checked |
+| `sourceUrls` | array | Official park, marina, city, tourism, or outfitter references |
+| `sourceNotes` | string | Short caution or verification note shown in the detail view |
 
 ## Future Fields
 
@@ -35,10 +39,15 @@ The current prototype uses `data/launch-points.json` as a lightweight stand-in f
 | `windSensitivity` | string | Low, moderate, high |
 | `tideImpact` | string | None, low, moderate, high |
 | `hazards` | array | Boat traffic, surf launch, cold water, wind, currents |
-| `sourceUrls` | array | Official park, marina, city, or outfitter references |
 | `photoCredits` | array | Required for any external imagery |
-| `lastVerified` | string | Date last reviewed |
 
 ## Data Principle
 
 Do not present guessed safety or access information as verified. If a field is uncertain, mark it as `unknown`, omit it, or add a `needsVerification` flag.
+
+For Phase 1, seed launch points should default to:
+
+- `verificationStatus`: `Needs verification`
+- `lastVerified`: `null`
+- `sourceUrls`: `[]`
+- `sourceNotes`: a clear reminder to check official sources for access, parking, fees, rentals, rules, tides, wind, and hazards
