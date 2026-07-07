@@ -14,7 +14,9 @@ This repo currently contains a static browser-based POC:
 - Region, skill, activity, and difficulty filters
 - Popularity, difficulty, and best-time guidance
 - Launch-point cards
+- Launch detail view with verification status and source links
 - Map view filtering
+- Mobile layout that keeps the map reachable before the full result list
 - Blue-primary visual system with green-space accent colors
 
 ## Run Locally
