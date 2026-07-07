@@ -11,15 +11,17 @@ Included now:
 - 50 seed launch points
 - Search and filters
 - Launch cards
+- Launch detail view with verification status and source links
 - Difficulty, popularity, and best-time data
+- Mobile-friendly layout
+- Credited representative images for Phase 1 photo placeholders
 - Blue-primary visual identity
 
 Recommended next improvements:
 
-- Replace placeholder image gradients with licensed or user-provided launch photos
+- Replace representative images with verified launch-point photos
 - Add real source notes for seed data
 - Add more launch-specific safety fields
-- Improve mobile layout
 - Add map clustering if the dataset grows
 
 ## Phase 2: Better Place Pages
