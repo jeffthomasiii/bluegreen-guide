@@ -8,7 +8,7 @@ Included now:
 
 - Static web app
 - OpenStreetMap/Leaflet map
-- 50 seed launch points
+- 52 seed launch points
 - Search and filters
 - Launch cards
 - Launch detail view with verification status and source links
@@ -17,10 +17,12 @@ Included now:
 - Credited representative images for Phase 1 photo placeholders
 - Blue-primary visual identity
 
-Recommended next improvements:
+Phase 1 is complete as a functional proof of concept. The app has the core user flow in place, but the guide should still be treated as unverified seed data until the follow-up source and photo passes are complete.
+
+Post-Phase 1 cleanup:
 
 - Replace representative images with verified launch-point photos
-- Add real source notes for seed data
+- Add real source notes for all seed data
 - Add more launch-specific safety fields
 - Add map clustering if the dataset grows
 
