@@ -127,11 +127,33 @@
       }
 
       .screen {
+        display: block;
         width: 100%;
-        margin: 14px 0;
+        height: auto;
+        margin: 14px auto 28px;
         border: 1px solid var(--line);
         border-radius: 14px;
         background: #fff;
+      }
+
+      .screen-full {
+        max-width: 100%;
+      }
+
+      .screen-wide {
+        max-width: 900px;
+      }
+
+      .screen-medium {
+        max-width: 720px;
+      }
+
+      .screen-narrow {
+        max-width: 520px;
+      }
+
+      .screen-mobile {
+        max-width: 380px;
       }
 
       .footer {
@@ -147,6 +169,15 @@
 
         .hero {
           padding: 26px;
+        }
+
+        .screen,
+        .screen-full,
+        .screen-wide,
+        .screen-medium,
+        .screen-narrow,
+        .screen-mobile {
+          max-width: 100%;
         }
       }
     </style>
@@ -189,7 +220,7 @@
       </p>
 
       <img
-        class="screen"
+        class="screen screen-full"
         src="../screenshots/placeholders/home-screen-desktop.png"
         alt="Home screen screenshot placeholder"
       >
@@ -202,7 +233,7 @@
       </p>
 
       <img
-        class="screen"
+        class="screen screen-medium"
         src="../screenshots/placeholders/map-marker-popup.png"
         alt="Map marker popup placeholder"
       >
@@ -215,7 +246,7 @@
       </p>
 
       <img
-        class="screen"
+        class="screen screen-narrow"
         src="../screenshots/placeholders/search-results-desktop.png"
         alt="Search results placeholder"
       >
@@ -228,7 +259,7 @@
       </p>
 
       <img
-        class="screen"
+        class="screen screen-narrow"
         src="../screenshots/placeholders/filters-desktop.png"
         alt="Filters placeholder"
       >
@@ -241,7 +272,7 @@
       </p>
 
       <img
-        class="screen"
+        class="screen screen-narrow"
         src="../screenshots/placeholders/launch-card-desktop.png"
         alt="Launch card placeholder"
       >
@@ -254,7 +285,7 @@
       </p>
 
       <img
-        class="screen"
+        class="screen screen-medium"
         src="../screenshots/placeholders/launch-detail-desktop.png"
         alt="Launch detail placeholder"
       >
@@ -267,7 +298,7 @@
       </p>
 
       <img
-        class="screen"
+        class="screen screen-medium"
         src="../screenshots/placeholders/verification-sources.png"
         alt="Verification sources placeholder"
       >
@@ -280,13 +311,13 @@
       </p>
 
       <img
-        class="screen"
+        class="screen screen-mobile"
         src="../screenshots/placeholders/mobile-home.png"
         alt="Mobile home placeholder"
       >
 
       <img
-        class="screen"
+        class="screen screen-mobile"
         src="../screenshots/placeholders/mobile-detail.png"
         alt="Mobile detail placeholder"
       >
