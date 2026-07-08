@@ -140,20 +140,29 @@
         max-width: 100%;
       }
 
-      .screen-wide {
-        max-width: 900px;
-      }
-
       .screen-medium {
         max-width: 720px;
       }
 
       .screen-narrow {
-        max-width: 520px;
+        max-width: 460px;
       }
 
       .screen-mobile {
-        max-width: 380px;
+        max-width: 340px;
+      }
+
+      .mobile-screens {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 340px));
+        gap: 20px;
+        justify-content: center;
+        align-items: start;
+        margin: 14px 0 28px;
+      }
+
+      .mobile-screens .screen {
+        margin: 0;
       }
 
       .footer {
@@ -173,11 +182,18 @@
 
         .screen,
         .screen-full,
-        .screen-wide,
         .screen-medium,
         .screen-narrow,
         .screen-mobile {
           max-width: 100%;
+        }
+
+        .mobile-screens {
+          grid-template-columns: 1fr;
+        }
+
+        .mobile-screens .screen {
+          margin: 0 auto;
         }
       }
     </style>
@@ -285,7 +301,7 @@
       </p>
 
       <img
-        class="screen screen-medium"
+        class="screen screen-narrow"
         src="../screenshots/placeholders/launch-detail-desktop.png"
         alt="Launch detail placeholder"
       >
@@ -298,7 +314,7 @@
       </p>
 
       <img
-        class="screen screen-medium"
+        class="screen screen-narrow"
         src="../screenshots/placeholders/verification-sources.png"
         alt="Verification sources placeholder"
       >
@@ -310,17 +326,19 @@
         open details before checking official sources.
       </p>
 
-      <img
-        class="screen screen-mobile"
-        src="../screenshots/placeholders/mobile-home.png"
-        alt="Mobile home placeholder"
-      >
+      <div class="mobile-screens">
+        <img
+          class="screen screen-mobile"
+          src="../screenshots/placeholders/mobile-home.png"
+          alt="Mobile home placeholder"
+        >
 
-      <img
-        class="screen screen-mobile"
-        src="../screenshots/placeholders/mobile-detail.png"
-        alt="Mobile detail placeholder"
-      >
+        <img
+          class="screen screen-mobile"
+          src="../screenshots/placeholders/mobile-detail.png"
+          alt="Mobile detail placeholder"
+        >
+      </div>
 
       <h2 id="faq">FAQ</h2>
 
