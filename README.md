@@ -9,7 +9,7 @@ Blue spaces are outdoor places shaped by water: oceans, bays, rivers, lakes, res
 This repo currently contains a static browser-based POC:
 
 - Interactive OpenStreetMap/Leaflet map
-- 50 seed launch points across Southern California, Central California, Nevada, and Arizona
+- 52 seed launch points across Southern California, Central California, Nevada, and Arizona
 - Search by location, water type, amenities, activity, skill, and notes
 - Region, skill, activity, and difficulty filters
 - Popularity, difficulty, and best-time guidance
@@ -67,8 +67,10 @@ This repo is designed to work with GitHub Pages from the root folder.
 
 ## Current Status
 
-This is not production software yet. It is a working Phase 1 prototype intended to validate the concept, data model, UI direction, and future development phases.
+Phase 1 is complete as a working prototype. This is not production software yet: most seed data still needs a full source-verification pass, and current photos are representative placeholders rather than confirmed launch-point photos.
 
 See [docs/phase-roadmap.md](docs/phase-roadmap.md) for the planned buildout.
 
 See [docs/image-strategy.md](docs/image-strategy.md) for how representative photos should be replaced with verified launch-point photos over time.
+
+See [docs/phase-1-closeout.md](docs/phase-1-closeout.md) for the Phase 1 completion notes and known limitations.
