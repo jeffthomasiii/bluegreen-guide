@@ -21,7 +21,7 @@ The first version focuses on finding places to launch a kayak, paddleboard, or c
 
 For v1.0, the app uses a curated collection of launch points rather than a nationwide database. This keeps the proof of concept focused on quality, clarity, and trust.
 
-![Home screen placeholder](../screenshots/placeholders/home-screen-desktop.svg)
+![Home screen placeholder](../screenshots/placeholders/home-screen-desktop.png)
 
 ---
 
@@ -51,7 +51,7 @@ The home screen has three main areas:
 2. **Map** - interactive view of launch locations.
 3. **Detail panel** - opens when you select a launch point.
 
-![Home screen placeholder](../screenshots/placeholders/home-screen-desktop.svg)
+![Home screen placeholder](../screenshots/placeholders/home-screen-desktop.png)
 
 ### Replace this screenshot with
 
@@ -73,7 +73,7 @@ Common actions:
 - Use **Fit all** to return to the full launch collection.
 - Use **Show launch points in current map view** to narrow the list to what is visible on the map.
 
-![Map marker placeholder](../screenshots/placeholders/map-marker-popup.svg)
+![Map marker placeholder](../screenshots/placeholders/map-marker-popup.png)
 
 ### Replace this screenshot with
 
@@ -99,7 +99,7 @@ Useful searches include:
 
 Search is most useful when paired with filters. For example, search for a region and then filter by beginner-friendly places.
 
-![Search results placeholder](../screenshots/placeholders/search-results-desktop.svg)
+![Search results placeholder](../screenshots/placeholders/search-results-desktop.png)
 
 ### Replace this screenshot with
 
@@ -139,7 +139,7 @@ Use this to set the highest difficulty you want to see.
 - 4 - Challenging
 - 5 - Advanced
 
-![Filters placeholder](../screenshots/placeholders/filters-desktop.svg)
+![Filters placeholder](../screenshots/placeholders/filters-desktop.png)
 
 ### Replace this screenshot with
 
@@ -169,7 +169,7 @@ A card may include:
 
 Select **View details** to open the full launch detail panel.
 
-![Launch card placeholder](../screenshots/placeholders/launch-card-desktop.svg)
+![Launch card placeholder](../screenshots/placeholders/launch-card-desktop.png)
 
 ### Replace this screenshot with
 
@@ -199,7 +199,7 @@ Depending on available data, the detail panel may include:
 - Verification status
 - Source links
 
-![Launch detail placeholder](../screenshots/placeholders/launch-detail-desktop.svg)
+![Launch detail placeholder](../screenshots/placeholders/launch-detail-desktop.png)
 
 ### Replace this screenshot with
 
@@ -233,7 +233,7 @@ Important details to verify before a trip:
 - Hazards
 - Wind, tides, and current conditions
 
-![Verification placeholder](../screenshots/placeholders/verification-sources.svg)
+![Verification placeholder](../screenshots/placeholders/verification-sources.png)
 
 ---
 
@@ -245,7 +245,7 @@ Good launch photos should show the launch area, shoreline context, nearby water,
 
 Do not use a photo to imply access, safety, or conditions that have not been verified.
 
-![Future photo placeholder](../screenshots/placeholders/future-photo-example.svg)
+![Future photo placeholder](../screenshots/placeholders/future-photo-example.png)
 
 ---
 
@@ -261,9 +261,9 @@ On mobile:
 - Open details for the places you are considering.
 - Check official source links before going.
 
-![Mobile home placeholder](../screenshots/placeholders/mobile-home.svg)
+![Mobile home placeholder](../screenshots/placeholders/mobile-home.png)
 
-![Mobile detail placeholder](../screenshots/placeholders/mobile-detail.svg)
+![Mobile detail placeholder](../screenshots/placeholders/mobile-detail.png)
 
 ---
 
@@ -323,16 +323,16 @@ Only if the detail is confirmed by current official sources. If a record says un
 
 | Placeholder | Final screenshot filename | Capture notes |
 |---|---|---|
-| home-screen-desktop.svg | home-screen-desktop.png | Full desktop app |
-| search-results-desktop.svg | search-results-desktop.png | Search term entered |
-| filters-desktop.svg | filters-desktop.png | Filters applied |
-| map-marker-popup.svg | map-marker-popup.png | Marker popup open |
-| launch-card-desktop.svg | launch-card-desktop.png | One full launch card |
-| launch-detail-desktop.svg | launch-detail-desktop.png | Detail panel open |
-| mobile-home.svg | mobile-home.png | Mobile app top view |
-| mobile-detail.svg | mobile-detail.png | Mobile detail panel |
-| verification-sources.svg | verification-sources.png | Verification and source section |
-| future-photo-example.svg | future-photo-example.png | Actual launch-point photo example |
+| home-screen-desktop.png | home-screen-desktop.png | Full desktop app |
+| search-results-desktop.png | search-results-desktop.png | Search term entered |
+| filters-desktop.png | filters-desktop.png | Filters applied |
+| map-marker-popup.png | map-marker-popup.png | Marker popup open |
+| launch-card-desktop.png | launch-card-desktop.png | One full launch card |
+| launch-detail-desktop.png | launch-detail-desktop.png | Detail panel open |
+| mobile-home.png | mobile-home.png | Mobile app top view |
+| mobile-detail.png | mobile-detail.png | Mobile detail panel |
+| verification-sources.png | verification-sources.png | Verification and source section |
+| future-photo-example.png | future-photo-example.png | Actual launch-point photo example |
 
 ---
 
