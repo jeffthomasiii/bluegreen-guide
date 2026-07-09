@@ -1,1 +1,46 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>BlueGreen Guide Documentation</title><style>:root{--bg:#eef6f8;--panel:#fbfdff;--line:#c9dce4;--text:#10252e;--muted:#5a6f78;--blue:#176f8f;--blue-dark:#0f4f67;--soft:#dceff5;--green:#6f8f63;--gold:#b99453}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}a{color:var(--blue-dark);font-weight:800}.wrap{max-width:1100px;margin:0 auto;padding:32px 20px 56px}.hero{padding:42px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,#fbfdff,#dceff5);box-shadow:0 16px 35px rgba(17,52,65,.10)}.mark{display:inline-grid;width:52px;height:52px;place-items:center;border-radius:10px;background:var(--blue);color:#fff;font-weight:900}.eyebrow{margin:20px 0 8px;color:var(--blue-dark);font-size:13px;text-transform:uppercase;letter-spacing:.08em;font-weight:900}h1{font-size:clamp(34px,6vw,64px);line-height:1;margin:0}h2{margin-top:34px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:24px}.card{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:20px;box-shadow:0 10px 22px rgba(17,52,65,.07)}.button{display:inline-block;border-radius:999px;padding:11px 16px;background:var(--blue);color:#fff;text-decoration:none;margin:6px 10px 6px 0}.button.secondary{background:var(--soft);color:var(--blue-dark);border:1px solid var(--line)}.note{border-left:4px solid var(--gold);background:#fff;padding:12px 16px;border-radius:10px;margin:18px 0}.footer{margin-top:40px;color:var(--muted);font-size:14px}@media(max-width:700px){.hero{padding:26px}.wrap{padding:20px 14px 40px}}</style></head><body><main class="wrap"><section class="hero"><div class="mark">BG</div><p class="eyebrow">Documentation</p><h1>BlueGreen Guide</h1><p>Field guide, user manual, release notes, and roadmap for the v1.0 curated launch map proof of concept.</p><p><a class="button" href="user-guide/">Open Field Guide</a><a class="button secondary" href="../">Back to App</a></p></section><section class="grid"><article class="card"><h2>Field Guide & User Manual</h2><p>Learn how to use the map, search, filters, launch cards, launch details, verification notes, and mobile layout.</p><p><a href="user-guide/">Read the guide</a></p></article><article class="card"><h2>Quick Start</h2><p>A short practical guide for first-time users.</p><p><a href="user-guide/Quick-Start.md">Open Quick Start</a></p></article><article class="card"><h2>Release Notes</h2><p>Summary of the v1.0 release scope and what belongs in future phases.</p><p><a href="release-notes.md">View release notes</a></p></article><article class="card"><h2>Roadmap</h2><p>Phase-by-phase plan for growing from a curated launch map to richer planning tools.</p><p><a href="roadmap.md">View roadmap</a></p></article></section><section class="note"><strong>Dataset scope:</strong> v1.0 intentionally uses a curated launch collection rather than nationwide coverage. The goal is to prove a calm, practical, trustworthy discovery experience before scaling.</section><p class="footer">BlueGreen Guide v1.0 documentation package.</p></main></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BlueGreen Guide Documentation</title>
+    <style>
+      :root{--bg:#eef6f8;--panel:#fbfdff;--line:#c9dce4;--text:#10252e;--muted:#5a6f78;--blue:#176f8f;--blue-dark:#0f4f67;--soft:#dceff5;--green:#6f8f63;--gold:#b99453}
+      *{box-sizing:border-box}
+      body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
+      a{color:var(--blue-dark);font-weight:800}
+      .wrap{max-width:1100px;margin:0 auto;padding:32px 20px 56px}
+      .hero{padding:42px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,#fbfdff,#dceff5);box-shadow:0 16px 35px rgba(17,52,65,.10)}
+      .logo{display:block;width:min(520px,100%);height:auto;margin-bottom:18px}
+      .eyebrow{margin:20px 0 8px;color:var(--blue-dark);font-size:13px;text-transform:uppercase;letter-spacing:.08em;font-weight:900}
+      h1{font-size:clamp(34px,6vw,64px);line-height:1;margin:0}
+      h2{margin-top:34px}
+      .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:24px}
+      .card{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:20px;box-shadow:0 10px 22px rgba(17,52,65,.07)}
+      .button{display:inline-block;border-radius:999px;padding:11px 16px;background:var(--blue);color:#fff;text-decoration:none;margin:6px 10px 6px 0}
+      .button.secondary{background:var(--soft);color:var(--blue-dark);border:1px solid var(--line)}
+      .note{border-left:4px solid var(--gold);background:#fff;padding:12px 16px;border-radius:10px;margin:18px 0}
+      .footer{margin-top:40px;color:var(--muted);font-size:14px}
+      @media(max-width:700px){.hero{padding:26px}.wrap{padding:20px 14px 40px}.logo{width:min(420px,100%)}}
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <img class="logo" src="../assets/brand/bluegreen-guide-logo-horizontal.svg" alt="BlueGreen Guide">
+        <p class="eyebrow">Documentation</p>
+        <h1>BlueGreen Guide</h1>
+        <p>Field guide, user manual, release notes, and roadmap for the v1.0 curated launch map proof of concept.</p>
+        <p><a class="button" href="user-guide/">Open Field Guide</a><a class="button secondary" href="../">Back to App</a></p>
+      </section>
+      <section class="grid">
+        <article class="card"><h2>Field Guide & User Manual</h2><p>Learn how to use the map, search, filters, launch cards, launch details, verification notes, and mobile layout.</p><p><a href="user-guide/">Read the guide</a></p></article>
+        <article class="card"><h2>Quick Start</h2><p>A short practical guide for first-time users.</p><p><a href="user-guide/Quick-Start.md">Open Quick Start</a></p></article>
+        <article class="card"><h2>Release Notes</h2><p>Summary of the v1.0 release scope and what belongs in future phases.</p><p><a href="release-notes.md">View release notes</a></p></article>
+        <article class="card"><h2>Roadmap</h2><p>Phase-by-phase plan for growing from a curated launch map to richer planning tools.</p><p><a href="roadmap.md">View roadmap</a></p></article>
+      </section>
+      <section class="note"><strong>Dataset scope:</strong> v1.0 intentionally uses a curated launch collection rather than nationwide coverage. The goal is to prove a calm, practical, trustworthy discovery experience before scaling.</section>
+      <p class="footer">BlueGreen Guide v1.0 documentation package.</p>
+    </main>
+  </body>
+</html>
