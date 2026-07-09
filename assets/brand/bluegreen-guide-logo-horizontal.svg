@@ -1,5 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1455" height="503" viewBox="0 0 1455 503" role="img" aria-labelledby="title desc">
-  <title id="title">BlueGreen Guide Horizontal Logo</title>
-  <desc id="desc">Transparent BlueGreen Guide logo artwork for app and documentation use.</desc>
-  <image href="data:image/png;base64,PLACEHOLDER" width="1455" height="503" />
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="240" viewBox="0 0 720 240" role="img" aria-label="BlueGreen Guide horizontal logo">
+  <circle cx="120" cy="120" r="86" fill="#dceff5"/>
+  <circle cx="155" cy="75" r="42" fill="#f6b73c"/>
+  <path d="M42 128 L78 84 L105 109 L132 58 L185 128 Z" fill="#176f8f"/>
+  <path d="M40 150 C78 125 108 124 141 145 C169 163 190 150 214 134 L214 206 L40 206 Z" fill="#6f8f63"/>
+  <path d="M35 154 C78 139 112 149 145 127 C173 109 194 107 216 92 L216 206 L35 206 Z" fill="#0f4f67" opacity=".8"/>
+  <path d="M48 172 C89 144 112 126 149 112 C174 102 193 91 214 75" fill="none" stroke="#ffffff" stroke-width="16" stroke-linecap="round"/>
+  <path d="M125 207 C144 164 172 149 205 145" fill="none" stroke="#ffffff" stroke-width="16" stroke-linecap="round"/>
+  <path d="M160 184 C174 169 188 171 201 158" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+  <path d="M74 83 q12 -11 25 0" fill="none" stroke="#0f4f67" stroke-width="6" stroke-linecap="round"/>
+  <path d="M53 101 q12 -11 25 0" fill="none" stroke="#0f4f67" stroke-width="6" stroke-linecap="round"/>
+  <g fill="#0b5a35"><path d="M154 114 l13 -35 l13 35 h-8 l12 25 h-34 l12 -25z"/><path d="M180 120 l15 -42 l15 42 h-9 l13 27 h-38 l13 -27z"/></g>
+  <circle cx="120" cy="120" r="86" fill="none" stroke="#0f4f67" stroke-opacity=".16"/>
+  <g font-family="Inter, Segoe UI, Arial, sans-serif">
+    <text x="245" y="103" font-size="58" font-weight="800" letter-spacing="-2"><tspan fill="#0f4f67">Blue</tspan><tspan fill="#4f7047">Green</tspan></text>
+    <line x1="245" y1="137" x2="306" y2="137" stroke="#0f4f67" stroke-width="5"/>
+    <text x="328" y="151" font-size="38" font-weight="800" letter-spacing="18" fill="#0f4f67">GUIDE</text>
+    <line x1="548" y1="137" x2="614" y2="137" stroke="#4f7047" stroke-width="5"/>
+    <text x="276" y="195" font-size="18" font-weight="700" letter-spacing="10" fill="#3e464a">FIND YOUR PLACE OUTSIDE</text>
+  </g>
 </svg>
