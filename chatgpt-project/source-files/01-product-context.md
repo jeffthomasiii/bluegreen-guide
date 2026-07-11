@@ -6,15 +6,17 @@ BlueGreen Guide
 
 ## Core Idea
 
-BlueGreen Guide helps people find nearby outdoor blue-space and green-space experiences, starting with paddleboarding and kayaking launch points.
+BlueGreen Guide is an outdoor discovery and wayfinding guide for blue spaces and green spaces. It begins with curated paddleboarding and kayaking launch points, then expands into a broader system for finding, understanding, and planning practical outdoor experiences.
 
 ## Why This Exists
 
-Many people want to spend time outdoors near water but do not always know where to go, what locations are beginner-friendly, what amenities exist, or when conditions are likely to be better. The app should reduce friction between the desire to get outside and the practical decision of where to go.
+Many people want to spend time outdoors but do not always know where to go, what a place offers, whether it fits their experience level, or what conditions and access details should be checked before leaving. BlueGreen Guide should reduce the friction between wanting to get outside and confidently choosing a suitable place.
+
+The product prioritizes practical planning over novelty. It should help users answer clear questions without overstating safety, access, or conditions.
 
 ## Blue Spaces
 
-Blue spaces include:
+Blue spaces are water-centered outdoor places, including:
 
 - Oceans
 - Beaches
@@ -27,7 +29,7 @@ Blue spaces include:
 
 ## Green Spaces
 
-Green spaces include:
+Green spaces are natural or planted outdoor places, including:
 
 - Parks
 - Woods
@@ -44,11 +46,11 @@ The first use case is finding paddleboarding and kayaking launch points.
 The user should be able to answer:
 
 - Where can I launch?
-- Is this beginner-friendly?
+- Is this suitable for my experience level?
 - What type of water is it?
 - What amenities are nearby?
 - When is it generally best?
-- What should I be cautious about?
+- What should I verify or be cautious about?
 
 ## Initial Geography
 
@@ -56,4 +58,26 @@ The seed map includes Southern California, Central California, Nevada, and Arizo
 
 ## Long-Term Vision
 
-The app can eventually become a recommendation guide for outdoor water experiences, including conditions, user reviews, saved places, routes, and AI-assisted trip planning.
+BlueGreen Guide can grow from a curated launch map into a practical outdoor discovery platform with place details, conditions, environmental context, saved places, routes, community contributions, and intelligent trip recommendations.
+
+The brand must therefore represent outdoor discovery rather than one activity. Paddleboarding and kayaking belong in the product's activity system, not in the permanent brand identity.
+
+## Brand Architecture
+
+BlueGreen Guide uses two coordinated identity layers:
+
+1. **Brand identity** — the timeless BlueGreen Guide logo and visual system representing the connection between water, land, and discovery.
+2. **Wayfinding system** — category icons, markers, labels, and chips representing specific places, activities, amenities, and attributes.
+
+This structure allows the product to begin with paddle launches without making the overall brand feel limited to paddling.
+
+## Product Principles
+
+- Map-first
+- Useful before decorative
+- Calm and trustworthy
+- Mobile-friendly
+- Data-driven
+- Safety-aware
+- Inclusive of different experience levels and access needs
+- Expandable without redesigning the core identity
