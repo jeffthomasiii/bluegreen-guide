@@ -20,9 +20,44 @@ The current prototype uses `data/launch-points.json`.
 - `tags`
 - `description`
 
-## Future Place Fields
+## Wayfinding Taxonomy
 
-Recommended additions:
+The design system separates what a place **is**, what a user can **do**, and what characteristics or services the place **has**.
+
+Recommended future fields:
+
+- `spaceType`: `blue`, `green`, `mixed`, or `universal`
+- `placeTypes`: place categories such as `lake`, `harbor`, `park`, `trail`, or `campground`
+- `activityTypes`: activities such as `paddle-launch`, `kayak-launch`, `hiking`, or `fishing`
+- `amenityTypes`: services or facilities such as `parking`, `restrooms`, `rentals`, or `picnic-table`
+- `attributeTypes`: descriptive qualities such as `dog-friendly`, `accessible`, `scenic-view`, or `beginner-friendly`
+- `wayfindingIcon`: approved icon token from the Wayfinding System
+- `markerStyle`: approved map-marker token
+
+### Color semantics
+
+- `blue` — water places and water activities
+- `green` — land places and land activities
+- `neutral` — amenities and universal attributes
+- `mixed` — a place containing meaningful blue-space and green-space experiences; the UI should show the relevant categories rather than inventing a fourth permanent brand color
+
+Color is a supporting cue, not the only source of meaning. Icons should remain understandable through shape and labels.
+
+Example:
+
+```json
+{
+  "spaceType": "blue",
+  "placeTypes": ["harbor"],
+  "activityTypes": ["paddle-launch", "kayak-launch"],
+  "amenityTypes": ["parking", "restrooms", "rentals"],
+  "attributeTypes": ["beginner-friendly", "scenic-view"],
+  "wayfindingIcon": "paddle-launch",
+  "markerStyle": "blue-place"
+}
+```
+
+## Future Place Fields
 
 - `entryType`
 - `parkingType`
@@ -42,8 +77,6 @@ Recommended additions:
 
 ## Future Conditions Fields
 
-Potential live or near-term planning fields:
-
 - `currentWeather`
 - `forecastSummary`
 - `windSpeed`
@@ -59,11 +92,9 @@ Potential live or near-term planning fields:
 - `conditionsSourceUrls`
 - `conditionsUpdatedAt`
 
-These fields should be treated as changing conditions, not permanent place facts.
+These fields describe changing conditions, not permanent place facts.
 
 ## Future Environmental Intelligence Fields
-
-Potential long-term or seasonal context fields:
 
 - `averageMonthlyTemperature`
 - `averageMonthlyWind`
@@ -77,11 +108,9 @@ Potential long-term or seasonal context fields:
 - `climateSourceUrls`
 - `climateDataUpdatedAt`
 
-NASA POWER is a candidate source for climate normals, historical weather averages, and seasonal planning context. It should not replace live weather, marine forecast, tide, or official advisory sources.
+NASA POWER is a candidate source for climate normals and seasonal context. It should not replace current weather, marine forecasts, tides, or official advisories.
 
 ## Future Advisory Fields
-
-Potential environmental advisory fields:
 
 - `waterQualityStatus`
 - `waterQualitySourceUrl`
@@ -95,25 +124,18 @@ Potential environmental advisory fields:
 
 ## Data and Insight Layers
 
-BlueGreen Guide should keep four layers separate:
-
 | Layer | Purpose | Example |
 | --- | --- | --- |
 | Place Data | Rarely changing location facts | Parking, launch type, restrooms |
 | Live Data | Current or near-term conditions | Weather, wind, tides |
-| Environmental Data | Historical, seasonal, or advisory context | NASA climate normals, water quality, AQI |
-| Derived Insights | App-generated guidance from the layers above | Best before 10 AM, good beginner season, check wind after noon |
-
-Derived insights should be generated from traceable input data. If a recommendation is uncertain, it should use cautious wording instead of sounding definitive.
+| Environmental Data | Historical, seasonal, or advisory context | Climate normals, water quality, AQI |
+| Derived Insights | App-generated guidance | Best before 10 AM, good beginner season |
 
 ## Data Rules
 
-Do not treat unverified data as confirmed.
-
-Use `unknown`, `needsVerification`, or source notes when details are uncertain.
-
-Safety, access, fees, rules, and conditions should be verified through official sources whenever possible.
-
-Do not invent verified access, parking, fee, tide, wind, water quality, climate, or hazard details.
-
-Separate static place facts, live conditions, environmental context, and generated insights so users can understand what is verified, what is changing, and what is app-generated guidance.
+- Do not treat unverified data as confirmed.
+- Use `unknown`, `needsVerification`, or source notes when details are uncertain.
+- Verify safety, access, fees, rules, and conditions through official sources whenever possible.
+- Do not invent verified access, parking, fees, tides, wind, water quality, climate, or hazard details.
+- Keep static facts, live conditions, environmental context, and generated insights separate.
+- Use approved Wayfinding System tokens instead of hard-coded icon names or arbitrary colors.
