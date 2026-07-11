@@ -1,12 +1,31 @@
 # BlueGreen Guide
 
-BlueGreen Guide is a proof-of-concept outdoor map for finding paddleboarding and kayaking launch points through the lens of blue spaces and green spaces.
+**Discover Better Outdoors**
 
-Blue spaces are outdoor places shaped by water: oceans, bays, rivers, lakes, reservoirs, lagoons, and harbors. Green spaces are natural or planted outdoor areas such as parks, woods, gardens, shorelines, and open space. The long-term product idea is to help people find restorative outdoor water experiences that are practical, safe, and nearby.
+BlueGreen Guide is a proof-of-concept outdoor discovery and wayfinding app for blue spaces and green spaces. It begins with paddleboarding and kayaking launch points, but the long-term vision is broader: helping people find, understand, and plan practical outdoor experiences across water and land.
+
+Blue spaces include oceans, bays, rivers, lakes, reservoirs, lagoons, and harbors. Green spaces include parks, woods, gardens, trails, campgrounds, shoreline open space, and wildlife areas.
+
+## Design System 2.0
+
+The BlueGreen Guide rebrand is approved and locked.
+
+The identity now uses two coordinated layers:
+
+1. **Brand identity** — the Option B2 landscape mark represents water, land, discovery, and guidance without being tied to one activity.
+2. **Wayfinding system** — category icons and markers communicate specific places, activities, amenities, and attributes.
+
+Wayfinding semantics:
+
+- **Blue:** water places and water activities
+- **Green:** land places and land activities
+- **Neutral:** amenities, services, and universal attributes such as Scenic View, Dog Friendly, Accessibility, Parking, and Restrooms
+
+See [Design System 2.0](docs/brand-guide.md) and the [Wayfinding System](docs/wayfinding-system.md).
 
 ## Phase 1
 
-This repo currently contains a static browser-based POC:
+The current static browser-based proof of concept includes:
 
 - Interactive OpenStreetMap/Leaflet map
 - 52 seed launch points across Southern California, Central California, Nevada, and Arizona
@@ -18,7 +37,11 @@ This repo currently contains a static browser-based POC:
 - Credited representative images for Phase 1 photo placeholders
 - Map view filtering
 - Mobile layout that keeps the map reachable before the full result list
-- Blue-primary visual system with green-space accent colors
+- Blue-primary visual system with green-space accents
+
+## Current Status
+
+Phase 1 is complete as a working prototype. This is not production software yet: most seed data still needs a full source-verification pass, current photos are representative placeholders rather than confirmed place photos, and the final exported Option B2 logo and Wayfinding System assets still need to be applied to the live interface.
 
 ## Run Locally
 
@@ -34,7 +57,7 @@ Then open:
 http://localhost:8080
 ```
 
-On Windows, if Python is installed as `py`, use:
+On Windows:
 
 ```powershell
 py -m http.server 8080
@@ -45,7 +68,7 @@ py -m http.server 8080
 This repo is designed to work with GitHub Pages from the root folder.
 
 1. Push the repo to GitHub.
-2. Open the GitHub repo settings.
+2. Open the repository settings.
 3. Go to **Pages**.
 4. Set **Source** to **Deploy from a branch**.
 5. Choose the `main` branch and `/root`.
@@ -57,20 +80,24 @@ This repo is designed to work with GitHub Pages from the root folder.
 ├── index.html
 ├── styles.css
 ├── app.js
+├── assets/
+│   └── brand/
 ├── data/
 │   ├── launch-points.json
 │   └── launch-points.js
 ├── docs/
+│   ├── brand-guide.md
+│   ├── wayfinding-system.md
+│   ├── phase-roadmap.md
+│   └── ...
 ├── chatgpt-project/
 └── .github/
 ```
 
-## Current Status
+## Documentation
 
-Phase 1 is complete as a working prototype. This is not production software yet: most seed data still needs a full source-verification pass, and current photos are representative placeholders rather than confirmed launch-point photos.
-
-See [docs/phase-roadmap.md](docs/phase-roadmap.md) for the planned buildout.
-
-See [docs/image-strategy.md](docs/image-strategy.md) for how representative photos should be replaced with verified launch-point photos over time.
-
-See [docs/phase-1-closeout.md](docs/phase-1-closeout.md) for the Phase 1 completion notes and known limitations.
+- [Design System 2.0](docs/brand-guide.md)
+- [Wayfinding System](docs/wayfinding-system.md)
+- [Phase Roadmap](docs/phase-roadmap.md)
+- [Image Strategy](docs/image-strategy.md)
+- [Phase 1 Closeout](docs/phase-1-closeout.md)
