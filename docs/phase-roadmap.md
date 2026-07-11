@@ -1,6 +1,20 @@
 # Phase Roadmap
 
-## Phase 1: Curated Launch Map
+## Design System 2.0 — Complete
+
+The approved BlueGreen Guide rebrand is now the visual foundation for all phases.
+
+Completed decisions:
+
+- Option B2 landscape mark selected
+- Permanent brand logo separated from activity-specific icons
+- Blue, green, and neutral wayfinding semantics established
+- Cross-device direction documented for desktop, tablet, mobile, and watch
+- Typography, color, icon, marker, photography, and component guidance documented
+
+The brand represents water, land, discovery, and guidance. It is not tied to paddleboarding, kayaking, or another single activity.
+
+## Phase 1: Curated Launch Map — Complete POC
 
 Goal: Build a working map-based proof of concept.
 
@@ -15,24 +29,26 @@ Included now:
 - Difficulty, popularity, and best-time data
 - Mobile-friendly layout
 - Credited representative images for Phase 1 photo placeholders
-- Blue-primary visual identity
+- BlueGreen Guide Design System 2.0 direction
 
-Phase 1 is complete as a functional proof of concept. The app has the core user flow in place, but the guide should still be treated as unverified seed data until the follow-up source and photo passes are complete.
+Phase 1 is complete as a functional proof of concept. The guide should still be treated as seed data until the follow-up source and photo passes are complete.
 
 Post-Phase 1 cleanup:
 
-- Replace representative images with verified launch-point photos
+- Apply final exported Option B2 logo assets
+- Align markers, filters, chips, and icons with the Wayfinding System
+- Replace representative images with verified place photos
 - Add real source notes for all seed data
-- Add more launch-specific safety fields
+- Add more place-specific safety fields
 - Add map clustering if the dataset grows
 
 ## Phase 2: Better Place Pages
 
-Goal: Make each location feel useful enough to plan a real outing.
+Goal: Make each location useful enough to plan a real outing.
 
 Features:
 
-- Dedicated launch-point detail view
+- Dedicated place detail views
 - Multiple photos per location
 - Parking details
 - Fees and permit notes
@@ -45,133 +61,75 @@ Features:
 - Source citations
 - Last verified date
 
+Place pages may combine blue-space, green-space, and neutral attributes without changing the permanent brand identity.
+
 ## Phase 3: Live Conditions and Trip Planning
 
 Goal: Help users answer: Should I go today?
-
-This phase should focus on current or near-term conditions that can change by the hour or day. These fields should be clearly presented as planning aids, not guarantees of safety.
 
 Features:
 
 - Live weather
 - Wind speed and direction
-- Tide information for coastal launches
+- Tide information for coastal locations
 - NOAA marine forecast links where relevant
 - Water temperature where available
-- Sunrise/sunset timing
+- Sunrise and sunset timing
 - Seasonal access notes
-- Simple suitability guidance such as `Good this morning`, `Check conditions`, or `Consider another day`
+- Simple suitability guidance
 
-Important boundary:
-
-- Phase 3 should prioritize live conditions first.
-- Do not combine long-term climate normals with live trip guidance until the app can clearly explain the difference between current conditions and historical expectations.
-- Avoid making unsupported safety claims. Use language such as `Check official source`, `Conditions vary`, or `Needs verification` when appropriate.
+Use conditions as planning aids, not safety guarantees. Prefer language such as `Check official source`, `Conditions vary`, or `Needs verification`.
 
 ## Phase 3.5: Environmental Intelligence
 
 Goal: Help users answer: When is this place typically at its best?
 
-This phase adds long-term environmental context after live planning data is in place. It should help users compare locations, understand seasonal patterns, and choose better times of year or times of day.
-
-### Climate Intelligence
-
-Potential source: NASA POWER.
-
-NASA POWER should be treated as a supplementary climate and environmental dataset, not as the app's primary live weather source. It is most useful for historical averages, climatology, and seasonal planning context.
-
 Potential features:
 
-- Average monthly air temperature
-- Historical wind patterns
-- Average precipitation
-- Cloud cover
-- Sunshine or solar exposure patterns
-- Seasonal climate summaries
-- Best months to visit
-- Typical morning versus afternoon conditions
-- Climate comparison between launch sites
-
-Example UI direction:
-
-```text
-Seasonal Climate
-
-Best Months
-May - October
-
-Typical July
-High: 79°F
-Morning Wind: 5 mph
-Rainfall: Very Low
-
-Powered by NASA POWER
-```
-
-### Water and Environmental Context
-
-Potential features:
-
-- Water quality advisories where available
-- Harmful algae bloom notices where available
-- Reservoir or lake level notes where relevant
-- Air Quality Index
-- Smoke and wildfire impact notices
-- UV Index
-- Drought context
+- Climate normals and historical patterns
+- Typical morning and afternoon conditions
+- Water-quality advisories
+- Harmful algae bloom notices
+- Reservoir or lake-level context
+- Air quality, smoke, wildfire, and UV context
 - Seasonal closures or restrictions
-
-### Derived Insights
-
-Potential outputs:
-
-- Best months to paddle
-- Typical morning conditions
-- Typical afternoon wind patterns
-- Beginner-season recommendations
-- Seasonal planning summaries
+- Best months to visit
 - Location comparison summaries
 
-Important boundary:
-
-- Environmental Intelligence should explain typical conditions, not promise current safety.
-- Live trip recommendations should still rely on current weather, wind, tide, marine forecast, and official advisories.
-- Any generated insight should be traceable to its input source or marked as a general planning estimate.
+NASA POWER is a candidate for climate normals and seasonal context. It should not replace live weather, marine forecasts, tide data, or official advisories.
 
 ## Data and Insight Architecture
-
-BlueGreen Guide should keep four layers separate as the product grows:
 
 | Layer | Purpose | Example |
 | --- | --- | --- |
 | Place Data | Rarely changing location facts | Parking, launch type, restrooms |
 | Live Data | Current or near-term conditions | Weather, wind, tides |
-| Environmental Data | Historical, seasonal, or advisory context | NASA climate normals, water quality, AQI |
-| Derived Insights | App-generated guidance from the layers above | Best before 10 AM, good beginner season, check wind after noon |
+| Environmental Data | Historical, seasonal, or advisory context | Climate normals, water quality, AQI |
+| Derived Insights | App-generated guidance | Best before 10 AM, check wind after noon |
 
-This separation keeps the app trustworthy and easier to maintain. It also creates a clean foundation for later recommendation features without mixing verified facts, changing conditions, and app-generated guidance.
+Keep these layers visually and structurally distinct.
 
 ## Phase 4: Community Layer
 
-Goal: Let the app improve through real paddler feedback.
+Goal: Let the guide improve through responsible user contributions.
 
 Features:
 
-- User ratings
+- Ratings
 - Reviews
 - Photo submissions
 - Suggested edits
 - Report inaccurate information
-- Favorite locations
+- Favorite places
 - Trip notes
 
 ## Phase 5: Intelligent Recommendations
 
-Goal: Turn the app from a map into a decision helper.
+Goal: Turn the guide from a map into a decision helper.
 
-Example request:
+Example:
 
-> I want somewhere within an hour of Riverside that is beginner-friendly, calm in the morning, dog-friendly, and not too crowded.
+> Find somewhere within an hour of Riverside that is beginner-friendly, calm in the morning, dog-friendly, and not too crowded.
 
 Features:
 
@@ -179,20 +137,21 @@ Features:
 - Ranked recommendations
 - Personalized filters
 - Conditions-aware suggestions
-- Saved user preferences
-- Blue Conditions Score or similar plain-language suitability signal
+- Saved preferences
+- Plain-language suitability signals
 
-The recommendation layer should be built from the data architecture above. It should distinguish between static place facts, live conditions, long-term environmental patterns, and app-generated insights.
+## Phase 6: Routes and Ecosystem
 
-## Phase 6: Routes, Clubs, and Ecosystem
-
-Goal: Grow beyond isolated launch points.
+Goal: Grow beyond isolated places.
 
 Features:
 
-- Suggested paddle routes
+- Paddle routes
+- Hiking and shoreline routes
 - Mileage and estimated duration
 - Local clubs and meetups
 - Outfitters and lessons
 - Trip logging
 - Shareable trip plans
+
+The Wayfinding System should expand through documented categories rather than one-off icons or colors.
