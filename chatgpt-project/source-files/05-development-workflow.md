@@ -7,10 +7,13 @@ Static HTML/CSS/JavaScript app.
 ## Core Files
 
 - `index.html`
-- `styles.css`
+- `styles.css` — Phase 1 base styles and Leaflet fallback rules
+- `design-system.css` — Design System 2.0 visual overrides and responsive brand implementation
 - `app.js`
 - `data/launch-points.json`
 - `data/launch-points.js`
+
+Load `design-system.css` after `styles.css` so the approved visual system can evolve without removing the stable Phase 1 layout and Leaflet fallback rules.
 
 ## Local Run
 
@@ -51,6 +54,7 @@ The approved visual source of truth is `docs/brand-guide.md`.
 - Do not add a paddleboarder, kayaker, trail user, animal, or activity equipment to the permanent logo.
 - Do not substitute an activity icon for the brand mark.
 - Keep the tagline `Discover Better Outdoors` optional in compact UI.
+- The current app uses a lightweight inline SVG interpretation of the B2 mark until final production logo exports are added to `assets/brand/`.
 
 ### Wayfinding semantics
 
@@ -70,6 +74,7 @@ The approved visual source of truth is `docs/brand-guide.md`.
 - Keep universal amenities visually distinct from place and activity categories.
 - Test icons and markers at mobile sizes before merging.
 - Maintain accessible contrast and visible keyboard focus states.
+- Keep stable structural and Leaflet fallback rules in `styles.css`; place approved visual overrides in `design-system.css` until a future cleanup intentionally consolidates them.
 
 Example token structure:
 
