@@ -3,29 +3,58 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>BlueGreen Guide | Phase 1 Outdoor Water Map</title>
+    <meta
+      name="description"
+      content="BlueGreen Guide helps people discover practical outdoor experiences across blue spaces and green spaces."
+    />
+    <title>BlueGreen Guide | Discover Better Outdoors</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="design-system.css" />
   </head>
   <body>
     <main class="app-shell">
-      <aside class="sidebar" aria-label="Launch point filters and results">
+      <aside class="sidebar" aria-label="Place filters and results">
         <header class="brand">
-          <img
-            src="assets/brand/bluegreen-guide-logo-primary-transparent.png"
-            alt="BlueGreen Guide"
-            style="display:block;width:68px;height:auto;background:transparent;border-radius:0;"
-          >
-          <div>
-            <h1>BlueGreen Guide</h1>
-            <p>Blue-space launch map</p>
-            <a href="docs/" style="display:inline-block;margin-top:6px;color:#0f4f67;font-size:13px;font-weight:800;text-decoration:none;">Documentation</a>
-          </div>
+          <a class="brand-lockup" href="./" aria-label="BlueGreen Guide home">
+            <svg class="brand-landscape-mark" viewBox="0 0 72 92" role="img" aria-labelledby="brandMarkTitle">
+              <title id="brandMarkTitle">BlueGreen Guide landscape mark</title>
+              <rect class="brand-mark-frame" x="3" y="3" width="66" height="86" rx="19" />
+              <path class="brand-mark-mountain-back" d="M12 52 29 29l10 13 8-10 14 20Z" />
+              <path class="brand-mark-mountain-front" d="M9 55 27 38l12 14 9-8 15 11Z" />
+              <path class="brand-mark-land" d="M7 58c12-7 22-7 31-2 9 5 18 5 27-1v12H7Z" />
+              <path class="brand-mark-water" d="M7 66c10-4 20-4 30 0 10 4 19 4 28 0v19H7Z" />
+              <path class="brand-mark-wave" d="M11 72c9-4 17-4 25 0 8 4 16 4 25 0" />
+            </svg>
+            <span class="brand-wordmark">
+              <strong>BlueGreen Guide</strong>
+              <span>Discover Better Outdoors</span>
+            </span>
+          </a>
+          <a class="documentation-link" href="docs/">Documentation</a>
         </header>
+
+        <section class="wayfinding-key" aria-labelledby="wayfindingTitle">
+          <div>
+            <p class="eyebrow">Wayfinding System</p>
+            <h2 id="wayfindingTitle">Find the right outdoor experience</h2>
+          </div>
+          <div class="wayfinding-items" aria-label="Wayfinding categories">
+            <span class="wayfinding-item wayfinding-water"><span aria-hidden="true">≈</span> Water</span>
+            <span class="wayfinding-item wayfinding-land"><span aria-hidden="true">⌁</span> Land</span>
+            <span class="wayfinding-item wayfinding-neutral"><span aria-hidden="true">＋</span> Amenities</span>
+          </div>
+        </section>
 
         <section class="controls" aria-label="Search launch points">
           <label class="field field-full">
-            <span>Search Blue Spaces</span>
+            <span>Search Places</span>
             <input id="searchInput" type="search" placeholder="Try Newport, Tahoe, beginner, rentals..." />
           </label>
 
@@ -47,7 +76,7 @@
           </label>
 
           <label class="field">
-            <span>Activity</span>
+            <span>Water Activity</span>
             <select id="activityFilter">
               <option value="all">All</option>
               <option value="SUP">SUP</option>
@@ -69,9 +98,9 @@
           </label>
 
           <button id="locationButton" class="button button-primary" type="button">Use my location</button>
-          <button id="fitButton" class="button button-primary" type="button">Fit all</button>
-          <button id="boundsButton" class="button button-secondary button-wide" type="button">
-            Show launch points in current map view
+          <button id="fitButton" class="button button-secondary" type="button">Fit all places</button>
+          <button id="boundsButton" class="button button-tertiary button-wide" type="button">
+            Show places in current map view
           </button>
         </section>
 
@@ -84,6 +113,10 @@
       </aside>
 
       <section class="map-panel" aria-label="Interactive map">
+        <div class="map-label" aria-hidden="true">
+          <span class="map-label-dot"></span>
+          Curated launch map
+        </div>
         <div id="map" class="map"></div>
       </section>
 
@@ -105,7 +138,7 @@
           <div class="rating-row"></div>
           <p class="launch-description"></p>
           <div class="tag-row"></div>
-          <button class="card-button" type="button">View details</button>
+          <button class="card-button" type="button">View place details</button>
         </div>
       </article>
     </template>
