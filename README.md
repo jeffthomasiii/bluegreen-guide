@@ -8,9 +8,9 @@ Blue spaces include oceans, bays, rivers, lakes, reservoirs, lagoons, and harbor
 
 ## Design System 2.0
 
-The BlueGreen Guide rebrand is approved and locked.
+The BlueGreen Guide rebrand is approved, documented, and applied to the live prototype shell.
 
-The identity now uses two coordinated layers:
+The identity uses two coordinated layers:
 
 1. **Brand identity** — the Option B2 landscape mark represents water, land, discovery, and guidance without being tied to one activity.
 2. **Wayfinding system** — category icons and markers communicate specific places, activities, amenities, and attributes.
@@ -37,11 +37,13 @@ The current static browser-based proof of concept includes:
 - Credited representative images for Phase 1 photo placeholders
 - Map view filtering
 - Mobile layout that keeps the map reachable before the full result list
-- Blue-primary visual system with green-space accents
+- Design System 2.0 responsive shell and wayfinding key
 
 ## Current Status
 
-Phase 1 is complete as a working prototype. This is not production software yet: most seed data still needs a full source-verification pass, current photos are representative placeholders rather than confirmed place photos, and the final exported Option B2 logo and Wayfinding System assets still need to be applied to the live interface.
+Phase 1 is complete as a working prototype. The live interface now applies the B2 landscape direction through a lightweight inline SVG mark, Cormorant Garamond and Inter typography, refreshed surfaces, and blue/green/neutral wayfinding cues.
+
+This is not production software yet: most seed data still needs a full source-verification pass, current photos are representative placeholders rather than confirmed place photos, the current dataset remains water-launch focused, and final production logo and icon exports still need to replace the interim inline and text-based symbols.
 
 ## Run Locally
 
@@ -79,6 +81,7 @@ This repo is designed to work with GitHub Pages from the root folder.
 .
 ├── index.html
 ├── styles.css
+├── design-system.css
 ├── app.js
 ├── assets/
 │   └── brand/
