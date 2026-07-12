@@ -1,46 +1,49 @@
 # BlueGreen Guide Quick Start
 
-**Version:** 1.0
+**Version:** 1.1
 
-Use this one-page guide to get started quickly.
+Use this guide to find and review a launch point quickly.
 
 ## 1. Open the map
 
-Start at the BlueGreen Guide home page. The app opens with a sidebar on the left and an interactive map on the right.
+Start at the BlueGreen Guide home page. The app combines planning tools, launch results, and an interactive map.
 
-## 2. Search for a place or feature
+## 2. Choose a curated collection
 
-Use **Search Blue Spaces** to search for a place, region, activity, water type, or amenity.
+Use Beginner Favorites, Family Friendly, Calm Water, Harbor Paddles, or Scenic Views for an exact editorial shortlist. Collections can be combined with search and filters.
+
+## 3. Search for a place or feature
+
+Use **Search Places** to search names, aliases, regions, water bodies, activities, amenities, taxonomy, tags, and descriptive text.
 
 Try searches such as:
 
 - Newport
+- Dana Point
+- Tahoe
 - Harbor
 - Beginner
 - Rentals
-- Lake
+- Scenic
+- Calm Water
 
-## 3. Filter the results
+## 4. Filter the results
 
-Use filters to narrow the list:
+Use filters for:
 
 - Region
 - Skill
-- Activity
-- Max Difficulty
+- Water activity
+- Maximum difficulty
 
-## 4. Compare launch cards
+## 5. Compare launch cards
 
-Each card summarizes a launch point. Review the skill level, water type, difficulty, popularity, best general time, tags, amenities, and verification note.
+Review the place, water type, skill level, difficulty, popularity, best general time, activities, amenities, tags, and verification status.
 
-## 5. Open details
+## 6. Open place details
 
-Select **View details** to see more information, including source links and verification notes where available.
+Select **View place details** for the fuller description, image information, planning fields, verification notes, and official source links.
 
-## 6. Check before going
+## 7. Check before going
 
-BlueGreen Guide is a planning aid. Before a trip, check official sources and current weather, wind, tide, water, and local access conditions.
-
-## Screenshot placeholders
-
-Detailed screenshot instructions are in `/docs/screenshots/README.md`.
+BlueGreen Guide is a planning aid. Check official sources and current weather, wind, tides where relevant, water quality, access, closures, and local rules before a trip.
