@@ -10,37 +10,69 @@
   <body>
     <main class="wrap">
       <header class="site-header">
-        <a href="../../" aria-label="Back to BlueGreen Guide app"><img class="site-logo" src="../../assets/brand/bluegreen-guide-logo-primary-transparent.svg" alt="BlueGreen Guide — Discover Better Outdoors" /></a>
-        <nav class="site-nav" aria-label="User guide navigation"><a class="button secondary" href="../">Documentation Home</a><a class="button" href="../../">Back to App</a></nav>
+        <a href="../../" aria-label="Back to BlueGreen Guide app">
+          <img class="site-logo" src="../../assets/brand/bluegreen-guide-logo-primary-transparent.svg" alt="BlueGreen Guide — Discover Better Outdoors" />
+        </a>
+        <nav class="site-nav" aria-label="User guide navigation">
+          <a class="button secondary" href="../">Documentation Home</a>
+          <a class="button" href="../../">Back to App</a>
+        </nav>
       </header>
 
       <section class="hero">
-        <img class="hero-logo" src="../../assets/brand/bluegreen-guide-logo-primary-transparent.svg" alt="BlueGreen Guide — Discover Better Outdoors" />
         <p class="eyebrow">Field Guide &amp; User Manual</p>
         <h1>How to use BlueGreen Guide</h1>
         <p>A practical guide to navigating the curated launch map, search, filters, collections, cards, details, and verification notes.</p>
-        <div class="actions"><a class="button" href="../../">Open the App</a><a class="button secondary" href="../">Documentation Home</a><a class="button secondary" href="BlueGreen-Guide-Field-Guide.md">Markdown Version</a></div>
+        <div class="actions">
+          <a class="button" href="../../">Open the App</a>
+          <a class="button secondary" href="../">Documentation Home</a>
+          <a class="button secondary" href="BlueGreen-Guide-Field-Guide.md">Markdown Version</a>
+        </div>
       </section>
 
       <section class="wayfinding-strip" aria-label="Wayfinding legend">
-        <article class="wayfinding-card water"><span class="symbol">≈</span><span><strong>Blue = water</strong><span>Launches, lakes, rivers, bays, beaches, and paddling</span></span></article>
-        <article class="wayfinding-card land"><span class="symbol">⌁</span><span><strong>Green = land</strong><span>Parks, trails, forests, campgrounds, and gardens</span></span></article>
-        <article class="wayfinding-card neutral"><span class="symbol">＋</span><span><strong>Neutral = universal</strong><span>Parking, restrooms, accessibility, rentals, and attributes</span></span></article>
+        <article class="wayfinding-card water">
+          <span class="symbol" aria-hidden="true"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-water"></use></svg></span>
+          <span><strong>Blue = water</strong><span>Launches, lakes, rivers, bays, beaches, and paddling</span></span>
+        </article>
+        <article class="wayfinding-card land">
+          <span class="symbol" aria-hidden="true"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-park"></use></svg></span>
+          <span><strong>Green = land</strong><span>Parks, trails, forests, campgrounds, and gardens</span></span>
+        </article>
+        <article class="wayfinding-card neutral">
+          <span class="symbol" aria-hidden="true"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-parking"></use></svg></span>
+          <span><strong>Neutral = universal</strong><span>Parking, restrooms, accessibility, rentals, and attributes</span></span>
+        </article>
       </section>
 
       <div class="note safety"><strong>Safety note:</strong> BlueGreen Guide is a planning aid, not a live conditions or safety service. Always check official sources and current conditions before going.</div>
 
       <h2 id="home">Home screen</h2>
-      <div class="chip-row"><span class="chip water">Map-first</span><span class="chip neutral">Search</span><span class="chip neutral">Filters</span><span class="chip water">Launch cards</span></div>
+      <div class="chip-row">
+        <span class="chip water"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-map"></use></svg>Map-first</span>
+        <span class="chip neutral"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-filter"></use></svg>Search</span>
+        <span class="chip neutral"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-filter"></use></svg>Filters</span>
+        <span class="chip water"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-paddle"></use></svg>Launch cards</span>
+      </div>
       <p class="section-intro">The home screen combines search, filters, curated collections, result cards, and an interactive map. The map remains the central discovery tool while the sidebar helps narrow the current list.</p>
       <img class="screen screen-full" src="../screenshots/placeholders/home-screen-desktop.png" alt="BlueGreen Guide desktop home screen" />
 
       <h2 id="collections">Curated collections</h2>
-      <div class="chip-row"><span class="chip neutral">Beginner Favorites</span><span class="chip neutral">Family Friendly</span><span class="chip water">Calm Water</span><span class="chip water">Harbor Paddles</span><span class="chip neutral">Scenic Views</span></div>
+      <div class="chip-row">
+        <span class="chip neutral"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-beginner"></use></svg>Beginner Favorites</span>
+        <span class="chip neutral"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-family"></use></svg>Family Friendly</span>
+        <span class="chip water"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-water"></use></svg>Calm Water</span>
+        <span class="chip water"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-marina"></use></svg>Harbor Paddles</span>
+        <span class="chip neutral"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-scenic"></use></svg>Scenic Views</span>
+      </div>
       <p class="section-intro">Collections provide a quick starting point for common needs. Selecting one filters the map and result list. Clear the collection to return to the full launch map.</p>
 
       <h2 id="map">Explore the map</h2>
-      <div class="chip-row"><span class="chip water">Blue circle = water place</span><span class="chip land">Green square = land place</span><span class="chip neutral">Outline = universal</span></div>
+      <div class="chip-row">
+        <span class="chip water"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-water"></use></svg>Blue circle = water place</span>
+        <span class="chip land"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-park"></use></svg>Green square = land place</span>
+        <span class="chip neutral"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-parking"></use></svg>Outline = universal</span>
+      </div>
       <p class="section-intro">Drag to pan, zoom in and out, select markers, use <strong>Fit all places</strong> to reset the view, or show only launch points inside the current map area.</p>
       <img class="screen screen-medium" src="../screenshots/placeholders/map-marker-popup.png" alt="Map marker and launch popup" />
 
@@ -53,7 +85,11 @@
       <img class="screen screen-narrow" src="../screenshots/placeholders/filters-desktop.png" alt="BlueGreen Guide search filters" />
 
       <h2 id="cards">Launch cards</h2>
-      <div class="chip-row"><span class="chip water">Activities</span><span class="chip neutral">Amenities</span><span class="chip neutral">Verification</span></div>
+      <div class="chip-row">
+        <span class="chip water"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-paddle"></use></svg>Activities</span>
+        <span class="chip neutral"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-parking"></use></svg>Amenities</span>
+        <span class="chip neutral"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-alert"></use></svg>Verification</span>
+      </div>
       <p class="section-intro">Launch cards summarize skill level, water type, difficulty, popularity, best general time, activities, amenities, and verification status. These are quick planning summaries, not guarantees about current conditions.</p>
       <img class="screen screen-narrow" src="../screenshots/placeholders/launch-card-desktop.png" alt="BlueGreen Guide launch card" />
 
@@ -62,13 +98,20 @@
       <img class="screen screen-narrow" src="../screenshots/placeholders/launch-detail-desktop.png" alt="BlueGreen Guide launch detail panel" />
 
       <h2 id="verification">Verification and sources</h2>
-      <div class="chip-row"><span class="chip neutral">Official source</span><span class="chip neutral">Needs verification</span><span class="chip neutral">Conditions vary</span></div>
+      <div class="chip-row">
+        <span class="chip neutral"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-source"></use></svg>Official source</span>
+        <span class="chip neutral"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-alert"></use></svg>Needs verification</span>
+        <span class="chip neutral"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-clock"></use></svg>Conditions vary</span>
+      </div>
       <p class="section-intro">Information marked <strong>Needs verification</strong> should be confirmed through official park, harbor, marina, city, county, or agency sources before use. Access, legal launch points, fees, parking, tides, wind, water quality, closures, and hazards may change.</p>
       <img class="screen screen-narrow" src="../screenshots/placeholders/verification-sources.png" alt="Verification status and source links" />
 
       <h2 id="mobile">Mobile use</h2>
       <p class="section-intro">On mobile, the interface stacks the brand header, wayfinding key, collections, filters, result summary, map, and cards. Keep the map available for geographic context, then open details and official sources before leaving.</p>
-      <div class="mobile-screens"><img class="screen screen-mobile" src="../screenshots/placeholders/mobile-home.png" alt="BlueGreen Guide mobile home screen" /><img class="screen screen-mobile" src="../screenshots/placeholders/mobile-detail.png" alt="BlueGreen Guide mobile detail view" /></div>
+      <div class="mobile-screens">
+        <img class="screen screen-mobile" src="../screenshots/placeholders/mobile-home.png" alt="BlueGreen Guide mobile home screen" />
+        <img class="screen screen-mobile" src="../screenshots/placeholders/mobile-detail.png" alt="BlueGreen Guide mobile detail view" />
+      </div>
 
       <h2 id="faq">Frequently asked questions</h2>
       <div class="grid">
