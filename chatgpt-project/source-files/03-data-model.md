@@ -1,8 +1,21 @@
 # Data Model
 
-The current prototype uses `data/launch-points.json`.
+## Canonical Files
 
-## Current Fields
+- `data/launch-points.json` — authoritative place records
+- `data/launch-points.js` — generated browser copy
+- `data/collections.js` — curated collection configuration
+
+Edit the JSON source, regenerate the browser copy, and validate before publishing.
+
+```bash
+node scripts/build-launch-data-js.js
+node scripts/validate-repo.js
+```
+
+## Current Place Fields
+
+Core fields:
 
 - `id`
 - `name`
@@ -19,47 +32,59 @@ The current prototype uses `data/launch-points.json`.
 - `amenities`
 - `tags`
 - `description`
+- `verificationStatus`
+- `sourceUrls`
+- `sourceNotes`
 
-## Wayfinding Taxonomy
+Supported search and wayfinding fields:
 
-The design system separates what a place **is**, what a user can **do**, and what characteristics or services the place **has**.
+- `aliases`
+- `waterBody`
+- `spaceType`
+- `placeTypes`
+- `activityTypes`
+- `amenityTypes`
+- `attributeTypes`
 
-Recommended future fields:
+Source-review fields:
 
-- `spaceType`: `blue`, `green`, `mixed`, or `universal`
-- `placeTypes`: place categories such as `lake`, `harbor`, `park`, `trail`, or `campground`
-- `activityTypes`: activities such as `paddle-launch`, `kayak-launch`, `hiking`, or `fishing`
-- `amenityTypes`: services or facilities such as `parking`, `restrooms`, `rentals`, or `picnic-table`
-- `attributeTypes`: descriptive qualities such as `dog-friendly`, `accessible`, `scenic-view`, or `beginner-friendly`
-- `wayfindingIcon`: approved icon token from the Wayfinding System
-- `markerStyle`: approved map-marker token
+- `lastVerified`
+- `sourceReviewDate`
+- `sourceReviewStatus`
 
-### Color semantics
+Photo fields:
+
+- `photoStatus`
+- `photoUrls`
+- `photoNotes`
+
+## Collection Fields
+
+Each collection includes:
+
+- `id`
+- `name`
+- `description`
+- `query`
+- `placeIds`
+
+Collections filter by exact `placeIds`. Every referenced ID must exist in the canonical place data.
+
+## Wayfinding Semantics
 
 - `blue` — water places and water activities
 - `green` — land places and land activities
 - `neutral` — amenities and universal attributes
-- `mixed` — a place containing meaningful blue-space and green-space experiences; the UI should show the relevant categories rather than inventing a fourth permanent brand color
+- `mixed` — meaningful blue-space and green-space characteristics shown through the relevant categories
 
-Color is a supporting cue, not the only source of meaning. Icons should remain understandable through shape and labels.
+Color supports meaning but does not replace labels, icons, or shapes.
 
-Example:
+## Future Phase 2 Fields
 
-```json
-{
-  "spaceType": "blue",
-  "placeTypes": ["harbor"],
-  "activityTypes": ["paddle-launch", "kayak-launch"],
-  "amenityTypes": ["parking", "restrooms", "rentals"],
-  "attributeTypes": ["beginner-friendly", "scenic-view"],
-  "wayfindingIcon": "paddle-launch",
-  "markerStyle": "blue-place"
-}
-```
-
-## Future Place Fields
+Potential structured place fields:
 
 - `entryType`
+- `accessNotes`
 - `parkingType`
 - `fees`
 - `restrooms`
@@ -69,73 +94,23 @@ Example:
 - `windSensitivity`
 - `tideImpact`
 - `hazards`
-- `sourceUrls`
-- `photoUrls`
-- `photoCredits`
-- `lastVerified`
-- `needsVerification`
 
-## Future Conditions Fields
+## Later Data Layers
 
-- `currentWeather`
-- `forecastSummary`
-- `windSpeed`
-- `windDirection`
-- `windGusts`
-- `tideStatus`
-- `nextHighTide`
-- `nextLowTide`
-- `marineForecastUrl`
-- `waterTemperature`
-- `sunrise`
-- `sunset`
-- `conditionsSourceUrls`
-- `conditionsUpdatedAt`
-
-These fields describe changing conditions, not permanent place facts.
-
-## Future Environmental Intelligence Fields
-
-- `averageMonthlyTemperature`
-- `averageMonthlyWind`
-- `averageMonthlyPrecipitation`
-- `averageCloudCover`
-- `averageSunshine`
-- `typicalMorningConditions`
-- `typicalAfternoonConditions`
-- `bestMonths`
-- `seasonalSummary`
-- `climateSourceUrls`
-- `climateDataUpdatedAt`
-
-NASA POWER is a candidate source for climate normals and seasonal context. It should not replace current weather, marine forecasts, tides, or official advisories.
-
-## Future Advisory Fields
-
-- `waterQualityStatus`
-- `waterQualitySourceUrl`
-- `algaeBloomStatus`
-- `reservoirLevelStatus`
-- `airQualityIndex`
-- `smokeImpact`
-- `uvIndex`
-- `seasonalClosureStatus`
-- `advisoryUpdatedAt`
-
-## Data and Insight Layers
+Keep these layers separate:
 
 | Layer | Purpose | Example |
-| --- | --- | --- |
-| Place Data | Rarely changing location facts | Parking, launch type, restrooms |
+|---|---|---|
+| Place Data | Rarely changing facts | Parking, launch type, restrooms |
 | Live Data | Current or near-term conditions | Weather, wind, tides |
 | Environmental Data | Historical, seasonal, or advisory context | Climate normals, water quality, AQI |
-| Derived Insights | App-generated guidance | Best before 10 AM, good beginner season |
+| Derived Insights | App-generated guidance | Best before 10 AM, check wind after noon |
 
 ## Data Rules
 
 - Do not treat unverified data as confirmed.
-- Use `unknown`, `needsVerification`, or source notes when details are uncertain.
-- Verify safety, access, fees, rules, and conditions through official sources whenever possible.
-- Do not invent verified access, parking, fees, tides, wind, water quality, climate, or hazard details.
-- Keep static facts, live conditions, environmental context, and generated insights separate.
-- Use approved Wayfinding System tokens instead of hard-coded icon names or arbitrary colors.
+- Do not invent access, parking, fees, tides, wind, water quality, climate, or hazard details.
+- Use `Unknown`, `Needs verification`, `Check official source`, or `Conditions vary` where appropriate.
+- An official link does not automatically verify every field.
+- Use stable IDs and documented taxonomy tokens.
+- Keep canonical JSON, generated JavaScript, collection references, documentation, and validation synchronized.
