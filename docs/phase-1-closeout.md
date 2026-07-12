@@ -1,28 +1,53 @@
 # Phase 1 Closeout
 
-Phase 1 is complete as a functional proof of concept for the curated launch map.
+**Status:** Complete proof of concept  
+**Release:** v1.1.0  
+**Closeout date:** 2026-07-12
+
+Phase 1 is complete as a functional, documented, map-first proof of concept for curated paddleboarding and kayaking launch discovery.
 
 ## Completed
 
-- Static browser app using HTML, CSS, JavaScript, Leaflet, and JSON data
-- 52 seed launch points across Southern California, Central California, Nevada, and Arizona
-- Search and filters for region, skill, activity, and difficulty
-- Map markers, result cards, and launch detail view
-- Verification status, last-checked date, source links, and source notes
-- Mobile layout that keeps the map and results usable on smaller screens
-- Credited representative images for photo placeholders
-- Blue-primary visual identity with green-space accents
+- Static browser app using HTML, CSS, JavaScript, Leaflet, and canonical JSON data
+- 56 launch records across California, Nevada, and Arizona
+- Search across names, aliases, regions, water bodies, taxonomy, activities, amenities, tags, and descriptions
+- Region, skill, activity, and maximum-difficulty filters
+- Five curated collections using explicit place IDs
+- Map markers, map-bounds filtering, geolocation, result cards, and launch details
+- Verification status, source-review dates, official source links, and source notes
+- Credited representative images with clear image-status labels
+- Responsive desktop, tablet, and mobile layouts
+- Final Option B2 logo assets and the blue, green, and neutral wayfinding system
+- Public HTML Quick Start, Field Guide, Release Notes, and Roadmap
+- Canonical data build workflow and lightweight repository validation
 
-## Known Limitations
+## Intentional Limitations
 
-- Most Phase 1 seed records are still marked `Needs verification`.
-- Source links are present for the newest sourced records, but many older seed records still need official references.
-- Photos are representative unless a record explicitly uses `photoStatus: location`.
-- Safety, access, parking, fee, tide, wind, hazard, and restroom details should not be treated as verified until the source pass is complete.
+- Most records remain marked `Needs verification` because an official link does not verify every planning field.
+- Representative images are not assumed to show the exact launch point.
+- Access, legal hand-launch locations, parking, fees, hours, closures, amenities, water quality, weather, wind, tides, vessel traffic, and hazards require a current official-source check.
+- The dataset remains focused on paddleboarding and kayaking launch points.
+- Live conditions, accounts, favorites, reviews, community submissions, and AI recommendations are outside Phase 1.
 
-## Recommended Next Work
+## Canonical Data
 
-- Run a source-verification pass for every seed launch point.
-- Replace representative images with verified launch-point photos.
-- Add normalized access, parking, fee, restroom, rental, dog, accessibility, hazard, tide, and wind fields.
-- Consider map clustering once the dataset grows beyond the current Phase 1 size.
+The authoritative data is stored in:
+
+- `data/launch-points.json`
+- `data/collections.js`
+
+`data/launch-points.js` is generated from the JSON file for direct browser loading. Legacy runtime expansion and source-enrichment layers were consolidated into the canonical records for v1.1.0.
+
+## Validation
+
+Run the repository validation before publishing changes:
+
+```bash
+node scripts/validate-repo.js
+```
+
+The validation checks required fields, unique IDs, numeric ranges, collection references, generated-data synchronization, and internal HTML links.
+
+## Next Phase
+
+Phase 2 remains on hold. When resumed, the smallest useful next step is a structured place-detail pilot using a limited set of existing locations rather than a broad feature expansion.
