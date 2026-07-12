@@ -1,0 +1,252 @@
+/*
+  Targeted responsive corrections for the finalized BlueGreen Guide UI.
+  Loaded after ui-refresh.css so these rules resolve legacy selector conflicts.
+*/
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.app-shell,
+.sidebar,
+.brand,
+.brand-stack,
+.wayfinding-key,
+.wayfinding-items,
+.wayfinding-item,
+.collections-panel,
+.collection-button,
+.controls,
+.field,
+.results,
+.launch-card,
+.map-panel {
+  min-width: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+/*
+  design-system.css applies sizing to every direct span inside a Wayfinding item.
+  The finalized markup has separate symbol and copy spans, so explicitly restore
+  their intended dimensions and alignment.
+*/
+.wayfinding-item > .wayfinding-symbol {
+  display: grid;
+  width: 34px;
+  min-width: 34px;
+  height: 34px;
+  place-items: center;
+  align-self: center;
+  justify-self: start;
+  font-size: inherit;
+  line-height: 1;
+}
+
+.wayfinding-item > .wayfinding-copy {
+  display: grid;
+  width: auto;
+  min-width: 0;
+  height: auto;
+  place-items: initial;
+  align-content: center;
+  justify-self: stretch;
+  gap: 2px;
+  font-size: inherit;
+  line-height: 1.15;
+}
+
+.wayfinding-copy strong,
+.wayfinding-copy small {
+  display: block;
+  width: 100%;
+  margin: 0;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.wayfinding-copy strong {
+  color: currentColor;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.wayfinding-copy small {
+  color: var(--ui-muted);
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* Keep button icons and labels aligned as one centered control. */
+.button,
+.card-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  max-width: 100%;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.button > .ui-icon,
+.card-button > .ui-icon {
+  width: 18px;
+  min-width: 18px;
+  height: 18px;
+  align-self: center;
+}
+
+.button > span,
+.card-button > span {
+  display: block;
+  min-width: 0;
+  line-height: 1.15;
+}
+
+input,
+select,
+button {
+  max-width: 100%;
+}
+
+/* Tablet and compact desktop: retain the efficient multi-column layout. */
+@media (max-width: 860px) {
+  .app-shell {
+    width: 100%;
+    max-width: 100vw;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .brand,
+  .wayfinding-key,
+  .collections-panel,
+  .controls,
+  .result-summary,
+  .results {
+    width: auto;
+    max-width: calc(100vw - 24px);
+  }
+
+  .brand {
+    max-width: 100vw;
+  }
+
+  .map-panel {
+    width: 100%;
+    max-width: 100vw;
+  }
+}
+
+/* Phone layout: prevent compressed cards and two-column form controls. */
+@media (max-width: 720px) {
+  .wayfinding-items {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wayfinding-item {
+    grid-template-columns: 38px minmax(0, 1fr);
+    min-height: 54px;
+    padding: 9px 10px;
+  }
+
+  .wayfinding-item > .wayfinding-symbol {
+    width: 34px;
+    min-width: 34px;
+    height: 34px;
+  }
+
+  .wayfinding-copy strong {
+    font-size: 12px;
+  }
+
+  .wayfinding-copy small {
+    font-size: 10px;
+  }
+
+  .controls {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .controls .field,
+  .controls .field-full,
+  .controls .button,
+  .controls .button-wide {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .button,
+  .card-button {
+    min-height: 46px;
+  }
+
+  .brand-logo-image {
+    width: min(340px, 100%);
+  }
+
+  .map-panel {
+    min-height: clamp(340px, 58dvh, 520px);
+  }
+
+  .detail-card {
+    width: 100%;
+    max-width: 100vw;
+  }
+}
+
+@media (max-width: 420px) {
+  .brand,
+  .wayfinding-key,
+  .collections-panel,
+  .controls,
+  .result-summary,
+  .results {
+    max-width: calc(100vw - 20px);
+  }
+
+  .wayfinding-key,
+  .collections-panel,
+  .controls {
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 12px;
+  }
+
+  .brand {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .results {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .brand-logo-image {
+    width: 100%;
+  }
+
+  .launch-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .pill {
+    align-self: flex-start;
+  }
+
+  .rating-row,
+  .detail-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
