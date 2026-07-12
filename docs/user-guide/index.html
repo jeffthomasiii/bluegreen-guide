@@ -1,374 +1,191 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>BlueGreen Guide Field Guide & User Manual</title>
-
-    <style>
-      :root {
-        --bg: #eef6f8;
-        --panel: #fbfdff;
-        --line: #c9dce4;
-        --text: #10252e;
-        --muted: #5a6f78;
-        --blue: #176f8f;
-        --blue-dark: #0f4f67;
-        --soft: #dceff5;
-        --gold: #b99453;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--text);
-        font-family:
-          Inter,
-          ui-sans-serif,
-          system-ui,
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          sans-serif;
-        line-height: 1.6;
-      }
-
-      a {
-        color: var(--blue-dark);
-        font-weight: 800;
-      }
-
-      .wrap {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 32px 20px 56px;
-      }
-
-      .hero {
-        padding: 42px;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        background: linear-gradient(135deg, #fbfdff, #dceff5);
-        box-shadow: 0 16px 35px rgba(17, 52, 65, 0.1);
-      }
-
-      .mark {
-        display: inline-grid;
-        width: 52px;
-        height: 52px;
-        place-items: center;
-        border-radius: 10px;
-        background: var(--blue);
-        color: #fff;
-        font-weight: 900;
-      }
-
-      .eyebrow {
-        margin: 20px 0 8px;
-        color: var(--blue-dark);
-        font-size: 13px;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        font-weight: 900;
-      }
-
-      h1 {
-        margin: 0;
-        font-size: clamp(34px, 6vw, 64px);
-        line-height: 1;
-      }
-
-      h2 {
-        margin-top: 34px;
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 16px;
-        margin-top: 24px;
-      }
-
-      .card {
-        padding: 20px;
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        background: var(--panel);
-        box-shadow: 0 10px 22px rgba(17, 52, 65, 0.07);
-      }
-
-      .button {
-        display: inline-block;
-        margin: 6px 10px 6px 0;
-        padding: 11px 16px;
-        border-radius: 999px;
-        background: var(--blue);
-        color: #fff;
-        text-decoration: none;
-      }
-
-      .button.secondary {
-        border: 1px solid var(--line);
-        background: var(--soft);
-        color: var(--blue-dark);
-      }
-
-      .note {
-        margin: 18px 0;
-        padding: 12px 16px;
-        border-left: 4px solid var(--gold);
-        border-radius: 10px;
-        background: #fff;
-      }
-
-      .screen {
-        display: block;
-        width: 100%;
-        height: auto;
-        margin: 14px auto 28px;
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        background: #fff;
-      }
-
-      .screen-full {
-        max-width: 100%;
-      }
-
-      .screen-medium {
-        max-width: 720px;
-      }
-
-      .screen-narrow {
-        max-width: 460px;
-      }
-
-      .screen-mobile {
-        max-width: 340px;
-      }
-
-      .mobile-screens {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 340px));
-        gap: 20px;
-        justify-content: center;
-        align-items: start;
-        margin: 14px 0 28px;
-      }
-
-      .mobile-screens .screen {
-        margin: 0;
-      }
-
-      .footer {
-        margin-top: 40px;
-        color: var(--muted);
-        font-size: 14px;
-      }
-
-      @media (max-width: 700px) {
-        .wrap {
-          padding: 20px 14px 40px;
-        }
-
-        .hero {
-          padding: 26px;
-        }
-
-        .screen,
-        .screen-full,
-        .screen-medium,
-        .screen-narrow,
-        .screen-mobile {
-          max-width: 100%;
-        }
-
-        .mobile-screens {
-          grid-template-columns: 1fr;
-        }
-
-        .mobile-screens .screen {
-          margin: 0 auto;
-        }
-      }
-    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="BlueGreen Guide field guide and user manual for the curated outdoor launch map."
+    />
+    <title>BlueGreen Guide Field Guide &amp; User Manual</title>
+    <link rel="stylesheet" href="../brand-docs.css" />
   </head>
 
   <body>
     <main class="wrap">
+      <header class="site-header">
+        <a href="../../" aria-label="Back to BlueGreen Guide app">
+          <img
+            class="site-logo"
+            src="../../assets/brand/bluegreen-guide-logo-primary-transparent.svg"
+            alt="BlueGreen Guide — Discover Better Outdoors"
+          />
+        </a>
+        <nav class="site-nav" aria-label="User guide navigation">
+          <a class="button secondary" href="../">Documentation Home</a>
+          <a class="button" href="../../">Back to App</a>
+        </nav>
+      </header>
+
       <section class="hero">
-        <div class="mark">BG</div>
-
-        <p class="eyebrow">v1.0 Field Guide & User Manual</p>
-
+        <img
+          class="hero-logo"
+          src="../../assets/brand/bluegreen-guide-logo-primary-transparent.svg"
+          alt="BlueGreen Guide — Discover Better Outdoors"
+        />
+        <p class="eyebrow">Field Guide &amp; User Manual</p>
         <h1>How to use BlueGreen Guide</h1>
-
         <p>
           A practical guide to navigating the curated launch map, search, filters,
-          cards, details, and verification notes.
+          collections, cards, details, and verification notes.
         </p>
-
-        <p>
-          <a class="button" href="../">Documentation Home</a>
-          <a class="button secondary" href="BlueGreen-Guide-Field-Guide.md">
-            Markdown Version
-          </a>
-          <a class="button secondary" href="../../">Back to App</a>
-        </p>
+        <div class="actions">
+          <a class="button" href="../../">Open the App</a>
+          <a class="button secondary" href="../">Documentation Home</a>
+          <a class="button secondary" href="BlueGreen-Guide-Field-Guide.md">Markdown Version</a>
+        </div>
       </section>
 
-      <div class="note">
+      <div class="note safety">
         <strong>Safety note:</strong>
         BlueGreen Guide is a planning aid, not a live conditions or safety service.
         Always check official sources and current conditions before going.
       </div>
 
       <h2 id="home">Home screen</h2>
-
-      <p>
-        The home screen has a sidebar for search, filters, result count, and launch
-        cards, plus a map for geographic browsing.
+      <p class="section-intro">
+        The home screen combines search, filters, curated collections, result cards,
+        and an interactive map. The map remains the central discovery tool while the
+        sidebar helps narrow the current list.
       </p>
-
       <img
         class="screen screen-full"
         src="../screenshots/placeholders/home-screen-desktop.png"
-        alt="Home screen screenshot placeholder"
-      >
+        alt="BlueGreen Guide desktop home screen"
+      />
 
-      <h2 id="map">Explore the map</h2>
-
-      <p>
-        Drag to pan, zoom in and out, select markers, use Fit all to reset, or show
-        launch points in the current map view.
+      <h2 id="collections">Curated collections</h2>
+      <p class="section-intro">
+        Collections provide a quick starting point for common needs such as Beginner
+        Favorites, Family Friendly, Calm Water, Harbor Paddles, and Scenic Views.
+        Selecting one filters the map and result list. Clear the collection to return
+        to the full launch map.
       </p>
 
+      <h2 id="map">Explore the map</h2>
+      <p class="section-intro">
+        Drag to pan, zoom in and out, select markers, use <strong>Fit all places</strong>
+        to reset the view, or show only launch points inside the current map area.
+      </p>
       <img
         class="screen screen-medium"
         src="../screenshots/placeholders/map-marker-popup.png"
-        alt="Map marker popup placeholder"
-      >
+        alt="Map marker and launch popup"
+      />
 
       <h2 id="search">Search</h2>
-
-      <p>
-        Search by place, region, activity, water type, amenity, tag, or descriptive
-        text.
+      <p class="section-intro">
+        Search by place, region, activity, water type, amenity, water body, tag, or
+        descriptive text. Examples include Newport, Dana Point Harbor, beginner,
+        rentals, scenic, or calm water.
       </p>
-
       <img
         class="screen screen-narrow"
         src="../screenshots/placeholders/search-results-desktop.png"
-        alt="Search results placeholder"
-      >
+        alt="Filtered BlueGreen Guide search results"
+      />
 
       <h2 id="filters">Filters</h2>
-
-      <p>
-        Filter by region, skill, activity, and maximum difficulty to narrow the
-        launch collection.
+      <p class="section-intro">
+        Filter by region, skill, water activity, and maximum difficulty. Filters can
+        be combined with search and curated collections to create a smaller planning list.
       </p>
-
       <img
         class="screen screen-narrow"
         src="../screenshots/placeholders/filters-desktop.png"
-        alt="Filters placeholder"
-      >
+        alt="BlueGreen Guide search filters"
+      />
 
       <h2 id="cards">Launch cards</h2>
-
-      <p>
+      <p class="section-intro">
         Launch cards summarize skill level, water type, difficulty, popularity,
-        best general time, amenities, tags, and verification status.
+        best general time, activities, amenities, and verification status. These are
+        quick planning summaries, not guarantees about current conditions.
       </p>
-
       <img
         class="screen screen-narrow"
         src="../screenshots/placeholders/launch-card-desktop.png"
-        alt="Launch card placeholder"
-      >
+        alt="BlueGreen Guide launch card"
+      />
 
       <h2 id="details">Launch details</h2>
-
-      <p>
-        Open a detail panel to review the fuller description, key planning fields,
-        photo information, source links, and verification notes.
+      <p class="section-intro">
+        Open a place detail panel to review the fuller description, general planning
+        fields, representative photo information, source links, water-body context,
+        and verification notes.
       </p>
-
       <img
         class="screen screen-narrow"
         src="../screenshots/placeholders/launch-detail-desktop.png"
-        alt="Launch detail placeholder"
-      >
+        alt="BlueGreen Guide launch detail panel"
+      />
 
       <h2 id="verification">Verification and sources</h2>
-
-      <p>
-        Details marked unknown or needs verification should be checked through
-        official sources before use.
+      <p class="section-intro">
+        Information marked <strong>Needs verification</strong> should be confirmed
+        through official park, harbor, marina, city, county, or agency sources before
+        use. Access, legal launch points, fees, parking, tides, wind, water quality,
+        closures, and hazards may change.
       </p>
-
       <img
         class="screen screen-narrow"
         src="../screenshots/placeholders/verification-sources.png"
-        alt="Verification sources placeholder"
-      >
+        alt="Verification status and source links"
+      />
 
       <h2 id="mobile">Mobile use</h2>
-
-      <p>
-        On mobile, scroll through filters and cards, use the map for context, and
-        open details before checking official sources.
+      <p class="section-intro">
+        On mobile, the interface stacks the brand header, wayfinding key, collections,
+        filters, result summary, map, and cards. Keep the map available for geographic
+        context, then open details and official sources before leaving.
       </p>
-
       <div class="mobile-screens">
         <img
           class="screen screen-mobile"
           src="../screenshots/placeholders/mobile-home.png"
-          alt="Mobile home placeholder"
-        >
-
+          alt="BlueGreen Guide mobile home screen"
+        />
         <img
           class="screen screen-mobile"
           src="../screenshots/placeholders/mobile-detail.png"
-          alt="Mobile detail placeholder"
-        >
+          alt="BlueGreen Guide mobile detail view"
+        />
       </div>
 
-      <h2 id="faq">FAQ</h2>
-
+      <h2 id="faq">Frequently asked questions</h2>
       <div class="grid">
         <div class="card">
           <h3>Is it nationwide?</h3>
-          <p>Not yet. v1.0 is a curated proof of concept.</p>
+          <p>Not yet. The current release is a curated proof of concept focused on selected western launch points.</p>
         </div>
-
         <div class="card">
           <h3>Are conditions live?</h3>
-          <p>
-            No. Weather, wind, tide, and water conditions belong to a later
-            planning phase.
-          </p>
+          <p>No. Weather, wind, tide, water quality, and other changing conditions belong to later planning phases.</p>
         </div>
-
         <div class="card">
           <h3>Does Beginner mean safe?</h3>
-          <p>
-            No. Conditions vary. Always check current conditions and official
-            sources.
-          </p>
+          <p>No. It describes the general seed-data classification only. Conditions vary and official sources should always be checked.</p>
+        </div>
+        <div class="card">
+          <h3>Are the photos always the actual place?</h3>
+          <p>No. Current Phase 1 images may be credited representative placeholders until verified location photography is available.</p>
         </div>
       </div>
 
-      <p class="footer">
-        See the Markdown guide for the full screenshot replacement checklist and
-        maintainer notes.
-      </p>
+      <footer class="footer">
+        <span>BlueGreen Guide Field Guide &amp; User Manual</span>
+        <span><a href="../">Documentation Home</a> · <a href="../../">Back to App</a></span>
+      </footer>
     </main>
   </body>
 </html>
