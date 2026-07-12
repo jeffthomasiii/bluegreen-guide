@@ -1,49 +1,47 @@
-# GitHub Setup
+# GitHub Setup Record
 
-## Recommended Repo Name
+> Historical reference: the repository and GitHub Pages site are already configured. These instructions document the original setup rather than current work.
 
-`bluegreen-guide`
+## Repository
 
-## Recommended Description
+- Name: `bluegreen-guide`
+- Default branch: `main`
+- Visibility: public
+- GitHub Pages source: `main` branch, repository root
 
-Blue-space and green-space outdoor map prototype, starting with paddleboarding and kayaking launch points.
+## Live Sites
 
-## Create the Remote Repo
+- App: `https://jeffthomasiii.github.io/bluegreen-guide/`
+- Documentation: `https://jeffthomasiii.github.io/bluegreen-guide/docs/`
 
-Using the GitHub website:
+## Local Development
 
-1. Create a new repository named `bluegreen-guide`.
-2. Do not initialize it with a README, `.gitignore`, or license because this local repo already includes starter files.
-3. Copy the remote URL.
-
-Then from this repo folder:
+From the repository root, start a simple server:
 
 ```bash
-git remote add origin https://github.com/YOUR-USERNAME/bluegreen-guide.git
-git branch -M main
-git push -u origin main
+python3 -m http.server 8080
 ```
 
-## GitHub Pages
+On Windows:
 
-After pushing:
+```powershell
+py -m http.server 8080
+```
 
-1. Open repo **Settings**.
-2. Open **Pages**.
-3. Choose **Deploy from a branch**.
-4. Choose `main`.
-5. Choose `/root`.
-6. Save.
+Then open `http://localhost:8080`.
 
-## Suggested Initial Issues
+## Current Publishing Workflow
 
-See `.github/ISSUE_TEMPLATE/phase-task.md` for issue formatting.
+1. Make a focused change.
+2. Update canonical data or documentation as required.
+3. Regenerate `data/launch-points.js` after editing `data/launch-points.json`.
+4. Run `node scripts/validate-repo.js`.
+5. Review the app and documentation locally.
+6. Commit and push the change to GitHub.
+7. Confirm GitHub Pages renders the updated files.
 
-Good starter issues:
+## Issue Template
 
-- Replace placeholder launch images with properly licensed imagery
-- Add place detail view
-- Add safety/access verification fields
-- Improve mobile layout
-- Add map marker clustering
-- Add source URL fields to launch data
+Use `.github/ISSUE_TEMPLATE/phase-task.md` for future phase or maintenance issues.
+
+The original starter issues for mobile layout, place details, source fields, image strategy, and Phase 1 documentation were completed during the Phase 1 proof of concept. Current status is maintained in `README.md`, `docs/phase-1-closeout.md`, and `docs/phase-roadmap.md`.
