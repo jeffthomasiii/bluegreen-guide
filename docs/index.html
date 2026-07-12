@@ -1,44 +1,88 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="BlueGreen Guide documentation, field guide, release notes, and roadmap."
+    />
     <title>BlueGreen Guide Documentation</title>
-    <style>
-      :root{--bg:#eef6f8;--panel:#fbfdff;--line:#c9dce4;--text:#10252e;--muted:#5a6f78;--blue:#176f8f;--blue-dark:#0f4f67;--soft:#dceff5;--green:#6f8f63;--gold:#b99453}
-      *{box-sizing:border-box}
-      body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
-      a{color:var(--blue-dark);font-weight:800}
-      .wrap{max-width:1100px;margin:0 auto;padding:24px 20px 48px}
-      .hero{padding:28px 42px 34px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,#fbfdff,#dceff5);box-shadow:0 16px 35px rgba(17,52,65,.10)}
-      .logo{display:block;width:min(520px,100%);height:auto;margin:0 0 18px}
-      .eyebrow{margin:0 0 10px;color:var(--blue-dark);font-size:13px;text-transform:uppercase;letter-spacing:.08em;font-weight:900}
-      h2{margin-top:34px}
-      .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:24px}
-      .card{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:20px;box-shadow:0 10px 22px rgba(17,52,65,.07)}
-      .button{display:inline-block;border-radius:999px;padding:11px 16px;background:var(--blue);color:#fff;text-decoration:none;margin:6px 10px 6px 0}
-      .button.secondary{background:var(--soft);color:var(--blue-dark);border:1px solid var(--line)}
-      .note{border-left:4px solid var(--gold);background:#fff;padding:12px 16px;border-radius:10px;margin:18px 0}
-      .footer{margin-top:40px;color:var(--muted);font-size:14px}
-      @media(max-width:700px){.hero{padding:22px 24px 28px}.wrap{padding:16px 14px 40px}.logo{width:min(420px,100%);margin-bottom:16px}}
-    </style>
+    <link rel="stylesheet" href="brand-docs.css" />
   </head>
   <body>
     <main class="wrap">
+      <header class="site-header">
+        <a href="../" aria-label="Back to BlueGreen Guide app">
+          <img
+            class="site-logo"
+            src="../assets/brand/bluegreen-guide-logo-primary-transparent.svg"
+            alt="BlueGreen Guide — Discover Better Outdoors"
+          />
+        </a>
+        <nav class="site-nav" aria-label="Documentation navigation">
+          <a class="button secondary" href="user-guide/">User Guide</a>
+          <a class="button" href="../">Back to App</a>
+        </nav>
+      </header>
+
       <section class="hero">
-        <img class="logo" src="../assets/brand/bluegreen-guide-logo-horizontal-transparent.png" alt="BlueGreen Guide">
+        <img
+          class="hero-logo"
+          src="../assets/brand/bluegreen-guide-logo-primary-transparent.svg"
+          alt="BlueGreen Guide — Discover Better Outdoors"
+        />
         <p class="eyebrow">Documentation</p>
-        <p>Field guide, user manual, release notes, and roadmap for the v1.0 curated launch map proof of concept.</p>
-        <p><a class="button" href="user-guide/">Open Field Guide</a><a class="button secondary" href="../">Back to App</a></p>
+        <h1>Plan with clearer information.</h1>
+        <p>
+          Field guide, user manual, release notes, and roadmap for the curated launch-map proof of concept.
+          BlueGreen Guide is designed to make outdoor discovery feel calm, practical, and trustworthy.
+        </p>
+        <div class="actions">
+          <a class="button" href="user-guide/">Open User Guide</a>
+          <a class="button secondary" href="user-guide/Quick-Start.md">Quick Start</a>
+          <a class="button green" href="../">Return to the Map</a>
+        </div>
       </section>
-      <section class="grid">
-        <article class="card"><h2>Field Guide & User Manual</h2><p>Learn how to use the map, search, filters, launch cards, launch details, verification notes, and mobile layout.</p><p><a href="user-guide/">Read the guide</a></p></article>
-        <article class="card"><h2>Quick Start</h2><p>A short practical guide for first-time users.</p><p><a href="user-guide/Quick-Start.md">Open Quick Start</a></p></article>
-        <article class="card"><h2>Release Notes</h2><p>Summary of the v1.0 release scope and what belongs in future phases.</p><p><a href="release-notes.md">View release notes</a></p></article>
-        <article class="card"><h2>Roadmap</h2><p>Phase-by-phase plan for growing from a curated launch map to richer planning tools.</p><p><a href="roadmap.md">View roadmap</a></p></article>
+
+      <section class="grid" aria-label="Documentation sections">
+        <article class="card">
+          <p class="eyebrow">Learn the App</p>
+          <h2>Field Guide &amp; User Manual</h2>
+          <p>Learn how to use the map, search, filters, curated collections, place cards, details, verification notes, and mobile layout.</p>
+          <p><a href="user-guide/">Read the guide</a></p>
+        </article>
+
+        <article class="card">
+          <p class="eyebrow">Start Here</p>
+          <h2>Quick Start</h2>
+          <p>A short, practical walkthrough for first-time users who want to find and review a launch point quickly.</p>
+          <p><a href="user-guide/Quick-Start.md">Open Quick Start</a></p>
+        </article>
+
+        <article class="card">
+          <p class="eyebrow">What Changed</p>
+          <h2>Release Notes</h2>
+          <p>Review the current proof-of-concept scope, completed Phase 1 work, and known limitations.</p>
+          <p><a href="release-notes.md">View release notes</a></p>
+        </article>
+
+        <article class="card">
+          <p class="eyebrow">What Comes Next</p>
+          <h2>Roadmap</h2>
+          <p>See the phase-by-phase plan for growing from a curated launch map into broader outdoor discovery and planning.</p>
+          <p><a href="roadmap.md">View roadmap</a></p>
+        </article>
       </section>
-      <section class="note"><strong>Dataset scope:</strong> v1.0 intentionally uses a curated launch collection rather than nationwide coverage. The goal is to prove a calm, practical, trustworthy discovery experience before scaling.</section>
-      <p class="footer">BlueGreen Guide v1.0 documentation package.</p>
+
+      <section class="note safety">
+        <strong>Planning, not a safety guarantee:</strong> BlueGreen Guide summarizes useful information, but conditions, access, fees, closures, and rules can change. Check official sources before heading out.
+      </section>
+
+      <footer class="footer">
+        <span>BlueGreen Guide documentation</span>
+        <span><a href="../">Back to App</a> · <a href="brand-guide.md">Design System 2.0</a></span>
+      </footer>
     </main>
   </body>
 </html>
