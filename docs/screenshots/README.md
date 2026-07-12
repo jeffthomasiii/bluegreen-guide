@@ -1,37 +1,43 @@
-# Screenshot Replacement Guide
+# Documentation Screenshot Guide
 
-The files in `/docs/screenshots/placeholders` are intentional placeholders. Replace each SVG with a PNG screenshot when the related screen is final.
+The public Field Guide uses the PNG files in `/docs/screenshots/placeholders`. The directory name is retained for stable links, but the Phase 1 placeholder SVGs have already been replaced by current app screenshots.
 
-## General capture settings
+## Current Screenshots
+
+| File | Content |
+|---|---|
+| `home-screen-desktop.png` | Full desktop app with sidebar, map, markers, and cards |
+| `search-results-desktop.png` | Search term and matching results |
+| `filters-desktop.png` | Filters applied to the launch list |
+| `map-marker-popup.png` | Selected map marker and popup |
+| `launch-card-desktop.png` | Complete launch card |
+| `launch-detail-desktop.png` | Responsive place-detail panel |
+| `mobile-home.png` | Mobile app layout |
+| `mobile-detail.png` | Mobile detail view |
+| `verification-sources.png` | Verification status and source links |
+
+## Capture Guidance
 
 Desktop:
 
-- Recommended browser width: 1440 px or wider
-- Recommended browser height: 900 px or taller
-- Capture without browser bookmarks or unrelated UI if possible
-- Keep the app visible and uncluttered
+- Use a browser width of approximately 1440 px or wider.
+- Use a browser height of approximately 900 px or taller.
+- Hide unrelated browser UI where practical.
+- Keep the map, filters, and representative content readable.
 
 Mobile:
 
-- Recommended size: 390 x 844 or similar
-- Use browser responsive mode or a phone screenshot
-- Capture the actual mobile layout, not a scaled desktop view
+- Use approximately 390 × 844 px or a comparable modern phone viewport.
+- Capture the real responsive layout rather than a scaled desktop screenshot.
+- Confirm that the map, controls, cards, and detail panel match the current app.
 
-## Replacement checklist
+## Maintenance Rule
 
-| Placeholder | Replace with | Notes |
-|---|---|---|
-| `home-screen-desktop.svg` | `home-screen-desktop.png` | Full desktop app with map, sidebar, markers, and cards |
-| `search-results-desktop.svg` | `search-results-desktop.png` | Search term entered and matching results visible |
-| `filters-desktop.svg` | `filters-desktop.png` | Filters applied with updated results |
-| `map-marker-popup.svg` | `map-marker-popup.png` | Marker popup open |
-| `launch-card-desktop.svg` | `launch-card-desktop.png` | One complete card |
-| `launch-detail-desktop.svg` | `launch-detail-desktop.png` | Detail panel open |
-| `mobile-home.svg` | `mobile-home.png` | Mobile top-of-app view |
-| `mobile-detail.svg` | `mobile-detail.png` | Mobile detail panel |
-| `verification-sources.svg` | `verification-sources.png` | Verification and source links visible |
-| `future-photo-example.svg` | `future-photo-example.png` | Real launch photo example |
+Update screenshots when a visible interface change makes the documentation materially inaccurate. Keep the filenames stable so the HTML Field Guide does not need to be relinked.
 
-## Naming rule
+Before publishing updated screenshots:
 
-Keep the filenames stable. The documentation expects these names. When a final PNG exists, update the Markdown image reference from `.svg` to `.png` if you want the final screenshot to display instead of the placeholder.
+1. Confirm no personal browser information is visible.
+2. Confirm launch information remains safety-aware and appropriately labeled.
+3. Confirm image proportions match the Field Guide layout.
+4. Run `node scripts/validate-repo.js` to verify the referenced files still resolve.
