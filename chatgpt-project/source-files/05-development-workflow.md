@@ -1,117 +1,109 @@
 # Development Workflow
 
-## Current App Type
+## Current Architecture
 
-Static HTML/CSS/JavaScript app.
+BlueGreen Guide remains a static GitHub Pages-friendly project using:
 
-## Core Files
+- HTML
+- CSS
+- JavaScript
+- Leaflet and OpenStreetMap
+- JSON place data
+- Small Node.js maintenance and validation scripts
 
-- `index.html`
-- `styles.css` — Phase 1 base styles and Leaflet fallback rules
-- `design-system.css` — Design System 2.0 visual overrides and responsive brand implementation
-- `app.js`
-- `data/launch-points.json`
-- `data/launch-points.js`
+Do not introduce a framework, database, account system, build platform, or production backend unless a later phase clearly requires it.
 
-Load `design-system.css` after `styles.css` so the approved visual system can evolve without removing the stable Phase 1 layout and Leaflet fallback rules.
+## Canonical Data Workflow
 
-## Local Run
+The authoritative place data is `data/launch-points.json`.
 
-Open `index.html`, or run:
+After editing it:
+
+```bash
+node scripts/build-launch-data-js.js
+node scripts/validate-repo.js
+```
+
+`data/launch-points.js` is generated and should not be edited directly.
+
+Curated collections are maintained in `data/collections.js`. Collection `placeIds` must reference existing canonical place IDs.
+
+## Local Review
+
+Start a local server from the repository root:
 
 ```bash
 python3 -m http.server 8080
 ```
 
-Windows:
+On Windows:
 
 ```powershell
 py -m http.server 8080
 ```
 
-## Deployment Target
+Review:
 
-GitHub Pages from the repo root.
+- Desktop layout
+- Tablet layout
+- Mobile layout
+- Map rendering and marker behavior
+- Search and filters
+- Curated collection counts and results
+- Place cards and details
+- Source links and verification wording
+- Documentation navigation and screenshots
 
-## Development Principles
+## Validation
 
-- Keep each phase as small and useful as possible.
-- Make data-driven changes before hard-coded UI changes.
-- Keep the app easy to run without a build process.
-- Document major decisions in `/docs`.
-- Use GitHub issues for phase tasks.
-- Add tooling only when the prototype needs it.
-- Preserve mobile usability and map access.
-- Do not imply that unverified data is confirmed.
+Run:
 
-## Design System 2.0 Rules
-
-The approved visual source of truth is `docs/brand-guide.md`.
-
-### Brand identity
-
-- Use the approved Option B2 landscape mark for BlueGreen Guide itself.
-- Do not add a paddleboarder, kayaker, trail user, animal, or activity equipment to the permanent logo.
-- Do not substitute an activity icon for the brand mark.
-- Keep the tagline `Discover Better Outdoors` optional in compact UI.
-- The current app uses a lightweight inline SVG interpretation of the B2 mark until final production logo exports are added to `assets/brand/`.
-
-### Wayfinding semantics
-
-- Blue represents water places and water activities.
-- Green represents land places and land activities.
-- Neutral represents amenities, services, and universal attributes.
-- Scenic View, Dog Friendly, Accessibility, Parking, Restrooms, and similar cross-environment concepts remain neutral.
-- Color must not be the only cue; use icon shape and text labels.
-
-### Implementation rules
-
-- Define colors as reusable CSS custom properties.
-- Use semantic class or token names such as `water`, `land`, `neutral`, `amenity`, and `attribute`.
-- Do not hard-code arbitrary colors inside individual components.
-- Do not create one-off icons without documenting them in the Wayfinding System.
-- Use approved icon names in data rather than embedding presentation logic in records.
-- Keep universal amenities visually distinct from place and activity categories.
-- Test icons and markers at mobile sizes before merging.
-- Maintain accessible contrast and visible keyboard focus states.
-- Keep stable structural and Leaflet fallback rules in `styles.css`; place approved visual overrides in `design-system.css` until a future cleanup intentionally consolidates them.
-
-Example token structure:
-
-```css
-:root {
-  --color-brand-blue: #176f8f;
-  --color-brand-blue-dark: #0f4f67;
-  --color-brand-blue-soft: #dceff5;
-  --color-brand-green: #6f8f63;
-  --color-brand-green-dark: #4f7047;
-  --color-bg: #eef6f8;
-  --color-panel: #fbfdff;
-  --color-text: #10252e;
-  --color-muted: #5a6f78;
-  --color-line: #c9dce4;
-}
+```bash
+node scripts/validate-repo.js
 ```
 
-## Responsive Review
+The script checks:
 
-Before considering a UI change complete, check:
+- Valid canonical JSON
+- Required place fields
+- Unique IDs
+- Coordinate, difficulty, and popularity ranges
+- Collection IDs and place references
+- Generated browser data synchronization
+- Required script loading
+- Internal HTML links
+- Absence of public `.md` links from the HTML documentation site
 
-- Desktop map and detail-panel balance
-- Tablet filter and result behavior
-- Mobile map access, sheets, cards, and bottom navigation
-- Small-screen label and icon readability
-- Touch target size
-- Whether important verification and caution information remains visible
+GitHub Actions runs the same validation on pushes and pull requests.
 
-Watch concepts are future-facing and should remain limited to glanceable actions unless a watch implementation is explicitly added to the roadmap.
+## Documentation Rule
 
-## Documentation Workflow
+Keep these layers synchronized:
 
-When making a significant product or visual decision:
+1. Public HTML documentation for app users
+2. Repository Markdown for maintainers
+3. ChatGPT project source files for future collaboration
 
-1. Update the relevant source file in `chatgpt-project/source-files/`.
-2. Update `docs/brand-guide.md` when the decision affects brand, typography, color, icons, photography, or UI components.
-3. Update `docs/phase-roadmap.md` when the decision changes phase scope or completion status.
-4. Record data-model changes before hard-coding new category behavior.
-5. Keep README descriptions aligned with the current product direction.
+The root `README.md` is the authoritative repository status summary. `docs/phase-roadmap.md` is the detailed roadmap. `docs/changelog.md` is the release history.
+
+## Safety and Data Rule
+
+Do not invent or overstate:
+
+- Legal access
+- Parking
+- Fees
+- Hours or closures
+- Restrooms or rentals
+- Tides or wind
+- Water quality
+- Hazards
+- Verified photography
+
+Use `Unknown`, `Needs verification`, `Check official source`, or `Conditions vary` when material details remain uncertain.
+
+## Phase Discipline
+
+Phase 1 is complete as of v1.1.0. Phase 2 is on hold.
+
+Maintenance work may improve source links, verification, photography, accessibility, and defects without reopening Phase 1 or expanding scope into live conditions, community features, accounts, or AI.
