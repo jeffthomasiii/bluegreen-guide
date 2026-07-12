@@ -1,0 +1,45 @@
+.brand-logo-link {
+  min-width: 0;
+}
+
+.brand-logo-image {
+  display: block;
+  width: min(285px, 100%);
+  height: auto;
+}
+
+.documentation-link {
+  white-space: nowrap;
+}
+
+@media (max-width: 1080px) and (min-width: 861px) {
+  .brand-logo-image {
+    width: min(260px, 100%);
+  }
+}
+
+@media (max-width: 860px) {
+  .brand-logo-image {
+    width: min(300px, 72vw);
+  }
+
+  .documentation-link {
+    align-self: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .brand {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .brand-logo-image {
+    width: min(245px, 68vw);
+  }
+
+  .documentation-link {
+    display: inline-block;
+    padding: 7px 9px;
+    font-size: 10px;
+  }
+}
