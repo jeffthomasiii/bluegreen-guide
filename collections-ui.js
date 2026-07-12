@@ -4,8 +4,17 @@
   const description = document.querySelector("#collectionDescription");
   const clearButton = document.querySelector("#clearCollectionButton");
   const searchInput = document.querySelector("#searchInput");
+  const sprite = "assets/icons/wayfinding.svg";
 
   if (!list || !description || !clearButton || !searchInput || !collections.length) return;
+
+  const collectionIcons = {
+    "beginner-favorites": { icon: "beginner", category: "neutral" },
+    "family-friendly": { icon: "family", category: "neutral" },
+    "calm-water": { icon: "water", category: "water" },
+    "harbor-paddles": { icon: "marina", category: "water" },
+    "scenic-views": { icon: "scenic", category: "neutral" },
+  };
 
   const setCollection = (collection, button) => {
     list.querySelectorAll(".collection-button").forEach((item) => {
@@ -20,11 +29,21 @@
   };
 
   collections.forEach((collection) => {
+    const visual = collectionIcons[collection.id] || { icon: "check", category: "neutral" };
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "collection-button";
+    button.className = `collection-button collection-${visual.category}`;
     button.setAttribute("aria-pressed", "false");
-    button.innerHTML = `<strong>${escapeHtml(collection.name)}</strong><span>${collection.placeIds.length} places</span>`;
+    button.innerHTML = `
+      <span class="collection-icon" aria-hidden="true">
+        <svg class="ui-icon" focusable="false"><use href="${sprite}#icon-${visual.icon}"></use></svg>
+      </span>
+      <span class="collection-copy">
+        <strong>${escapeHtml(collection.name)}</strong>
+        <small>${escapeHtml(collection.description)}</small>
+      </span>
+      <span class="collection-count">${collection.placeIds.length} places</span>
+    `;
     button.addEventListener("click", () => setCollection(collection, button));
     list.append(button);
   });
