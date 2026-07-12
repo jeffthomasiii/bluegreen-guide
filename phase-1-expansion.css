@@ -1,0 +1,113 @@
+.collections-panel {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(201, 220, 228, 0.9);
+  border-radius: var(--brand-radius-md, 16px);
+  padding: 14px;
+  background: rgba(251, 253, 255, 0.9);
+  box-shadow: var(--brand-shadow-sm, 0 8px 24px rgba(15, 79, 103, 0.08));
+}
+
+.collections-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.collections-heading h2 {
+  margin: 0;
+  color: var(--brand-text, #10252e);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.collection-clear {
+  border: 0;
+  background: transparent;
+  color: var(--brand-blue-dark, #0f4f67);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.collections-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.collection-button {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  border: 1px solid #d6e2e6;
+  border-radius: 11px;
+  padding: 9px 10px;
+  background: #fff;
+  color: var(--brand-text, #10252e);
+  cursor: pointer;
+  text-align: left;
+}
+
+.collection-button:hover {
+  border-color: rgba(23, 111, 143, 0.45);
+  background: var(--brand-blue-soft, #dceff5);
+}
+
+.collection-button.is-active {
+  border-color: var(--brand-blue, #176f8f);
+  background: var(--brand-blue-soft, #dceff5);
+  box-shadow: inset 0 0 0 1px var(--brand-blue, #176f8f);
+}
+
+.collection-button strong {
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.collection-button span {
+  color: var(--brand-muted, #5a6f78);
+  font-size: 10px;
+}
+
+.collection-description {
+  margin: 0;
+  color: var(--brand-muted, #5a6f78);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+@media (max-width: 860px) {
+  .collections-panel {
+    grid-area: collections;
+    margin: 0 12px 12px;
+    box-shadow: none;
+  }
+
+  .app-shell {
+    grid-template-rows: auto auto auto auto auto minmax(360px, 52dvh) auto;
+    grid-template-areas:
+      "brand"
+      "wayfinding"
+      "collections"
+      "controls"
+      "summary"
+      "map"
+      "results";
+  }
+}
+
+@media (max-width: 520px) {
+  .collections-list {
+    grid-template-columns: 1fr;
+  }
+}
