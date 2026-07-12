@@ -1,66 +1,123 @@
 # Data Model
 
-The current prototype uses `data/launch-points.json` as a lightweight stand-in for a future database.
+BlueGreen Guide v1.1.0 uses one canonical place dataset and one curated collection configuration.
 
-## Current Launch Point Fields
+## Canonical Files
+
+- `data/launch-points.json` — authoritative place records
+- `data/launch-points.js` — generated browser copy of the JSON records
+- `data/collections.js` — curated collection definitions
+
+Do not edit `data/launch-points.js` directly. Generate it from the JSON source with:
+
+```bash
+node scripts/build-launch-data-js.js
+```
+
+Then run:
+
+```bash
+node scripts/validate-repo.js
+```
+
+## Required Place Fields
 
 | Field | Type | Purpose |
 |---|---:|---|
 | `id` | string | Stable unique identifier |
-| `name` | string | Public-facing launch name |
-| `region` | string | County, metro, or regional label |
+| `name` | string | Public-facing place name |
+| `region` | string | County, metro, mountain, or regional label |
 | `state` | string | State abbreviation |
 | `lat` | number | Latitude |
 | `lng` | number | Longitude |
-| `waterType` | string | Bay, harbor, reservoir, river, etc. |
-| `activities` | array | SUP, Kayak, Canoe |
-| `skillLevel` | string | Beginner, Intermediate, Advanced |
-| `difficulty` | number | 1 to 5 difficulty score |
-| `popularity` | number | 1 to 5 popularity score |
-| `bestTime` | string | Simple best-time note |
-| `amenities` | array | Parking, restrooms, rentals, etc. |
-| `tags` | array | Searchable condition or experience labels |
+| `waterType` | string | Bay, harbor, reservoir, river, beach, or similar context |
+| `activities` | array | SUP, Kayak, Canoe, or other supported activities |
+| `skillLevel` | string | Beginner, Intermediate, or Advanced |
+| `difficulty` | number | General 1-to-5 difficulty score |
+| `popularity` | number | General 0-to-5 popularity score |
+| `bestTime` | string | General planning note rather than a live condition |
+| `amenities` | array | Human-readable amenity summaries |
+| `tags` | array | Searchable planning and experience labels |
 | `description` | string | Short practical summary |
-| `verificationStatus` | string | Current source-review state, such as `Needs verification` or `Verified` |
-| `lastVerified` | string/null | Date the entry was last checked against sources, or `null` when not checked |
-| `sourceUrls` | array | Official park, marina, city, tourism, or outfitter references |
-| `sourceNotes` | string | Short caution or verification note shown in the detail view |
+| `verificationStatus` | string | `Needs verification` or `Verified` |
+| `sourceUrls` | array | Official source objects with `label` and `url` |
+| `sourceNotes` | string | Scope and uncertainty note |
 
-## Optional Supported Fields
-
-These fields are supported by the app but do not need to be present on every Phase 1 seed record.
+## Supported Wayfinding Fields
 
 | Field | Type | Purpose |
 |---|---:|---|
-| `photoStatus` | string | `representative` for placeholder photos or `location` for verified launch photos |
-| `photoUrls` | array | Photo objects with URL, alt text, credit, credit URL, license, and license URL |
-| `photoNotes` | string | Short note explaining whether the image is representative or location-specific |
+| `aliases` | array | Alternate names included in search |
+| `waterBody` | string | Shared water body or geographic relationship |
+| `spaceType` | string | `blue`, `green`, `mixed`, or `neutral` |
+| `placeTypes` | array | Place categories such as harbor, lake, beach, park, or marina |
+| `activityTypes` | array | Structured activities such as paddle-launch or kayak-launch |
+| `amenityTypes` | array | Structured services such as parking, restrooms, or rentals |
+| `attributeTypes` | array | Qualities such as beginner-friendly, scenic-view, or calm-water |
 
-## Future Fields
+Color is a supporting cue rather than the only source of meaning:
 
-| Field | Type | Notes |
+- `blue` — water places and water activities
+- `green` — land places and land activities
+- `neutral` — amenities and universal attributes
+- `mixed` — meaningful blue-space and green-space characteristics shown through the relevant categories
+
+## Verification and Source Fields
+
+| Field | Type | Purpose |
 |---|---:|---|
-| `entryType` | string | Beach, ramp, dock, marina, shoreline |
-| `parkingType` | string | Free, paid, limited, street, permit |
-| `fees` | string | Day-use, launch, parking, permit |
-| `restrooms` | string | Yes, no, nearby, seasonal |
-| `rentals` | string | On-site, nearby, none, unknown |
-| `dogsAllowed` | string | Yes, no, leash only, seasonal |
-| `windSensitivity` | string | Low, moderate, high |
-| `tideImpact` | string | None, low, moderate, high |
-| `hazards` | array | Boat traffic, surf launch, cold water, wind, currents |
-| `photoCredits` | array | Optional normalized credit list if photo metadata is moved out of `photoUrls` |
+| `lastVerified` | string/null | Date material place fields were verified, or `null` |
+| `sourceReviewDate` | string/null | Date the authority and relevance of source links were reviewed |
+| `sourceReviewStatus` | string | Scope of the source-link review |
+| `sourceUrls` | array | Official facility, agency, operator, or directory links |
+| `sourceNotes` | string | Clear explanation of what still requires confirmation |
 
-## Data Principle
+An official link does not automatically verify access, parking, fees, hours, amenities, water quality, weather, wind, tides, vessel traffic, or hazards.
 
-Do not present guessed safety or access information as verified. If a field is uncertain, mark it as `unknown`, omit it, or add a `needsVerification` flag.
+## Photo Fields
 
-For Phase 1, seed launch points should default to:
+| Field | Type | Purpose |
+|---|---:|---|
+| `photoStatus` | string | `representative` or `location` |
+| `photoUrls` | array | Photo objects with URL, alt text, credit, source, and license metadata |
+| `photoNotes` | string | Explanation of image scope or uncertainty |
 
-- `verificationStatus`: `Needs verification`
-- `lastVerified`: `null`
-- `sourceUrls`: `[]`
-- `sourceNotes`: a clear reminder to check official sources for access, parking, fees, rentals, rules, tides, wind, and hazards
-- `photoStatus`: `representative` until an image is confirmed to show the actual launch point
-- `photoUrls`: public or user-provided images with visible credit and license metadata
-- `photoNotes`: a clear reminder when the image is not verified as the exact launch point
+Use `location` only when the image is confirmed to show the specific place.
+
+## Collection Model
+
+Each object in `data/collections.js` includes:
+
+| Field | Type | Purpose |
+|---|---:|---|
+| `id` | string | Stable collection identifier |
+| `name` | string | Public collection name |
+| `description` | string | Editorial explanation and caution |
+| `query` | string | Optional descriptive/search metadata |
+| `placeIds` | array | Exact canonical place IDs included in the collection |
+
+The application filters collections by `placeIds`. Validation fails when a collection references a missing place.
+
+## Future Structured Place Fields
+
+Potential Phase 2 fields include:
+
+- `entryType`
+- `accessNotes`
+- `parkingType`
+- `fees`
+- `restrooms`
+- `rentals`
+- `dogsAllowed`
+- `accessibility`
+- `windSensitivity`
+- `tideImpact`
+- `hazards`
+
+## Data Rules
+
+- Do not present uncertain access, safety, fees, rules, conditions, or hazards as verified.
+- Use `Unknown`, `Needs verification`, `Check official source`, or `Conditions vary` where appropriate.
+- Keep permanent place facts separate from live conditions, environmental context, and generated insights.
+- Use stable IDs and documented taxonomy tokens rather than one-off colors or labels.
+- Update the canonical JSON first, regenerate the browser copy, and run validation before publishing.
