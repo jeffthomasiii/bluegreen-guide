@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="design-system.css" />
+    <link rel="stylesheet" href="phase-1-expansion.css" />
   </head>
   <body>
     <main class="app-shell">
@@ -50,6 +51,20 @@
             <span class="wayfinding-item wayfinding-land"><span aria-hidden="true">⌁</span> Land</span>
             <span class="wayfinding-item wayfinding-neutral"><span aria-hidden="true">＋</span> Amenities</span>
           </div>
+        </section>
+
+        <section class="collections-panel" aria-labelledby="collectionsTitle">
+          <div class="collections-heading">
+            <div>
+              <p class="eyebrow">Curated Collections</p>
+              <h2 id="collectionsTitle">Start with a helpful shortlist</h2>
+            </div>
+            <button id="clearCollectionButton" class="collection-clear" type="button" hidden>Clear</button>
+          </div>
+          <div id="collectionsList" class="collections-list"></div>
+          <p id="collectionDescription" class="collection-description" aria-live="polite">
+            Choose a collection to filter the current launch map.
+          </p>
         </section>
 
         <section class="controls" aria-label="Search launch points">
@@ -149,6 +164,8 @@
       crossorigin=""
     ></script>
     <script src="data/launch-points.js"></script>
+    <script src="data/phase-1-expansion.js"></script>
     <script src="app.js"></script>
+    <script src="collections-ui.js"></script>
   </body>
 </html>
