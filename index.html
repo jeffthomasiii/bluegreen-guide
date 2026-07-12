@@ -25,14 +25,16 @@
     <main class="app-shell">
       <aside class="sidebar" aria-label="Place filters and results">
         <header class="brand">
-          <a class="brand-lockup brand-logo-link" href="./" aria-label="BlueGreen Guide home">
-            <img
-              class="brand-logo-image"
-              src="assets/brand/bluegreen-guide-logo-primary-transparent.svg"
-              alt="BlueGreen Guide — Discover Better Outdoors"
-            />
-          </a>
-          <a class="documentation-link" href="docs/">Documentation &amp; User Guide</a>
+          <div class="brand-stack">
+            <a class="brand-lockup brand-logo-link" href="./" aria-label="BlueGreen Guide home">
+              <img
+                class="brand-logo-image"
+                src="assets/brand/bluegreen-guide-logo-primary-transparent.svg"
+                alt="BlueGreen Guide — Discover Better Outdoors"
+              />
+            </a>
+            <a class="documentation-link" href="docs/">Documentation &amp; User Guide</a>
+          </div>
         </header>
 
         <section class="wayfinding-key" aria-labelledby="wayfindingTitle">
@@ -41,9 +43,24 @@
             <h2 id="wayfindingTitle">Find the right outdoor experience</h2>
           </div>
           <div class="wayfinding-items" aria-label="Wayfinding categories">
-            <span class="wayfinding-item wayfinding-water"><span aria-hidden="true">≈</span> Water places</span>
-            <span class="wayfinding-item wayfinding-land"><span aria-hidden="true">⌁</span> Land places</span>
-            <span class="wayfinding-item wayfinding-neutral"><span aria-hidden="true">＋</span> Amenities</span>
+            <span class="wayfinding-item wayfinding-water">
+              <span class="wayfinding-symbol" aria-hidden="true">
+                <svg class="ui-icon"><use href="assets/icons/wayfinding.svg#icon-water"></use></svg>
+              </span>
+              <span class="wayfinding-copy"><strong>Water places</strong><small>Blue circle</small></span>
+            </span>
+            <span class="wayfinding-item wayfinding-land">
+              <span class="wayfinding-symbol" aria-hidden="true">
+                <svg class="ui-icon"><use href="assets/icons/wayfinding.svg#icon-park"></use></svg>
+              </span>
+              <span class="wayfinding-copy"><strong>Land places</strong><small>Green square</small></span>
+            </span>
+            <span class="wayfinding-item wayfinding-neutral">
+              <span class="wayfinding-symbol" aria-hidden="true">
+                <svg class="ui-icon"><use href="assets/icons/wayfinding.svg#icon-parking"></use></svg>
+              </span>
+              <span class="wayfinding-copy"><strong>Amenities</strong><small>Neutral outline</small></span>
+            </span>
           </div>
         </section>
 
