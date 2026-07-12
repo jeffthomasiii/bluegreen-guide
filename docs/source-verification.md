@@ -4,30 +4,33 @@
 
 BlueGreen Guide uses official sources to support launch-point planning information while keeping uncertain or changing details clearly labeled.
 
-## Source priority
+## Source Priority
 
 Use sources in this order:
 
 1. Official park, harbor, marina, city, county, state, tribal, or federal facility page
 2. Official facility operator page when the operator controls access or launch services
 3. Official boating-facility or recreation directory
-4. Official water-quality, closure, or hazard page
+4. Official water-quality, closure, navigation, or hazard page
 
 Tourism pages, blogs, mapping sites, social media, and general review sites are not treated as verification sources.
 
-## Current implementation
+## Current Implementation
 
-`data/official-sources.js` runs after the base and Phase 1 expansion datasets and before `app.js`.
+As of v1.1.0, reviewed source links and source-review metadata are stored directly in the canonical records in `data/launch-points.json`.
 
-It:
+Each record may include:
 
-- removes nonofficial links from the rendered source list;
-- adds location-specific official sources where identified;
-- adds official regional or state directories when a dedicated facility page has not yet been identified;
-- records a `sourceReviewDate` and `sourceReviewStatus`;
-- preserves `Needs verification` unless a future field-by-field review confirms the record.
+- `sourceUrls`
+- `sourceReviewDate`
+- `sourceReviewStatus`
+- `verificationStatus`
+- `lastVerified`
+- `sourceNotes`
 
-## Important distinction
+`data/launch-points.js` is generated from the canonical JSON file for direct browser loading.
+
+## Important Distinction
 
 An official link does not automatically verify every field in a place record.
 
@@ -43,12 +46,19 @@ Before a record is marked `Verified`, confirm the current status of:
 - vessel traffic and navigation rules;
 - known hazards and seasonal restrictions.
 
-## Maintenance rule
+A source review confirms the authority and relevance of links. Field verification confirms specific claims.
+
+## Maintenance Workflow
 
 When adding or editing a place:
 
-1. Add the most specific official facility or managing-agency page available.
-2. Add a secondary official source when it provides different planning information.
-3. Do not use an unofficial page merely because it is more descriptive.
+1. Edit `data/launch-points.json`.
+2. Add the most specific official facility or managing-agency page available.
+3. Add another official source only when it provides different planning information.
 4. Keep the record marked `Needs verification` when any material field remains uncertain.
-5. Recheck links and changing information during each scheduled data-review pass.
+5. Set `sourceReviewDate` when source authority and relevance are reviewed.
+6. Set `lastVerified` only when the material place fields themselves are checked.
+7. Regenerate `data/launch-points.js` with `node scripts/build-launch-data-js.js`.
+8. Run `node scripts/validate-repo.js`.
+
+Recheck links and changing information during scheduled maintenance passes.
