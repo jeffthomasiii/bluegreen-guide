@@ -31,38 +31,66 @@ img {
 }
 
 /*
-  design-system.css applies sizing to every direct span inside a Wayfinding item.
-  The finalized markup has separate symbol and copy spans, so explicitly restore
-  their intended dimensions and alignment.
+  Older design-system rules targeted every direct span inside a Wayfinding item.
+  The finalized markup has separate symbol and copy containers, so explicitly
+  restore their intended sizing and remove inherited generated content.
 */
-.wayfinding-item > .wayfinding-symbol {
+.wayfinding-item > .wayfinding-symbol::before,
+.wayfinding-item > .wayfinding-copy::before {
+  display: none !important;
+  content: none !important;
+}
+
+.wayfinding-items {
   display: grid;
-  width: 34px;
-  min-width: 34px;
-  height: 34px;
-  place-items: center;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.wayfinding-item {
+  display: flex;
+  min-width: 0;
+  min-height: 82px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 6px;
+  text-align: center;
+}
+
+.wayfinding-item > .wayfinding-symbol {
+  display: grid !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  height: 36px !important;
+  place-items: center !important;
   align-self: center;
-  justify-self: start;
-  font-size: inherit;
+  justify-self: center;
+  border-width: 1px;
+  background: #fff !important;
+  font-size: inherit !important;
   line-height: 1;
 }
 
 .wayfinding-item > .wayfinding-copy {
-  display: grid;
-  width: auto;
-  min-width: 0;
-  height: auto;
-  place-items: initial;
-  align-content: center;
-  justify-self: stretch;
-  gap: 2px;
-  font-size: inherit;
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  color: inherit !important;
+  font-size: inherit !important;
   line-height: 1.15;
+  text-align: center;
 }
 
 .wayfinding-copy strong,
 .wayfinding-copy small {
-  display: block;
   width: 100%;
   margin: 0;
   overflow: visible;
@@ -73,17 +101,39 @@ img {
 }
 
 .wayfinding-copy strong {
+  display: block;
   color: currentColor;
   font-size: 11px;
   font-weight: 700;
   line-height: 1.15;
 }
 
+/* The shape and color already communicate the category; hide redundant helper text. */
 .wayfinding-copy small {
-  color: var(--ui-muted);
-  font-size: 9px;
-  font-weight: 500;
-  line-height: 1.2;
+  display: none;
+}
+
+.wayfinding-water > .wayfinding-symbol {
+  border-radius: 50% !important;
+  border-color: var(--ui-blue) !important;
+  color: var(--ui-blue) !important;
+}
+
+.wayfinding-land > .wayfinding-symbol {
+  border-radius: 6px !important;
+  border-color: var(--ui-green) !important;
+  color: var(--ui-green-deep) !important;
+}
+
+.wayfinding-neutral > .wayfinding-symbol {
+  border-radius: 50% !important;
+  border-color: var(--ui-line) !important;
+  color: var(--ui-blue-deep) !important;
+}
+
+.wayfinding-symbol .ui-icon {
+  width: 20px;
+  height: 20px;
 }
 
 /* Keep button icons and labels aligned as one centered control. */
@@ -147,30 +197,19 @@ button {
   }
 }
 
-/* Phone layout: prevent compressed cards and two-column form controls. */
+/* Phone layout: preserve readable controls without compressing content. */
 @media (max-width: 720px) {
   .wayfinding-items {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .wayfinding-item {
-    grid-template-columns: 38px minmax(0, 1fr);
-    min-height: 54px;
-    padding: 9px 10px;
-  }
-
-  .wayfinding-item > .wayfinding-symbol {
-    width: 34px;
-    min-width: 34px;
-    height: 34px;
+    min-height: 82px;
+    padding: 9px 5px;
   }
 
   .wayfinding-copy strong {
-    font-size: 12px;
-  }
-
-  .wayfinding-copy small {
-    font-size: 10px;
+    font-size: 10.5px;
   }
 
   .controls {
@@ -234,6 +273,25 @@ button {
 
   .brand-logo-image {
     width: 100%;
+  }
+
+  .wayfinding-items {
+    gap: 6px;
+  }
+
+  .wayfinding-item {
+    min-height: 78px;
+    padding: 8px 4px;
+  }
+
+  .wayfinding-item > .wayfinding-symbol {
+    width: 34px !important;
+    min-width: 34px !important;
+    height: 34px !important;
+  }
+
+  .wayfinding-copy strong {
+    font-size: 10px;
   }
 
   .launch-heading {
