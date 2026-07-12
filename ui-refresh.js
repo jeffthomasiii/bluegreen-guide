@@ -1,0 +1,146 @@
+(() => {
+  const sprite = "assets/icons/wayfinding.svg";
+
+  const icon = (name, label = "") =>
+    `<svg class="ui-icon" aria-hidden="true" focusable="false"><use href="${sprite}#icon-${name}"></use></svg>${label ? `<span>${escapeHtml(label)}</span>` : ""}`;
+
+  const waterTerms = ["sup", "kayak", "canoe", "paddle", "marina", "boat", "beach", "lake", "river", "ocean", "harbor", "lagoon", "bay"];
+  const landTerms = ["trail", "hiking", "park", "camp", "garden", "forest", "woods", "biking", "climbing", "wildlife"];
+
+  function classifyTag(text) {
+    const value = text.toLowerCase();
+    if (waterTerms.some((term) => value.includes(term))) return "water";
+    if (landTerms.some((term) => value.includes(term))) return "land";
+    return "neutral";
+  }
+
+  function iconFor(text) {
+    const value = text.toLowerCase();
+    if (value.includes("kayak")) return "kayak";
+    if (value.includes("sup") || value.includes("paddle")) return "paddle";
+    if (value.includes("marina") || value.includes("harbor")) return "marina";
+    if (value.includes("lake")) return "lake";
+    if (value.includes("river")) return "river";
+    if (value.includes("beach") || value.includes("ocean")) return "beach";
+    if (value.includes("trail") || value.includes("hiking")) return "trail";
+    if (value.includes("park")) return "park";
+    if (value.includes("camp")) return "camp";
+    if (value.includes("garden")) return "garden";
+    if (value.includes("scenic")) return "scenic";
+    if (value.includes("parking")) return "parking";
+    if (value.includes("restroom")) return "restroom";
+    if (value.includes("accessible")) return "accessible";
+    if (value.includes("dog")) return "dog";
+    if (value.includes("family")) return "family";
+    if (value.includes("beginner")) return "beginner";
+    if (value.includes("rental")) return "rentals";
+    return classifyTag(text) === "water" ? "water" : classifyTag(text) === "land" ? "park" : "check";
+  }
+
+  function decorateTags(root = document) {
+    root.querySelectorAll(".tag:not([data-ui-ready])").forEach((tag) => {
+      const text = tag.textContent.trim();
+      const category = classifyTag(text);
+      tag.classList.add(`tag-${category}`);
+      tag.innerHTML = `${icon(iconFor(text))}<span>${escapeHtml(text)}</span>`;
+      tag.dataset.uiReady = "true";
+    });
+  }
+
+  function decorateVerification(root = document) {
+    root.querySelectorAll(".verification-line:not([data-ui-ready])").forEach((line) => {
+      const text = line.textContent.trim();
+      line.innerHTML = `${icon(text.toLowerCase().includes("verified") && !text.toLowerCase().includes("needs") ? "check" : "alert")}<span>${escapeHtml(text)}</span>`;
+      line.dataset.uiReady = "true";
+    });
+  }
+
+  function decorateButtons() {
+    const buttonMap = [
+      ["#locationButton", "marina"],
+      ["#fitButton", "scenic"],
+      ["#boundsButton", "check"],
+    ];
+    buttonMap.forEach(([selector, name]) => {
+      const button = document.querySelector(selector);
+      if (!button || button.dataset.uiReady) return;
+      const label = button.textContent.trim();
+      button.innerHTML = `${icon(name)}<span>${escapeHtml(label)}</span>`;
+      button.dataset.uiReady = "true";
+    });
+  }
+
+  function decorateDetail(root = document) {
+    const headings = {
+      Amenities: "check",
+      "Planning Notes": "alert",
+      Sources: "source",
+    };
+    root.querySelectorAll(".detail-section h3:not([data-ui-ready])").forEach((heading) => {
+      const label = heading.textContent.trim();
+      heading.innerHTML = `${icon(headings[label] || "check")}<span>${escapeHtml(label)}</span>`;
+      heading.dataset.uiReady = "true";
+    });
+  }
+
+  function markerClassFor(launch) {
+    return launch.spaceType === "green" ? "marker-land" : launch.spaceType === "neutral" ? "marker-neutral" : "marker-water";
+  }
+
+  if (typeof renderMarkers === "function") {
+    renderMarkers = function refreshedRenderMarkers(launches) {
+      markerLayer.clearLayers();
+      state.markers.clear();
+
+      for (const launch of launches) {
+        const marker = L.marker([launch.lat, launch.lng], {
+          icon: L.divIcon({
+            className: "",
+            html: `<span class="launch-marker ${markerClassFor(launch)}">${escapeHtml(launch.difficulty)}</span>`,
+            iconSize: [40, 40],
+            iconAnchor: [20, 20],
+            popupAnchor: [0, -21],
+          }),
+          title: launch.name,
+        }).bindPopup(`
+          <h3 class="popup-title">${escapeHtml(launch.name)}</h3>
+          <p class="popup-detail">${escapeHtml(launch.region)}, ${escapeHtml(launch.state)}</p>
+          <p class="popup-detail">Difficulty ${escapeHtml(launch.difficulty)}/5 &bull; Popularity ${escapeHtml(launch.popularity)}/5</p>
+          <p class="popup-detail">Best time: ${escapeHtml(launch.bestTime)}</p>
+        `);
+
+        marker.on("click", () => openLaunchDetail(launch.id, { focusMap: false }));
+        marker.addTo(markerLayer);
+        state.markers.set(launch.id, marker);
+      }
+    };
+  }
+
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (!(node instanceof Element)) return;
+        decorateTags(node);
+        decorateVerification(node);
+        decorateDetail(node);
+      });
+    });
+  });
+
+  decorateButtons();
+  decorateTags();
+  decorateVerification();
+  decorateDetail();
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  if (typeof applyFilters === "function") applyFilters();
+
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+})();
