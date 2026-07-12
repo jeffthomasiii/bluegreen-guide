@@ -1,54 +1,47 @@
 # Phase Roadmap
 
-## Design System 2.0 — Locked
+## Design System 2.0 — Complete
 
-The BlueGreen Guide rebrand is the approved visual foundation for all current and future phases.
+The Option B2 landscape identity, final logo assets, typography, color system, wayfinding icons, markers, and responsive direction are established and applied.
 
-Completed decisions:
+Brand semantics:
 
-- Option B2 landscape mark selected as the core identity direction
-- Permanent brand logo separated from activity-specific category icons
-- Blue, green, and neutral color semantics established
-- BlueGreen Guide Wayfinding System defined
-- Cross-device direction established for desktop, tablet, mobile, and watch
-- Typography, color, icon, map-marker, and component guidance documented
+- Blue — water places and water activities
+- Green — land places and land activities
+- Neutral — amenities, services, and universal attributes
 
-The brand identity represents water, land, and discovery. It must not be tied to paddleboarding, kayaking, or another single activity.
+The permanent brand identity represents water, land, discovery, and guidance without being tied to one activity.
 
 ## Phase 1: Curated Launch Map — Complete POC
 
-Build and refine the static proof of concept.
+**Release:** v1.1.0
 
-Current elements:
+Completed scope:
 
-- Interactive map
-- Seed launch data
-- Search and filters
-- Launch cards
-- Difficulty and popularity guidance
-- Best time of day
-- Launch detail view
-- Source and verification fields
-- Representative image strategy
-- Mobile layout
-- BlueGreen Guide Design System 2.0 direction
+- Static HTML, CSS, and JavaScript app
+- Leaflet and OpenStreetMap
+- 56 canonical launch records
+- Search across names, aliases, regions, water bodies, taxonomy, activities, amenities, tags, and descriptions
+- Region, skill, activity, and difficulty filters
+- Five curated collections using explicit place IDs
+- Map-bounds filtering and geolocation
+- Launch cards and responsive place details
+- Representative credited images
+- Official source links, source-review metadata, and verification notes
+- Final Design System 2.0 implementation
+- Public HTML documentation
+- Canonical data workflow and lightweight validation
 
-Remaining maintenance and refinement:
+Phase 1 is closed as a working proof of concept. Ongoing source checks, field verification, image replacement, defect correction, and future clustering evaluation are maintenance rather than unfinished features.
 
-- Apply final brand assets when production-ready logo files are exported
-- Align map markers, filters, chips, and icons with the Wayfinding System
-- Continue source verification and replace representative images over time
-- Improve clustering only where the current map experience requires it
+## Phase 2: Structured Place Details — On Hold
 
-## Phase 2: Place Detail Pages
+When resumed, begin with a limited pilot using existing places and normalized fields for:
 
-Make individual places useful enough for real planning.
-
-Potential fields:
-
-- Entry type
+- Entry or launch type
+- Access notes
 - Parking
-- Fees
+- Fees and permits
 - Restrooms
 - Rentals
 - Dog policy
@@ -57,97 +50,46 @@ Potential fields:
 - Official links
 - Last verified date
 
-Design-system implication: place pages may include blue-space, green-space, and universal attributes without changing the permanent brand identity.
+Do not expand into accounts, community features, live conditions, AI, or a framework rewrite as part of the pilot.
 
 ## Phase 3: Live Conditions and Trip Planning
 
-Help users decide whether today is a good time to go.
-
 Potential integrations:
 
-- Live weather
+- Weather
 - Wind speed and direction
-- Tide information for coastal locations
-- NOAA marine forecasts where relevant
-- Water temperature where available
+- Tide information
+- NOAA marine forecast links
+- Water temperature
 - Sunrise and sunset
 - Seasonal access notes
-- Simple suitability guidance
+- Plain-language suitability guidance
 
-Do not present conditions as safety guarantees. Use language such as `Check official source`, `Conditions vary`, or `Needs verification` where appropriate.
+Conditions are planning aids, not safety guarantees.
 
 ## Phase 3.5: Environmental Intelligence
-
-Help users understand when a place is typically at its best.
 
 Potential features:
 
 - Climate normals and seasonal patterns
-- Historical wind and precipitation patterns
 - Typical morning and afternoon conditions
-- Water quality advisories
+- Water-quality advisories
 - Harmful algae bloom notices
 - Reservoir or lake-level context
 - Air quality, smoke, wildfire, and UV context
-- Seasonal closures or restrictions
+- Seasonal closures
 - Best months to visit
-- Location comparison summaries
 
-NASA POWER is a candidate for climate normals and historical context. It should not replace live weather, marine forecasts, tide data, or official advisories.
-
-## Data and Insight Architecture
-
-| Layer | Purpose | Example |
-| --- | --- | --- |
-| Place Data | Rarely changing location facts | Parking, launch type, restrooms |
-| Live Data | Current or near-term conditions | Weather, wind, tides |
-| Environmental Data | Historical, seasonal, or advisory context | Climate normals, water quality, AQI |
-| Derived Insights | App-generated guidance | Best before 10 AM, check wind after noon |
-
-Keep these layers visually and structurally distinct.
+Keep permanent place facts, live conditions, environmental context, and derived insights structurally distinct.
 
 ## Phase 4: Community Layer
 
-Let the guide improve through responsible user contributions.
-
-Potential features:
-
-- Ratings
-- Reviews
-- Photos
-- Suggested edits
-- Favorite places
-- Trip notes
+Potential features include ratings, reviews, photos, suggested edits, favorites, reports of inaccurate information, and trip notes.
 
 ## Phase 5: Intelligent Recommendations
 
-Let users describe what they want in natural language.
-
-Example:
-
-> Find somewhere within an hour of Riverside that is beginner-friendly, calm in the morning, dog-friendly, and not too crowded.
-
-Potential features:
-
-- Natural-language search
-- Ranked recommendations
-- Personalized filters
-- Conditions-aware suggestions
-- Plain-language suitability signals
+Potential features include natural-language search, ranked recommendations, personalized filters, conditions-aware suggestions, and plain-language suitability signals.
 
 ## Phase 6: Routes and Ecosystem
 
-Expand beyond individual places.
-
-Potential features:
-
-- Paddle routes
-- Hiking and shoreline routes
-- Estimated duration
-- Trip logging
-- Local clubs
-- Outfitters
-- Lessons
-- Shareable trip plans
-
-The Wayfinding System should expand through documented categories rather than one-off icons or colors.
+Potential features include paddle routes, hiking and shoreline routes, duration, trip logging, clubs, outfitters, lessons, shareable plans, and broader blue-space and green-space discovery.
