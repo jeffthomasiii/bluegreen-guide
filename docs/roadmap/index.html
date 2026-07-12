@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="BlueGreen Guide phase roadmap from the curated launch map through broader outdoor discovery and planning." />
+    <meta name="description" content="BlueGreen Guide phase roadmap from the completed curated launch-map proof of concept through broader outdoor discovery and planning." />
     <title>BlueGreen Guide Roadmap</title>
     <link rel="stylesheet" href="../brand-docs.css" />
   </head>
@@ -22,49 +22,53 @@
       <section class="hero">
         <p class="eyebrow">What Comes Next · Roadmap</p>
         <h1>Grow the guide one useful phase at a time.</h1>
-        <p>The roadmap begins with a curated launch map, then adds richer place details, conditions, community contributions, recommendations, and a broader blue-space and green-space ecosystem.</p>
+        <p>Phase 1 is complete as a curated launch-map proof of concept. Future phases will add richer place information only when the supporting data, verification process, and user need are clear.</p>
         <div class="actions">
           <a class="button" href="../../">Open the Current App</a>
-          <a class="button secondary" href="../release-notes/">Review the Current Release</a>
+          <a class="button secondary" href="../release-notes/">Review v1.1.0</a>
         </div>
       </section>
 
       <section class="wayfinding-strip" aria-label="Roadmap principles">
         <article class="wayfinding-card water">
           <span class="symbol" aria-hidden="true"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-water"></use></svg></span>
-          <span><strong>Start with blue spaces</strong><span>Launch points establish the first practical use case</span></span>
+          <span><strong>Prove the blue-space use case</strong><span>Phase 1 establishes the practical launch-map foundation</span></span>
         </article>
         <article class="wayfinding-card land">
           <span class="symbol" aria-hidden="true"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-park"></use></svg></span>
-          <span><strong>Expand to green spaces</strong><span>Broaden the guide after the core structure is proven</span></span>
+          <span><strong>Expand deliberately</strong><span>Green spaces follow after the core structure is proven</span></span>
         </article>
         <article class="wayfinding-card neutral">
           <span class="symbol" aria-hidden="true"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-check"></use></svg></span>
-          <span><strong>Verify before scaling</strong><span>Improve data quality and usefulness before adding volume</span></span>
+          <span><strong>Verify before scaling</strong><span>Improve usefulness and data quality before adding volume</span></span>
         </article>
       </section>
 
-      <div class="note"><strong>Roadmap principle:</strong> Each phase should deliver a useful, understandable improvement without requiring a large rewrite or introducing advanced features before the supporting data and workflows are ready.</div>
+      <div class="note"><strong>Roadmap principle:</strong> Each phase should deliver a useful improvement without requiring a large rewrite or introducing advanced features before the supporting data and workflows are ready.</div>
 
       <section aria-labelledby="phase-1">
         <h2 id="phase-1">Phase 1 — Curated Launch Map</h2>
         <div class="chip-row">
-          <span class="chip water"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-check"></use></svg>Current phase</span>
-          <span class="chip neutral">v1.0 package prepared</span>
+          <span class="chip water"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-check"></use></svg>Complete POC</span>
+          <span class="chip neutral">v1.1.0</span>
+          <span class="chip neutral">56 places</span>
         </div>
-        <p class="section-intro">Build and refine the static proof of concept around paddleboarding and kayaking launch points.</p>
+        <p class="section-intro">The working proof of concept now includes the map, canonical launch data, search, filters, curated collections, cards, place details, source-review information, responsive layouts, final branding, documentation, and lightweight validation.</p>
         <div class="grid">
-          <article class="card"><h3>Core experience</h3><p>Interactive map, curated launch data, search, filters, launch cards, and a detail panel.</p></article>
-          <article class="card"><h3>Trust and clarity</h3><p>Source links, verification fields, practical descriptions, and safety-aware language.</p></article>
-          <article class="card"><h3>Usability</h3><p>Responsive layout, mobile planning, documentation, and a coherent blue-primary design system.</p></article>
+          <article class="card"><h3>Core experience</h3><p>Interactive map, 56 launch records, search, filters, collections, cards, and responsive details.</p></article>
+          <article class="card"><h3>Trust and clarity</h3><p>Official source links, review metadata, verification labels, representative-image notices, and safety-aware wording.</p></article>
+          <article class="card"><h3>Maintainability</h3><p>Canonical JSON, generated browser data, separated collection configuration, and repository validation.</p></article>
         </div>
+        <div class="note"><strong>Maintenance continues:</strong> Official links, individual fields, and place photography can be improved over time without reopening Phase 1 feature development.</div>
       </section>
 
       <section aria-labelledby="phase-2">
-        <h2 id="phase-2">Phase 2 — Place Detail Pages</h2>
-        <p class="section-intro">Make each launch point useful enough for real planning by adding structured, source-aware place information.</p>
+        <h2 id="phase-2">Phase 2 — Structured Place Details</h2>
+        <div class="chip-row"><span class="chip neutral">On hold</span></div>
+        <p class="section-intro">When resumed, begin with a small pilot using existing places and normalized planning fields rather than expanding the entire dataset at once.</p>
         <div class="chip-row">
           <span class="chip neutral">Entry type</span>
+          <span class="chip neutral">Access</span>
           <span class="chip neutral">Parking</span>
           <span class="chip neutral">Fees</span>
           <span class="chip neutral">Restrooms</span>
@@ -72,43 +76,37 @@
           <span class="chip neutral">Dog policy</span>
           <span class="chip neutral">Accessibility</span>
           <span class="chip neutral">Hazards</span>
-          <span class="chip neutral">Official links</span>
-          <span class="chip neutral">Last verified</span>
+          <span class="chip neutral">Verification date</span>
         </div>
       </section>
 
       <section aria-labelledby="phase-3">
         <h2 id="phase-3">Phase 3 — Conditions and Planning</h2>
-        <p class="section-intro">Help users decide when to go by connecting places with relevant, clearly sourced planning information.</p>
+        <p class="section-intro">Connect places with clearly sourced information that helps users decide when to go.</p>
         <div class="grid">
           <article class="card"><h3>Weather and wind</h3><p>Current or forecast conditions that materially affect outdoor planning.</p></article>
-          <article class="card"><h3>Water conditions</h3><p>Tides where relevant, water temperature, and seasonal access notes.</p></article>
+          <article class="card"><h3>Water conditions</h3><p>Tides where relevant, water temperature, water quality context, and seasonal access notes.</p></article>
           <article class="card"><h3>Daylight</h3><p>Sunrise and sunset information for practical trip timing.</p></article>
         </div>
       </section>
 
       <section aria-labelledby="phase-4">
         <h2 id="phase-4">Phase 4 — Community Layer</h2>
-        <p class="section-intro">Let the guide improve through structured user contributions while preserving source quality and moderation.</p>
+        <p class="section-intro">Allow responsible contributions while preserving source quality and moderation.</p>
         <div class="chip-row">
-          <span class="chip neutral">Ratings</span>
-          <span class="chip neutral">Reviews</span>
-          <span class="chip neutral">Photos</span>
-          <span class="chip neutral">Suggested edits</span>
-          <span class="chip neutral">Favorite places</span>
-          <span class="chip neutral">Trip notes</span>
+          <span class="chip neutral">Ratings</span><span class="chip neutral">Reviews</span><span class="chip neutral">Photos</span><span class="chip neutral">Suggested edits</span><span class="chip neutral">Favorites</span><span class="chip neutral">Trip notes</span>
         </div>
       </section>
 
       <section aria-labelledby="phase-5">
-        <h2 id="phase-5">Phase 5 — AI Recommendations</h2>
-        <p class="section-intro">Allow users to describe what they need in natural language and receive suggestions based on the structured place data, distance, skill, water type, conditions, and practical constraints.</p>
+        <h2 id="phase-5">Phase 5 — Intelligent Recommendations</h2>
+        <p class="section-intro">Use structured place and condition data to support natural-language discovery and ranked recommendations.</p>
         <div class="note"><strong>Example:</strong> Find somewhere within an hour of Riverside that is beginner-friendly, calm in the morning, dog-friendly, and not too crowded.</div>
       </section>
 
       <section aria-labelledby="phase-6">
         <h2 id="phase-6">Phase 6 — Routes and Ecosystem</h2>
-        <p class="section-intro">Expand beyond individual launch points into paddle routes, estimated duration, trip logging, local clubs, outfitters, lessons, shareable trip plans, and broader blue-space and green-space discovery.</p>
+        <p class="section-intro">Expand beyond individual launch points into routes, estimated duration, trip logging, clubs, outfitters, lessons, shareable plans, and broader blue-space and green-space discovery.</p>
       </section>
 
       <div class="note safety"><strong>Roadmap, not a promise:</strong> Scope and sequence may change as the prototype is tested, data quality improves, and the most useful next step becomes clearer.</div>
