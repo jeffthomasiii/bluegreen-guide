@@ -1,93 +1,47 @@
 # Initial GitHub Issue Backlog
 
-Use these as starter issues after the repo is pushed to GitHub.
+> Historical reference: this was the starter backlog used to build the Phase 1 proof of concept. The listed Phase 1 items are complete as of v1.1.0.
 
-## Phase 1 Refinement
+## Completed Phase 1 Work
 
-### Improve Mobile Layout
+- Improve mobile layout
+- Add launch detail view
+- Add verification and source fields
+- Establish a credited representative-image strategy
+- Improve marker presentation and map behavior
+- Add curated collections
+- Expand the launch dataset to 56 canonical records
+- Apply Design System 2.0 and the Wayfinding System
+- Build public HTML documentation
+- Consolidate canonical data and add lightweight validation
 
-Make the app easier to use on phones by refining the sidebar, filter controls, cards, and map height.
+## Ongoing Maintenance
 
-Acceptance criteria:
+These items do not reopen Phase 1:
 
-- Filters remain usable on small screens.
-- Map is visible without awkward scrolling.
-- Launch cards are readable on mobile.
-- No horizontal overflow.
+- Recheck official source links
+- Improve field-level verification
+- Replace representative images with verified place photography where appropriate
+- Correct defects and accessibility issues
+- Evaluate clustering only if future dataset growth requires it
 
-### Add Launch Detail View
+## Phase 2 — On Hold
 
-Add a simple detail view for a selected launch point.
+When Phase 2 resumes, begin with a limited structured place-detail pilot rather than a broad feature expansion.
 
-Acceptance criteria:
+Potential issue areas:
 
-- Clicking a card or marker can reveal a fuller detail panel.
-- Detail view includes description, amenities, activity, difficulty, popularity, best time, and tags.
-- The user can return to the list view.
+- Define normalized access, parking, fee, restroom, rental, dog-policy, accessibility, and hazard fields
+- Select a small pilot group of existing places
+- Design a source-aware structured detail presentation
+- Validate the schema and workflow before expanding it to the full dataset
 
-### Add Verification Fields to Data
+## Later Phases
 
-Prepare the launch-point data for real-world use by adding fields for verification status.
+- Conditions and trip-planning integrations
+- Environmental intelligence
+- Community contributions
+- Intelligent recommendations
+- Routes and the broader blue-space and green-space ecosystem
 
-Acceptance criteria:
-
-- Add `sourceUrls`.
-- Add `lastVerified`.
-- Add `needsVerification`.
-- Existing data remains compatible with the app.
-
-### Add Image Strategy
-
-Decide how launch images will be handled.
-
-Acceptance criteria:
-
-- Document whether images will be user-provided, official-source linked, Unsplash-style placeholders, or generated placeholders.
-- Add `photoUrls` and `photoCredits` fields if needed.
-- Do not use uncredited copyrighted imagery.
-
-### Improve Map Marker Behavior
-
-Make the map easier to read as the launch dataset grows.
-
-Acceptance criteria:
-
-- Evaluate whether marker clustering is needed.
-- Keep difficulty visible where practical.
-- Avoid marker overlap in dense coastal areas.
-
-## Phase 2
-
-### Build Place Detail Pages
-
-Create a fuller place view for each launch point.
-
-Acceptance criteria:
-
-- Detail layout works on desktop and mobile.
-- Supports future fields such as parking, fees, restrooms, rentals, hazards, and official links.
-- Does not require a framework unless the static approach becomes too limiting.
-
-### Add Safety and Access Notes
-
-Add structured safety/access notes without overstating certainty.
-
-Acceptance criteria:
-
-- Add hazards field.
-- Add access notes field.
-- Add source/verification state.
-- Unverified details are clearly marked.
-
-## Phase 3
-
-### Research Weather, Wind, and Tide APIs
-
-Compare API options for conditions-aware planning.
-
-Acceptance criteria:
-
-- Identify free or low-cost weather API options.
-- Identify tide API options for coastal launches.
-- Note API limits and attribution requirements.
-- Recommend one Phase 3 path.
+Use `docs/phase-roadmap.md` as the current roadmap and `.github/ISSUE_TEMPLATE/phase-task.md` when creating new work items.
