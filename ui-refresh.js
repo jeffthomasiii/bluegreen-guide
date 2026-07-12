@@ -84,6 +84,66 @@
     });
   }
 
+  function searchableText(launch) {
+    return [
+      launch.name,
+      ...(launch.aliases || []),
+      launch.region,
+      launch.state,
+      launch.waterBody,
+      launch.waterType,
+      launch.skillLevel,
+      launch.bestTime,
+      launch.description,
+      ...(launch.activities || []),
+      ...(launch.amenities || []),
+      ...(launch.tags || []),
+      ...(launch.placeTypes || []),
+      ...(launch.activityTypes || []),
+      ...(launch.amenityTypes || []),
+      ...(launch.attributeTypes || []),
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+  }
+
+  if (typeof applyFilters === "function") {
+    applyFilters = function refreshedApplyFilters() {
+      const searchTerm = els.search.value.trim().toLowerCase();
+      const maxDifficulty = els.difficulty.value === "all" ? Infinity : Number(els.difficulty.value);
+      const bounds = map.getBounds();
+      const activeCollection = Array.isArray(window.BLUEGREEN_ACTIVE_COLLECTION_IDS)
+        ? new Set(window.BLUEGREEN_ACTIVE_COLLECTION_IDS)
+        : null;
+
+      state.filteredLaunches = state.allLaunches.filter((launch) => {
+        const matchesSearch = !searchTerm || searchableText(launch).includes(searchTerm);
+        const matchesRegion = els.region.value === "all" || launch.region === els.region.value;
+        const matchesSkill = els.skill.value === "all" || launch.skillLevel === els.skill.value;
+        const matchesActivity =
+          els.activity.value === "all" || (launch.activities || []).includes(els.activity.value);
+        const matchesDifficulty = Number(launch.difficulty) <= maxDifficulty;
+        const matchesBounds = !state.showOnlyBounds || bounds.contains([launch.lat, launch.lng]);
+        const matchesCollection = !activeCollection || activeCollection.has(launch.id);
+
+        return (
+          matchesSearch &&
+          matchesRegion &&
+          matchesSkill &&
+          matchesActivity &&
+          matchesDifficulty &&
+          matchesBounds &&
+          matchesCollection
+        );
+      });
+
+      renderMarkers(state.filteredLaunches);
+      renderCards(state.filteredLaunches);
+      els.count.textContent = state.filteredLaunches.length;
+    };
+  }
+
   function markerClassFor(launch) {
     return launch.spaceType === "green" ? "marker-land" : launch.spaceType === "neutral" ? "marker-neutral" : "marker-water";
   }
