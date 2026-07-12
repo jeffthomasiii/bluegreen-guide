@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">BlueGreen Guide</title>
+  <desc id="desc">Primary BlueGreen Guide identity with mountains, green shoreline, blue water, and the tagline Discover Better Outdoors.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef6f8"/>
+      <stop offset="1" stop-color="#dceff5"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4fa6c8"/>
+      <stop offset="1" stop-color="#176f8f"/>
+    </linearGradient>
+    <clipPath id="badgeClip">
+      <rect x="22" y="22" width="274" height="436" rx="72"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#badgeClip)">
+    <rect x="22" y="22" width="274" height="436" fill="url(#sky)"/>
+    <path d="M22 218 L82 163 L122 199 L178 125 L243 196 L266 176 L296 209 L296 304 L22 304 Z" fill="#0f4f67"/>
+    <path d="M22 233 C82 232 119 256 161 283 C198 307 237 315 296 302 L296 348 C234 354 192 345 147 323 C101 301 66 287 22 292 Z" fill="#6f8f63"/>
+    <path d="M22 303 C81 285 139 285 192 295 C229 302 259 305 296 300 L296 458 L22 458 Z" fill="url(#water)"/>
+    <path d="M22 303 C75 282 124 279 178 286 C212 291 247 300 278 296 C260 310 231 316 194 315 C145 313 97 306 54 319 C42 323 31 329 22 334 Z" fill="#ffffff"/>
+    <path d="M22 365 C57 346 86 346 120 365 C154 384 185 384 219 365 C248 349 271 349 296 361" fill="none" stroke="#0f4f67" stroke-width="19" stroke-linecap="round" opacity="0.82"/>
+    <path d="M22 407 C57 388 86 388 120 407 C154 426 185 426 219 407 C248 391 271 391 296 403" fill="none" stroke="#76bdd7" stroke-width="8" stroke-linecap="round"/>
+    <path d="M22 445 C57 426 86 426 120 445 C154 464 185 464 219 445 C248 429 271 429 296 441" fill="none" stroke="#76bdd7" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <rect x="22" y="22" width="274" height="436" rx="72" fill="none" stroke="#0f4f67" stroke-width="8"/>
+
+  <g fill="#0f4f67" font-family="Cormorant Garamond, Georgia, serif" font-weight="700">
+    <text x="350" y="194" font-size="158" letter-spacing="-4">BlueGreen</text>
+    <text x="350" y="347" font-size="158" letter-spacing="-4">Guide</text>
+  </g>
+
+  <g fill="#4f7047" font-family="Inter, Arial, sans-serif" font-weight="700">
+    <rect x="350" y="408" width="54" height="4" rx="2"/>
+    <text x="424" y="428" font-size="28" letter-spacing="8">DISCOVER BETTER OUTDOORS</text>
+    <rect x="1119" y="408" width="54" height="4" rx="2"/>
+  </g>
+</svg>
