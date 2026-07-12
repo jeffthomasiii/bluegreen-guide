@@ -16,16 +16,33 @@
     "scenic-views": { icon: "scenic", category: "neutral" },
   };
 
-  const setCollection = (collection, button) => {
+  const refreshResults = () => {
+    searchInput.dispatchEvent(new Event("input", { bubbles: true }));
+  };
+
+  const clearCollection = () => {
+    window.BLUEGREEN_ACTIVE_COLLECTION_IDS = null;
     list.querySelectorAll(".collection-button").forEach((item) => {
-      item.classList.toggle("is-active", item === button);
-      item.setAttribute("aria-pressed", item === button ? "true" : "false");
+      item.classList.remove("is-active");
+      item.setAttribute("aria-pressed", "false");
+    });
+    description.textContent = "Choose a collection to filter the current launch map.";
+    clearButton.hidden = true;
+    refreshResults();
+  };
+
+  const setCollection = (collection, button) => {
+    window.BLUEGREEN_ACTIVE_COLLECTION_IDS = [...collection.placeIds];
+
+    list.querySelectorAll(".collection-button").forEach((item) => {
+      const isActive = item === button;
+      item.classList.toggle("is-active", isActive);
+      item.setAttribute("aria-pressed", isActive ? "true" : "false");
     });
 
-    searchInput.value = collection.query;
-    searchInput.dispatchEvent(new Event("input", { bubbles: true }));
     description.textContent = collection.description;
     clearButton.hidden = false;
+    refreshResults();
   };
 
   collections.forEach((collection) => {
@@ -48,16 +65,7 @@
     list.append(button);
   });
 
-  clearButton.addEventListener("click", () => {
-    list.querySelectorAll(".collection-button").forEach((item) => {
-      item.classList.remove("is-active");
-      item.setAttribute("aria-pressed", "false");
-    });
-    searchInput.value = "";
-    searchInput.dispatchEvent(new Event("input", { bubbles: true }));
-    description.textContent = "Choose a collection to filter the current launch map.";
-    clearButton.hidden = true;
-  });
+  clearButton.addEventListener("click", clearCollection);
 
   function escapeHtml(value) {
     return String(value ?? "")
