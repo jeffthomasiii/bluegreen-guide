@@ -50,16 +50,17 @@
   function decorateVerification(root = document) {
     root.querySelectorAll(".verification-line:not([data-ui-ready])").forEach((line) => {
       const text = line.textContent.trim();
-      line.innerHTML = `${icon(text.toLowerCase().includes("verified") && !text.toLowerCase().includes("needs") ? "check" : "alert")}<span>${escapeHtml(text)}</span>`;
+      const isVerified = text.toLowerCase().includes("verified") && !text.toLowerCase().includes("needs");
+      line.innerHTML = `${icon(isVerified ? "check" : "alert")}<span>${escapeHtml(text)}</span>`;
       line.dataset.uiReady = "true";
     });
   }
 
   function decorateButtons() {
     const buttonMap = [
-      ["#locationButton", "marina"],
-      ["#fitButton", "scenic"],
-      ["#boundsButton", "check"],
+      ["#locationButton", "location"],
+      ["#fitButton", "map"],
+      ["#boundsButton", "filter"],
     ];
     buttonMap.forEach(([selector, name]) => {
       const button = document.querySelector(selector);
@@ -97,9 +98,9 @@
           icon: L.divIcon({
             className: "",
             html: `<span class="launch-marker ${markerClassFor(launch)}">${escapeHtml(launch.difficulty)}</span>`,
-            iconSize: [40, 40],
-            iconAnchor: [20, 20],
-            popupAnchor: [0, -21],
+            iconSize: [38, 38],
+            iconAnchor: [19, 19],
+            popupAnchor: [0, -20],
           }),
           title: launch.name,
         }).bindPopup(`
