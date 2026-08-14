@@ -2,19 +2,23 @@
 
 ## Canonical Files
 
-- `data/launch-points.json` — authoritative static place records
-- `data/launch-points.js` — generated browser copy of the canonical JSON
-- `data/launch-profile.js` — curated launch-suitability layer and maintenance additions that enrich runtime place records
+BlueGreen Guide keeps place records in canonical JSON and generates browser-ready JavaScript from those files.
+
+- `data/launch-points.json` — authoritative base launch records
+- `data/mission-bay-launch-points.json` — authoritative Mission Bay launch records added during the Launch Suitability maintenance pass
+- `data/launch-points.js` — generated browser copy of the base launch records
+- `data/mission-bay-launch-points.js` — generated browser copy of the Mission Bay launch records
+- `data/launch-profile.js` — curated suitability enrichment only; it does not own or create place records
 - `data/collections.js` — curated collection configuration
 
-Edit static place facts in the JSON source, regenerate the browser copy, and validate before publishing.
+Edit place facts in the canonical JSON files, regenerate the browser copies, and validate before publishing.
 
 ```bash
 node scripts/build-launch-data-js.js
 node scripts/validate-repo.js
 ```
 
-The launch-suitability layer intentionally remains distinct from live conditions. It contains curated planning assessments such as SUP suitability and wind sensitivity; it does not contain current wind speed, weather, tides, water quality, or safety guarantees.
+The runtime dataset is the combined canonical launch data. The Launch Suitability Profile remains distinct from live conditions and from place ownership: it enriches existing launch records with curated planning assessments such as SUP suitability and wind sensitivity; it does not contain current wind speed, weather, tides, water quality, or safety guarantees.
 
 ## Current Place Fields
 
@@ -69,6 +73,12 @@ Photo fields:
 - `photoStatus`
 - `photoUrls`
 - `photoNotes`
+
+## Launch Coordinates
+
+Launch markers should represent the practical launch or shoreline access area rather than a broad park, neighborhood, lake, or water-body centroid whenever a more useful access location can be supported.
+
+When an official source confirms the facility but does not publish an exact GPS point, use a reasonable shoreline/access coordinate and state that limitation in `sourceNotes`. Do not describe an inferred coordinate as an official waypoint.
 
 ## Launch Suitability Profile
 
