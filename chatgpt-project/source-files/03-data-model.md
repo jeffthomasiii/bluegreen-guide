@@ -1,21 +1,34 @@
 # Data Model
 
-## Canonical Files
+## Data Files
 
-- `data/launch-points.json` — authoritative place records
-- `data/launch-points.js` — generated browser copy
+Canonical JSON:
+
+- `data/launch-points.json` — authoritative base launch records
+- `data/mission-bay-launch-points.json` — authoritative Mission Bay launch records added during the Launch Suitability maintenance pass
+
+Generated browser data:
+
+- `data/launch-points.js` — generated browser copy of the base records
+- `data/mission-bay-launch-points.js` — generated browser copy of the Mission Bay records
+
+Other runtime data:
+
+- `data/launch-profile.js` — curated Launch Suitability enrichment only; it must not create or own place records
 - `data/collections.js` — curated collection configuration
 
-Edit the JSON source, regenerate the browser copy, and validate before publishing.
+After editing canonical JSON:
 
 ```bash
 node scripts/build-launch-data-js.js
 node scripts/validate-repo.js
 ```
 
+Keep static place facts, curated guidance, live conditions, environmental context, and generated insights distinct.
+
 ## Current Place Fields
 
-Core fields:
+Core place fields include:
 
 - `id`
 - `name`
@@ -27,7 +40,7 @@ Core fields:
 - `activities`
 - `skillLevel`
 - `difficulty`
-- `popularity`
+- `popularity` — legacy numeric source retained internally during migration
 - `bestTime`
 - `amenities`
 - `tags`
@@ -35,6 +48,15 @@ Core fields:
 - `verificationStatus`
 - `sourceUrls`
 - `sourceNotes`
+
+Launch Suitability Profile fields:
+
+- `supSuitability` — `Excellent`, `Good`, `Fair`, `Challenging`
+- `windSensitivity` — `Low`, `Moderate`, `High`
+- `useLevel` — `Low`, `Moderate`, `High`, `Very High`
+- `crowdSensitivity` — `Low`, `Moderate`, `High`
+- `stagingSpace` — `Limited`, `Moderate`, `Generous`
+- `assessmentConfidence` — `Low`, `Moderate`, `High`
 
 Supported search and wayfinding fields:
 
@@ -58,6 +80,45 @@ Photo fields:
 - `photoUrls`
 - `photoNotes`
 
+## Coordinate Semantics
+
+A launch marker should represent the practical shoreline/launch access area when that location can be reasonably supported, not merely the centroid of the surrounding park, neighborhood, lake, or bay.
+
+If an official source confirms the facility but does not provide an exact GPS waypoint, use a reasonable access coordinate, document the inference in `sourceNotes`, and do not present it as an official coordinate.
+
+## Launch Suitability Semantics
+
+### SUP Suitability
+
+A curated overall assessment of how well the location generally fits recreational stand-up paddleboarding. It may consider launch difficulty, exposure, water character, vessel interaction, crowd effects, and staging. It is not a mathematical safety score.
+
+### Wind Sensitivity
+
+Describes how strongly increasing wind can degrade the paddling experience at a location. It does not mean the location is normally windy and does not represent current or forecast wind.
+
+### Typical Use
+
+`useLevel` replaces the user-facing Popularity star treatment. High use is not automatically positive; it may increase parking, shoreline, staging, or water congestion.
+
+### Crowd Sensitivity
+
+Describes how much crowding interferes with launching, carrying, staging, resting, or paddling. Keep this separate from Typical Use because different sites absorb crowds differently.
+
+### Staging Space
+
+Describes practical room for unloading, inflating, rigging, carrying, launching, exiting, and temporarily placing paddleboards or kayaks while resting.
+
+### Assessment Confidence
+
+Describes confidence in the BlueGreen Guide suitability assessment. It is separate from `verificationStatus`, which describes confidence in place facts.
+
+## Existing Guidance
+
+- `difficulty` remains a 1–5 comparative measure of launch complexity.
+- `bestTime` remains plain-language general planning guidance.
+- Neither is a live-condition or safety guarantee.
+- Legacy `popularity` may support migration logic but product UI should prefer `useLevel` and `crowdSensitivity`.
+
 ## Collection Fields
 
 Each collection includes:
@@ -68,7 +129,7 @@ Each collection includes:
 - `query`
 - `placeIds`
 
-Collections filter by exact `placeIds`. Every referenced ID must exist in the canonical place data.
+Every referenced ID must exist in runtime place data.
 
 ## Wayfinding Semantics
 
@@ -81,7 +142,7 @@ Color supports meaning but does not replace labels, icons, or shapes.
 
 ## Future Phase 2 Fields
 
-Potential structured place fields:
+Potential structured place fields remain:
 
 - `entryType`
 - `accessNotes`
@@ -91,18 +152,18 @@ Potential structured place fields:
 - `rentals`
 - `dogsAllowed`
 - `accessibility`
-- `windSensitivity`
 - `tideImpact`
 - `hazards`
 
-## Later Data Layers
+The Launch Suitability Profile is a maintenance refinement and does not reopen Phase 2.
 
-Keep these layers separate:
+## Data Layers
 
 | Layer | Purpose | Example |
 |---|---|---|
 | Place Data | Rarely changing facts | Parking, launch type, restrooms |
-| Live Data | Current or near-term conditions | Weather, wind, tides |
+| Curated Guidance | Comparative planning assessments | SUP suitability, wind sensitivity, staging space |
+| Live Data | Current or near-term conditions | Weather, current wind, tides |
 | Environmental Data | Historical, seasonal, or advisory context | Climate normals, water quality, AQI |
 | Derived Insights | App-generated guidance | Best before 10 AM, check wind after noon |
 
@@ -112,5 +173,6 @@ Keep these layers separate:
 - Do not invent access, parking, fees, tides, wind, water quality, climate, or hazard details.
 - Use `Unknown`, `Needs verification`, `Check official source`, or `Conditions vary` where appropriate.
 - An official link does not automatically verify every field.
+- Curated suitability fields must be labeled as planning guidance, not official or live measurements.
 - Use stable IDs and documented taxonomy tokens.
-- Keep canonical JSON, generated JavaScript, collection references, documentation, and validation synchronized.
+- Keep canonical JSON, generated JavaScript, profile data, collection references, documentation, and validation synchronized.

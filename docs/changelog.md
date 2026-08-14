@@ -1,5 +1,26 @@
 # Changelog
 
+## Unreleased — Launch Suitability Maintenance
+
+### Added
+
+- Launch Suitability Profile with SUP Suitability, Wind Sensitivity, Typical Use, Crowd Sensitivity, Staging Space, and Assessment Confidence
+- Separate Crown Point, De Anza Cove, and Sail Bay launch records within Mission Bay
+- Public Launch Suitability Profile documentation
+- Runtime validation for the new assessment fields and 59 launch records
+
+### Changed
+
+- Launch cards and map popups now prioritize SUP suitability, difficulty, wind sensitivity, and typical use
+- Place details now expose the full Launch Suitability Profile
+- User-facing Popularity star ratings are replaced by Typical Use and Crowd Sensitivity; the legacy numeric popularity value remains internally during migration
+- Search includes launch aliases, water bodies, and Launch Suitability Profile values
+- Documentation now distinguishes curated place guidance from live wind, weather, tides, visitor counts, and safety information
+
+### Notes
+
+The profile is curated planning guidance rather than a safety rating or live-condition system. Existing launch records receive a consistent seeded assessment with moderate confidence unless a more specific assessment is documented. Crown Point, De Anza Cove, and Sail Bay received a location-specific official-source review on 2026-08-13. Conditions and use levels vary; users should check current official sources before going.
+
 ## v1.1.0 — Phase 1 Closeout and Design System 2.0
 
 ### Added

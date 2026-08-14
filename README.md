@@ -10,25 +10,29 @@ Blue spaces include oceans, bays, rivers, lakes, reservoirs, lagoons, and harbor
 
 **v1.1.0 — Phase 1 Closeout and Design System 2.0**
 
-Phase 1 is complete as a working proof of concept. The current release includes:
+Phase 1 remains complete as a working proof of concept. Post-v1.1.0 maintenance now includes the Launch Suitability Profile and three additional Mission Bay launch points. The runtime map includes:
 
 - Interactive OpenStreetMap and Leaflet map
-- 56 canonical launch records across California, Nevada, and Arizona
-- Search across place names, aliases, water bodies, taxonomy, amenities, activities, tags, and descriptions
+- 59 launch records across California, Nevada, and Arizona at runtime; v1.1.0 originally closed with 56 canonical records
+- Separate Crown Point, De Anza Cove, and Sail Bay launch points within the broader Mission Bay destination
+- Search across place names, aliases, water bodies, taxonomy, amenities, activities, tags, descriptions, and launch-suitability values
 - Region, skill, activity, and maximum-difficulty filters
 - Five curated collections that use explicit place IDs
 - Map-bounds filtering and browser geolocation
 - Launch cards and a responsive place-detail panel
+- Launch Suitability Profile: SUP Suitability, Wind Sensitivity, Typical Use, Crowd Sensitivity, Staging Space, and Assessment Confidence
 - Verification status, source-review metadata, official links, and safety-aware notes
 - Credited representative photography with clear image status
 - Responsive desktop, tablet, and mobile layouts
 - Final Option B2 brand assets and blue, green, and neutral wayfinding semantics
-- Public HTML documentation for Quick Start, Field Guide, Release Notes, and Roadmap
-- Lightweight repository validation for data integrity and internal links
+- Public HTML documentation for Quick Start, Field Guide, Launch Suitability, Release Notes, and Roadmap
+- Lightweight repository validation for data integrity, launch-profile values, canonical data synchronization, and internal links
 
 ## Phase 1 Status
 
-Phase 1 is closed as a **complete proof of concept**. It proves the map-first experience, data model, brand direction, documentation system, and source-aware language without adding accounts, reviews, payments, live-condition integrations, or AI features too early.
+Phase 1 is closed as a **complete proof of concept**. The Launch Suitability Profile is a maintenance refinement, not a reopening of Phase 2.
+
+The profile provides curated planning guidance rather than live measurements or safety guarantees. Wind Sensitivity describes how strongly increasing wind can affect a location; it is not current or forecast wind. Typical Use and Crowd Sensitivity replace the user-facing Popularity star treatment so heavily used places are not automatically presented as more desirable.
 
 This is not production software. Most records remain marked **Needs verification**, and representative images are not assumed to show the exact launch point. Users should confirm current access, legal launch locations, parking, fees, closures, water quality, weather, wind, tides, vessel traffic, and hazards through official sources before going.
 
@@ -49,15 +53,24 @@ Wayfinding semantics:
 
 See [Design System 2.0](docs/brand-guide.md) and the [Wayfinding System](docs/wayfinding-system.md).
 
-## Canonical Data
+## Data Layers
 
-The canonical content files are:
+Canonical launch data is JSON-driven:
 
-- `data/launch-points.json` — authoritative place records
-- `data/launch-points.js` — generated browser copy of the JSON records
+- `data/launch-points.json` — authoritative base launch records
+- `data/mission-bay-launch-points.json` — authoritative Mission Bay launch records added during the Launch Suitability maintenance pass
+
+Generated browser data:
+
+- `data/launch-points.js`
+- `data/mission-bay-launch-points.js`
+
+Other runtime data:
+
+- `data/launch-profile.js` — curated launch-suitability enrichment only; it does not own or create place records
 - `data/collections.js` — curated collection definitions
 
-Do not edit `data/launch-points.js` directly. After changing `data/launch-points.json`, run:
+Do not edit the generated browser launch files directly. After changing canonical launch JSON, run:
 
 ```bash
 node scripts/build-launch-data-js.js
@@ -68,6 +81,10 @@ Then validate the repository:
 ```bash
 node scripts/validate-repo.js
 ```
+
+The profile layer is intentionally separate from future Live Data such as current weather, wind, tides, and advisories.
+
+Map markers should represent practical launch or shoreline-access locations when those can be reasonably supported. When an exact GPS point is inferred rather than published by an official source, that limitation should be documented rather than presented as an official waypoint.
 
 ## Run Locally
 
@@ -112,6 +129,9 @@ The repository is configured for GitHub Pages from the `main` branch and reposit
 ├── data/
 │   ├── launch-points.json
 │   ├── launch-points.js
+│   ├── mission-bay-launch-points.json
+│   ├── mission-bay-launch-points.js
+│   ├── launch-profile.js
 │   └── collections.js
 ├── scripts/
 │   ├── build-launch-data-js.js
@@ -121,6 +141,7 @@ The repository is configured for GitHub Pages from the `main` branch and reposit
 │   ├── index.html
 │   ├── quick-start/
 │   ├── user-guide/
+│   ├── launch-suitability/
 │   ├── release-notes/
 │   ├── roadmap/
 │   └── project reference Markdown
@@ -135,6 +156,7 @@ The repository is configured for GitHub Pages from the `main` branch and reposit
 - [Documentation Home](docs/)
 - [Quick Start](docs/quick-start/)
 - [Field Guide & User Manual](docs/user-guide/)
+- [Launch Suitability Profile](docs/launch-suitability/)
 - [Release Notes](docs/release-notes/)
 - [Roadmap](docs/roadmap/)
 
