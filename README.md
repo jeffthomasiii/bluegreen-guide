@@ -26,7 +26,7 @@ Phase 1 remains complete as a working proof of concept. Post-v1.1.0 maintenance 
 - Responsive desktop, tablet, and mobile layouts
 - Final Option B2 brand assets and blue, green, and neutral wayfinding semantics
 - Public HTML documentation for Quick Start, Field Guide, Launch Suitability, Release Notes, and Roadmap
-- Lightweight repository validation for data integrity, launch-profile values, and internal links
+- Lightweight repository validation for data integrity, launch-profile values, canonical data synchronization, and internal links
 
 ## Phase 1 Status
 
@@ -55,14 +55,22 @@ See [Design System 2.0](docs/brand-guide.md) and the [Wayfinding System](docs/wa
 
 ## Data Layers
 
-The current content files are:
+Canonical launch data is JSON-driven:
 
-- `data/launch-points.json` — authoritative static place records
-- `data/launch-points.js` — generated browser copy of the JSON records
-- `data/launch-profile.js` — curated launch-suitability layer and current maintenance additions
+- `data/launch-points.json` — authoritative base launch records
+- `data/mission-bay-launch-points.json` — authoritative Mission Bay launch records added during the Launch Suitability maintenance pass
+
+Generated browser data:
+
+- `data/launch-points.js`
+- `data/mission-bay-launch-points.js`
+
+Other runtime data:
+
+- `data/launch-profile.js` — curated launch-suitability enrichment only; it does not own or create place records
 - `data/collections.js` — curated collection definitions
 
-Do not edit `data/launch-points.js` directly. After changing `data/launch-points.json`, run:
+Do not edit the generated browser launch files directly. After changing canonical launch JSON, run:
 
 ```bash
 node scripts/build-launch-data-js.js
@@ -75,6 +83,8 @@ node scripts/validate-repo.js
 ```
 
 The profile layer is intentionally separate from future Live Data such as current weather, wind, tides, and advisories.
+
+Map markers should represent practical launch or shoreline-access locations when those can be reasonably supported. When an exact GPS point is inferred rather than published by an official source, that limitation should be documented rather than presented as an official waypoint.
 
 ## Run Locally
 
@@ -119,6 +129,8 @@ The repository is configured for GitHub Pages from the `main` branch and reposit
 ├── data/
 │   ├── launch-points.json
 │   ├── launch-points.js
+│   ├── mission-bay-launch-points.json
+│   ├── mission-bay-launch-points.js
 │   ├── launch-profile.js
 │   └── collections.js
 ├── scripts/
