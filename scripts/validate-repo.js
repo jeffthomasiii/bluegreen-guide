@@ -6,7 +6,9 @@ const vm = require("vm");
 const root = path.join(__dirname, "..");
 const dataDir = path.join(root, "data");
 const jsonPath = path.join(dataDir, "launch-points.json");
+const missionBayJsonPath = path.join(dataDir, "mission-bay-launch-points.json");
 const jsPath = path.join(dataDir, "launch-points.js");
+const missionBayJsPath = path.join(dataDir, "mission-bay-launch-points.js");
 const profilePath = path.join(dataDir, "launch-profile.js");
 const collectionsPath = path.join(dataDir, "collections.js");
 const expansionPath = path.join(dataDir, "phase-1-expansion.js");
@@ -23,6 +25,12 @@ function runBrowserDataFile(filePath) {
   vm.runInThisContext(code, { filename: filePath });
 }
 
+function loadCanonicalData() {
+  const base = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+  const missionBay = JSON.parse(fs.readFileSync(missionBayJsonPath, "utf8"));
+  return [...base, ...missionBay];
+}
+
 function loadRuntimeData() {
   global.window = {};
   const legacyMode = fs.existsSync(expansionPath) || fs.existsSync(sourcesPath);
@@ -33,6 +41,7 @@ function loadRuntimeData() {
     if (fs.existsSync(sourcesPath)) runBrowserDataFile(sourcesPath);
   } else {
     runBrowserDataFile(jsPath);
+    runBrowserDataFile(missionBayJsPath);
     if (fs.existsSync(profilePath)) runBrowserDataFile(profilePath);
     if (fs.existsSync(collectionsPath)) runBrowserDataFile(collectionsPath);
   }
@@ -135,20 +144,22 @@ function validateCollections(collections, placeIds) {
 }
 
 function validateGeneratedData(legacyMode) {
-  const json = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+  const canonical = loadCanonicalData();
 
   if (legacyMode) return;
 
   global.window = {};
   runBrowserDataFile(jsPath);
+  runBrowserDataFile(missionBayJsPath);
   try {
-    assert.deepStrictEqual(window.LAUNCH_POINTS, json);
+    assert.deepStrictEqual(window.LAUNCH_POINTS, canonical);
   } catch {
-    errors.push("data/launch-points.js is not synchronized with data/launch-points.json.");
+    errors.push("Generated browser launch data is not synchronized with the canonical JSON launch data.");
   }
 
   const index = fs.readFileSync(indexPath, "utf8");
   check(index.includes('src="data/launch-points.js"'), "index.html must load data/launch-points.js.");
+  check(index.includes('src="data/mission-bay-launch-points.js"'), "index.html must load data/mission-bay-launch-points.js.");
   check(index.includes('src="data/launch-profile.js"'), "index.html must load data/launch-profile.js.");
   check(index.includes('src="data/collections.js"'), "index.html must load data/collections.js.");
   check(!index.includes("phase-1-expansion.js"), "index.html still loads the legacy Phase 1 expansion layer.");
@@ -197,7 +208,7 @@ function validateHtmlLinks() {
 
 let runtime;
 try {
-  JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+  loadCanonicalData();
   runtime = loadRuntimeData();
 } catch (error) {
   errors.push(`Could not load launch data: ${error.message}`);
