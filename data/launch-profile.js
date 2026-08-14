@@ -68,8 +68,8 @@
       aliases: ["Crown Point Shores", "Crown Point Park"],
       region: "San Diego County",
       state: "CA",
-      lat: 32.7864,
-      lng: -117.2366,
+      lat: 32.7836,
+      lng: -117.2317,
       waterBody: "Mission Bay",
       waterType: "Protected bay shoreline",
       activities: ["SUP", "Kayak"],
@@ -93,7 +93,7 @@
         { label: "City of San Diego - Mission Bay Beaches", url: "https://www.sandiego.gov/lifeguards/beaches/mbay" },
         { label: "County of San Diego - Beach and Bay Water Quality", url: "https://www.sdbeachinfo.com/" }
       ],
-      sourceNotes: "Official source review completed 2026-08-13. City sources document the Crown Point park areas, boat launch, restrooms, rinse-off shower, large parking lots, and free parking. BlueGreen Guide suitability, wind sensitivity, crowd sensitivity, staging space, and typical use are curated planning assessments rather than live measurements or safety guarantees. Conditions vary; check current official sources before going.",
+      sourceNotes: "Official source review completed 2026-08-13. City sources document the Crown Point park areas, a boat launch in Crown Point Middle, restrooms, rinse-off shower, large parking lots, and free parking. The map marker is placed on the Crown Point Middle shoreline near the documented launch rather than at the park centroid. BlueGreen Guide suitability, wind sensitivity, crowd sensitivity, staging space, and typical use are curated planning assessments rather than live measurements or safety guarantees. Conditions vary; check current official sources before going.",
       sourceReviewDate: "2026-08-13",
       sourceReviewStatus: "Official location source reviewed"
     },
@@ -103,8 +103,8 @@
       aliases: ["De Anza Cove Park"],
       region: "San Diego County",
       state: "CA",
-      lat: 32.7958,
-      lng: -117.2152,
+      lat: 32.79322,
+      lng: -117.20926,
       waterBody: "Mission Bay",
       waterType: "Protected cove",
       activities: ["SUP", "Kayak"],
@@ -128,7 +128,7 @@
         { label: "City of San Diego - Mission Bay Beaches", url: "https://www.sandiego.gov/lifeguards/beaches/mbay" },
         { label: "County of San Diego - Beach and Bay Water Quality", url: "https://www.sdbeachinfo.com/" }
       ],
-      sourceNotes: "Official source review completed 2026-08-13. City sources document the boat launch ramp, free parking, nearby restrooms, showers, swimming and boating use, and note that parking can fill early on summer weekends. BlueGreen Guide suitability and sensitivity fields are curated planning assessments, not live condition measurements or safety guarantees.",
+      sourceNotes: "Official source review completed 2026-08-13. City sources document the boat launch ramp, free parking, nearby restrooms, showers, swimming and boating use, and note that parking can fill early on summer weekends. The map marker uses the mapped De Anza Cove boat-launch access point rather than the broader park centroid. BlueGreen Guide suitability and sensitivity fields are curated planning assessments, not live condition measurements or safety guarantees.",
       sourceReviewDate: "2026-08-13",
       sourceReviewStatus: "Official location source reviewed"
     },
@@ -138,8 +138,8 @@
       aliases: ["Fanuel Street Park", "Fanuel Park"],
       region: "San Diego County",
       state: "CA",
-      lat: 32.7941,
-      lng: -117.2458,
+      lat: 32.7913,
+      lng: -117.249,
       waterBody: "Mission Bay",
       waterType: "Protected bay beach",
       activities: ["SUP", "Kayak"],
@@ -163,7 +163,7 @@
         { label: "City of San Diego - Mission Bay Park", url: "https://www.sandiego.gov/park-and-recreation/parks/regional/missionbay" },
         { label: "County of San Diego - Beach and Bay Water Quality", url: "https://www.sdbeachinfo.com/" }
       ],
-      sourceNotes: "Official source review completed 2026-08-13. City Mission Bay beach information identifies Sail Bay and notes that it does not have an adjacent parking lot. BlueGreen Guide suitability, wind sensitivity, crowd sensitivity, staging space, and typical use are curated planning assessments rather than live measurements. Conditions vary; check current wind, rules, water quality, and posted restrictions before going.",
+      sourceNotes: "Official source review completed 2026-08-13. City Mission Bay beach information identifies Sail Bay at Fanuel Street and notes that it does not have an adjacent parking lot. The map marker is placed at the Fanuel Park shoreline/beach access instead of an inland neighborhood point. BlueGreen Guide suitability, wind sensitivity, crowd sensitivity, staging space, and typical use are curated planning assessments rather than live measurements. Conditions vary; check current wind, rules, water quality, and posted restrictions before going.",
       sourceReviewDate: "2026-08-13",
       sourceReviewStatus: "Official location source reviewed"
     }
