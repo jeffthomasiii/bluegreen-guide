@@ -2,9 +2,19 @@
 
 ## Data Files
 
-- `data/launch-points.json` — authoritative static place records
-- `data/launch-points.js` — generated browser copy
-- `data/launch-profile.js` — curated Launch Suitability Profile and current maintenance additions
+Canonical JSON:
+
+- `data/launch-points.json` — authoritative base launch records
+- `data/mission-bay-launch-points.json` — authoritative Mission Bay launch records added during the Launch Suitability maintenance pass
+
+Generated browser data:
+
+- `data/launch-points.js` — generated browser copy of the base records
+- `data/mission-bay-launch-points.js` — generated browser copy of the Mission Bay records
+
+Other runtime data:
+
+- `data/launch-profile.js` — curated Launch Suitability enrichment only; it must not create or own place records
 - `data/collections.js` — curated collection configuration
 
 After editing canonical JSON:
@@ -69,6 +79,12 @@ Photo fields:
 - `photoStatus`
 - `photoUrls`
 - `photoNotes`
+
+## Coordinate Semantics
+
+A launch marker should represent the practical shoreline/launch access area when that location can be reasonably supported, not merely the centroid of the surrounding park, neighborhood, lake, or bay.
+
+If an official source confirms the facility but does not provide an exact GPS waypoint, use a reasonable access coordinate, document the inference in `sourceNotes`, and do not present it as an official coordinate.
 
 ## Launch Suitability Semantics
 
