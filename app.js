@@ -100,10 +100,11 @@ async function loadLaunches() {
 
 async function fetchLaunchJson() {
   const response = await fetch("data/launch-points.json");
-  if (!response.ok) {
-    throw new Error(`Launch data request failed: ${response.status}`);
-  }
-  return response.json();
+  if (!response.ok) throw new Error(`Launch data request failed: ${response.status}`);
+  const launches = await response.json();
+  return typeof window.BLUEGREEN_ENRICH_LAUNCH === "function"
+    ? launches.map(window.BLUEGREEN_ENRICH_LAUNCH)
+    : launches;
 }
 
 function bindEvents() {
@@ -128,15 +129,11 @@ function bindEvents() {
   els.location.addEventListener("click", useLocation);
   els.detail.addEventListener("click", handleDetailClick);
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeLaunchDetail();
-    }
+    if (event.key === "Escape") closeLaunchDetail();
   });
 
   map.on("moveend zoomend", () => {
-    if (state.showOnlyBounds) {
-      applyFilters();
-    }
+    if (state.showOnlyBounds) applyFilters();
   });
 
   window.addEventListener("resize", refreshMapSize);
@@ -162,11 +159,18 @@ function applyFilters() {
       !searchTerm ||
       [
         launch.name,
+        ...(launch.aliases || []),
         launch.region,
         launch.state,
+        launch.waterBody,
         launch.waterType,
         launch.skillLevel,
         launch.bestTime,
+        launch.supSuitability,
+        launch.windSensitivity,
+        launch.useLevel,
+        launch.crowdSensitivity,
+        launch.stagingSpace,
         launch.description,
         ...(launch.activities || []),
         ...(launch.amenities || []),
@@ -207,7 +211,8 @@ function renderMarkers(launches) {
     }).bindPopup(`
       <h3 class="popup-title">${escapeHtml(launch.name)}</h3>
       <p class="popup-detail">${escapeHtml(launch.region)}, ${escapeHtml(launch.state)}</p>
-      <p class="popup-detail">Difficulty ${escapeHtml(launch.difficulty)}/5 &bull; Popularity ${escapeHtml(launch.popularity)}/5</p>
+      <p class="popup-detail">SUP ${escapeHtml(launch.supSuitability || "Unknown")} &bull; Difficulty ${escapeHtml(launch.difficulty)}/5</p>
+      <p class="popup-detail">Wind sensitivity: ${escapeHtml(launch.windSensitivity || "Unknown")} &bull; Typical use: ${escapeHtml(launch.useLevel || "Unknown")}</p>
       <p class="popup-detail">Best time: ${escapeHtml(launch.bestTime)}</p>
     `);
 
@@ -252,8 +257,9 @@ function renderCards(launches) {
     verification.textContent = verificationSummary(launch);
     description.textContent = launch.description;
     ratings.innerHTML = `
-      <div class="rating"><strong>Popularity</strong>${starRating(launch.popularity)} ${launch.popularity}/5</div>
+      <div class="rating"><strong>SUP Suitability</strong>${escapeHtml(launch.supSuitability || "Unknown")}</div>
       <div class="rating"><strong>Difficulty</strong>${launch.difficulty}/5</div>
+      <div class="rating"><strong>Wind</strong>${escapeHtml(launch.windSensitivity || "Unknown")}</div>
     `;
 
     [...launch.activities, ...launch.amenities.slice(0, 4)].forEach((tag) => {
@@ -277,9 +283,7 @@ function openLaunchDetail(id, options = {}) {
   els.detail.hidden = false;
   els.detail.innerHTML = detailMarkup(launch);
 
-  if (options.focusMap !== false) {
-    focusLaunch(id);
-  }
+  if (options.focusMap !== false) focusLaunch(id);
 }
 
 function closeLaunchDetail() {
@@ -297,23 +301,17 @@ function handleDetailClick(event) {
 
   const sourceLink = event.target.closest("a");
   if (sourceLink) return;
-
-  if (event.target === els.detail) {
-    closeLaunchDetail();
-  }
+  if (event.target === els.detail) closeLaunchDetail();
 }
 
 function focusLaunch(id) {
   const launch = state.allLaunches.find((item) => item.id === id);
   const marker = state.markers.get(id);
-
   if (!launch) return;
 
   refreshMapSize();
   map.setView([launch.lat, launch.lng], Math.max(map.getZoom(), 12), { animate: true });
-  if (marker) {
-    setTimeout(() => marker.openPopup(), 250);
-  }
+  if (marker) setTimeout(() => marker.openPopup(), 250);
 }
 
 function detailMarkup(launch) {
@@ -333,10 +331,7 @@ function detailMarkup(launch) {
     : [];
   const sourceItems = sourceUrls.length
     ? sourceUrls
-        .map(
-          (source) =>
-            `<li><a href="${escapeAttribute(source.url)}" target="_blank" rel="noopener">${escapeHtml(source.label || source.url)}</a></li>`
-        )
+        .map((source) => `<li><a href="${escapeAttribute(source.url)}" target="_blank" rel="noopener">${escapeHtml(source.label || source.url)}</a></li>`)
         .join("")
     : '<li class="muted-list-item">No official source added yet.</li>';
 
@@ -345,7 +340,7 @@ function detailMarkup(launch) {
       <button class="detail-close" type="button" aria-label="Close launch details" data-close-detail>&times;</button>
       <div class="detail-kicker">${escapeHtml(launch.region)}, ${escapeHtml(launch.state)}</div>
       <h2 id="detailTitle">${escapeHtml(launch.name)}</h2>
-      <p class="detail-subtitle">${escapeHtml(launch.waterType)} | ${escapeHtml(formatList(launch.activities))} | ${escapeHtml(launch.skillLevel)}</p>
+      <p class="detail-subtitle">${escapeHtml(launch.waterBody || launch.waterType)} | ${escapeHtml(formatList(launch.activities))} | ${escapeHtml(launch.skillLevel)}</p>
 
       ${photoMarkup}
 
@@ -357,23 +352,17 @@ function detailMarkup(launch) {
       <p>${escapeHtml(launch.description)}</p>
 
       <dl class="detail-grid">
-        <div>
-          <dt>Best Time</dt>
-          <dd>${escapeHtml(launch.bestTime || "Unknown")}</dd>
-        </div>
-        <div>
-          <dt>Difficulty</dt>
-          <dd>${escapeHtml(launch.difficulty)}/5</dd>
-        </div>
-        <div>
-          <dt>Popularity</dt>
-          <dd>${escapeHtml(launch.popularity)}/5</dd>
-        </div>
-        <div>
-          <dt>Coordinates</dt>
-          <dd>${escapeHtml(launch.lat)}, ${escapeHtml(launch.lng)}</dd>
-        </div>
+        <div><dt>SUP Suitability</dt><dd>${escapeHtml(launch.supSuitability || "Unknown")}</dd></div>
+        <div><dt>Difficulty</dt><dd>${escapeHtml(launch.difficulty)}/5</dd></div>
+        <div><dt>Wind Sensitivity</dt><dd>${escapeHtml(launch.windSensitivity || "Unknown")}</dd></div>
+        <div><dt>Typical Use</dt><dd>${escapeHtml(launch.useLevel || "Unknown")}</dd></div>
+        <div><dt>Crowd Sensitivity</dt><dd>${escapeHtml(launch.crowdSensitivity || "Unknown")}</dd></div>
+        <div><dt>Staging Space</dt><dd>${escapeHtml(launch.stagingSpace || "Unknown")}</dd></div>
+        <div><dt>Best Time</dt><dd>${escapeHtml(launch.bestTime || "Unknown")}</dd></div>
+        <div><dt>Assessment Confidence</dt><dd>${escapeHtml(launch.assessmentConfidence || "Unknown")}</dd></div>
       </dl>
+
+      <p class="source-note"><strong>BlueGreen Guide assessment:</strong> Suitability and sensitivity fields are curated planning guidance, not live condition measurements or safety guarantees. Conditions and use levels vary.</p>
 
       <section class="detail-section">
         <h3>Amenities</h3>
@@ -412,32 +401,13 @@ function getRepresentativePhoto(launch) {
     launch.waterType,
     ...(launch.activities || []),
     ...(launch.tags || []),
-  ]
-    .join(" ")
-    .toLowerCase();
+  ].join(" ").toLowerCase();
 
   if (searchText.includes("river") || searchText.includes("canyon")) return representativePhotos.riverKayak;
-  if (
-    searchText.includes("ocean") ||
-    searchText.includes("coastal") ||
-    searchText.includes("surf") ||
-    searchText.includes("beach")
-  ) {
-    return representativePhotos.coastalKayak;
-  }
-  if (
-    searchText.includes("mountain") ||
-    searchText.includes("alpine") ||
-    searchText.includes("tahoe") ||
-    searchText.includes("sierra")
-  ) {
-    return representativePhotos.mountainLake;
-  }
+  if (searchText.includes("ocean") || searchText.includes("coastal") || searchText.includes("surf") || searchText.includes("beach")) return representativePhotos.coastalKayak;
+  if (searchText.includes("mountain") || searchText.includes("alpine") || searchText.includes("tahoe") || searchText.includes("sierra")) return representativePhotos.mountainLake;
   if ((launch.activities || []).length === 1 && launch.activities[0] === "Kayak") return representativePhotos.lakeKayak;
-  if (searchText.includes("reservoir") || searchText.includes("lake") || searchText.includes("desert")) {
-    return representativePhotos.mountainLake;
-  }
-
+  if (searchText.includes("reservoir") || searchText.includes("lake") || searchText.includes("desert")) return representativePhotos.mountainLake;
   return representativePhotos.calmWater;
 }
 
@@ -519,11 +489,6 @@ function useLocation() {
     },
     () => alert("Could not access your location.")
   );
-}
-
-function starRating(value) {
-  const rounded = Math.round(value);
-  return "★★★★★".slice(0, rounded) + "☆☆☆☆☆".slice(0, 5 - rounded);
 }
 
 function refreshMapSize() {
