@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased — Launch Suitability Maintenance
+## 2026-08-14 — Launch Suitability Maintenance — Complete
 
 ### Added
 
@@ -8,6 +8,7 @@
 - Separate Crown Point, De Anza Cove, and Sail Bay launch records within Mission Bay
 - Public Launch Suitability Profile documentation
 - Runtime validation for the new assessment fields and 59 launch records
+- Canonical Mission Bay launch data and generated browser data kept separate from suitability enrichment
 
 ### Changed
 
@@ -15,11 +16,19 @@
 - Place details now expose the full Launch Suitability Profile
 - User-facing Popularity star ratings are replaced by Typical Use and Crowd Sensitivity; the legacy numeric popularity value remains internally during migration
 - Search includes launch aliases, water bodies, and Launch Suitability Profile values
+- Mission Bay launch markers use practical shoreline/access locations rather than broad park or neighborhood centroids
 - Documentation now distinguishes curated place guidance from live wind, weather, tides, visitor counts, and safety information
+
+### Review and validation
+
+- Repository validation passes with 59 launch records and five collections
+- The new suitability ratings received a manual spot review against familiar real-world locations after merge
+- SUP Suitability, Staging Space, and Assessment Confidence were specifically reviewed and found consistent with known on-the-ground experience for the sampled locations
+- This spot review is a useful product-quality check, but it does not convert all records to officially verified status or replace source-by-source review
 
 ### Notes
 
-The profile is curated planning guidance rather than a safety rating or live-condition system. Existing launch records receive a consistent seeded assessment with moderate confidence unless a more specific assessment is documented. Crown Point, De Anza Cove, and Sail Bay received a location-specific official-source review on 2026-08-13. Conditions and use levels vary; users should check current official sources before going.
+The profile is curated planning guidance rather than a safety rating or live-condition system. Existing launch records use a consistent seeded assessment with moderate confidence unless a more specific assessment is documented. Crown Point, De Anza Cove, and Sail Bay received a location-specific official-source review on 2026-08-13. Conditions and use levels vary; users should check current official sources before going.
 
 ## v1.1.0 — Phase 1 Closeout and Design System 2.0
 
