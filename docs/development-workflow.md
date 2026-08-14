@@ -15,18 +15,34 @@ Do not introduce a framework, database, account system, build platform, or produ
 
 ## Canonical Data Workflow
 
-The authoritative place data is `data/launch-points.json`.
+Canonical launch records currently live in two JSON files:
 
-After editing it:
+- `data/launch-points.json` — authoritative base launch records
+- `data/mission-bay-launch-points.json` — authoritative Mission Bay launch records added during the Launch Suitability maintenance pass
+
+After editing canonical launch data:
 
 ```bash
 node scripts/build-launch-data-js.js
 node scripts/validate-repo.js
 ```
 
-`data/launch-points.js` is generated and should not be edited directly.
+The build script generates:
+
+- `data/launch-points.js`
+- `data/mission-bay-launch-points.js`
+
+Generated browser files should not be edited directly.
+
+`data/launch-profile.js` enriches existing runtime records with curated suitability fields. It must not create or own place records.
 
 Curated collections are maintained in `data/collections.js`. Collection `placeIds` must reference existing canonical place IDs.
+
+### Coordinate Rule
+
+Map markers should represent the practical launch or shoreline-access area whenever that location can be reasonably supported. Do not default to a broad park, neighborhood, lake, or water-body centroid when a more useful launch/access coordinate is available.
+
+If an official source verifies the facility but does not publish an exact GPS waypoint, document that limitation in `sourceNotes` and do not present the inferred coordinate as official.
 
 ## Local Review
 
@@ -48,6 +64,7 @@ Review:
 - Tablet layout
 - Mobile layout
 - Map rendering and marker behavior
+- Marker placement at practical launch/access locations
 - Search and filters
 - Curated collection counts and results
 - Place cards and details
@@ -65,10 +82,11 @@ node scripts/validate-repo.js
 
 The script checks:
 
-- Valid canonical JSON
+- Valid canonical JSON across the launch-data files
 - Required place fields
 - Unique IDs
-- Coordinate, difficulty, and popularity ranges
+- Coordinate, difficulty, and legacy popularity ranges
+- Launch Suitability Profile enum values
 - Collection IDs and place references
 - Generated browser data synchronization
 - Required script loading
@@ -87,9 +105,9 @@ Keep these layers synchronized:
 
 The root `README.md` is the authoritative repository status summary. `docs/phase-roadmap.md` is the detailed roadmap. `docs/changelog.md` is the release history.
 
-Documentation describing ratings, verification status, or data semantics must remain consistent with `data/launch-points.json`, [Data Model](data-model.md), and [Phase Roadmap](phase-roadmap.md).
+Documentation describing ratings, verification status, coordinates, or data semantics must remain consistent with the canonical JSON, [Data Model](data-model.md), and [Phase Roadmap](phase-roadmap.md).
 
-Public documentation should explain the user-facing meaning of **Best Time**, **Skill Level**, **Difficulty**, **Popularity**, and **Needs Verification** without implying a precise formula, real-time measurement, guaranteed suitability, or complete verification.
+Public documentation should explain user-facing suitability and guidance without implying a precise formula, real-time measurement, guaranteed suitability, or complete verification.
 
 ## Safety and Data Rule
 
@@ -104,6 +122,7 @@ Do not invent or overstate:
 - Water quality
 - Hazards
 - Verified photography
+- Exact launch coordinates when only a general facility location is supported
 
 Use `Unknown`, `Needs verification`, `Check official source`, or `Conditions vary` when material details remain uncertain.
 
@@ -113,4 +132,4 @@ A source link does not verify every field in a place record. Verification status
 
 Phase 1 is complete as of v1.1.0. Phase 2 is on hold.
 
-Maintenance work may improve source links, verification, photography, accessibility, documentation, and defects without reopening Phase 1 or expanding scope into live conditions, community features, accounts, or AI.
+Maintenance work may improve source links, verification, photography, accessibility, documentation, coordinates, and defects without reopening Phase 1 or expanding scope into live conditions, community features, accounts, or AI.
