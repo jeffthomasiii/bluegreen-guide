@@ -10,7 +10,7 @@ Blue spaces include oceans, bays, rivers, lakes, reservoirs, lagoons, and harbor
 
 **v1.1.0 — Phase 1 Closeout and Design System 2.0**
 
-Phase 1 remains complete as a working proof of concept. Post-v1.1.0 maintenance now includes the Launch Suitability Profile and three additional Mission Bay launch points. The runtime map includes:
+Phase 1 remains complete as a working proof of concept. Post-v1.1.0 maintenance now includes the completed Launch Suitability Profile enhancement and three additional Mission Bay launch points. The runtime map includes:
 
 - Interactive OpenStreetMap and Leaflet map
 - 59 launch records across California, Nevada, and Arizona at runtime; v1.1.0 originally closed with 56 canonical records
@@ -30,9 +30,11 @@ Phase 1 remains complete as a working proof of concept. Post-v1.1.0 maintenance 
 
 ## Phase 1 Status
 
-Phase 1 is closed as a **complete proof of concept**. The Launch Suitability Profile is a maintenance refinement, not a reopening of Phase 2.
+Phase 1 is closed as a **complete proof of concept**. The Launch Suitability Profile is a completed post-v1.1.0 maintenance refinement, not a reopening of Phase 2.
 
 The profile provides curated planning guidance rather than live measurements or safety guarantees. Wind Sensitivity describes how strongly increasing wind can affect a location; it is not current or forecast wind. Typical Use and Crowd Sensitivity replace the user-facing Popularity star treatment so heavily used places are not automatically presented as more desirable.
+
+After implementation, the suitability ratings received a manual spot review using familiar real-world locations. SUP Suitability, Staging Space, and Assessment Confidence for the sampled places aligned with known on-the-ground experience. This supports the usefulness of the current rating framework, but it does not replace official-source verification or imply that every record has been individually field-verified.
 
 This is not production software. Most records remain marked **Needs verification**, and representative images are not assumed to show the exact launch point. Users should confirm current access, legal launch locations, parking, fees, closures, water quality, weather, wind, tides, vessel traffic, and hazards through official sources before going.
 
