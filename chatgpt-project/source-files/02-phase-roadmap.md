@@ -16,11 +16,11 @@ The permanent brand identity represents water, land, discovery, and guidance wit
 
 **Release:** v1.1.0
 
-Completed scope:
+Completed release scope:
 
 - Static HTML, CSS, and JavaScript app
 - Leaflet and OpenStreetMap
-- 56 canonical launch records
+- 56 canonical launch records at the v1.1.0 closeout
 - Search across names, aliases, regions, water bodies, taxonomy, activities, amenities, tags, and descriptions
 - Region, skill, activity, and difficulty filters
 - Five curated collections using explicit place IDs
@@ -32,7 +32,26 @@ Completed scope:
 - Public HTML documentation
 - Canonical data workflow and lightweight validation
 
-Phase 1 is closed as a working proof of concept. Ongoing source checks, field verification, image replacement, defect correction, and future clustering evaluation are maintenance rather than unfinished features.
+Phase 1 is closed as a working proof of concept. Ongoing source checks, field verification, image replacement, defect correction, data refinement, and future clustering evaluation are maintenance rather than unfinished features.
+
+### Post-v1.1.0 Maintenance — Launch Suitability Profile Complete
+
+The Launch Suitability Profile maintenance enhancement was completed and merged on 2026-08-14. The runtime map now contains 59 launch records, including separate Crown Point, De Anza Cove, and Sail Bay launch points within Mission Bay while retaining Mission Bay as the broader destination entry.
+
+The profile adds:
+
+- SUP Suitability
+- Wind Sensitivity
+- Typical Use
+- Crowd Sensitivity
+- Staging Space
+- Assessment Confidence
+
+Difficulty and Best Time remain separate planning signals. The legacy numeric Popularity value is retained internally during migration but is no longer presented as a positive star rating. Typical Use and Crowd Sensitivity communicate crowding more directly.
+
+The implementation passed repository validation and received a manual spot review against familiar real-world locations. For the sampled places, SUP Suitability, Staging Space, and Assessment Confidence aligned with known on-the-ground experience. Treat this as a useful POC quality check, not as official verification or complete field validation across all records.
+
+These fields are curated planning guidance. They do not represent live wind, weather, tides, visitor counts, safety guarantees, or official agency ratings.
 
 ## Phase 2: Structured Place Details — On Hold
 
@@ -50,6 +69,8 @@ When resumed, begin with a limited pilot using existing places and normalized fi
 - Official links
 - Last verified date
 
+The Launch Suitability Profile does not reopen Phase 2. It is a completed maintenance improvement to the existing launch-discovery experience.
+
 Do not expand into accounts, community features, live conditions, AI, or a framework rewrite as part of the pilot.
 
 ## Phase 3: Live Conditions and Trip Planning
@@ -64,6 +85,8 @@ Potential integrations:
 - Sunrise and sunset
 - Seasonal access notes
 - Plain-language suitability guidance
+
+Live conditions will supplement—not replace—the existing curated planning guidance. Best Time and Wind Sensitivity describe general place characteristics or planning context, while current weather, wind, tides, forecasts, and advisories will be presented as a separate live-data layer.
 
 Conditions are planning aids, not safety guarantees.
 
@@ -80,7 +103,7 @@ Potential features:
 - Seasonal closures
 - Best months to visit
 
-Keep permanent place facts, live conditions, environmental context, and derived insights structurally distinct.
+Keep permanent place facts, curated guidance, live conditions, environmental context, and derived insights structurally distinct.
 
 ## Phase 4: Community Layer
 
