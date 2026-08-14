@@ -34,9 +34,9 @@ Completed release scope:
 
 Phase 1 is closed as a working proof of concept. Ongoing source checks, field verification, image replacement, defect correction, data refinement, and future clustering evaluation are maintenance rather than unfinished features.
 
-### Post-v1.1.0 Maintenance
+### Post-v1.1.0 Maintenance — Launch Suitability Profile Complete
 
-The launch map now includes a **Launch Suitability Profile** as a maintenance refinement. The runtime map contains 59 launch records, including separate Crown Point, De Anza Cove, and Sail Bay launch points within Mission Bay while retaining Mission Bay as the broader destination entry.
+The Launch Suitability Profile maintenance enhancement was completed and merged on 2026-08-14. The runtime map now contains 59 launch records, including separate Crown Point, De Anza Cove, and Sail Bay launch points within Mission Bay while retaining Mission Bay as the broader destination entry.
 
 The profile adds:
 
@@ -48,6 +48,8 @@ The profile adds:
 - Assessment Confidence
 
 Difficulty and Best Time remain separate planning signals. The legacy numeric Popularity value is retained internally during migration but is no longer presented as a positive star rating. Typical Use and Crowd Sensitivity communicate crowding more directly.
+
+The implementation was validated through repository checks and a manual spot review of familiar real-world locations. For the sampled locations, SUP Suitability, Staging Space, and Assessment Confidence aligned with known on-the-ground experience. This supports the current methodology as a useful POC planning framework; it does not replace official-source verification or imply complete field verification across all 59 records.
 
 These fields are curated planning guidance. They do not represent live wind, weather, tides, visitor counts, safety guarantees, or official agency ratings. See [Launch Suitability Profile](launch-suitability/) and [Data Model](data-model.md#launch-suitability-profile).
 
@@ -67,7 +69,7 @@ When resumed, begin with a limited pilot using existing places and normalized fi
 - Official links
 - Last verified date
 
-The Launch Suitability Profile does not reopen Phase 2. It is a focused maintenance improvement to the existing launch-discovery experience.
+The Launch Suitability Profile does not reopen Phase 2. It is a completed maintenance improvement to the existing launch-discovery experience.
 
 Do not expand into accounts, community features, live conditions, AI, or a framework rewrite as part of the pilot.
 
