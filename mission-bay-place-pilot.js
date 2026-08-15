@@ -1,3 +1,11 @@
+const markerMinZoom = new Map([
+  ["vacation-isle", 16],
+  ["tecolote-creek-wetland", 15],
+  ["perez-cove", 15],
+  ["model-yacht-pond", 15],
+  ["enchanted-cove", 15],
+]);
+
 function isPaddlePlace(place) {
   return place.paddleRelevant !== false && (place.activities || []).some((activity) => ["SUP", "Kayak", "Canoe"].includes(activity));
 }
@@ -13,10 +21,18 @@ function placeTypeLabel(place) {
   return (place.placeTypes || []).map((value) => value.replace(/-/g, " ")).join(", ") || place.waterType || "Outdoor place";
 }
 
+function shouldRenderMarker(place) {
+  const minimumZoom = markerMinZoom.get(place.id);
+  return minimumZoom === undefined || map.getZoom() >= minimumZoom;
+}
+
 function applyFilters() {
   const searchTerm = els.search.value.trim().toLowerCase();
   const maxDifficulty = els.difficulty.value === "all" ? Infinity : Number(els.difficulty.value);
   const bounds = map.getBounds();
+  const activeCollection = Array.isArray(window.BLUEGREEN_ACTIVE_COLLECTION_IDS)
+    ? new Set(window.BLUEGREEN_ACTIVE_COLLECTION_IDS)
+    : null;
 
   state.filteredLaunches = state.allLaunches.filter((place) => {
     const paddlePlace = isPaddlePlace(place);
@@ -43,7 +59,7 @@ function applyFilters() {
       ...(place.amenities || []),
       ...(place.attributeTypes || []),
       ...(place.tags || []),
-    ].join(" ").toLowerCase();
+    ].filter(Boolean).join(" ").toLowerCase();
 
     const matchesSearch = !searchTerm || searchText.includes(searchTerm);
     const matchesRegion = els.region.value === "all" || place.region === els.region.value;
@@ -51,8 +67,9 @@ function applyFilters() {
     const matchesActivity = els.activity.value === "all" || (place.activities || []).includes(els.activity.value);
     const matchesDifficulty = els.difficulty.value === "all" || (paddlePlace && Number(place.difficulty) <= maxDifficulty);
     const matchesBounds = !state.showOnlyBounds || bounds.contains([place.lat, place.lng]);
+    const matchesCollection = !activeCollection || activeCollection.has(place.id);
 
-    return matchesSearch && matchesRegion && matchesSkill && matchesActivity && matchesDifficulty && matchesBounds;
+    return matchesSearch && matchesRegion && matchesSkill && matchesActivity && matchesDifficulty && matchesBounds && matchesCollection;
   });
 
   renderMarkers(state.filteredLaunches);
@@ -68,6 +85,8 @@ function renderMarkers(places) {
   state.markers.clear();
 
   for (const place of places) {
+    if (!shouldRenderMarker(place)) continue;
+
     const paddlePlace = isPaddlePlace(place);
     const markerClass = paddlePlace || place.spaceType === "blue"
       ? "place-marker place-marker--blue"
@@ -163,6 +182,21 @@ function renderCards(places) {
   }
 }
 
+function focusLaunch(id) {
+  const place = state.allLaunches.find((item) => item.id === id);
+  if (!place) return;
+
+  const targetZoom = markerMinZoom.get(id) || 12;
+  refreshMapSize();
+  map.setView([place.lat, place.lng], Math.max(map.getZoom(), targetZoom), { animate: true });
+  renderMarkers(state.filteredLaunches);
+
+  setTimeout(() => {
+    const marker = state.markers.get(id);
+    if (marker) marker.openPopup();
+  }, 250);
+}
+
 function detailMarkup(place) {
   const paddlePlace = isPaddlePlace(place);
   const photo = paddlePlace ? getPrimaryPhoto(place) : null;
@@ -208,5 +242,7 @@ function detailMarkup(place) {
       <section class="detail-section"><h3>Sources</h3><ul class="source-list">${sourceItems}</ul><p class="source-note">${escapeHtml(place.sourceNotes || "Check official sources before relying on access, rules, amenities, or conditions.")}</p></section>
     </div>`;
 }
+
+map.on("zoomend", () => renderMarkers(state.filteredLaunches));
 
 applyFilters();
