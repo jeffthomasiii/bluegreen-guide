@@ -8,8 +8,11 @@
   }
 
   const missionBayPlaces = JSON.parse(request.responseText);
+  const basePlaces = (Array.isArray(window.LAUNCH_POINTS) ? window.LAUNCH_POINTS : [])
+    .filter((place) => place.id !== "mission-bay");
+
   window.LAUNCH_POINTS = [
-    ...(Array.isArray(window.LAUNCH_POINTS) ? window.LAUNCH_POINTS : []),
+    ...basePlaces,
     ...(Array.isArray(missionBayPlaces) ? missionBayPlaces : []),
   ];
 })();
