@@ -35,9 +35,11 @@ function loadRuntimeData() {
   runBrowserDataFile(baseJsPath);
   const missionBay = readJson(missionBayJsonPath);
   window.LAUNCH_POINTS = [...(window.LAUNCH_POINTS || []), ...missionBay];
+  const rawPlaces = [...window.LAUNCH_POINTS];
   if (fs.existsSync(profilePath)) runBrowserDataFile(profilePath);
   if (fs.existsSync(collectionsPath)) runBrowserDataFile(collectionsPath);
   return {
+    rawPlaces,
     places: Array.isArray(window.LAUNCH_POINTS) ? window.LAUNCH_POINTS : [],
     collections: Array.isArray(window.BLUEGREEN_COLLECTIONS) ? window.BLUEGREEN_COLLECTIONS : [],
   };
@@ -121,10 +123,10 @@ function validateCollections(collections, placeIds) {
   });
 }
 
-function validateGeneratedData(runtimePlaces) {
+function validateGeneratedData(rawRuntimePlaces) {
   const canonical = loadCanonicalData();
   try {
-    assert.deepStrictEqual(runtimePlaces, canonical);
+    assert.deepStrictEqual(rawRuntimePlaces, canonical);
   } catch {
     errors.push("Runtime place data is not synchronized with canonical JSON data.");
   }
@@ -175,17 +177,16 @@ function validateHtmlLinks() {
   });
 }
 
-let runtime = { places: [], collections: [] };
+let runtime = { rawPlaces: [], places: [], collections: [] };
 try {
   runtime = loadRuntimeData();
 } catch (error) {
   errors.push(`Could not load place data: ${error.message}`);
 }
 
-const canonical = loadCanonicalData();
-const placeIds = validatePlaces(canonical);
+const placeIds = validatePlaces(runtime.places);
 validateCollections(runtime.collections, placeIds);
-validateGeneratedData(runtime.places);
+validateGeneratedData(runtime.rawPlaces);
 validateHtmlLinks();
 
 if (errors.length) {
@@ -194,4 +195,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validation passed: ${canonical.length} canonical places, ${runtime.collections.length} collections, Mission Bay blue-green pilot data, and internal links are valid.`);
+console.log(`Validation passed: ${runtime.places.length} runtime places, ${runtime.collections.length} collections, Mission Bay blue-green pilot data, and internal links are valid.`);
