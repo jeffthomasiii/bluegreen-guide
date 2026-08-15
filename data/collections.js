@@ -10,7 +10,9 @@ window.BLUEGREEN_COLLECTIONS = [
       "marina-park-newport-beach",
       "mothers-beach-long-beach",
       "alamitos-bay",
-      "mission-bay",
+      "crown-point-mission-bay",
+      "de-anza-cove",
+      "bonita-cove",
       "carlsbad-lagoon"
     ]
   },
@@ -25,7 +27,9 @@ window.BLUEGREEN_COLLECTIONS = [
       "marina-park-newport-beach",
       "mothers-beach-long-beach",
       "carlsbad-lagoon",
-      "mission-bay"
+      "bonita-cove",
+      "de-anza-cove",
+      "playa-pacifica"
     ]
   },
   {
@@ -39,7 +43,10 @@ window.BLUEGREEN_COLLECTIONS = [
       "huntington-harbour",
       "mothers-beach-long-beach",
       "alamitos-bay",
-      "newport-back-bay"
+      "newport-back-bay",
+      "de-anza-cove",
+      "bonita-cove",
+      "ventura-cove"
     ]
   },
   {
@@ -55,7 +62,8 @@ window.BLUEGREEN_COLLECTIONS = [
       "huntington-harbour",
       "sunset-aquatic-park",
       "alamitos-bay",
-      "long-beach-marine-stadium"
+      "long-beach-marine-stadium",
+      "santa-clara-point"
     ]
   },
   {
@@ -70,7 +78,10 @@ window.BLUEGREEN_COLLECTIONS = [
       "long-beach-marine-stadium",
       "newport-back-bay",
       "big-bear-lake",
-      "santa-barbara-harbor"
+      "santa-barbara-harbor",
+      "hospitality-point",
+      "kendall-frost-reserve",
+      "famosa-slough"
     ]
   }
 ];
