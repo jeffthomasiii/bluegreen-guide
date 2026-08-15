@@ -1,108 +1,15 @@
-window.LAUNCH_POINTS = [
-  ...(Array.isArray(window.LAUNCH_POINTS) ? window.LAUNCH_POINTS : []),
-  {
-    "id": "crown-point-mission-bay",
-    "name": "Crown Point",
-    "aliases": ["Crown Point Shores", "Crown Point Park"],
-    "region": "San Diego County",
-    "state": "CA",
-    "lat": 32.7836,
-    "lng": -117.2317,
-    "waterBody": "Mission Bay",
-    "waterType": "Protected bay shoreline",
-    "activities": ["SUP", "Kayak"],
-    "skillLevel": "Beginner",
-    "difficulty": 1,
-    "popularity": 4.7,
-    "bestTime": "Morning",
-    "amenities": ["Free Parking", "Restrooms", "Rinse-off Shower", "Picnic Areas", "Boat Launch"],
-    "tags": ["Mission Bay", "beginner friendly", "large shoreline", "boat launch", "conditions vary"],
-    "description": "Spacious Mission Bay shoreline with multiple large parking lots and a documented boat launch. The broad park and beach area can make staging easier than at smaller bay access points, though wind and crowding still vary by time and day.",
-    "supSuitability": "Excellent",
-    "windSensitivity": "Moderate",
-    "useLevel": "High",
-    "crowdSensitivity": "Moderate",
-    "stagingSpace": "Generous",
-    "assessmentConfidence": "High",
-    "verificationStatus": "Needs verification",
-    "lastVerified": "2026-08-13",
-    "sourceUrls": [
-      {"label": "City of San Diego - Crown Point", "url": "https://www.sandiego.gov/park-and-recreation/parks/regional/missionbay/crownpoint"},
-      {"label": "City of San Diego - Mission Bay Beaches", "url": "https://www.sandiego.gov/lifeguards/beaches/mbay"},
-      {"label": "County of San Diego - Beach and Bay Water Quality", "url": "https://www.sdbeachinfo.com/"}
-    ],
-    "sourceNotes": "Official source review completed 2026-08-13. City sources document the Crown Point park areas, boat launch, restrooms, rinse-off shower, large parking lots, and free parking. The map marker represents the shoreline launch/access area rather than a general park centroid; the exact hand-launch point should still be confirmed before a trip. BlueGreen Guide suitability fields are curated planning assessments, not live measurements or safety guarantees.",
-    "sourceReviewDate": "2026-08-13",
-    "sourceReviewStatus": "Official location source reviewed"
-  },
-  {
-    "id": "de-anza-cove",
-    "name": "De Anza Cove",
-    "aliases": ["De Anza Cove Park"],
-    "region": "San Diego County",
-    "state": "CA",
-    "lat": 32.79322,
-    "lng": -117.20926,
-    "waterBody": "Mission Bay",
-    "waterType": "Protected cove",
-    "activities": ["SUP", "Kayak"],
-    "skillLevel": "Beginner",
-    "difficulty": 1,
-    "popularity": 4.5,
-    "bestTime": "Morning",
-    "amenities": ["Free Parking", "Restrooms", "Showers", "Boat Ramp", "Picnic Areas"],
-    "tags": ["Mission Bay", "protected cove", "beginner friendly", "boat ramp", "summer parking fills", "conditions vary"],
-    "description": "Protected northeast Mission Bay cove with a documented boat launch ramp, free parking, restrooms, and showers. Its cove setting makes it a strong beginner-oriented option, while other boats and busy summer periods still require awareness.",
-    "supSuitability": "Excellent",
-    "windSensitivity": "Low",
-    "useLevel": "High",
-    "crowdSensitivity": "Moderate",
-    "stagingSpace": "Generous",
-    "assessmentConfidence": "High",
-    "verificationStatus": "Needs verification",
-    "lastVerified": "2026-08-13",
-    "sourceUrls": [
-      {"label": "City of San Diego - De Anza Cove", "url": "https://www.sandiego.gov/park-and-recreation/parks/regional/missionbay/deanzacove"},
-      {"label": "City of San Diego - Mission Bay Beaches", "url": "https://www.sandiego.gov/lifeguards/beaches/mbay"},
-      {"label": "County of San Diego - Beach and Bay Water Quality", "url": "https://www.sdbeachinfo.com/"}
-    ],
-    "sourceNotes": "Official source review completed 2026-08-13. City sources document the boat launch ramp, free parking, nearby restrooms, showers, swimming and boating use, and note that parking can fill early on summer weekends. The marker is positioned at the launch/access area rather than a general cove centroid. BlueGreen Guide suitability fields are curated planning assessments, not live measurements or safety guarantees.",
-    "sourceReviewDate": "2026-08-13",
-    "sourceReviewStatus": "Official location source reviewed"
-  },
-  {
-    "id": "sail-bay",
-    "name": "Sail Bay",
-    "aliases": ["Fanuel Street Park", "Fanuel Park"],
-    "region": "San Diego County",
-    "state": "CA",
-    "lat": 32.7913,
-    "lng": -117.249,
-    "waterBody": "Mission Bay",
-    "waterType": "Protected bay beach",
-    "activities": ["SUP", "Kayak"],
-    "skillLevel": "Beginner",
-    "difficulty": 2,
-    "popularity": 4.7,
-    "bestTime": "Early morning",
-    "amenities": ["Restrooms Nearby", "Showers Nearby", "Beach Access", "Street Parking Nearby"],
-    "tags": ["Mission Bay", "sandy shoreline", "wind sensitive", "limited adjacent parking", "conditions vary"],
-    "description": "Popular west-side Mission Bay beach with convenient sandy-water access. It can be appealing for calm-condition SUP, but wind exposure, high use, and the lack of an adjacent parking lot can make the overall launch experience less forgiving than larger Mission Bay parks.",
-    "supSuitability": "Good",
-    "windSensitivity": "High",
-    "useLevel": "Very High",
-    "crowdSensitivity": "High",
-    "stagingSpace": "Moderate",
-    "assessmentConfidence": "High",
-    "verificationStatus": "Needs verification",
-    "lastVerified": "2026-08-13",
-    "sourceUrls": [
-      {"label": "City of San Diego - Mission Bay Beaches", "url": "https://www.sandiego.gov/lifeguards/beaches/mbay"},
-      {"label": "City of San Diego - Mission Bay Park", "url": "https://www.sandiego.gov/park-and-recreation/parks/regional/missionbay"},
-      {"label": "County of San Diego - Beach and Bay Water Quality", "url": "https://www.sdbeachinfo.com/"}
-    ],
-    "sourceNotes": "Official source review completed 2026-08-13. City Mission Bay beach information identifies Sail Bay and notes that it does not have an adjacent parking lot. The marker is positioned at the Fanuel Park shoreline access rather than an inland neighborhood centroid. BlueGreen Guide suitability fields are curated planning assessments rather than live measurements. Conditions vary; check current wind, rules, water quality, and posted restrictions before going.",
-    "sourceReviewDate": "2026-08-13",
-    "sourceReviewStatus": "Official location source reviewed"
+(() => {
+  const request = new XMLHttpRequest();
+  request.open("GET", "data/mission-bay-launch-points.json", false);
+  request.send(null);
+
+  if (request.status && (request.status < 200 || request.status >= 300)) {
+    throw new Error(`Mission Bay place data request failed: ${request.status}`);
   }
-];
+
+  const missionBayPlaces = JSON.parse(request.responseText);
+  window.LAUNCH_POINTS = [
+    ...(Array.isArray(window.LAUNCH_POINTS) ? window.LAUNCH_POINTS : []),
+    ...(Array.isArray(missionBayPlaces) ? missionBayPlaces : []),
+  ];
+})();
