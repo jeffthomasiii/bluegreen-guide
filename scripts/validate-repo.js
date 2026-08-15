@@ -27,14 +27,15 @@ function runBrowserDataFile(filePath) {
 }
 
 function loadCanonicalData() {
-  return [...readJson(baseJsonPath), ...readJson(missionBayJsonPath)];
+  const base = readJson(baseJsonPath).filter((place) => place.id !== "mission-bay");
+  return [...base, ...readJson(missionBayJsonPath)];
 }
 
 function loadRuntimeData() {
   global.window = {};
   runBrowserDataFile(baseJsPath);
-  const missionBay = readJson(missionBayJsonPath);
-  window.LAUNCH_POINTS = [...(window.LAUNCH_POINTS || []), ...missionBay];
+  const basePlaces = (window.LAUNCH_POINTS || []).filter((place) => place.id !== "mission-bay");
+  window.LAUNCH_POINTS = [...basePlaces, ...readJson(missionBayJsonPath)];
   const rawPlaces = [...window.LAUNCH_POINTS];
   if (fs.existsSync(profilePath)) runBrowserDataFile(profilePath);
   if (fs.existsSync(collectionsPath)) runBrowserDataFile(collectionsPath);
@@ -133,6 +134,7 @@ function validateGeneratedData(rawRuntimePlaces) {
 
   const missionLoader = fs.readFileSync(missionBayJsPath, "utf8");
   check(missionLoader.includes('data/mission-bay-launch-points.json'), "Mission Bay browser loader must read the canonical Mission Bay JSON file.");
+  check(missionLoader.includes('place.id !== "mission-bay"'), "Mission Bay browser loader must replace the legacy aggregate Mission Bay record.");
 
   const index = fs.readFileSync(indexPath, "utf8");
   [
@@ -195,4 +197,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validation passed: ${runtime.places.length} runtime places, ${runtime.collections.length} collections, Mission Bay blue-green pilot data, and internal links are valid.`);
+console.log(`Validation passed: ${runtime.places.length} active runtime places, ${runtime.collections.length} collections, Mission Bay blue-green pilot data, and internal links are valid.`);
