@@ -24,5 +24,8 @@ jobs:
       - name: Validate data and documentation
         run: node scripts/validate-repo.js
 
+      - name: Validate Mission Bay pilot behavior
+        run: node scripts/validate-mission-bay-pilot.js
+
       - name: Check whitespace errors
         run: git diff --check
