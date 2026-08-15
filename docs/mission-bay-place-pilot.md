@@ -1,5 +1,9 @@
 # Mission Bay BlueGreen Destination Pilot
 
+## Status
+
+Approved after desktop/mobile testing and pre-merge QA. The Mission Bay destination pilot is ready to merge into `main` as the first production-facing example of BlueGreen Guide representing a destination as distinct blue spaces, green spaces, mixed shoreline places, wildlife areas, and paddle/boating access points.
+
 ## Purpose
 
 Mission Bay is the first BlueGreen Guide destination represented as a group of distinct blue spaces, green spaces, mixed shoreline places, wildlife areas, and paddle/boating access points rather than one aggregate launch record.
@@ -55,15 +59,35 @@ A pre-merge QA pass identified and fixed two implementation blockers:
 
 A dedicated `scripts/validate-mission-bay-pilot.js` regression check protects the renderer load order, non-paddle-safe filters, collection compatibility, and zoom-based decluttering behavior.
 
+Desktop and mobile testing confirmed the revised interaction is acceptable for this proof of concept.
+
 ## Hand-launch verification outcome
 
 No additional non-paddle shoreline record was promoted to a verified hand-launch point during this QA pass. Ski Beach, South Shores Park, and Dana Landing remain boating-access records rather than SUP/kayak launch records because the current official sources establish formal boat-launch access but do not, by themselves, verify a desirable or appropriate hand-launch experience for paddleboards or kayaks. Fiesta Island also remains a general shoreline/open-space record pending verification of a specific public hand-launch location.
 
-## Next review
+## Prioritized follow-up checklist
 
-Before treating this pilot as the general place model for the entire app, review:
+### P1 — Verify strongest hand-launch candidates
 
-1. Marker placement against official maps as higher-confidence coordinates become available.
-2. Whether Ski Beach, South Shores Park, Dana Landing, Fiesta Island, or other shoreline records can later be verified as specific nonmotorized hand-launch points.
-3. Whether `data/launch-points.json` and `data/mission-bay-launch-points.json` should be migrated to a single `data/places.json` file.
-4. Whether general place/activity filters should replace the current paddle-oriented filter set in the next structured-place phase.
+- Ski Beach: determine whether nonmotorized hand launching should be represented separately from its boating/ski use.
+- South Shores Park: verify whether the formal boating facility also provides an appropriate public SUP/kayak hand-launch experience.
+- Dana Landing: confirm whether nonmotorized launching should be represented separately from marina/boat-ramp access.
+- Fiesta Island: identify a specific public shoreline access point before classifying any part of the island as a paddle launch.
+
+### P2 — Review other shoreline records
+
+Review Enchanted Cove, Santa Clara Point / San Juan Cove, Mariner's Point, Hospitality Point, Sunset Point, Playa Pacifica, Tecolote Shores, Vacation Isle, Perez Cove, Bahia Point, and Model Yacht Pond only where stronger evidence suggests a distinct hand-launch use. Do not infer paddle access solely from shoreline proximity.
+
+### P3 — Improve map confidence
+
+- Replace approximate marker positions with higher-confidence coordinates as official maps or field verification support them.
+- Keep `Needs verification` where access, rules, or marker precision remain uncertain.
+- Add paddle-specific fields only after a location is intentionally promoted to `paddleRelevant`.
+
+## Future structured-place review
+
+After the Mission Bay pilot has been used in the live proof of concept, evaluate:
+
+1. Whether `data/launch-points.json` and `data/mission-bay-launch-points.json` should migrate to a single `data/places.json` file.
+2. Whether general place/activity filters should replace or sit alongside the current paddle-oriented filters.
+3. Whether progressive zoom disclosure remains sufficient as more destinations gain dense groups of places, or whether lightweight clustering is warranted later.
