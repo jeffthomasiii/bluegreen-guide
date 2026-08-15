@@ -26,7 +26,7 @@
       item.classList.remove("is-active");
       item.setAttribute("aria-pressed", "false");
     });
-    description.textContent = "Choose a collection to filter the current launch map.";
+    description.textContent = "Choose a collection to filter the current map.";
     clearButton.hidden = true;
     refreshResults();
   };
