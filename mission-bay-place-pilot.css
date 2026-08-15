@@ -1,0 +1,39 @@
+.place-marker {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 3px solid #fbfdff;
+  box-shadow: 0 2px 8px rgba(16, 37, 46, 0.24);
+  font: 700 13px/1 Inter, system-ui, sans-serif;
+}
+
+.place-marker--blue {
+  border-radius: 50%;
+  background: #176f8f;
+  color: #fbfdff;
+}
+
+.place-marker--green {
+  border-radius: 9px;
+  background: #6f8f63;
+  color: #fbfdff;
+}
+
+.place-marker--mixed {
+  border-radius: 50%;
+  background: #176f8f;
+  color: #fbfdff;
+  outline: 3px solid #6f8f63;
+  outline-offset: -6px;
+}
+
+.pill.pill-green {
+  background: #eef4eb;
+  color: #4f7047;
+}
+
+.pill.pill-mixed {
+  background: linear-gradient(90deg, #dceff5 0 50%, #eef4eb 50% 100%);
+  color: #10252e;
+}

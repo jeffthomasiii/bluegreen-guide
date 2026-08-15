@@ -3,17 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="BlueGreen Guide helps people discover practical outdoor experiences across blue spaces and green spaces."
-    />
+    <meta name="description" content="BlueGreen Guide helps people discover practical outdoor experiences across blue spaces and green spaces." />
     <title>BlueGreen Guide | Discover Better Outdoors</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="design-system.css" />
@@ -21,6 +15,7 @@
     <link rel="stylesheet" href="brand-refresh.css" />
     <link rel="stylesheet" href="ui-refresh.css" />
     <link rel="stylesheet" href="ui-responsive-fixes.css" />
+    <link rel="stylesheet" href="mission-bay-place-pilot.css" />
   </head>
   <body>
     <main class="app-shell">
@@ -28,11 +23,7 @@
         <header class="brand">
           <div class="brand-stack">
             <a class="brand-lockup brand-logo-link" href="./" aria-label="BlueGreen Guide home">
-              <img
-                class="brand-logo-image"
-                src="assets/brand/bluegreen-guide-logo-primary-transparent.svg"
-                alt="BlueGreen Guide — Discover Better Outdoors"
-              />
+              <img class="brand-logo-image" src="assets/brand/bluegreen-guide-logo-primary-transparent.svg" alt="BlueGreen Guide — Discover Better Outdoors" />
             </a>
             <a class="documentation-link" href="docs/">Documentation &amp; User Guide</a>
           </div>
@@ -45,21 +36,15 @@
           </div>
           <div class="wayfinding-items" aria-label="Wayfinding categories">
             <span class="wayfinding-item wayfinding-water">
-              <span class="wayfinding-symbol" aria-hidden="true">
-                <svg class="ui-icon"><use href="assets/icons/wayfinding.svg#icon-water"></use></svg>
-              </span>
+              <span class="wayfinding-symbol" aria-hidden="true"><svg class="ui-icon"><use href="assets/icons/wayfinding.svg#icon-water"></use></svg></span>
               <span class="wayfinding-copy"><strong>Water places</strong><small>Blue circle</small></span>
             </span>
             <span class="wayfinding-item wayfinding-land">
-              <span class="wayfinding-symbol" aria-hidden="true">
-                <svg class="ui-icon"><use href="assets/icons/wayfinding.svg#icon-park"></use></svg>
-              </span>
+              <span class="wayfinding-symbol" aria-hidden="true"><svg class="ui-icon"><use href="assets/icons/wayfinding.svg#icon-park"></use></svg></span>
               <span class="wayfinding-copy"><strong>Land places</strong><small>Green square</small></span>
             </span>
             <span class="wayfinding-item wayfinding-neutral">
-              <span class="wayfinding-symbol" aria-hidden="true">
-                <svg class="ui-icon"><use href="assets/icons/wayfinding.svg#icon-parking"></use></svg>
-              </span>
+              <span class="wayfinding-symbol" aria-hidden="true"><svg class="ui-icon"><use href="assets/icons/wayfinding.svg#icon-parking"></use></svg></span>
               <span class="wayfinding-copy"><strong>Amenities</strong><small>Neutral outline</small></span>
             </span>
           </div>
@@ -67,99 +52,40 @@
 
         <section class="collections-panel" aria-labelledby="collectionsTitle">
           <div class="collections-heading">
-            <div>
-              <p class="eyebrow">Curated Collections</p>
-              <h2 id="collectionsTitle">Start with a helpful shortlist</h2>
-            </div>
+            <div><p class="eyebrow">Curated Collections</p><h2 id="collectionsTitle">Start with a helpful shortlist</h2></div>
             <button id="clearCollectionButton" class="collection-clear" type="button" hidden>Clear</button>
           </div>
           <div id="collectionsList" class="collections-list"></div>
-          <p id="collectionDescription" class="collection-description" aria-live="polite">
-            Choose a collection to filter the current launch map.
-          </p>
+          <p id="collectionDescription" class="collection-description" aria-live="polite">Choose a collection to filter the current map.</p>
         </section>
 
-        <section class="controls" aria-label="Search launch points">
-          <label class="field field-full">
-            <span>Search Places</span>
-            <input id="searchInput" type="search" placeholder="Try Newport, Tahoe, beginner, rentals..." />
-          </label>
-
-          <label class="field">
-            <span>Region</span>
-            <select id="regionFilter">
-              <option value="all">All</option>
-            </select>
-          </label>
-
-          <label class="field">
-            <span>Skill</span>
-            <select id="skillFilter">
-              <option value="all">All</option>
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intermediate</option>
-              <option value="Advanced">Advanced</option>
-            </select>
-          </label>
-
-          <label class="field">
-            <span>Water Activity</span>
-            <select id="activityFilter">
-              <option value="all">All</option>
-              <option value="SUP">SUP</option>
-              <option value="Kayak">Kayak</option>
-              <option value="Canoe">Canoe</option>
-            </select>
-          </label>
-
-          <label class="field">
-            <span>Max Difficulty</span>
-            <select id="difficultyFilter">
-              <option value="all">Any</option>
-              <option value="1">1 - Very easy</option>
-              <option value="2">2 - Easy</option>
-              <option value="3">3 - Moderate</option>
-              <option value="4">4 - Challenging</option>
-              <option value="5">5 - Advanced</option>
-            </select>
-          </label>
-
+        <section class="controls" aria-label="Search outdoor places">
+          <label class="field field-full"><span>Search Places</span><input id="searchInput" type="search" placeholder="Try Mission Bay, wildlife, SUP, park..." /></label>
+          <label class="field"><span>Region</span><select id="regionFilter"><option value="all">All</option></select></label>
+          <label class="field"><span>Paddling Skill</span><select id="skillFilter"><option value="all">All</option><option value="Beginner">Beginner</option><option value="Intermediate">Intermediate</option><option value="Advanced">Advanced</option></select></label>
+          <label class="field"><span>Water Activity</span><select id="activityFilter"><option value="all">All</option><option value="SUP">SUP</option><option value="Kayak">Kayak</option><option value="Canoe">Canoe</option></select></label>
+          <label class="field"><span>Max Paddle Difficulty</span><select id="difficultyFilter"><option value="all">Any</option><option value="1">1 - Very easy</option><option value="2">2 - Easy</option><option value="3">3 - Moderate</option><option value="4">4 - Challenging</option><option value="5">5 - Advanced</option></select></label>
           <button id="locationButton" class="button button-primary" type="button">Use my location</button>
           <button id="fitButton" class="button button-secondary" type="button">Fit all places</button>
-          <button id="boundsButton" class="button button-tertiary button-wide" type="button">
-            Show places in current map view
-          </button>
+          <button id="boundsButton" class="button button-tertiary button-wide" type="button">Show places in current map view</button>
         </section>
 
-        <section class="result-summary" aria-live="polite">
-          <strong id="resultCount">0</strong>
-          <span>launch points shown</span>
-        </section>
-
-        <section id="resultsList" class="results" aria-label="Launch point results"></section>
+        <section class="result-summary" aria-live="polite"><strong id="resultCount">0</strong><span>places shown</span></section>
+        <section id="resultsList" class="results" aria-label="Outdoor place results"></section>
       </aside>
 
       <section class="map-panel" aria-label="Interactive map">
-        <div class="map-label" aria-hidden="true">
-          <span class="map-label-dot"></span>
-          Curated launch map
-        </div>
+        <div class="map-label" aria-hidden="true"><span class="map-label-dot"></span>Curated outdoor map</div>
         <div id="map" class="map"></div>
       </section>
-
-      <section id="detailPanel" class="detail-panel" aria-label="Launch point details" hidden></section>
+      <section id="detailPanel" class="detail-panel" aria-label="Place details" hidden></section>
     </main>
 
     <template id="launchCardTemplate">
       <article class="launch-card">
-        <div class="launch-image" aria-hidden="true">
-          <span class="photo-badge"></span>
-        </div>
+        <div class="launch-image" aria-hidden="true"><span class="photo-badge"></span></div>
         <div class="launch-body">
-          <div class="launch-heading">
-            <h2></h2>
-            <span class="pill"></span>
-          </div>
+          <div class="launch-heading"><h2></h2><span class="pill"></span></div>
           <p class="launch-meta"></p>
           <p class="verification-line"></p>
           <div class="rating-row"></div>
@@ -170,11 +96,7 @@
       </article>
     </template>
 
-    <script
-      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-      crossorigin=""
-    ></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="data/launch-points.js"></script>
     <script src="data/mission-bay-launch-points.js"></script>
     <script src="data/launch-profile.js"></script>
@@ -182,5 +104,6 @@
     <script src="app.js"></script>
     <script src="collections-ui.js"></script>
     <script src="ui-refresh.js"></script>
+    <script src="mission-bay-place-pilot.js"></script>
   </body>
 </html>
