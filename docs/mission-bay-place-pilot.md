@@ -43,12 +43,27 @@ Static place information is kept separate from live conditions. Records use `Nee
 - Mixed blue-green places use a combined blue/green marker treatment.
 - Non-paddle places do not display SUP difficulty, wind sensitivity, or staging ratings.
 - Existing paddle filters only constrain records where those paddle fields are applicable.
+- Curated collections continue to filter the generalized place list.
+- Dense secondary Mission Bay features are progressively revealed at closer zoom levels instead of stacking markers at normal overview zooms. Vacation Isle is revealed at zoom 16; Tecolote Creek, Perez Cove, Model Yacht Pond, and Enchanted Cove are revealed at zoom 15. Their records remain searchable and visible in results at all zoom levels, and selecting one zooms the map close enough to reveal its marker.
+
+## Visual QA outcome
+
+A pre-merge QA pass identified and fixed two implementation blockers:
+
+1. `ui-refresh.js` was loading after the Mission Bay pilot renderer and replacing its generalized filtering/marker behavior with the older launch-only logic. The load order is now explicit: the UI decoration layer loads first and `mission-bay-place-pilot.js` remains the authoritative final renderer.
+2. Dense Mission Bay sub-features produced overlapping markers at common overview zoom levels. The pilot now uses zoom-based marker decluttering rather than changing or inventing coordinates.
+
+A dedicated `scripts/validate-mission-bay-pilot.js` regression check protects the renderer load order, non-paddle-safe filters, collection compatibility, and zoom-based decluttering behavior.
+
+## Hand-launch verification outcome
+
+No additional non-paddle shoreline record was promoted to a verified hand-launch point during this QA pass. Ski Beach, South Shores Park, and Dana Landing remain boating-access records rather than SUP/kayak launch records because the current official sources establish formal boat-launch access but do not, by themselves, verify a desirable or appropriate hand-launch experience for paddleboards or kayaks. Fiesta Island also remains a general shoreline/open-space record pending verification of a specific public hand-launch location.
 
 ## Next review
 
 Before treating this pilot as the general place model for the entire app, review:
 
-1. Marker placement against official maps.
-2. Which Mission Bay shoreline records should additionally be verified as hand-launch points.
+1. Marker placement against official maps as higher-confidence coordinates become available.
+2. Whether Ski Beach, South Shores Park, Dana Landing, Fiesta Island, or other shoreline records can later be verified as specific nonmotorized hand-launch points.
 3. Whether `data/launch-points.json` and `data/mission-bay-launch-points.json` should be migrated to a single `data/places.json` file.
 4. Whether general place/activity filters should replace the current paddle-oriented filter set in the next structured-place phase.
