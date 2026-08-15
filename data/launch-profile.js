@@ -6,63 +6,65 @@
     return "Low";
   };
 
-  const textFor = (launch) => [
-    launch.name,
-    launch.waterType,
-    launch.description,
-    ...(launch.tags || []),
-    ...(launch.amenities || []),
+  const textFor = (place) => [
+    place.name,
+    place.waterType,
+    place.description,
+    ...(place.tags || []),
+    ...(place.amenities || []),
   ].join(" ").toLowerCase();
 
-  const windSensitivityFor = (launch) => {
-    const text = textFor(launch);
+  const windSensitivityFor = (place) => {
+    const text = textFor(place);
     if (text.includes("very wind sensitive") || text.includes("big water") || text.includes("open water")) return "High";
     if (text.includes("wind sensitive") || text.includes("wind aware") || text.includes("coastal") || text.includes("surf")) return "High";
     if (text.includes("protected") || text.includes("cove") || text.includes("lagoon") || text.includes("harbor channels")) return "Low";
     return "Moderate";
   };
 
-  const stagingSpaceFor = (launch) => {
-    const text = textFor(launch);
+  const stagingSpaceFor = (place) => {
+    const text = textFor(place);
     if (text.includes("limited parking") || text.includes("small") || text.includes("marina") || text.includes("boat ramp")) return "Limited";
     if (text.includes("large parking") || text.includes("large sandy") || text.includes("beach access") || text.includes("picnic areas")) return "Generous";
     return "Moderate";
   };
 
-  const crowdSensitivityFor = (launch, stagingSpace) => {
-    const text = textFor(launch);
+  const crowdSensitivityFor = (place, stagingSpace) => {
+    const text = textFor(place);
     if (text.includes("crowded") || text.includes("busy") || stagingSpace === "Limited") return "High";
-    if (launch.popularity >= 4.5 || stagingSpace === "Moderate") return "Moderate";
+    if (place.popularity >= 4.5 || stagingSpace === "Moderate") return "Moderate";
     return "Low";
   };
 
-  const supSuitabilityFor = (launch, windSensitivity, crowdSensitivity) => {
-    if (!(launch.activities || []).includes("SUP")) return "Challenging";
-    const text = textFor(launch);
-    if (launch.difficulty >= 4 || text.includes("surf launch")) return "Challenging";
-    if (launch.difficulty >= 3 || windSensitivity === "High") return "Fair";
-    if (launch.difficulty === 1 && windSensitivity !== "High" && crowdSensitivity !== "High") return "Excellent";
+  const supSuitabilityFor = (place, windSensitivity, crowdSensitivity) => {
+    if (!(place.activities || []).includes("SUP")) return "Challenging";
+    const text = textFor(place);
+    if (place.difficulty >= 4 || text.includes("surf launch")) return "Challenging";
+    if (place.difficulty >= 3 || windSensitivity === "High") return "Fair";
+    if (place.difficulty === 1 && windSensitivity !== "High" && crowdSensitivity !== "High") return "Excellent";
     return "Good";
   };
 
-  const enrichLaunch = (launch) => {
-    const stagingSpace = launch.stagingSpace || stagingSpaceFor(launch);
-    const windSensitivity = launch.windSensitivity || windSensitivityFor(launch);
-    const crowdSensitivity = launch.crowdSensitivity || crowdSensitivityFor(launch, stagingSpace);
+  const enrichLaunch = (place) => {
+    if (place.paddleRelevant === false) return place;
+
+    const stagingSpace = place.stagingSpace || stagingSpaceFor(place);
+    const windSensitivity = place.windSensitivity || windSensitivityFor(place);
+    const crowdSensitivity = place.crowdSensitivity || crowdSensitivityFor(place, stagingSpace);
 
     return {
-      ...launch,
-      supSuitability: launch.supSuitability || supSuitabilityFor(launch, windSensitivity, crowdSensitivity),
+      ...place,
+      supSuitability: place.supSuitability || supSuitabilityFor(place, windSensitivity, crowdSensitivity),
       windSensitivity,
-      useLevel: launch.useLevel || useLevelFromPopularity(Number(launch.popularity) || 0),
+      useLevel: place.useLevel || useLevelFromPopularity(Number(place.popularity) || 0),
       crowdSensitivity,
       stagingSpace,
-      assessmentConfidence: launch.assessmentConfidence || "Moderate",
+      assessmentConfidence: place.assessmentConfidence || "Moderate",
     };
   };
 
-  const launches = Array.isArray(window.LAUNCH_POINTS) ? window.LAUNCH_POINTS : [];
-  window.LAUNCH_POINTS = launches.map(enrichLaunch);
+  const places = Array.isArray(window.LAUNCH_POINTS) ? window.LAUNCH_POINTS : [];
+  window.LAUNCH_POINTS = places.map(enrichLaunch);
   window.BLUEGREEN_ENRICH_LAUNCH = enrichLaunch;
-  window.BLUEGREEN_LAUNCH_PROFILE_VERSION = "1.0";
+  window.BLUEGREEN_LAUNCH_PROFILE_VERSION = "1.1";
 })();
