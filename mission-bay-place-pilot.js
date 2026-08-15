@@ -69,10 +69,10 @@ function renderMarkers(places) {
 
   for (const place of places) {
     const paddlePlace = isPaddlePlace(place);
-    const markerClass = place.spaceType === "green"
-      ? "place-marker place-marker--green"
-      : place.spaceType === "blue"
-        ? "place-marker place-marker--blue"
+    const markerClass = paddlePlace || place.spaceType === "blue"
+      ? "place-marker place-marker--blue"
+      : place.spaceType === "green"
+        ? "place-marker place-marker--green"
         : "place-marker place-marker--mixed";
     const markerText = paddlePlace ? String(place.difficulty || "•") : place.spaceType === "green" ? "■" : place.spaceType === "blue" ? "●" : "◆";
     const planningLine = paddlePlace
@@ -123,7 +123,7 @@ function renderCards(places) {
     const tags = card.querySelector(".tag-row");
     const button = card.querySelector(".card-button");
 
-    const photo = getPrimaryPhoto(place);
+    const photo = paddlePlace ? getPrimaryPhoto(place) : null;
     if (photo) {
       image.style.backgroundImage = `linear-gradient(135deg, rgba(20,32,35,.18), rgba(15,79,103,.16)), url("${photo.url}")`;
       photoBadge.textContent = photo.status === "location" ? "Place photo" : "Representative image";
@@ -134,7 +134,7 @@ function renderCards(places) {
     title.textContent = place.name;
     pill.textContent = placeCategoryLabel(place);
     pill.classList.toggle("pill-green", place.spaceType === "green");
-    pill.classList.toggle("pill-mixed", place.spaceType === "mixed");
+    pill.classList.toggle("pill-mixed", place.spaceType === "mixed" && !paddlePlace);
     meta.textContent = `${place.region}, ${place.state} | ${placeTypeLabel(place)}`;
     verification.textContent = verificationSummary(place);
     description.textContent = place.description;
@@ -165,7 +165,7 @@ function renderCards(places) {
 
 function detailMarkup(place) {
   const paddlePlace = isPaddlePlace(place);
-  const photo = getPrimaryPhoto(place);
+  const photo = paddlePlace ? getPrimaryPhoto(place) : null;
   const photoMarkup = photo
     ? `<figure class="detail-photo"><img src="${escapeAttribute(photo.url)}" alt="${escapeAttribute(photo.alt || `${place.name} representative image`)}" loading="lazy" /><figcaption>${photoCreditMarkup(photo)}</figcaption></figure>`
     : "";
