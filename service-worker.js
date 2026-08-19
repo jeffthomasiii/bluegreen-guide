@@ -1,4 +1,4 @@
-const CACHE_NAME = "bgg-v1.2-shell-v2";
+const CACHE_NAME = "bgg-v1.2-shell-v3";
 
 const APP_SHELL = [
   "./",
@@ -22,7 +22,6 @@ const APP_SHELL = [
   "./data/collections.js",
   "./assets/brand/bluegreen-guide-logo-primary.svg",
   "./assets/brand/bluegreen-guide-logo-primary-transparent.svg",
-  "./assets/brand/bluegreen-guide-logo-horizontal.svg",
   "./assets/icons/wayfinding.svg",
   "./manifest.webmanifest"
 ];
