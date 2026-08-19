@@ -1,4 +1,4 @@
-const CACHE_NAME = "bgg-v1.2-shell-v3";
+const CACHE_NAME = "bgg-v1.2-shell-v4";
 
 const APP_SHELL = [
   "./",
@@ -20,7 +20,6 @@ const APP_SHELL = [
   "./data/mission-bay-launch-points.js",
   "./data/launch-profile.js",
   "./data/collections.js",
-  "./assets/brand/bluegreen-guide-logo-primary.svg",
   "./assets/brand/bluegreen-guide-logo-primary-transparent.svg",
   "./assets/icons/wayfinding.svg",
   "./manifest.webmanifest"
