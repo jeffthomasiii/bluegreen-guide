@@ -1,0 +1,129 @@
+/* v1.2 mobile layout polish
+   Screenshot-driven spacing and wrapping corrections.
+*/
+
+@media (max-width: 720px) {
+  /* Keep accessible labels for assistive technology without rendering a visible title. */
+  .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
+  /* Explore search should read as one compact field: icon + placeholder only. */
+  .mobile-basic-search {
+    min-height: 50px;
+    padding: 0 14px;
+  }
+
+  .mobile-basic-search input,
+  .mobile-map-search input {
+    padding: 0;
+    min-height: 44px;
+  }
+
+  /* Wayfinding controls wrap into the available phone width instead of scrolling sideways. */
+  .mobile-discovery-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+  .mobile-discovery-chip,
+  .mobile-advanced-link {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    justify-content: flex-start;
+    padding: 0 12px;
+  }
+
+  /* Collections wrap as compact icon/title pills instead of becoming a horizontal carousel. */
+  body[data-mobile-view="explore"] .collections-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    overflow: visible;
+    padding: 0 2px 3px;
+  }
+
+  body[data-mobile-view="explore"] .collection-button {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    justify-content: flex-start;
+    padding: 7px 10px;
+  }
+
+  body[data-mobile-view="explore"] .collection-copy {
+    overflow: hidden;
+  }
+
+  body[data-mobile-view="explore"] .collection-copy strong {
+    display: block;
+    overflow: hidden;
+    white-space: normal;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+  }
+
+  /* Give Explore a little breathing room without reintroducing long vertical sections. */
+  body[data-mobile-view="explore"] .mobile-compact-explore {
+    margin-top: 14px;
+  }
+
+  body[data-mobile-view="explore"] .collections-panel {
+    margin-top: 10px;
+  }
+
+  /*
+    Move map search below the Leaflet zoom stack and curated-map badge.
+    This keeps the top-left native map controls unobstructed.
+  */
+  .mobile-map-tools {
+    top: 72px;
+    right: 12px;
+    left: 88px;
+    grid-template-columns: minmax(0, 1fr) 48px;
+    gap: 8px;
+  }
+
+  .mobile-map-search {
+    min-height: 48px;
+    padding: 0 13px;
+    background: rgba(251, 253, 255, 0.97);
+  }
+
+  .mobile-map-filter {
+    width: 48px;
+    min-height: 48px;
+  }
+
+  .mobile-search-area {
+    margin-top: 2px;
+  }
+}
+
+@media (max-width: 420px) {
+  /* Very narrow phones keep two compact columns while reducing label pressure. */
+  .mobile-discovery-chip,
+  .mobile-advanced-link,
+  body[data-mobile-view="explore"] .collection-button {
+    padding-right: 9px;
+    padding-left: 9px;
+    font-size: 11px;
+  }
+
+  .mobile-map-tools {
+    right: 10px;
+    left: 82px;
+  }
+}
