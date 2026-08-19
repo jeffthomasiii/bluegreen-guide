@@ -1,5 +1,5 @@
 /* v1.2 mobile layout polish
-   Screenshot-driven spacing and wrapping corrections.
+   Screenshot-driven spacing, wrapping, and control-style corrections.
 */
 
 @media (max-width: 720px) {
@@ -16,37 +16,69 @@
     border: 0 !important;
   }
 
-  /* Explore search should read as one compact field: icon + placeholder only. */
+  /* Explore mirrors Map: search field with the advanced-filter button on the right. */
+  body[data-mobile-view="explore"] .mobile-compact-explore {
+    position: relative;
+    margin-top: 14px;
+  }
+
   .mobile-basic-search {
     min-height: 50px;
+    margin-right: 58px;
     padding: 0 14px;
   }
 
   .mobile-basic-search input,
   .mobile-map-search input {
-    padding: 0;
     min-height: 44px;
+    padding: 0;
   }
 
-  /* Wayfinding controls wrap into the available phone width instead of scrolling sideways. */
+  .mobile-advanced-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    width: 50px;
+    min-height: 50px;
+    justify-content: center;
+    padding: 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(15, 79, 103, 0.08);
+  }
+
+  .mobile-advanced-link span {
+    display: none;
+  }
+
+  /* Wayfinding wraps within the viewport and uses the same rounded-rectangle language as search. */
   .mobile-discovery-row {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
+    margin-top: 10px;
     overflow: visible;
     padding-bottom: 0;
   }
 
-  .mobile-discovery-chip,
-  .mobile-advanced-link {
+  .mobile-discovery-chip {
     width: 100%;
     min-width: 0;
     min-height: 44px;
     justify-content: flex-start;
     padding: 0 12px;
+    border-radius: 12px;
   }
 
-  /* Collections wrap as compact icon/title pills instead of becoming a horizontal carousel. */
+  .mobile-discovery-chip.chip-neutral {
+    grid-column: 1 / -1;
+  }
+
+  /* Collections wrap as compact icon/title rounded rectangles rather than elongated pills. */
+  body[data-mobile-view="explore"] .collections-panel {
+    margin-top: 10px;
+  }
+
   body[data-mobile-view="explore"] .collections-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -61,6 +93,7 @@
     min-height: 44px;
     justify-content: flex-start;
     padding: 7px 10px;
+    border-radius: 12px;
   }
 
   body[data-mobile-view="explore"] .collection-copy {
@@ -75,17 +108,8 @@
     text-overflow: ellipsis;
   }
 
-  /* Give Explore a little breathing room without reintroducing long vertical sections. */
-  body[data-mobile-view="explore"] .mobile-compact-explore {
-    margin-top: 14px;
-  }
-
-  body[data-mobile-view="explore"] .collections-panel {
-    margin-top: 10px;
-  }
-
   /*
-    Move map search below the Leaflet zoom stack and curated-map badge.
+    Keep map search below the Leaflet zoom stack and curated-map badge.
     This keeps the top-left native map controls unobstructed.
   */
   .mobile-map-tools {
@@ -105,6 +129,7 @@
   .mobile-map-filter {
     width: 48px;
     min-height: 48px;
+    border-radius: 12px;
   }
 
   .mobile-search-area {
@@ -113,9 +138,7 @@
 }
 
 @media (max-width: 420px) {
-  /* Very narrow phones keep two compact columns while reducing label pressure. */
   .mobile-discovery-chip,
-  .mobile-advanced-link,
   body[data-mobile-view="explore"] .collection-button {
     padding-right: 9px;
     padding-left: 9px;
