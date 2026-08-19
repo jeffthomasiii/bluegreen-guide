@@ -37,6 +37,7 @@ function applyFilters() {
 
   state.filteredLaunches = state.allLaunches.filter((place) => {
     const paddlePlace = isPaddlePlace(place);
+    const resolvedSpaceType = place.spaceType || (paddlePlace ? "blue" : "mixed");
     const searchText = [
       place.name,
       ...(place.aliases || []),
@@ -69,7 +70,7 @@ function applyFilters() {
     const matchesDifficulty = els.difficulty.value === "all" || (paddlePlace && Number(place.difficulty) <= maxDifficulty);
     const matchesBounds = !state.showOnlyBounds || bounds.contains([place.lat, place.lng]);
     const matchesCollection = !activeCollection || activeCollection.has(place.id);
-    const matchesSpaceType = mobileSpaceType === "all" || place.spaceType === mobileSpaceType;
+    const matchesSpaceType = mobileSpaceType === "all" || resolvedSpaceType === mobileSpaceType;
 
     return matchesSearch && matchesRegion && matchesSkill && matchesActivity && matchesDifficulty && matchesBounds && matchesCollection && matchesSpaceType;
   });
