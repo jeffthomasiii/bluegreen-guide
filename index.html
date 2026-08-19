@@ -4,7 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="BlueGreen Guide helps people discover practical outdoor experiences across blue spaces and green spaces." />
+    <meta name="theme-color" content="#176F8F" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="BlueGreen Guide" />
     <title>BlueGreen Guide | Discover Better Outdoors</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="assets/brand/bluegreen-guide-logo-primary.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/brand/bluegreen-guide-logo-primary-transparent.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -16,8 +23,16 @@
     <link rel="stylesheet" href="ui-refresh.css" />
     <link rel="stylesheet" href="ui-responsive-fixes.css" />
     <link rel="stylesheet" href="mission-bay-place-pilot.css" />
+    <link rel="stylesheet" href="mobile-ux.css" />
   </head>
-  <body>
+  <body data-mobile-view="map">
+    <header class="mobile-app-bar" aria-label="BlueGreen Guide mobile header">
+      <a class="mobile-brand-link" href="./" aria-label="BlueGreen Guide home">
+        <img src="assets/brand/bluegreen-guide-logo-horizontal.svg" alt="BlueGreen Guide" />
+      </a>
+      <span id="mobileViewLabel" class="mobile-view-label" aria-live="polite">Map</span>
+    </header>
+
     <main class="app-shell">
       <aside class="sidebar" aria-label="Place filters and results">
         <header class="brand">
@@ -78,8 +93,34 @@
         <div class="map-label" aria-hidden="true"><span class="map-label-dot"></span>Curated outdoor map</div>
         <div id="map" class="map"></div>
       </section>
+
+      <section id="mobileNearbyPanel" class="mobile-nearby-panel" aria-labelledby="mobileNearbyTitle">
+        <div class="mobile-nearby-heading">
+          <p class="eyebrow">Near your location</p>
+          <h2 id="mobileNearbyTitle">Nearby BGG places</h2>
+          <p>Use your approximate device location to find the nearest places already in the BlueGreen Guide.</p>
+        </div>
+        <p id="mobileNearbyStatus" class="mobile-nearby-status" aria-live="polite">Choose Nearby to find places close to you.</p>
+        <div id="mobileNearbyResults" class="mobile-nearby-results" aria-label="Nearby outdoor places"></div>
+      </section>
+
       <section id="detailPanel" class="detail-panel" aria-label="Place details" hidden></section>
     </main>
+
+    <nav id="mobileBottomNav" class="mobile-bottom-nav" aria-label="Mobile app navigation">
+      <button class="mobile-nav-button" type="button" data-mobile-view-target="explore">
+        <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M7 12h10M10 19h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        <span>Explore</span>
+      </button>
+      <button class="mobile-nav-button" type="button" data-mobile-view-target="map" aria-current="page">
+        <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Zm6-3v15m6-12v15" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /></svg>
+        <span>Map</span>
+      </button>
+      <button class="mobile-nav-button" type="button" data-mobile-view-target="nearby">
+        <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z" fill="none" stroke="currentColor" stroke-width="2" /><circle cx="12" cy="10" r="2.2" fill="currentColor" /></svg>
+        <span>Nearby</span>
+      </button>
+    </nav>
 
     <template id="launchCardTemplate">
       <article class="launch-card">
@@ -105,5 +146,7 @@
     <script src="collections-ui.js"></script>
     <script src="ui-refresh.js"></script>
     <script src="mission-bay-place-pilot.js"></script>
+    <script src="mobile-ux.js"></script>
+    <script src="pwa.js"></script>
   </body>
 </html>
