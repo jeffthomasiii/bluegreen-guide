@@ -22,6 +22,7 @@
   window.BLUEGREEN_MOBILE_SPACE_TYPE = window.BLUEGREEN_MOBILE_SPACE_TYPE || "all";
 
   const icon = (name) => `<svg class="ui-icon" aria-hidden="true" focusable="false"><use href="${sprite}#icon-${name}"></use></svg>`;
+  const searchIcon = '<svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
 
   const exploreTools = document.createElement("section");
   exploreTools.className = "mobile-compact-explore";
@@ -29,7 +30,7 @@
   exploreTools.innerHTML = `
     <label class="mobile-basic-search">
       <span class="sr-only">Search places</span>
-      ${icon("search")}
+      ${searchIcon}
       <input id="mobileExploreSearch" type="search" placeholder="Search places" autocomplete="off" />
     </label>
     <div class="mobile-discovery-row" aria-label="Place type filters">
@@ -46,7 +47,7 @@
   mapTools.innerHTML = `
     <label class="mobile-map-search">
       <span class="sr-only">Search places</span>
-      ${icon("search")}
+      ${searchIcon}
       <input id="mobileMapSearch" type="search" placeholder="Search places" autocomplete="off" />
     </label>
     <button type="button" class="mobile-map-filter" data-open-mobile-filters aria-label="Advanced filters">${icon("filter")}</button>
@@ -177,6 +178,7 @@
     if (!MOBILE_QUERY.matches) {
       closeFilters();
       window.BLUEGREEN_MOBILE_SPACE_TYPE = "all";
+      refreshResults();
     }
   }
 
