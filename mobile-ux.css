@@ -1,0 +1,346 @@
+/* v1.2 Mobile UX
+   Mobile-only app navigation and bottom-sheet behavior.
+   Desktop behavior remains owned by the existing layout styles.
+*/
+
+.mobile-app-bar,
+.mobile-bottom-nav,
+.mobile-nearby-panel,
+.mobile-sheet-expand {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --mobile-nav-height: 68px;
+    --mobile-appbar-height: 60px;
+  }
+
+  body {
+    padding-bottom: var(--mobile-nav-height);
+  }
+
+  .mobile-app-bar {
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    display: flex;
+    min-height: var(--mobile-appbar-height);
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--ui-line, #c9dce4);
+    background: rgba(251, 253, 255, 0.96);
+    backdrop-filter: blur(12px);
+  }
+
+  .mobile-brand-link {
+    display: inline-flex;
+    min-width: 0;
+    align-items: center;
+  }
+
+  .mobile-brand-link img {
+    width: 156px;
+    max-height: 42px;
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  .mobile-view-label {
+    flex: 0 0 auto;
+    color: var(--ui-muted, #5a6f78);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .app-shell {
+    display: block;
+  }
+
+  .sidebar,
+  .map-panel,
+  .mobile-nearby-panel {
+    min-height: calc(100dvh - var(--mobile-appbar-height) - var(--mobile-nav-height));
+  }
+
+  body[data-mobile-view="map"] .sidebar,
+  body[data-mobile-view="map"] .mobile-nearby-panel {
+    display: none !important;
+  }
+
+  body[data-mobile-view="map"] .map-panel {
+    display: block;
+    min-height: calc(100dvh - var(--mobile-appbar-height) - var(--mobile-nav-height));
+  }
+
+  body[data-mobile-view="map"] .map {
+    min-height: calc(100dvh - var(--mobile-appbar-height) - var(--mobile-nav-height));
+  }
+
+  body[data-mobile-view="explore"] .map-panel,
+  body[data-mobile-view="explore"] .mobile-nearby-panel {
+    display: none !important;
+  }
+
+  body[data-mobile-view="explore"] .sidebar {
+    display: block;
+    width: 100%;
+    max-width: none;
+    padding-bottom: 16px;
+  }
+
+  body[data-mobile-view="explore"] .sidebar > .brand {
+    display: none;
+  }
+
+  body[data-mobile-view="nearby"] .sidebar,
+  body[data-mobile-view="nearby"] .map-panel {
+    display: none !important;
+  }
+
+  body[data-mobile-view="nearby"] .mobile-nearby-panel {
+    display: block;
+  }
+
+  .mobile-nearby-panel {
+    padding: 18px 14px 28px;
+    background: var(--ui-bg, #eef6f8);
+  }
+
+  .mobile-nearby-heading {
+    margin-bottom: 14px;
+  }
+
+  .mobile-nearby-heading .eyebrow {
+    margin-bottom: 4px;
+  }
+
+  .mobile-nearby-heading h2 {
+    margin: 0 0 6px;
+    color: var(--ui-blue-deep, #0f4f67);
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 22px;
+  }
+
+  .mobile-nearby-heading p:last-child {
+    margin: 0;
+    color: var(--ui-muted, #5a6f78);
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .mobile-nearby-status {
+    margin: 0 0 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--ui-line, #c9dce4);
+    border-radius: 12px;
+    background: var(--ui-panel, #fbfdff);
+    color: var(--ui-muted, #5a6f78);
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .mobile-nearby-results {
+    display: grid;
+    gap: 10px;
+  }
+
+  .mobile-nearby-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    min-height: 74px;
+    padding: 12px 14px;
+    border: 1px solid var(--ui-line, #c9dce4);
+    border-radius: 14px;
+    background: var(--ui-panel, #fbfdff);
+    color: var(--ui-text, #10252e);
+    font: inherit;
+    text-align: left;
+  }
+
+  .mobile-nearby-card strong,
+  .mobile-nearby-card span {
+    display: block;
+  }
+
+  .mobile-nearby-card strong {
+    margin-bottom: 3px;
+    color: var(--ui-blue-deep, #0f4f67);
+    font-size: 15px;
+  }
+
+  .mobile-nearby-card span {
+    color: var(--ui-muted, #5a6f78);
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .mobile-nearby-distance {
+    min-width: 54px;
+    color: var(--ui-blue, #176f8f) !important;
+    font-weight: 800;
+    text-align: right;
+  }
+
+  .mobile-bottom-nav {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1100;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-height: var(--mobile-nav-height);
+    padding: 5px max(8px, env(safe-area-inset-right)) max(5px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left));
+    border-top: 1px solid var(--ui-line, #c9dce4);
+    background: rgba(251, 253, 255, 0.97);
+    box-shadow: 0 -8px 24px rgba(15, 79, 103, 0.08);
+    backdrop-filter: blur(14px);
+  }
+
+  .mobile-nav-button {
+    display: inline-flex;
+    min-width: 0;
+    min-height: 54px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--ui-muted, #5a6f78);
+    font: inherit;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .mobile-nav-button .ui-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .mobile-nav-button[aria-current="page"] {
+    background: var(--ui-blue-soft, #dceff5);
+    color: var(--ui-blue-deep, #0f4f67);
+  }
+
+  /* On mobile, the existing detail panel becomes the marker-selection sheet. */
+  .detail-panel:not([hidden]) {
+    position: fixed;
+    inset: auto 0 var(--mobile-nav-height) 0;
+    z-index: 1050;
+    display: flex;
+    align-items: flex-end;
+    padding: 0;
+    background: rgba(16, 37, 46, 0.14);
+  }
+
+  .detail-card {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    max-height: min(72dvh, 680px);
+    overflow: auto;
+    border-radius: 20px 20px 0 0;
+    padding: 26px 18px 24px;
+    box-shadow: 0 -14px 34px rgba(15, 79, 103, 0.18);
+  }
+
+  .detail-card::before {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    width: 44px;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--ui-line, #c9dce4);
+    content: "";
+    transform: translateX(-50%);
+  }
+
+  .detail-panel.mobile-sheet-collapsed {
+    background: transparent;
+    pointer-events: none;
+  }
+
+  .detail-panel.mobile-sheet-collapsed .detail-card {
+    max-height: none;
+    overflow: hidden;
+    pointer-events: auto;
+  }
+
+  .detail-panel.mobile-sheet-collapsed .detail-photo,
+  .detail-panel.mobile-sheet-collapsed .detail-status,
+  .detail-panel.mobile-sheet-collapsed .detail-card > p,
+  .detail-panel.mobile-sheet-collapsed .detail-grid,
+  .detail-panel.mobile-sheet-collapsed .detail-section,
+  .detail-panel.mobile-sheet-collapsed .source-note {
+    display: none;
+  }
+
+  .detail-panel.mobile-sheet-collapsed .detail-kicker {
+    margin-top: 4px;
+  }
+
+  .detail-panel.mobile-sheet-collapsed .detail-card h2 {
+    margin-bottom: 5px;
+    padding-right: 38px;
+    font-size: 23px;
+    line-height: 1.1;
+  }
+
+  .detail-panel.mobile-sheet-collapsed .detail-subtitle {
+    display: block;
+    margin: 0 0 14px;
+    color: var(--ui-muted, #5a6f78);
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .mobile-sheet-expand {
+    width: 100%;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--ui-blue, #176f8f);
+    border-radius: 10px;
+    background: var(--ui-blue, #176f8f);
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .detail-panel.mobile-sheet-collapsed .mobile-sheet-expand {
+    display: inline-flex;
+  }
+
+  .detail-panel:not(.mobile-sheet-collapsed) .mobile-sheet-expand {
+    display: none;
+  }
+
+  body.detail-open .mobile-bottom-nav {
+    /* Keep navigation available under the sheet without covering its actions. */
+    box-shadow: none;
+  }
+
+  .leaflet-control-attribution {
+    max-width: 78vw;
+    font-size: 9px;
+  }
+}
+
+@media (min-width: 721px) {
+  body[data-mobile-view] .sidebar,
+  body[data-mobile-view] .map-panel {
+    display: initial;
+  }
+}
