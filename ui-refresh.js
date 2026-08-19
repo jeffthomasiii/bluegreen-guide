@@ -116,6 +116,7 @@
       const activeCollection = Array.isArray(window.BLUEGREEN_ACTIVE_COLLECTION_IDS)
         ? new Set(window.BLUEGREEN_ACTIVE_COLLECTION_IDS)
         : null;
+      const mobileSpaceType = window.BLUEGREEN_MOBILE_SPACE_TYPE || "all";
 
       state.filteredLaunches = state.allLaunches.filter((launch) => {
         const matchesSearch = !searchTerm || searchableText(launch).includes(searchTerm);
@@ -126,6 +127,7 @@
         const matchesDifficulty = Number(launch.difficulty) <= maxDifficulty;
         const matchesBounds = !state.showOnlyBounds || bounds.contains([launch.lat, launch.lng]);
         const matchesCollection = !activeCollection || activeCollection.has(launch.id);
+        const matchesSpaceType = mobileSpaceType === "all" || launch.spaceType === mobileSpaceType;
 
         return (
           matchesSearch &&
@@ -134,7 +136,8 @@
           matchesActivity &&
           matchesDifficulty &&
           matchesBounds &&
-          matchesCollection
+          matchesCollection &&
+          matchesSpaceType
         );
       });
 
