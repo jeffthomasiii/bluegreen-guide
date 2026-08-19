@@ -1,0 +1,25 @@
+{
+  "name": "BlueGreen Guide",
+  "short_name": "BlueGreen",
+  "description": "Discover practical outdoor experiences across blue spaces and green spaces.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#EEF6F8",
+  "theme_color": "#176F8F",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/brand/bluegreen-guide-logo-primary.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/brand/bluegreen-guide-logo-primary-transparent.png",
+      "sizes": "320x320",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
