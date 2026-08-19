@@ -53,6 +53,33 @@ The implementation was validated through repository checks and a manual spot rev
 
 These fields are curated planning guidance. They do not represent live wind, weather, tides, visitor counts, safety guarantees, or official agency ratings. See [Launch Suitability Profile](launch-suitability/) and [Data Model](data-model.md#launch-suitability-profile).
 
+## v1.2: Mobile Readiness and PWA — In Progress
+
+v1.2 improves the existing Phase 1 proof of concept for real phone use without reopening Phase 2 or introducing a new framework, database, account system, or production backend.
+
+### Initial scope
+
+- Add Progressive Web App metadata and installability
+- Add a lightweight service worker for app-shell resilience
+- Keep map tiles, live network resources, and external source content network-driven rather than implying full offline map support
+- Refine the phone layout from a stacked responsive page toward a map-first app experience
+- Add mobile navigation or mobile sheets only where they simplify field use
+- Preserve existing search, filters, collections, geolocation, place details, validation, and canonical data workflow
+- Review accessibility, touch targets, safe-area behavior, and install-state behavior on mobile
+- Field-test common tasks on a phone before considering native app packaging
+
+### Explicitly out of scope for v1.2
+
+- Phase 2 structured-place-data expansion
+- Accounts or cloud-synced favorites
+- Community features
+- Live weather, wind, tide, or water-quality integrations
+- AI recommendations
+- React, React Native, or another framework rewrite
+- Capacitor/App Store packaging before the PWA/mobile UX is proven
+
+The preferred progression is PWA foundation first, then mobile UX refinement, then field testing. A later native-app proof can reuse the working web application if store distribution becomes useful.
+
 ## Phase 2: Structured Place Details — On Hold
 
 When resumed, begin with a limited pilot using existing places and normalized fields for:
