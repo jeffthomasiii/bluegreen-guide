@@ -232,6 +232,11 @@
     color: var(--ui-blue-deep, #0f4f67);
   }
 
+  /* Marker selection uses the bottom sheet on phones, so suppress Leaflet's duplicate popup card. */
+  .leaflet-popup-pane {
+    display: none;
+  }
+
   /* On mobile, the existing detail panel becomes the marker-selection sheet. */
   .detail-panel:not([hidden]) {
     position: fixed;
@@ -280,7 +285,6 @@
   .detail-panel.mobile-sheet-collapsed .detail-photo,
   .detail-panel.mobile-sheet-collapsed .detail-status,
   .detail-panel.mobile-sheet-collapsed .detail-card > p,
-  .detail-panel.mobile-sheet-collapsed .detail-grid,
   .detail-panel.mobile-sheet-collapsed .detail-section,
   .detail-panel.mobile-sheet-collapsed .source-note {
     display: none;
@@ -299,10 +303,37 @@
 
   .detail-panel.mobile-sheet-collapsed .detail-subtitle {
     display: block;
-    margin: 0 0 14px;
+    margin: 0 0 12px;
     color: var(--ui-muted, #5a6f78);
     font-size: 13px;
     line-height: 1.35;
+  }
+
+  .detail-panel.mobile-sheet-collapsed .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+    margin: 0 0 12px;
+  }
+
+  .detail-panel.mobile-sheet-collapsed .detail-grid > div {
+    min-width: 0;
+    padding: 8px;
+  }
+
+  .detail-panel.mobile-sheet-collapsed .detail-grid > div:nth-child(n + 4) {
+    display: none;
+  }
+
+  .detail-panel.mobile-sheet-collapsed .detail-grid dt {
+    font-size: 9px;
+    line-height: 1.15;
+  }
+
+  .detail-panel.mobile-sheet-collapsed .detail-grid dd {
+    margin-top: 3px;
+    font-size: 12px;
+    line-height: 1.15;
   }
 
   .mobile-sheet-expand {
@@ -328,19 +359,11 @@
   }
 
   body.detail-open .mobile-bottom-nav {
-    /* Keep navigation available under the sheet without covering its actions. */
     box-shadow: none;
   }
 
   .leaflet-control-attribution {
     max-width: 78vw;
     font-size: 9px;
-  }
-}
-
-@media (min-width: 721px) {
-  body[data-mobile-view] .sidebar,
-  body[data-mobile-view] .map-panel {
-    display: initial;
   }
 }
