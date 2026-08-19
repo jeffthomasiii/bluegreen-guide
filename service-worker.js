@@ -1,4 +1,4 @@
-const CACHE_NAME = "bgg-v1.2-shell-v5";
+const CACHE_NAME = "bgg-v1.2-shell-v6";
 
 const APP_SHELL = [
   "./",
@@ -12,6 +12,7 @@ const APP_SHELL = [
   "./mission-bay-place-pilot.css",
   "./mobile-ux.css",
   "./mobile-compact.css",
+  "./mobile-layout-polish.css",
   "./app.js",
   "./collections-ui.js",
   "./ui-refresh.js",
