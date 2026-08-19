@@ -10,7 +10,7 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "assets/brand/bluegreen-guide-logo-primary.svg",
+      "src": "assets/brand/bluegreen-guide-logo-primary-transparent.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
