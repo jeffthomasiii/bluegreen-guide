@@ -36,10 +36,19 @@ function mergeUniquePlaces(basePlaces, addedPlaces) {
   ];
 }
 
+function overlayPlaces(basePlaces, overlay) {
+  const replacements = new Map(overlay.map((place) => [place.id, place]));
+  const existingIds = new Set(basePlaces.map((place) => place.id));
+  return [
+    ...basePlaces.map((place) => replacements.get(place.id) || place),
+    ...overlay.filter((place) => !existingIds.has(place.id)),
+  ];
+}
+
 function loadCanonicalData() {
   const base = readJson(baseJsonPath).filter((place) => place.id !== "mission-bay");
   const withMissionBay = mergeUniquePlaces(base, readJson(missionBayJsonPath));
-  return mergeUniquePlaces(withMissionBay, readJson(fieldTestJsonPath));
+  return overlayPlaces(withMissionBay, readJson(fieldTestJsonPath));
 }
 
 function loadRuntimeData() {
@@ -48,7 +57,7 @@ function loadRuntimeData() {
 
   const basePlaces = (window.LAUNCH_POINTS || []).filter((place) => place.id !== "mission-bay");
   window.LAUNCH_POINTS = mergeUniquePlaces(basePlaces, readJson(missionBayJsonPath));
-  window.LAUNCH_POINTS = mergeUniquePlaces(window.LAUNCH_POINTS, readJson(fieldTestJsonPath));
+  window.LAUNCH_POINTS = overlayPlaces(window.LAUNCH_POINTS, readJson(fieldTestJsonPath));
 
   const rawPlaces = [...window.LAUNCH_POINTS];
   if (fs.existsSync(profilePath)) runBrowserDataFile(profilePath);
@@ -152,12 +161,22 @@ function validateGeneratedData(rawRuntimePlaces) {
 
   const fieldTestLoader = fs.readFileSync(fieldTestJsPath, "utf8");
   check(fieldTestLoader.includes('data/green-space-field-test.json'), "Green-space field-test loader must read its canonical JSON file.");
+  check(fieldTestLoader.includes("replacements.get(place.id) || place"), "Green-space field-test loader must overlay existing records by stable ID.");
 
   const fieldTestPlaces = readJson(fieldTestJsonPath);
-  check(fieldTestPlaces.length === 10, `Green-space field-test dataset must contain 10 pilot places; found ${fieldTestPlaces.length}.`);
-  check(fieldTestPlaces.filter((place) => place.spaceType === "mixed").length === 4, "Green-space field-test dataset must contain four mixed places.");
-  check(fieldTestPlaces.filter((place) => place.spaceType === "green").length === 6, "Green-space field-test dataset must contain six green places.");
+  check(fieldTestPlaces.length === 10, `Green-space field-test dataset must contain 10 pilot records; found ${fieldTestPlaces.length}.`);
+  check(fieldTestPlaces.filter((place) => place.spaceType === "mixed").length === 4, "Green-space field-test dataset must contain four mixed records.");
+  check(fieldTestPlaces.filter((place) => place.spaceType === "green").length === 6, "Green-space field-test dataset must contain six green records.");
   check(!fieldTestPlaces.some((place) => /keller|greer/i.test(`${place.id} ${place.name}`)), "Keller/Greer Ranch must remain outside the canonical field-test dataset until verified.");
+
+  const baseActive = readJson(baseJsonPath).filter((place) => place.id !== "mission-bay");
+  const existingBeforeFieldTest = mergeUniquePlaces(baseActive, readJson(missionBayJsonPath));
+  const existingIds = new Set(existingBeforeFieldTest.map((place) => place.id));
+  const overlays = fieldTestPlaces.filter((place) => existingIds.has(place.id)).map((place) => place.id);
+  check(overlays.length === 1 && overlays[0] === "diamond-valley-lake", `Expected Diamond Valley Lake to be the single field-test overlay; found ${overlays.join(", ") || "none"}.`);
+
+  const diamondValley = rawRuntimePlaces.find((place) => place.id === "diamond-valley-lake");
+  check(diamondValley?.spaceType === "mixed", "Diamond Valley Lake must receive the mixed-space field-test overlay at runtime.");
 
   const index = fs.readFileSync(indexPath, "utf8");
   [
@@ -221,4 +240,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validation passed: ${runtime.places.length} active runtime places, ${runtime.collections.length} collections, Mission Bay pilot data, green/mixed field-test data, and internal links are valid.`);
+console.log(`Validation passed: ${runtime.places.length} active runtime places, ${runtime.collections.length} collections, Mission Bay pilot data, green/mixed field-test overlays, and internal links are valid.`);
