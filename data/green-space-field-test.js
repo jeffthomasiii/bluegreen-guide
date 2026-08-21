@@ -7,9 +7,8 @@
     throw new Error(`Green-space field-test data request failed: ${request.status}`);
   }
 
-  const fieldTestPlaces = Array.isArray(JSON.parse(request.responseText))
-    ? JSON.parse(request.responseText)
-    : [];
+  const parsed = JSON.parse(request.responseText);
+  const fieldTestPlaces = Array.isArray(parsed) ? parsed : [];
   const basePlaces = Array.isArray(window.LAUNCH_POINTS) ? window.LAUNCH_POINTS : [];
   const replacements = new Map(fieldTestPlaces.map((place) => [place.id, place]));
   const existingIds = new Set(basePlaces.map((place) => place.id));
