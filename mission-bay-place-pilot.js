@@ -70,7 +70,8 @@ function applyFilters() {
     const matchesDifficulty = els.difficulty.value === "all" || (paddlePlace && Number(place.difficulty) <= maxDifficulty);
     const matchesBounds = !state.showOnlyBounds || bounds.contains([place.lat, place.lng]);
     const matchesCollection = !activeCollection || activeCollection.has(place.id);
-    const matchesSpaceType = mobileSpaceType === "all" || resolvedSpaceType === mobileSpaceType;
+    const matchesSpaceType =
+      mobileSpaceType === "all" || resolvedSpaceType === mobileSpaceType || resolvedSpaceType === "mixed";
 
     return matchesSearch && matchesRegion && matchesSkill && matchesActivity && matchesDifficulty && matchesBounds && matchesCollection && matchesSpaceType;
   });
