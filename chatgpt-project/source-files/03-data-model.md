@@ -26,7 +26,7 @@ node scripts/build-place-data-js.js
 node scripts/validate-repo.js
 ```
 
-The field-test runtime contains 90 places: the existing 80-place dataset plus four mixed and six green pilot places. Keller Trail / Greer Ranch remains outside the canonical dataset until the specific trailhead/access point can be better verified.
+Repository validation resolves 89 active runtime places in the field-test branch: 79 existing active records after Mission Bay replacement plus four mixed and six green pilot places. A recent deployed-app screenshot displayed 80 places before the pilot; reconcile that one-place cache/runtime discrepancy rather than manufacturing an additional record. Keller Trail / Greer Ranch remains outside the canonical dataset until the specific trailhead/access point can be better verified.
 
 Keep static place facts, curated guidance, live conditions, environmental context, and generated insights distinct.
 
