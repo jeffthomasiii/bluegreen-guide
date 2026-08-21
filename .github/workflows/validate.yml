@@ -21,6 +21,9 @@ jobs:
         with:
           node-version: 22
 
+      - name: Report place data build
+        run: node scripts/build-place-data-js.js
+
       - name: Validate data and documentation
         run: node scripts/validate-repo.js
 
