@@ -4,13 +4,15 @@
 
 Canonical JSON:
 
-- `data/launch-points.json` — authoritative base launch records
-- `data/mission-bay-launch-points.json` — authoritative Mission Bay launch records added during the Launch Suitability maintenance pass
+- `data/places.json` — authoritative base place records
+- `data/mission-bay-launch-points.json` — authoritative Mission Bay place-pilot records that replace the legacy aggregate Mission Bay record at runtime
+- `data/green-space-field-test.json` — authoritative 10-place green/mixed field-test supplement while those records are tested on site
 
-Generated browser data:
+Generated/browser data:
 
-- `data/launch-points.js` — generated browser copy of the base records
-- `data/mission-bay-launch-points.js` — generated browser copy of the Mission Bay records
+- `data/places.js` — generated browser copy of the base records
+- `data/mission-bay-launch-points.js` — browser loader for the Mission Bay records
+- `data/green-space-field-test.js` — browser loader for the green/mixed field-test records
 
 Other runtime data:
 
@@ -20,9 +22,11 @@ Other runtime data:
 After editing canonical JSON:
 
 ```bash
-node scripts/build-launch-data-js.js
+node scripts/build-place-data-js.js
 node scripts/validate-repo.js
 ```
+
+The field-test runtime contains 90 places: the existing 80-place dataset plus four mixed and six green pilot places. Keller Trail / Greer Ranch remains outside the canonical dataset until the specific trailhead/access point can be better verified.
 
 Keep static place facts, curated guidance, live conditions, environmental context, and generated insights distinct.
 
@@ -36,10 +40,10 @@ Core place fields include:
 - `state`
 - `lat`
 - `lng`
-- `waterType`
+- `waterType` — legacy field name retained for compatibility; green records may use a plain-language environment description
 - `activities`
-- `skillLevel`
-- `difficulty`
+- `skillLevel` — paddle-specific where applicable
+- `difficulty` — paddle-specific where applicable
 - `popularity` — legacy numeric source retained internally during migration
 - `bestTime`
 - `amenities`
@@ -49,7 +53,7 @@ Core place fields include:
 - `sourceUrls`
 - `sourceNotes`
 
-Launch Suitability Profile fields:
+Launch Suitability Profile fields apply to paddle-relevant places:
 
 - `supSuitability` — `Excellent`, `Good`, `Fair`, `Challenging`
 - `windSensitivity` — `Low`, `Moderate`, `High`
@@ -82,9 +86,23 @@ Photo fields:
 
 ## Coordinate Semantics
 
-A launch marker should represent the practical shoreline/launch access area when that location can be reasonably supported, not merely the centroid of the surrounding park, neighborhood, lake, or bay.
+A map marker should represent a practical visitor, launch, shoreline-access, or trail-access area when that location can be reasonably supported, not merely a broad place centroid when a more useful point is known.
 
-If an official source confirms the facility but does not provide an exact GPS waypoint, use a reasonable access coordinate, document the inference in `sourceNotes`, and do not present it as an official coordinate.
+If an official source confirms the place but does not provide an exact GPS waypoint, use a reasonable representative coordinate, document the inference in `sourceNotes`, and do not present it as an official coordinate. Field testing should refine access-point coordinates where useful.
+
+## Place Classification
+
+`spaceType` represents the BlueGreen environment relationship:
+
+- `blue` — water place or water-centered access point
+- `green` — land place or land-centered access point
+- `mixed` — a destination with meaningful blue-space and green-space characteristics
+
+`placeTypes` describes what the place actually is, for example `regional-park`, `state-recreation-area`, `botanic-garden`, `ecological-reserve`, `trail-network`, or `reservoir-recreation-area`.
+
+`activityTypes` describes what people may do there. Environment, place type, and activity must remain separate concepts so a mixed reservoir park can support both boating and hiking without being forced into a single activity identity.
+
+Mixed places intentionally qualify for both Water and Land discovery filters in the field-test UI.
 
 ## Launch Suitability Semantics
 
@@ -114,10 +132,10 @@ Describes confidence in the BlueGreen Guide suitability assessment. It is separa
 
 ## Existing Guidance
 
-- `difficulty` remains a 1–5 comparative measure of launch complexity.
+- `difficulty` remains a 1–5 comparative measure of launch complexity for paddle-relevant records.
 - `bestTime` remains plain-language general planning guidance.
 - Neither is a live-condition or safety guarantee.
-- Legacy `popularity` may support migration logic but product UI should prefer `useLevel` and `crowdSensitivity`.
+- Legacy `popularity` may support migration logic but product UI should prefer `useLevel` and `crowdSensitivity` where those fields apply.
 
 ## Collection Fields
 
@@ -155,24 +173,24 @@ Potential structured place fields remain:
 - `tideImpact`
 - `hazards`
 
-The Launch Suitability Profile is a maintenance refinement and does not reopen Phase 2.
+The green-space field-test pilot and Launch Suitability Profile are maintenance/validation refinements and do not reopen Phase 2.
 
 ## Data Layers
 
 | Layer | Purpose | Example |
 |---|---|---|
-| Place Data | Rarely changing facts | Parking, launch type, restrooms |
+| Place Data | Rarely changing facts | Parking, place type, restrooms |
 | Curated Guidance | Comparative planning assessments | SUP suitability, wind sensitivity, staging space |
-| Live Data | Current or near-term conditions | Weather, current wind, tides |
+| Live Data | Current or near-term conditions | Weather, current wind, tides, current closures |
 | Environmental Data | Historical, seasonal, or advisory context | Climate normals, water quality, AQI |
 | Derived Insights | App-generated guidance | Best before 10 AM, check wind after noon |
 
 ## Data Rules
 
 - Do not treat unverified data as confirmed.
-- Do not invent access, parking, fees, tides, wind, water quality, climate, or hazard details.
+- Do not invent access, parking, fees, tides, wind, water quality, climate, closures, or hazard details.
 - Use `Unknown`, `Needs verification`, `Check official source`, or `Conditions vary` where appropriate.
 - An official link does not automatically verify every field.
 - Curated suitability fields must be labeled as planning guidance, not official or live measurements.
 - Use stable IDs and documented taxonomy tokens.
-- Keep canonical JSON, generated JavaScript, profile data, collection references, documentation, and validation synchronized.
+- Keep canonical JSON layers, generated/browser JavaScript, profile data, collection references, documentation, and validation synchronized.
