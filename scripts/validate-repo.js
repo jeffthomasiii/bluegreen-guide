@@ -5,10 +5,12 @@ const vm = require("vm");
 
 const root = path.join(__dirname, "..");
 const dataDir = path.join(root, "data");
-const baseJsonPath = path.join(dataDir, "launch-points.json");
+const baseJsonPath = path.join(dataDir, "places.json");
 const missionBayJsonPath = path.join(dataDir, "mission-bay-launch-points.json");
-const baseJsPath = path.join(dataDir, "launch-points.js");
+const fieldTestJsonPath = path.join(dataDir, "green-space-field-test.json");
+const baseJsPath = path.join(dataDir, "places.js");
 const missionBayJsPath = path.join(dataDir, "mission-bay-launch-points.js");
+const fieldTestJsPath = path.join(dataDir, "green-space-field-test.js");
 const profilePath = path.join(dataDir, "launch-profile.js");
 const collectionsPath = path.join(dataDir, "collections.js");
 const indexPath = path.join(root, "index.html");
@@ -26,16 +28,28 @@ function runBrowserDataFile(filePath) {
   vm.runInThisContext(fs.readFileSync(filePath, "utf8"), { filename: filePath });
 }
 
+function mergeUniquePlaces(basePlaces, addedPlaces) {
+  const existingIds = new Set(basePlaces.map((place) => place.id));
+  return [
+    ...basePlaces,
+    ...addedPlaces.filter((place) => !existingIds.has(place.id)),
+  ];
+}
+
 function loadCanonicalData() {
   const base = readJson(baseJsonPath).filter((place) => place.id !== "mission-bay");
-  return [...base, ...readJson(missionBayJsonPath)];
+  const withMissionBay = mergeUniquePlaces(base, readJson(missionBayJsonPath));
+  return mergeUniquePlaces(withMissionBay, readJson(fieldTestJsonPath));
 }
 
 function loadRuntimeData() {
   global.window = {};
   runBrowserDataFile(baseJsPath);
+
   const basePlaces = (window.LAUNCH_POINTS || []).filter((place) => place.id !== "mission-bay");
-  window.LAUNCH_POINTS = [...basePlaces, ...readJson(missionBayJsonPath)];
+  window.LAUNCH_POINTS = mergeUniquePlaces(basePlaces, readJson(missionBayJsonPath));
+  window.LAUNCH_POINTS = mergeUniquePlaces(window.LAUNCH_POINTS, readJson(fieldTestJsonPath));
+
   const rawPlaces = [...window.LAUNCH_POINTS];
   if (fs.existsSync(profilePath)) runBrowserDataFile(profilePath);
   if (fs.existsSync(collectionsPath)) runBrowserDataFile(collectionsPath);
@@ -129,17 +143,27 @@ function validateGeneratedData(rawRuntimePlaces) {
   try {
     assert.deepStrictEqual(rawRuntimePlaces, canonical);
   } catch {
-    errors.push("Runtime place data is not synchronized with canonical JSON data.");
+    errors.push("Runtime place data is not synchronized with canonical JSON data layers.");
   }
 
   const missionLoader = fs.readFileSync(missionBayJsPath, "utf8");
   check(missionLoader.includes('data/mission-bay-launch-points.json'), "Mission Bay browser loader must read the canonical Mission Bay JSON file.");
   check(missionLoader.includes('place.id !== "mission-bay"'), "Mission Bay browser loader must replace the legacy aggregate Mission Bay record.");
 
+  const fieldTestLoader = fs.readFileSync(fieldTestJsPath, "utf8");
+  check(fieldTestLoader.includes('data/green-space-field-test.json'), "Green-space field-test loader must read its canonical JSON file.");
+
+  const fieldTestPlaces = readJson(fieldTestJsonPath);
+  check(fieldTestPlaces.length === 10, `Green-space field-test dataset must contain 10 pilot places; found ${fieldTestPlaces.length}.`);
+  check(fieldTestPlaces.filter((place) => place.spaceType === "mixed").length === 4, "Green-space field-test dataset must contain four mixed places.");
+  check(fieldTestPlaces.filter((place) => place.spaceType === "green").length === 6, "Green-space field-test dataset must contain six green places.");
+  check(!fieldTestPlaces.some((place) => /keller|greer/i.test(`${place.id} ${place.name}`)), "Keller/Greer Ranch must remain outside the canonical field-test dataset until verified.");
+
   const index = fs.readFileSync(indexPath, "utf8");
   [
-    'src="data/launch-points.js"',
+    'src="data/places.js"',
     'src="data/mission-bay-launch-points.js"',
+    'src="data/green-space-field-test.js"',
     'src="data/launch-profile.js"',
     'src="data/collections.js"',
     'src="mission-bay-place-pilot.js"',
@@ -197,4 +221,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validation passed: ${runtime.places.length} active runtime places, ${runtime.collections.length} collections, Mission Bay blue-green pilot data, and internal links are valid.`);
+console.log(`Validation passed: ${runtime.places.length} active runtime places, ${runtime.collections.length} collections, Mission Bay pilot data, green/mixed field-test data, and internal links are valid.`);
