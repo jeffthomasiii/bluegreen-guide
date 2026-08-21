@@ -7,14 +7,15 @@
     throw new Error(`Green-space field-test data request failed: ${request.status}`);
   }
 
-  const fieldTestPlaces = JSON.parse(request.responseText);
+  const fieldTestPlaces = Array.isArray(JSON.parse(request.responseText))
+    ? JSON.parse(request.responseText)
+    : [];
   const basePlaces = Array.isArray(window.LAUNCH_POINTS) ? window.LAUNCH_POINTS : [];
+  const replacements = new Map(fieldTestPlaces.map((place) => [place.id, place]));
   const existingIds = new Set(basePlaces.map((place) => place.id));
 
   window.LAUNCH_POINTS = [
-    ...basePlaces,
-    ...(Array.isArray(fieldTestPlaces)
-      ? fieldTestPlaces.filter((place) => !existingIds.has(place.id))
-      : []),
+    ...basePlaces.map((place) => replacements.get(place.id) || place),
+    ...fieldTestPlaces.filter((place) => !existingIds.has(place.id)),
   ];
 })();
