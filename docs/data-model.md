@@ -2,27 +2,63 @@
 
 ## Canonical Files
 
-BlueGreen Guide keeps place records in canonical JSON and generates browser-ready JavaScript from those files.
+BlueGreen Guide keeps place records in canonical JSON and uses lightweight browser loaders for the static GitHub Pages app.
 
-- `data/launch-points.json` — authoritative base launch records
-- `data/mission-bay-launch-points.json` — authoritative Mission Bay launch records added during the Launch Suitability maintenance pass
-- `data/launch-points.js` — generated browser copy of the base launch records
-- `data/mission-bay-launch-points.js` — generated browser copy of the Mission Bay launch records
-- `data/launch-profile.js` — curated suitability enrichment only; it does not own or create place records
+- `data/places.json` — authoritative base place records
+- `data/mission-bay-launch-points.json` — authoritative Mission Bay place-pilot records that replace the legacy aggregate Mission Bay record at runtime
+- `data/green-space-field-test.json` — authoritative 10-place green/mixed field-test supplement during on-site testing
+- `data/places.js` — generated browser copy of the base place records
+- `data/mission-bay-launch-points.js` — Mission Bay browser loader
+- `data/green-space-field-test.js` — green/mixed field-test browser loader
+- `data/launch-profile.js` — curated paddle-suitability enrichment only; it does not own or create place records
 - `data/collections.js` — curated collection configuration
 
-Edit place facts in the canonical JSON files, regenerate the browser copies, and validate before publishing.
+After editing canonical JSON:
 
 ```bash
-node scripts/build-launch-data-js.js
+node scripts/build-place-data-js.js
 node scripts/validate-repo.js
 ```
 
-The runtime dataset is the combined canonical launch data. The Launch Suitability Profile remains distinct from live conditions and from place ownership: it enriches existing launch records with curated planning assessments such as SUP suitability and wind sensitivity; it does not contain current wind speed, weather, tides, water quality, or safety guarantees.
+Repository validation currently resolves 89 active runtime places in the field-test branch: 79 existing active records after Mission Bay replacement plus four mixed and six green pilot records. A recent deployed-app screenshot displayed 80 places before the pilot. Reconcile that one-place difference as a cache/runtime/legacy-data issue rather than manufacturing an additional record.
+
+Keller Trail / Greer Ranch remains outside the canonical dataset until its specific trailhead/access point can be better verified.
+
+## Place Classification
+
+Keep environment, place type, and activity as separate concepts.
+
+### `spaceType`
+
+- `blue` — water place or water-centered access point
+- `green` — land place or land-centered access point
+- `mixed` — a destination with meaningful blue-space and green-space characteristics
+
+Mixed places intentionally qualify for both Water and Land discovery filters in the field-test UI.
+
+### `placeTypes`
+
+`placeTypes` describes what a place is, for example:
+
+- `state-recreation-area`
+- `regional-park`
+- `reservoir-recreation-area`
+- `open-space-reserve`
+- `wilderness-park`
+- `urban-open-space`
+- `historic-park`
+- `botanic-garden`
+- `ecological-reserve`
+- `trail-network`
+- `paddle-launch`
+
+### `activityTypes`
+
+`activityTypes` describes what people may do at a place. A mixed reservoir park can therefore support boating and hiking without being forced into a single activity identity.
 
 ## Current Place Fields
 
-Core static fields:
+Core static fields include:
 
 - `id`
 - `name`
@@ -30,21 +66,21 @@ Core static fields:
 - `state`
 - `lat`
 - `lng`
-- `waterType`
+- `waterType` — legacy field name retained for compatibility; green records may use a plain-language environment description
 - `activities`
-- `skillLevel`
-- `difficulty`
-- `popularity` — legacy numeric source retained during migration; no longer shown as a positive star rating
-- `bestTime`
 - `amenities`
 - `tags`
 - `description`
 - `verificationStatus`
 - `sourceUrls`
 - `sourceNotes`
+- `bestTime`
 
-Launch Suitability Profile fields:
+Paddle-specific legacy/current fields apply where relevant:
 
+- `skillLevel`
+- `difficulty`
+- `popularity` — legacy numeric source retained internally during migration
 - `supSuitability`
 - `windSensitivity`
 - `useLevel`
@@ -61,6 +97,7 @@ Supported search and wayfinding fields:
 - `activityTypes`
 - `amenityTypes`
 - `attributeTypes`
+- `paddleRelevant`
 
 Source-review fields:
 
@@ -74,113 +111,45 @@ Photo fields:
 - `photoUrls`
 - `photoNotes`
 
-## Launch Coordinates
+## Coordinate Semantics
 
-Launch markers should represent the practical launch or shoreline access area rather than a broad park, neighborhood, lake, or water-body centroid whenever a more useful access location can be supported.
+A marker should represent a practical visitor, launch, shoreline-access, or trail-access area when that location can be reasonably supported, rather than a broad place centroid when a more useful access point is known.
 
-When an official source confirms the facility but does not publish an exact GPS point, use a reasonable shoreline/access coordinate and state that limitation in `sourceNotes`. Do not describe an inferred coordinate as an official waypoint.
+When an official source confirms a place but does not publish an exact GPS waypoint, use a reasonable representative coordinate only when useful, document the inference in `sourceNotes`, and do not present it as an official coordinate. Field testing should refine access coordinates where practical.
 
-## Launch Suitability Profile
+## Paddle Suitability Profile
 
-BlueGreen Guide uses the Launch Suitability Profile to compare the practical experience of using paddle launch points. These values are curated planning guidance, not live measurements, mathematical safety scores, or guarantees.
+The Launch Suitability Profile remains a paddle-specific guidance layer. Records with `paddleRelevant: false` do not require paddle-only fields.
 
 ### SUP Suitability
 
-`supSuitability` uses:
-
-- `Excellent`
-- `Good`
-- `Fair`
-- `Challenging`
-
-It summarizes the overall recreational stand-up paddleboarding fit of a location. The assessment may consider launch difficulty, water character, exposure, boat traffic, crowd effects, and practical staging space. It is an editorial assessment rather than a weighted formula.
+`supSuitability` uses `Excellent`, `Good`, `Fair`, or `Challenging`. It summarizes the overall recreational stand-up paddleboarding fit of a location and is editorial planning guidance rather than a safety score.
 
 ### Wind Sensitivity
 
-`windSensitivity` uses:
-
-- `Low`
-- `Moderate`
-- `High`
-
-It describes how strongly increasing wind can degrade the paddling experience at the location. It does **not** describe current wind, guarantee typical wind speed, or mean that a place labeled `High` is always windy.
-
-Current and forecast wind belongs to the future Live Data layer.
+`windSensitivity` uses `Low`, `Moderate`, or `High`. It describes how strongly increasing wind can degrade the paddling experience; it does not describe current or forecast wind.
 
 ### Typical Use
 
-`useLevel` replaces user-facing popularity and uses:
-
-- `Low`
-- `Moderate`
-- `High`
-- `Very High`
-
-It describes general recreational use rather than implying that more use is better. Actual crowd levels vary by weekday, season, time, weather, holidays, events, and other factors.
-
-The legacy numeric `popularity` field remains available internally during the migration so existing records and maintenance logic are not broken. Product UI should prefer `useLevel`.
+`useLevel` uses `Low`, `Moderate`, `High`, or `Very High`. It describes general recreational use rather than implying that more use is better.
 
 ### Crowd Sensitivity
 
-`crowdSensitivity` uses:
-
-- `Low`
-- `Moderate`
-- `High`
-
-It describes how much crowding can interfere with launching, carrying equipment, staging, resting, or paddling. It is intentionally separate from Typical Use because a large launch area may absorb heavy use better than a small access point.
+`crowdSensitivity` uses `Low`, `Moderate`, or `High` and describes how much crowding can interfere with launching, carrying, staging, resting, or paddling.
 
 ### Staging Space
 
-`stagingSpace` uses:
-
-- `Limited`
-- `Moderate`
-- `Generous`
-
-It describes practical room for unloading, carrying, inflating, rigging, launching, exiting, and temporarily placing paddleboards or kayaks while resting. It is broader than beach or shoreline width alone.
+`stagingSpace` uses `Limited`, `Moderate`, or `Generous` and describes practical room for unloading, rigging, launching, exiting, and temporarily placing paddle equipment.
 
 ### Assessment Confidence
 
-`assessmentConfidence` uses:
+`assessmentConfidence` uses `Low`, `Moderate`, or `High`. It describes confidence in BlueGreen Guide's suitability assessment and is separate from `verificationStatus`, which describes confidence in place facts.
 
-- `Low`
-- `Moderate`
-- `High`
+## Existing Guidance Semantics
 
-It describes confidence in the BlueGreen Guide suitability assessment based on the available source material and place information. It is **not** the same as `verificationStatus`.
+`bestTime`, `skillLevel`, and `difficulty` remain general paddle-planning guidance where applicable. They are not live conditions, individual ability assessments, or safety guarantees.
 
-An official source can confirm that a facility exists without independently verifying BlueGreen Guide's conclusion that a location is `Excellent` for SUP.
-
-## Existing Rating and Guidance Semantics
-
-### Best Time
-
-`bestTime` represents the time of day generally considered most suitable for paddling based on the typical characteristics of the location. It may reflect common patterns such as calmer mornings, wind exposure, general water behavior, or the overall paddling experience.
-
-Best Time is a **general planning recommendation**, not a live-conditions indicator. Future live weather, wind, tide, forecast, and advisory information will supplement this field rather than replace it.
-
-### Skill Level
-
-`skillLevel` represents the paddling experience generally recommended for using the location under typical conditions. The assessment may consider open-water exposure, distance from shore, wave or wake exposure, launch complexity, navigation demands, and the amount of judgment normally required.
-
-Skill Level describes the location; it does not measure an individual user's ability, fitness, equipment, or preparedness.
-
-### Difficulty
-
-`difficulty` remains a 1–5 comparative rating used to distinguish generally easier launch experiences from more demanding ones. It may consider launch access, expected paddling effort, exposure, boat traffic, water movement, and overall complexity.
-
-Difficulty answers a different question from SUP Suitability. A location can be physically easy to launch from while still having high wind sensitivity, crowd constraints, or other factors that reduce its overall SUP suitability.
-
-Difficulty is **not a safety rating**.
-
-### Verification Status
-
-`verificationStatus` describes confidence in available place facts, not the quality or suitability of the launch.
-
-A status of `Needs verification` is used when one or more material details have not been individually confirmed against a current, reliable source. An official link may support part of a record without confirming every field. Access rules, parking, fees, facilities, regulations, and other details can also change over time.
-
-See [Launch Suitability Profile](launch-suitability/) for the public rating explanation, [Development Workflow](development-workflow.md#safety-and-data-rule) for source-handling rules, and [Phase Roadmap](phase-roadmap.md#phase-3-live-conditions-and-trip-planning) for planned live-condition layers.
+`verificationStatus` describes confidence in available place facts, not the quality or suitability of a destination. Use `Needs verification` whenever material details remain uncertain even if an official source confirms the place exists.
 
 ## Collection Fields
 
@@ -192,7 +161,7 @@ Each collection includes:
 - `query`
 - `placeIds`
 
-Collections filter by exact `placeIds`. Every referenced ID must exist in the runtime place data.
+Collections filter by exact `placeIds`. Every referenced ID must exist in runtime place data.
 
 ## Wayfinding Semantics
 
@@ -218,28 +187,28 @@ Potential structured place fields remain:
 - `tideImpact`
 - `hazards`
 
-The Launch Suitability Profile is a maintenance refinement and does not reopen the broader Phase 2 structured-place-details scope.
+The green-space field-test pilot and Launch Suitability Profile are maintenance/validation refinements and do not reopen Phase 2.
 
-## Later Data Layers
-
-Keep these layers separate:
+## Data Layers
 
 | Layer | Purpose | Example |
 |---|---|---|
-| Place Data | Rarely changing facts | Parking, launch type, restrooms |
+| Place Data | Rarely changing facts | Place type, parking, restrooms |
 | Curated Guidance | Comparative planning assessments | SUP suitability, wind sensitivity, staging space |
-| Live Data | Current or near-term conditions | Weather, wind, tides |
+| Live Data | Current or near-term conditions | Weather, current wind, tides, current closures |
 | Environmental Data | Historical, seasonal, or advisory context | Climate normals, water quality, AQI |
 | Derived Insights | App-generated guidance | Best before 10 AM, check wind after noon |
 
-`windSensitivity` describes how a location responds to wind and belongs to curated guidance. Current wind speed and forecasts belong to Live Data.
+Keep these layers distinct.
 
 ## Data Rules
 
 - Do not treat unverified data as confirmed.
-- Do not invent access, parking, fees, tides, wind, water quality, climate, or hazard details.
+- Do not invent access, parking, fees, tides, wind, water quality, climate, closures, or hazard details.
 - Use `Unknown`, `Needs verification`, `Check official source`, or `Conditions vary` where appropriate.
 - An official link does not automatically verify every field.
 - Curated suitability assessments must be presented as guidance, not official or live measurements.
 - Use stable IDs and documented taxonomy tokens.
-- Keep canonical JSON, generated JavaScript, runtime profile data, collection references, documentation, and validation synchronized.
+- Keep canonical JSON layers, browser/runtime data, profile data, collection references, documentation, and validation synchronized.
+
+See [Development Workflow](development-workflow.md) for maintenance steps and [Phase Roadmap](phase-roadmap.md) for the boundary between the current field-test pilot and future structured-place work.

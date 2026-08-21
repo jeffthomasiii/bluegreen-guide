@@ -15,29 +15,32 @@ Do not introduce a framework, database, account system, build platform, or produ
 
 ## Canonical Data Workflow
 
-Canonical launch records currently live in:
+The generalized place dataset now uses:
 
-- `data/launch-points.json` — authoritative base launch records
-- `data/mission-bay-launch-points.json` — authoritative Mission Bay launch records
+- `data/places.json` — authoritative base place records
+- `data/mission-bay-launch-points.json` — authoritative Mission Bay place-pilot records that replace the legacy aggregate Mission Bay record at runtime
+- `data/green-space-field-test.json` — authoritative 10-place green/mixed field-test supplement during on-site testing
 
-After editing canonical launch data:
+After editing canonical place data:
 
 ```bash
-node scripts/build-launch-data-js.js
+node scripts/build-place-data-js.js
 node scripts/validate-repo.js
 ```
 
-The build script generates `data/launch-points.js` and `data/mission-bay-launch-points.js`. Do not edit the generated browser files directly.
+The build script generates `data/places.js` and refreshes the Mission Bay browser loader. `data/green-space-field-test.js` loads the field-test supplement. Do not edit generated/browser place files directly when the canonical JSON should be changed instead.
 
-`data/launch-profile.js` enriches existing launch records with suitability guidance. It must not create or own place records.
+`data/launch-profile.js` enriches paddle-relevant records with suitability guidance. It must not create or own place records and must leave records with `paddleRelevant: false` unchanged.
 
-Curated collections are maintained in `data/collections.js`. Collection `placeIds` must reference existing canonical place IDs.
+Curated collections are maintained in `data/collections.js`. Collection `placeIds` must reference existing runtime place IDs.
+
+Repository validation resolves 89 active runtime places in the field-test branch: 79 existing active records after the legacy aggregate Mission Bay record is replaced plus four mixed and six green pilot records. A recent deployed-app screenshot displayed 80 places before the pilot; investigate that one-place cache/runtime difference rather than adding an unsupported record. Keller Trail / Greer Ranch remains outside the canonical dataset until the exact trailhead/access point can be better verified.
 
 ### Coordinate Rule
 
-Markers should represent the practical launch or shoreline-access area when that location can be reasonably supported, rather than a broad park, neighborhood, lake, or water-body centroid.
+Markers should represent a practical visitor, launch, shoreline-access, or trail-access area when that location can be reasonably supported rather than a broad centroid when a more useful access point is known.
 
-If an official source confirms a facility but does not publish an exact GPS waypoint, document the limitation in `sourceNotes` and do not present the inferred coordinate as official.
+If an official source confirms a place but does not publish an exact GPS waypoint, document the limitation in `sourceNotes` and do not present the inferred coordinate as official. Use on-site testing to refine representative access coordinates where useful.
 
 ## Local Review
 
@@ -59,7 +62,9 @@ Review:
 - Tablet layout
 - Mobile layout
 - Map rendering and marker behavior
-- Marker placement at practical launch/access locations
+- Blue, green, and mixed marker behavior
+- Water and Land discovery filters, including mixed places appearing in both relevant filters
+- Marker placement at practical visitor/launch/trail access locations
 - Search and filters
 - Curated collection counts and results
 - Place cards and details
@@ -76,13 +81,15 @@ node scripts/validate-repo.js
 
 The script checks:
 
-- Valid canonical JSON
+- Valid canonical JSON layers
 - Required place fields
 - Unique IDs
-- Coordinate, difficulty, and legacy popularity ranges
-- Launch Suitability Profile enum values
+- Coordinate, difficulty, and legacy popularity ranges where applicable
+- Launch Suitability Profile enum values for paddle places
+- Green/mixed pilot composition
+- Keller/Greer exclusion pending verification
 - Collection IDs and place references
-- Generated browser data synchronization
+- Browser/runtime data synchronization
 - Required script loading
 - Internal HTML links
 - Absence of public `.md` links from the HTML documentation site
@@ -112,12 +119,14 @@ Do not invent or overstate:
 - Water quality
 - Hazards
 - Verified photography
-- Exact launch coordinates when only a general facility location is supported
+- Exact visitor, launch, or trail coordinates when only a general facility location is supported
 
 Use `Unknown`, `Needs verification`, `Check official source`, or `Conditions vary` when material details remain uncertain.
+
+Official sources may establish place identity and general recreation without verifying every operational detail. Keep temporary closures and other changing conditions out of static place facts unless explicitly represented as a current/live layer.
 
 ## Phase Discipline
 
 Phase 1 is complete as of v1.1.0. Phase 2 is on hold.
 
-Maintenance work may improve source links, verification, photography, accessibility, coordinates, and defects without reopening Phase 1 or expanding scope into live conditions, community features, accounts, or AI.
+The green-space field-test pilot is a maintenance/validation expansion of the existing proof of concept. Maintenance work may improve source links, verification, photography, accessibility, coordinates, taxonomy, and defects without reopening Phase 1 or expanding scope into live conditions, community features, accounts, or AI.

@@ -4,6 +4,7 @@ const path = require("path");
 const root = path.join(__dirname, "..");
 const index = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const pilot = fs.readFileSync(path.join(root, "mission-bay-place-pilot.js"), "utf8");
+const css = fs.readFileSync(path.join(root, "mission-bay-place-pilot.css"), "utf8");
 const errors = [];
 
 function check(condition, message) {
@@ -22,15 +23,39 @@ check(
 
 check(
   pilot.includes("const matchesDifficulty = els.difficulty.value === \"all\" || (paddlePlace &&"),
-  "Mission Bay pilot must keep paddle difficulty conditional so non-paddle places remain visible when no paddle filter is active."
+  "Place renderer must keep paddle difficulty conditional so non-paddle places remain visible when no paddle filter is active."
 );
 check(
   pilot.includes("const matchesSkill = els.skill.value === \"all\" || (paddlePlace &&"),
-  "Mission Bay pilot must keep paddling skill conditional for non-paddle places."
+  "Place renderer must keep paddling skill conditional for non-paddle places."
 );
 check(
   pilot.includes("matchesCollection"),
-  "Mission Bay pilot filtering must preserve curated collection filtering."
+  "Place filtering must preserve curated collection filtering."
+);
+check(
+  pilot.includes('resolvedSpaceType === "mixed"'),
+  "Mixed places must remain discoverable through both Water and Land mobile filters."
+);
+check(
+  pilot.includes('"place-marker place-marker--green"') && pilot.includes('"place-marker place-marker--mixed"'),
+  "Green and mixed places must use distinct marker classes."
+);
+check(
+  pilot.includes('pill.classList.toggle("pill-green"') && pilot.includes('pill.classList.toggle("pill-mixed"'),
+  "Green and mixed place cards must use their wayfinding pill treatments."
+);
+check(
+  pilot.includes("ratings.innerHTML = paddlePlace") && pilot.includes("<strong>Space</strong>"),
+  "Non-paddle cards must render general place information instead of paddle suitability fields."
+);
+check(
+  css.includes(".place-marker--green") && css.includes("background: #6f8f63"),
+  "Green markers must use the approved green wayfinding color."
+);
+check(
+  css.includes(".place-marker--mixed") && css.includes("outline: 3px solid #6f8f63"),
+  "Mixed markers must combine blue and green semantics without inventing a new category color."
 );
 check(
   pilot.includes('["vacation-isle", 16]') && pilot.includes('["tecolote-creek-wetland", 15]'),
@@ -42,9 +67,9 @@ check(
 );
 
 if (errors.length) {
-  console.error(`Mission Bay pilot validation failed with ${errors.length} problem${errors.length === 1 ? "" : "s"}:`);
+  console.error(`Place renderer validation failed with ${errors.length} problem${errors.length === 1 ? "" : "s"}:`);
   errors.forEach((error) => console.error(`- ${error}`));
   process.exit(1);
 }
 
-console.log("Mission Bay pilot regression checks passed.");
+console.log("Place renderer, green/mixed cards, filters, and marker regression checks passed.");

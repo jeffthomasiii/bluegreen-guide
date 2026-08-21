@@ -92,19 +92,35 @@ async function loadLaunches() {
     fitToLaunches(state.filteredLaunches);
   } catch (error) {
     console.error(error);
-    els.results.innerHTML = '<p class="launch-description">Could not load launch-point data.</p>';
+    els.results.innerHTML = '<p class="launch-description">Could not load place data.</p>';
   } finally {
     refreshMapSize();
   }
 }
 
 async function fetchLaunchJson() {
-  const response = await fetch("data/launch-points.json");
-  if (!response.ok) throw new Error(`Launch data request failed: ${response.status}`);
-  const launches = await response.json();
+  const [baseResponse, missionBayResponse, fieldTestResponse] = await Promise.all([
+    fetch("data/places.json"),
+    fetch("data/mission-bay-launch-points.json"),
+    fetch("data/green-space-field-test.json"),
+  ]);
+
+  if (!baseResponse.ok) throw new Error(`Place data request failed: ${baseResponse.status}`);
+  if (!missionBayResponse.ok) throw new Error(`Mission Bay data request failed: ${missionBayResponse.status}`);
+  if (!fieldTestResponse.ok) throw new Error(`Green-space field-test data request failed: ${fieldTestResponse.status}`);
+
+  const base = await baseResponse.json();
+  const missionBay = await missionBayResponse.json();
+  const fieldTest = await fieldTestResponse.json();
+  const merged = [
+    ...base.filter((place) => place.id !== "mission-bay"),
+    ...missionBay,
+    ...fieldTest,
+  ];
+
   return typeof window.BLUEGREEN_ENRICH_LAUNCH === "function"
-    ? launches.map(window.BLUEGREEN_ENRICH_LAUNCH)
-    : launches;
+    ? merged.map(window.BLUEGREEN_ENRICH_LAUNCH)
+    : merged;
 }
 
 function bindEvents() {

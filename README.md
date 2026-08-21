@@ -6,39 +6,44 @@ BlueGreen Guide is a static proof-of-concept outdoor discovery and wayfinding ap
 
 Blue spaces include oceans, bays, rivers, lakes, reservoirs, lagoons, and harbors. Green spaces include parks, woods, gardens, trails, campgrounds, shoreline open space, and wildlife areas.
 
-## Current Release
+## Current Field-Test Build
 
-**v1.1.0 — Phase 1 Closeout and Design System 2.0**
+Phase 1 remains complete as a working proof of concept. The current field-test build adds a deliberately small green/mixed pilot so the BlueGreen product model can be tested on site before Phase 2 resumes.
 
-Phase 1 remains complete as a working proof of concept. Post-v1.1.0 maintenance now includes the completed Launch Suitability Profile enhancement and three additional Mission Bay launch points. The runtime map includes:
+Repository validation resolves **89 unique active runtime places**. The pre-pilot runtime contains 80 unique places. The field-test layer contains 10 records, but one of them, Diamond Valley Lake, intentionally updates an existing place by stable ID rather than creating a duplicate. The pilot therefore adds 9 net-new places and enriches 1 existing place.
+
+The 10 field-test records are:
+
+- 4 mixed blue/green destinations: 3 net-new places plus a mixed-space overlay for the existing Diamond Valley Lake record
+- 6 new green-space destinations
+- Keller Trail / Greer Ranch remains outside the dataset pending better verification of the specific trailhead/access point
+
+The green/mixed pilot includes Lake Perris State Recreation Area, Yucaipa Regional Park, Frank G. Bonelli Regional Park, Diamond Valley Lake, Box Springs Mountain Reserve, Sycamore Canyon Wilderness Park, Mount Rubidoux Park, California Citrus State Historic Park, UCR Botanic Gardens, and Santa Rosa Plateau Ecological Reserve.
+
+Current capabilities include:
 
 - Interactive OpenStreetMap and Leaflet map
-- 59 launch records across California, Nevada, and Arizona at runtime; v1.1.0 originally closed with 56 canonical records
-- Separate Crown Point, De Anza Cove, and Sail Bay launch points within the broader Mission Bay destination
 - Search across place names, aliases, water bodies, taxonomy, amenities, activities, tags, descriptions, and launch-suitability values
-- Region, skill, activity, and maximum-difficulty filters
+- Blue, green, and mixed place semantics
+- Water and Land mobile discovery filters; mixed places intentionally appear in either relevant filter
+- Region, paddling skill, water activity, and maximum paddle-difficulty filters for the existing paddle use case
 - Five curated collections that use explicit place IDs
 - Map-bounds filtering and browser geolocation
-- Launch cards and a responsive place-detail panel
-- Launch Suitability Profile: SUP Suitability, Wind Sensitivity, Typical Use, Crowd Sensitivity, Staging Space, and Assessment Confidence
+- Responsive place cards and details
+- Launch Suitability Profile for paddle-relevant places
 - Verification status, source-review metadata, official links, and safety-aware notes
-- Credited representative photography with clear image status
+- Credited representative photography for existing paddle places; new green/mixed pilot photography remains to be verified
 - Responsive desktop, tablet, and mobile layouts
 - Final Option B2 brand assets and blue, green, and neutral wayfinding semantics
-- Public HTML documentation for Quick Start, Field Guide, Launch Suitability, Release Notes, and Roadmap
-- Lightweight repository validation for data integrity, launch-profile values, canonical data synchronization, and internal links
+- Lightweight repository validation for data integrity, place taxonomy, pilot composition, generated-data synchronization, and internal links
 
-## Phase 1 Status
+## Phase Status
 
-Phase 1 is closed as a **complete proof of concept**. The Launch Suitability Profile is a completed post-v1.1.0 maintenance refinement, not a reopening of Phase 2.
+Phase 1 remains closed as a **complete proof of concept**. This green-space field-test pilot is a maintenance/validation expansion intended to test the existing BlueGreen architecture, not the beginning of the larger Phase 2 structured-place-detail work.
 
-The profile provides curated planning guidance rather than live measurements or safety guarantees. Wind Sensitivity describes how strongly increasing wind can affect a location; it is not current or forecast wind. Typical Use and Crowd Sensitivity replace the user-facing Popularity star treatment so heavily used places are not automatically presented as more desirable.
+Most records remain marked **Needs verification**. Users should confirm current access, legal activity locations, parking, fees, closures, water quality, weather, wind, tides, vessel traffic, fire restrictions, trail conditions, and hazards through official sources before going.
 
-After implementation, the suitability ratings received a manual spot review using familiar real-world locations. SUP Suitability, Staging Space, and Assessment Confidence for the sampled places aligned with known on-the-ground experience. This supports the usefulness of the current rating framework, but it does not replace official-source verification or imply that every record has been individually field-verified.
-
-This is not production software. Most records remain marked **Needs verification**, and representative images are not assumed to show the exact launch point. Users should confirm current access, legal launch locations, parking, fees, closures, water quality, weather, wind, tides, vessel traffic, and hazards through official sources before going.
-
-Phase 2 is intentionally on hold until the project is ready to begin a focused structured place-detail pilot.
+Phase 2 is intentionally on hold until field testing provides enough evidence to refine the structured place model.
 
 ## Design System 2.0
 
@@ -52,30 +57,35 @@ Wayfinding semantics:
 - **Blue:** water places and water activities
 - **Green:** land places and land activities
 - **Neutral:** amenities, services, and universal attributes
+- **Mixed:** places with meaningful blue-space and green-space characteristics, represented through both relevant categories rather than a new arbitrary brand color
 
 See [Design System 2.0](docs/brand-guide.md) and the [Wayfinding System](docs/wayfinding-system.md).
 
 ## Data Layers
 
-Canonical launch data is JSON-driven:
+The previous `launch-points.json` filename became misleading once BlueGreen Guide began deliberately storing parks, reserves, gardens, and other land destinations. The generalized base dataset is now named for what it contains: places.
 
-- `data/launch-points.json` — authoritative base launch records
-- `data/mission-bay-launch-points.json` — authoritative Mission Bay launch records added during the Launch Suitability maintenance pass
+Canonical JSON layers:
 
-Generated browser data:
+- `data/places.json` — authoritative base place records
+- `data/mission-bay-launch-points.json` — authoritative Mission Bay place pilot records that replace the legacy aggregate Mission Bay record at runtime
+- `data/green-space-field-test.json` — authoritative 10-record green/mixed field-test supplement while those places are evaluated on site; a matching stable ID overlays the existing place during the field test rather than creating a duplicate
 
-- `data/launch-points.js`
+Generated/browser loaders:
+
+- `data/places.js`
 - `data/mission-bay-launch-points.js`
+- `data/green-space-field-test.js`
 
 Other runtime data:
 
-- `data/launch-profile.js` — curated launch-suitability enrichment only; it does not own or create place records
+- `data/launch-profile.js` — launch-suitability enrichment for paddle-relevant places only; it does not own or create place records
 - `data/collections.js` — curated collection definitions
 
-Do not edit the generated browser launch files directly. After changing canonical launch JSON, run:
+Do not edit generated browser place files directly. After changing canonical place JSON, run:
 
 ```bash
-node scripts/build-launch-data-js.js
+node scripts/build-place-data-js.js
 ```
 
 Then validate the repository:
@@ -84,9 +94,11 @@ Then validate the repository:
 node scripts/validate-repo.js
 ```
 
-The profile layer is intentionally separate from future Live Data such as current weather, wind, tides, and advisories.
+The green/mixed pilot remains a separate canonical layer during field testing so its records can be reviewed, adjusted, or removed without obscuring the proven base dataset. During this pilot, stable-ID matches intentionally overlay the corresponding base place. After field testing, retained records can be consolidated into `places.json` in a later cleanup.
 
-Map markers should represent practical launch or shoreline-access locations when those can be reasonably supported. When an exact GPS point is inferred rather than published by an official source, that limitation should be documented rather than presented as an official waypoint.
+Static place facts remain separate from future Live Data such as current weather, wind, tides, trail closures, environmental advisories, and other changing conditions.
+
+Map coordinates should represent practical visitor, launch, shoreline-access, or trail-access locations when those can be reasonably supported. When an exact GPS point is inferred rather than published by an official source, that limitation must be documented rather than presented as an official waypoint.
 
 ## Run Locally
 
@@ -129,14 +141,16 @@ The repository is configured for GitHub Pages from the `main` branch and reposit
 │   ├── brand/
 │   └── icons/
 ├── data/
-│   ├── launch-points.json
-│   ├── launch-points.js
+│   ├── places.json
+│   ├── places.js
 │   ├── mission-bay-launch-points.json
 │   ├── mission-bay-launch-points.js
+│   ├── green-space-field-test.json
+│   ├── green-space-field-test.js
 │   ├── launch-profile.js
 │   └── collections.js
 ├── scripts/
-│   ├── build-launch-data-js.js
+│   ├── build-place-data-js.js
 │   ├── consolidate-launch-data.js
 │   └── validate-repo.js
 ├── docs/
