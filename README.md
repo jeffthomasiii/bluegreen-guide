@@ -8,11 +8,12 @@ Blue spaces include oceans, bays, rivers, lakes, reservoirs, lagoons, and harbor
 
 ## Current Field-Test Build
 
-Phase 1 remains complete as a working proof of concept. The current field-test build extends the existing 80-place runtime dataset with a deliberately small green/mixed pilot so the BlueGreen product model can be tested on site before Phase 2 resumes.
+Phase 1 remains complete as a working proof of concept. The current field-test build adds a deliberately small green/mixed pilot so the BlueGreen product model can be tested on site before Phase 2 resumes.
 
-The runtime map now contains **90 places**:
+Repository validation resolves **89 active runtime places** in this branch: 79 existing active records after the legacy aggregate Mission Bay record is replaced by the Mission Bay pilot, plus 10 new green/mixed field-test places. A recent deployed-app screenshot displayed 80 places before this work; that one-place difference should be reconciled as a cache/runtime-count issue rather than hidden by adding an arbitrary record.
 
-- 80 existing water-oriented and Mission Bay pilot places
+The field-test additions are:
+
 - 4 new mixed blue/green destinations
 - 6 new green-space destinations
 - Keller Trail / Greer Ranch remains outside the dataset pending better verification of the specific trailhead/access point
