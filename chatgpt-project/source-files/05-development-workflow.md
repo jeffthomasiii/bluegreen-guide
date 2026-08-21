@@ -34,7 +34,7 @@ The build script generates `data/places.js` and refreshes the Mission Bay browse
 
 Curated collections are maintained in `data/collections.js`. Collection `placeIds` must reference existing runtime place IDs.
 
-The field-test build contains 90 runtime places: the existing 80 places plus four mixed and six green pilot records. Keller Trail / Greer Ranch remains outside the canonical dataset until the exact trailhead/access point can be better verified.
+Repository validation resolves 89 active runtime places in the field-test branch: 79 existing active records after the legacy aggregate Mission Bay record is replaced plus four mixed and six green pilot records. A recent deployed-app screenshot displayed 80 places before the pilot; investigate that one-place cache/runtime difference rather than adding an unsupported record. Keller Trail / Greer Ranch remains outside the canonical dataset until the exact trailhead/access point can be better verified.
 
 ### Coordinate Rule
 
