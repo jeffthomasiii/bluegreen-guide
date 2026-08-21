@@ -7,6 +7,7 @@ const missionBayJsonPath = path.join(dataDir, "mission-bay-launch-points.json");
 const fieldTestJsonPath = path.join(dataDir, "green-space-field-test.json");
 const baseOutputPath = path.join(dataDir, "places.js");
 const missionBayOutputPath = path.join(dataDir, "mission-bay-launch-points.js");
+const fieldTestOutputPath = path.join(dataDir, "green-space-field-test.js");
 
 const baseData = JSON.parse(fs.readFileSync(baseJsonPath, "utf8"));
 const missionBayData = JSON.parse(fs.readFileSync(missionBayJsonPath, "utf8"));
@@ -16,6 +17,10 @@ fs.writeFileSync(baseOutputPath, `window.LAUNCH_POINTS = ${JSON.stringify(baseDa
 fs.writeFileSync(
   missionBayOutputPath,
   `(() => {\n  const request = new XMLHttpRequest();\n  request.open("GET", "data/mission-bay-launch-points.json", false);\n  request.send(null);\n\n  if (request.status && (request.status < 200 || request.status >= 300)) {\n    throw new Error(\`Mission Bay place data request failed: \${request.status}\`);\n  }\n\n  const missionBayPlaces = JSON.parse(request.responseText);\n  const basePlaces = (Array.isArray(window.LAUNCH_POINTS) ? window.LAUNCH_POINTS : [])\n    .filter((place) => place.id !== "mission-bay");\n\n  window.LAUNCH_POINTS = [\n    ...basePlaces,\n    ...(Array.isArray(missionBayPlaces) ? missionBayPlaces : []),\n  ];\n})();\n`
+);
+fs.writeFileSync(
+  fieldTestOutputPath,
+  `(() => {\n  const request = new XMLHttpRequest();\n  request.open("GET", "data/green-space-field-test.json", false);\n  request.send(null);\n\n  if (request.status && (request.status < 200 || request.status >= 300)) {\n    throw new Error(\`Green-space field-test data request failed: \${request.status}\`);\n  }\n\n  const parsed = JSON.parse(request.responseText);\n  const fieldTestPlaces = Array.isArray(parsed) ? parsed : [];\n  const basePlaces = Array.isArray(window.LAUNCH_POINTS) ? window.LAUNCH_POINTS : [];\n  const replacements = new Map(fieldTestPlaces.map((place) => [place.id, place]));\n  const existingIds = new Set(basePlaces.map((place) => place.id));\n\n  window.LAUNCH_POINTS = [\n    ...basePlaces.map((place) => replacements.get(place.id) || place),\n    ...fieldTestPlaces.filter((place) => !existingIds.has(place.id)),\n  ];\n})();\n`
 );
 
 function mergeUnique(basePlaces, addedPlaces) {
@@ -30,17 +35,26 @@ function mergeUnique(basePlaces, addedPlaces) {
   ];
 }
 
+function overlayPlaces(basePlaces, overlay) {
+  const replacements = new Map(overlay.map((place) => [place.id, place]));
+  const existingIds = new Set(basePlaces.map((place) => place.id));
+  return [
+    ...basePlaces.map((place) => replacements.get(place.id) || place),
+    ...overlay.filter((place) => !existingIds.has(place.id)),
+  ];
+}
+
 const activeBase = baseData.filter((place) => place.id !== "mission-bay");
 const baseIds = new Set(activeBase.map((place) => place.id));
 const missionOverlaps = missionBayData.filter((place) => baseIds.has(place.id)).map((place) => place.id);
 const withMissionBay = mergeUnique(activeBase, missionBayData);
 const withMissionIds = new Set(withMissionBay.map((place) => place.id));
 const fieldTestOverlaps = fieldTestData.filter((place) => withMissionIds.has(place.id)).map((place) => place.id);
-const runtimePlaces = mergeUnique(withMissionBay, fieldTestData);
+const runtimePlaces = overlayPlaces(withMissionBay, fieldTestData);
 
 console.log(
-  `Wrote ${baseData.length} base place records (${activeBase.length} active after replacing legacy mission-bay), configured ${missionBayData.length} Mission Bay pilot places, and ${fieldTestData.length} green/mixed field-test places.`
+  `Wrote ${baseData.length} base place records (${activeBase.length} active after replacing legacy mission-bay), configured ${missionBayData.length} Mission Bay pilot places, and ${fieldTestData.length} green/mixed field-test records.`
 );
 console.log(`Unique active runtime count: ${runtimePlaces.length}.`);
 if (missionOverlaps.length) console.log(`Base/Mission Bay overlapping IDs: ${missionOverlaps.join(", ")}.`);
-if (fieldTestOverlaps.length) console.log(`Field-test overlapping IDs: ${fieldTestOverlaps.join(", ")}.`);
+if (fieldTestOverlaps.length) console.log(`Field-test overlays existing IDs: ${fieldTestOverlaps.join(", ")}.`);
