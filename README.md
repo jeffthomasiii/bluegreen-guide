@@ -10,15 +10,15 @@ Blue spaces include oceans, bays, rivers, lakes, reservoirs, lagoons, and harbor
 
 Phase 1 remains complete as a working proof of concept. The current field-test build adds a deliberately small green/mixed pilot so the BlueGreen product model can be tested on site before Phase 2 resumes.
 
-Repository validation resolves **89 active runtime places** in this branch: 79 existing active records after the legacy aggregate Mission Bay record is replaced by the Mission Bay pilot, plus 10 new green/mixed field-test places. A recent deployed-app screenshot displayed 80 places before this work; that one-place difference should be reconciled as a cache/runtime-count issue rather than hidden by adding an arbitrary record.
+Repository validation resolves **89 unique active runtime places**. The pre-pilot runtime contains 80 unique places. The field-test layer contains 10 records, but one of them, Diamond Valley Lake, intentionally updates an existing place by stable ID rather than creating a duplicate. The pilot therefore adds 9 net-new places and enriches 1 existing place.
 
-The field-test additions are:
+The 10 field-test records are:
 
-- 4 new mixed blue/green destinations
+- 4 mixed blue/green destinations: 3 net-new places plus a mixed-space overlay for the existing Diamond Valley Lake record
 - 6 new green-space destinations
 - Keller Trail / Greer Ranch remains outside the dataset pending better verification of the specific trailhead/access point
 
-The 10-place green/mixed pilot includes Lake Perris State Recreation Area, Yucaipa Regional Park, Frank G. Bonelli Regional Park, Diamond Valley Lake, Box Springs Mountain Reserve, Sycamore Canyon Wilderness Park, Mount Rubidoux Park, California Citrus State Historic Park, UCR Botanic Gardens, and Santa Rosa Plateau Ecological Reserve.
+The green/mixed pilot includes Lake Perris State Recreation Area, Yucaipa Regional Park, Frank G. Bonelli Regional Park, Diamond Valley Lake, Box Springs Mountain Reserve, Sycamore Canyon Wilderness Park, Mount Rubidoux Park, California Citrus State Historic Park, UCR Botanic Gardens, and Santa Rosa Plateau Ecological Reserve.
 
 Current capabilities include:
 
@@ -69,7 +69,7 @@ Canonical JSON layers:
 
 - `data/places.json` — authoritative base place records
 - `data/mission-bay-launch-points.json` — authoritative Mission Bay place pilot records that replace the legacy aggregate Mission Bay record at runtime
-- `data/green-space-field-test.json` — authoritative 10-place green/mixed field-test supplement while those places are evaluated on site
+- `data/green-space-field-test.json` — authoritative 10-record green/mixed field-test supplement while those places are evaluated on site; a matching stable ID overlays the existing place during the field test rather than creating a duplicate
 
 Generated/browser loaders:
 
@@ -94,7 +94,7 @@ Then validate the repository:
 node scripts/validate-repo.js
 ```
 
-The green/mixed pilot remains a separate canonical layer during field testing so its records can be reviewed, adjusted, or removed without obscuring the proven base dataset. After field testing, the retained records can be consolidated into `places.json` in a later cleanup.
+The green/mixed pilot remains a separate canonical layer during field testing so its records can be reviewed, adjusted, or removed without obscuring the proven base dataset. During this pilot, stable-ID matches intentionally overlay the corresponding base place. After field testing, retained records can be consolidated into `places.json` in a later cleanup.
 
 Static place facts remain separate from future Live Data such as current weather, wind, tides, trail closures, environmental advisories, and other changing conditions.
 
