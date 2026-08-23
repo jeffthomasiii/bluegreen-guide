@@ -52,7 +52,7 @@
     display: inline-flex;
     flex: 0 0 auto;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
 
   .mobile-view-label {
@@ -64,22 +64,25 @@
     text-transform: uppercase;
   }
 
+  /* Documentation stays discoverable without competing with primary app navigation. */
   .mobile-docs-link {
     display: inline-flex;
-    min-height: 36px;
+    min-height: 40px;
     align-items: center;
     justify-content: center;
-    padding: 0 10px;
-    border: 1px solid var(--ui-line, #c9dce4);
-    border-radius: 10px;
-    background: var(--ui-blue-soft, #dceff5);
-    color: var(--ui-blue-deep, #0f4f67);
-    font-size: 12px;
-    font-weight: 800;
-    text-decoration: none;
+    padding: 0 2px;
+    border: 0;
+    background: transparent;
+    color: var(--ui-blue, #176f8f);
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: rgba(23, 111, 143, 0.35);
+    text-underline-offset: 3px;
   }
 
   .mobile-docs-link:focus-visible {
+    border-radius: 6px;
     outline: 3px solid rgba(23, 111, 143, 0.25);
     outline-offset: 2px;
   }
