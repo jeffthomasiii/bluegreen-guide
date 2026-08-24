@@ -1,0 +1,151 @@
+/* Map-first wayfinding markers: shape + icon + color, never color alone. */
+
+.launch-marker,
+.legend-marker {
+  position: relative;
+  display: grid;
+  place-items: center;
+  border: 2px solid #fff;
+  box-shadow: 0 4px 10px rgba(15, 79, 103, 0.22);
+}
+
+.launch-marker {
+  width: 42px;
+  height: 42px;
+}
+
+.legend-marker {
+  width: 30px;
+  height: 30px;
+  box-shadow: none;
+}
+
+.launch-marker .marker-icon,
+.legend-marker .marker-icon {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  color: currentColor;
+}
+
+.legend-marker .marker-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.launch-marker.marker-water,
+.legend-marker.marker-water {
+  border-radius: 50%;
+  background: var(--ui-blue, #176f8f);
+  color: #fff;
+}
+
+.launch-marker.marker-land,
+.legend-marker.marker-land {
+  border-radius: 8px;
+  background: var(--ui-green, #6f8f63);
+  color: #fff;
+}
+
+.launch-marker.marker-mixed,
+.legend-marker.marker-mixed {
+  border-radius: 8px;
+  background: var(--ui-green, #6f8f63);
+  color: #fff;
+}
+
+.marker-mixed-water {
+  display: grid;
+  width: 29px;
+  height: 29px;
+  place-items: center;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: var(--ui-blue, #176f8f);
+  color: #fff;
+}
+
+.legend-marker .marker-mixed-water {
+  width: 20px;
+  height: 20px;
+  border-width: 1.5px;
+}
+
+.marker-mixed-water .marker-icon {
+  width: 17px;
+  height: 17px;
+}
+
+.legend-marker .marker-mixed-water .marker-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.map-wayfinding-legend {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 700;
+  max-width: min(270px, calc(100% - 28px));
+  border: 1px solid var(--ui-line, #c9dce4);
+  border-radius: 10px;
+  background: rgba(251, 253, 255, 0.96);
+  color: var(--ui-text, #10252e);
+  box-shadow: 0 6px 18px rgba(15, 79, 103, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.map-wayfinding-legend summary {
+  min-height: 40px;
+  cursor: pointer;
+  padding: 10px 13px;
+  color: var(--ui-blue-deep, #0f4f67);
+  font: 700 12px/1.2 Inter, system-ui, sans-serif;
+  list-style-position: inside;
+}
+
+.map-wayfinding-legend-body {
+  display: grid;
+  gap: 8px;
+  min-width: 220px;
+  border-top: 1px solid var(--ui-line, #c9dce4);
+  padding: 10px 12px 12px;
+}
+
+.map-legend-item {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: center;
+  gap: 9px;
+}
+
+.map-legend-item > span:last-child {
+  display: grid;
+  gap: 1px;
+}
+
+.map-legend-item strong {
+  color: var(--ui-text, #10252e);
+  font: 700 12px/1.2 Inter, system-ui, sans-serif;
+}
+
+.map-legend-item small {
+  color: var(--ui-muted, #5a6f78);
+  font: 500 10px/1.2 Inter, system-ui, sans-serif;
+}
+
+@media (max-width: 720px) {
+  .map-wayfinding-legend {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .map-wayfinding-legend summary {
+    min-height: 38px;
+    padding: 9px 11px;
+  }
+
+  .map-wayfinding-legend-body {
+    min-width: 205px;
+  }
+}
