@@ -1,9 +1,18 @@
 (() => {
   const sprite = "assets/icons/wayfinding.svg";
   const mapPanel = document.querySelector(".map-panel");
+  let selectedMarkerId = null;
 
   function iconMarkup(name, className = "marker-icon") {
     return `<svg class="${className}" aria-hidden="true" focusable="false"><use href="${sprite}#icon-${name}"></use></svg>`;
+  }
+
+  function mixedLandscapeIcon(className = "marker-icon marker-icon-mixed") {
+    return `<svg class="${className}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M3.5 13.5 8.5 8l3.2 3.5 3.6-5 5.2 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M3.5 17c1.7-1.1 3.4-1.1 5.1 0s3.4 1.1 5.1 0 3.4-1.1 5.1 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      <path d="M5 20c1.5-.9 3-.9 4.5 0s3 .9 4.5 0 3-.9 4.5 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+    </svg>`;
   }
 
   function placeSpaceType(launch) {
@@ -25,7 +34,7 @@
       return `<span class="map-pin map-pin-land" aria-hidden="true"><span class="map-pin-face">${iconMarkup("park")}</span></span>`;
     }
     if (type === "mixed") {
-      return `<span class="map-pin map-pin-mixed" aria-hidden="true"><span class="map-pin-face map-pin-face-mixed">${iconMarkup("water", "marker-icon marker-icon-water")}${iconMarkup("park", "marker-icon marker-icon-land")}</span></span>`;
+      return `<span class="map-pin map-pin-mixed" aria-hidden="true"><span class="map-pin-face">${mixedLandscapeIcon()}</span></span>`;
     }
     return `<span class="map-pin map-pin-water" aria-hidden="true"><span class="map-pin-face">${iconMarkup("water")}</span></span>`;
   }
@@ -99,6 +108,15 @@
     };
   }
 
+  function updateSelectedMarker() {
+    state.markers.forEach((marker, id) => {
+      const element = marker.getElement?.();
+      const pin = element?.querySelector?.(".map-pin");
+      if (!pin) return;
+      pin.classList.toggle("is-selected", id === selectedMarkerId);
+    });
+  }
+
   if (typeof renderMarkers === "function") {
     renderMarkers = function wayfindingRenderMarkers(launches) {
       markerLayer.clearLayers();
@@ -110,9 +128,9 @@
           icon: L.divIcon({
             className: "",
             html: markerMarkup(launch),
-            iconSize: [30, 38],
-            iconAnchor: [15, 38],
-            popupAnchor: [0, -35],
+            iconSize: [30, 40],
+            iconAnchor: [15, 40],
+            popupAnchor: [0, -36],
           }),
           title: `${launch.name} — ${placeTypeLabel(launch)}`,
         }).bindPopup(`
@@ -122,10 +140,17 @@
           <p class="popup-detail">Best time: ${escapeHtml(launch.bestTime || "Conditions vary")}</p>
         `);
 
-        marker.on("click", () => openLaunchDetail(launch.id, { focusMap: false }));
+        marker.on("click", () => {
+          selectedMarkerId = launch.id;
+          updateSelectedMarker();
+          openLaunchDetail(launch.id, { focusMap: false });
+        });
+        marker.on("add", updateSelectedMarker);
         marker.addTo(markerLayer);
         state.markers.set(launch.id, marker);
       }
+
+      updateSelectedMarker();
     };
   }
 
@@ -139,15 +164,15 @@
       <div class="map-wayfinding-legend-body" aria-label="Map marker legend">
         <div class="map-legend-item">
           <span class="legend-pin map-pin-water"><span class="map-pin-face">${iconMarkup("water", "marker-icon")}</span></span>
-          <span><strong>Water</strong><small>Blue pin + waves</small></span>
+          <span><strong>Water</strong><small>Blue space · waves</small></span>
         </div>
         <div class="map-legend-item">
           <span class="legend-pin map-pin-land"><span class="map-pin-face">${iconMarkup("park", "marker-icon")}</span></span>
-          <span><strong>Land</strong><small>Green pin + tree</small></span>
+          <span><strong>Land</strong><small>Green space · tree</small></span>
         </div>
         <div class="map-legend-item">
-          <span class="legend-pin map-pin-mixed"><span class="map-pin-face map-pin-face-mixed">${iconMarkup("water", "marker-icon marker-icon-water")}${iconMarkup("park", "marker-icon marker-icon-land")}</span></span>
-          <span><strong>Water + land</strong><small>Blue/green pin + both symbols</small></span>
+          <span class="legend-pin map-pin-mixed"><span class="map-pin-face">${mixedLandscapeIcon("marker-icon marker-icon-mixed")}</span></span>
+          <span><strong>Water + land</strong><small>Blue/green · landscape</small></span>
         </div>
       </div>
     `;
