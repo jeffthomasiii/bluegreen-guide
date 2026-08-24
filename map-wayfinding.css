@@ -1,84 +1,94 @@
-/* Map-first wayfinding markers: shape + icon + color, never color alone. */
+/* Familiar map pins that carry BlueGreen wayfinding through color + icon. */
 
-.launch-marker,
-.legend-marker {
+.map-pin,
+.legend-pin {
   position: relative;
-  display: grid;
-  place-items: center;
-  border: 2px solid #fff;
-  box-shadow: 0 4px 10px rgba(15, 79, 103, 0.22);
+  display: block;
+  filter: drop-shadow(0 3px 5px rgba(15, 79, 103, 0.22));
 }
 
-.launch-marker {
-  width: 42px;
-  height: 42px;
-}
-
-.legend-marker {
+.map-pin {
   width: 30px;
-  height: 30px;
-  box-shadow: none;
+  height: 38px;
 }
 
-.launch-marker .marker-icon,
-.legend-marker .marker-icon {
+.legend-pin {
   width: 22px;
-  height: 22px;
+  height: 28px;
+  filter: none;
+}
+
+.map-pin::before,
+.legend-pin::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 8px 0;
+  border: 2px solid #fff;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  transform-origin: 50% 50%;
+  background: var(--ui-blue, #176f8f);
+}
+
+.legend-pin::before {
+  inset-bottom: 6px;
+  border-width: 1.5px;
+}
+
+.map-pin-land::before,
+.legend-pin.map-pin-land::before {
+  background: var(--ui-green, #6f8f63);
+}
+
+.map-pin-mixed::before,
+.legend-pin.map-pin-mixed::before {
+  background: linear-gradient(135deg, var(--ui-blue, #176f8f) 0 50%, var(--ui-green, #6f8f63) 50% 100%);
+}
+
+.map-pin-face {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  z-index: 1;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-50%);
+  color: #fff;
+}
+
+.legend-pin .map-pin-face {
+  top: 4px;
+  width: 15px;
+  height: 15px;
+}
+
+.map-pin .marker-icon {
+  width: 15px;
+  height: 15px;
   fill: none;
   color: currentColor;
 }
 
-.legend-marker .marker-icon {
-  width: 16px;
-  height: 16px;
+.legend-pin .marker-icon {
+  width: 11px;
+  height: 11px;
 }
 
-.launch-marker.marker-water,
-.legend-marker.marker-water {
-  border-radius: 50%;
-  background: var(--ui-blue, #176f8f);
-  color: #fff;
+.map-pin-face-mixed {
+  gap: 0;
 }
 
-.launch-marker.marker-land,
-.legend-marker.marker-land {
-  border-radius: 8px;
-  background: var(--ui-green, #6f8f63);
-  color: #fff;
+.map-pin-face-mixed .marker-icon {
+  width: 10px;
+  height: 10px;
 }
 
-.launch-marker.marker-mixed,
-.legend-marker.marker-mixed {
-  border-radius: 8px;
-  background: var(--ui-green, #6f8f63);
-  color: #fff;
-}
-
-.marker-mixed-water {
-  display: grid;
-  width: 29px;
-  height: 29px;
-  place-items: center;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  background: var(--ui-blue, #176f8f);
-  color: #fff;
-}
-
-.legend-marker .marker-mixed-water {
-  width: 20px;
-  height: 20px;
-  border-width: 1.5px;
-}
-
-.marker-mixed-water .marker-icon {
-  width: 17px;
-  height: 17px;
-}
-
-.legend-marker .marker-mixed-water .marker-icon {
-  width: 12px;
-  height: 12px;
+.legend-pin .map-pin-face-mixed .marker-icon {
+  width: 7px;
+  height: 7px;
 }
 
 .map-wayfinding-legend {
@@ -106,7 +116,7 @@
 
 .map-wayfinding-legend-body {
   display: grid;
-  gap: 8px;
+  gap: 9px;
   min-width: 220px;
   border-top: 1px solid var(--ui-line, #c9dce4);
   padding: 10px 12px 12px;
@@ -114,7 +124,7 @@
 
 .map-legend-item {
   display: grid;
-  grid-template-columns: 34px minmax(0, 1fr);
+  grid-template-columns: 28px minmax(0, 1fr);
   align-items: center;
   gap: 9px;
 }
