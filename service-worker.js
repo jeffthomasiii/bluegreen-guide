@@ -1,4 +1,4 @@
-const CACHE_NAME = "bgg-v1.2-shell-v13";
+const CACHE_NAME = "bgg-v1.2-shell-v14";
 
 const APP_SHELL = [
   "./",

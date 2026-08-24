@@ -22,12 +22,12 @@
   function markerMarkup(launch) {
     const type = placeSpaceType(launch);
     if (type === "green") {
-      return `<span class="launch-marker marker-land" aria-hidden="true">${iconMarkup("park")}</span>`;
+      return `<span class="map-pin map-pin-land" aria-hidden="true"><span class="map-pin-face">${iconMarkup("park")}</span></span>`;
     }
     if (type === "mixed") {
-      return `<span class="launch-marker marker-mixed" aria-hidden="true"><span class="marker-mixed-water">${iconMarkup("water")}</span></span>`;
+      return `<span class="map-pin map-pin-mixed" aria-hidden="true"><span class="map-pin-face map-pin-face-mixed">${iconMarkup("water", "marker-icon marker-icon-water")}${iconMarkup("park", "marker-icon marker-icon-land")}</span></span>`;
     }
-    return `<span class="launch-marker marker-water" aria-hidden="true">${iconMarkup("water")}</span>`;
+    return `<span class="map-pin map-pin-water" aria-hidden="true"><span class="map-pin-face">${iconMarkup("water")}</span></span>`;
   }
 
   function searchableText(launch) {
@@ -110,9 +110,9 @@
           icon: L.divIcon({
             className: "",
             html: markerMarkup(launch),
-            iconSize: [42, 42],
-            iconAnchor: [21, 21],
-            popupAnchor: [0, -22],
+            iconSize: [30, 38],
+            iconAnchor: [15, 38],
+            popupAnchor: [0, -35],
           }),
           title: `${launch.name} — ${placeTypeLabel(launch)}`,
         }).bindPopup(`
@@ -138,16 +138,16 @@
       <summary>Map key</summary>
       <div class="map-wayfinding-legend-body" aria-label="Map marker legend">
         <div class="map-legend-item">
-          <span class="legend-marker marker-water">${iconMarkup("water", "marker-icon")}</span>
-          <span><strong>Water</strong><small>Blue circle</small></span>
+          <span class="legend-pin map-pin-water"><span class="map-pin-face">${iconMarkup("water", "marker-icon")}</span></span>
+          <span><strong>Water</strong><small>Blue pin + waves</small></span>
         </div>
         <div class="map-legend-item">
-          <span class="legend-marker marker-land">${iconMarkup("park", "marker-icon")}</span>
-          <span><strong>Land</strong><small>Green square</small></span>
+          <span class="legend-pin map-pin-land"><span class="map-pin-face">${iconMarkup("park", "marker-icon")}</span></span>
+          <span><strong>Land</strong><small>Green pin + tree</small></span>
         </div>
         <div class="map-legend-item">
-          <span class="legend-marker marker-mixed"><span class="marker-mixed-water">${iconMarkup("water", "marker-icon")}</span></span>
-          <span><strong>Water + land</strong><small>Combined shapes</small></span>
+          <span class="legend-pin map-pin-mixed"><span class="map-pin-face map-pin-face-mixed">${iconMarkup("water", "marker-icon marker-icon-water")}${iconMarkup("park", "marker-icon marker-icon-land")}</span></span>
+          <span><strong>Water + land</strong><small>Blue/green pin + both symbols</small></span>
         </div>
       </div>
     `;
