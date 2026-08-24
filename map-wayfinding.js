@@ -1,17 +1,23 @@
 (() => {
-  const sprite = "assets/icons/wayfinding.svg";
   const mapPanel = document.querySelector(".map-panel");
   let selectedMarkerId = null;
 
-  function iconMarkup(name, className = "marker-icon") {
-    return `<svg class="${className}" aria-hidden="true" focusable="false"><use href="${sprite}#icon-${name}"></use></svg>`;
+  function waterIcon(className = "marker-icon") {
+    return `<svg class="${className}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M3 8c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 13c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+    </svg>`;
+  }
+
+  function landIcon(className = "marker-icon") {
+    return `<svg class="${className}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 2.8 7.2 9.3h2.5l-4 5.7h4.8v5.2h3V15h4.8l-4-5.7h2.5L12 2.8Z" fill="currentColor" />
+    </svg>`;
   }
 
   function mixedLandscapeIcon(className = "marker-icon marker-icon-mixed") {
     return `<svg class="${className}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d="M3.5 13.5 8.5 8l3.2 3.5 3.6-5 5.2 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M3.5 17c1.7-1.1 3.4-1.1 5.1 0s3.4 1.1 5.1 0 3.4-1.1 5.1 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-      <path d="M5 20c1.5-.9 3-.9 4.5 0s3 .9 4.5 0 3-.9 4.5 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      <path d="m3.2 13.3 5.1-5.4 3.1 3.2 3.9-5 5.5 7.2H3.2Z" fill="currentColor" />
+      <path d="M3.5 16.7c1.7-1.1 3.4-1.1 5.1 0s3.4 1.1 5.1 0 3.4-1.1 5.1 0M5 20c1.5-.9 3-.9 4.5 0s3 .9 4.5 0 3-.9 4.5 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
     </svg>`;
   }
 
@@ -31,12 +37,12 @@
   function markerMarkup(launch) {
     const type = placeSpaceType(launch);
     if (type === "green") {
-      return `<span class="map-pin map-pin-land" aria-hidden="true"><span class="map-pin-face">${iconMarkup("park")}</span></span>`;
+      return `<span class="map-pin map-pin-land" aria-hidden="true"><span class="map-pin-face">${landIcon()}</span></span>`;
     }
     if (type === "mixed") {
       return `<span class="map-pin map-pin-mixed" aria-hidden="true"><span class="map-pin-face">${mixedLandscapeIcon()}</span></span>`;
     }
-    return `<span class="map-pin map-pin-water" aria-hidden="true"><span class="map-pin-face">${iconMarkup("water")}</span></span>`;
+    return `<span class="map-pin map-pin-water" aria-hidden="true"><span class="map-pin-face">${waterIcon()}</span></span>`;
   }
 
   function searchableText(launch) {
@@ -163,15 +169,15 @@
       <summary>Map key</summary>
       <div class="map-wayfinding-legend-body" aria-label="Map marker legend">
         <div class="map-legend-item">
-          <span class="legend-pin map-pin-water"><span class="map-pin-face">${iconMarkup("water", "marker-icon")}</span></span>
+          <span class="legend-pin map-pin-water"><span class="map-pin-face">${waterIcon()}</span></span>
           <span><strong>Water</strong><small>Blue space · waves</small></span>
         </div>
         <div class="map-legend-item">
-          <span class="legend-pin map-pin-land"><span class="map-pin-face">${iconMarkup("park", "marker-icon")}</span></span>
+          <span class="legend-pin map-pin-land"><span class="map-pin-face">${landIcon()}</span></span>
           <span><strong>Land</strong><small>Green space · tree</small></span>
         </div>
         <div class="map-legend-item">
-          <span class="legend-pin map-pin-mixed"><span class="map-pin-face">${mixedLandscapeIcon("marker-icon marker-icon-mixed")}</span></span>
+          <span class="legend-pin map-pin-mixed"><span class="map-pin-face">${mixedLandscapeIcon()}</span></span>
           <span><strong>Water + land</strong><small>Blue/green · landscape</small></span>
         </div>
       </div>
