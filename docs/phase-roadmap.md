@@ -36,9 +36,7 @@ Phase 1 is closed as a working proof of concept. Ongoing source checks, field ve
 
 ### Post-v1.1.0 Maintenance — Launch Suitability Profile Complete
 
-The Launch Suitability Profile maintenance enhancement was completed and merged on 2026-08-14. The runtime map now contains 59 launch records, including separate Crown Point, De Anza Cove, and Sail Bay launch points within Mission Bay while retaining Mission Bay as the broader destination entry.
-
-The profile adds:
+The Launch Suitability Profile maintenance enhancement was completed and merged on 2026-08-14. It introduced separate Mission Bay launch records and added:
 
 - SUP Suitability
 - Wind Sensitivity
@@ -49,36 +47,54 @@ The profile adds:
 
 Difficulty and Best Time remain separate planning signals. The legacy numeric Popularity value is retained internally during migration but is no longer presented as a positive star rating. Typical Use and Crowd Sensitivity communicate crowding more directly.
 
-The implementation was validated through repository checks and a manual spot review of familiar real-world locations. For the sampled locations, SUP Suitability, Staging Space, and Assessment Confidence aligned with known on-the-ground experience. This supports the current methodology as a useful POC planning framework; it does not replace official-source verification or imply complete field verification across all 59 records.
+These fields are curated planning guidance. They do not represent live wind, weather, tides, visitor counts, safety guarantees, or official agency ratings. See [Launch Suitability Profile](launch-suitability/) and [Data Model](data-model.md#paddle-suitability-profile).
 
-These fields are curated planning guidance. They do not represent live wind, weather, tides, visitor counts, safety guarantees, or official agency ratings. See [Launch Suitability Profile](launch-suitability/) and [Data Model](data-model.md#launch-suitability-profile).
+## v1.2: Mobile/PWA Field-Test Build — Current
 
-## v1.2: Mobile Readiness and PWA — In Progress
+v1.2 prepares the existing Phase 1 proof of concept for real phone and on-site use without reopening Phase 2 or introducing a framework, database, account system, or production backend.
 
-v1.2 improves the existing Phase 1 proof of concept for real phone use without reopening Phase 2 or introducing a new framework, database, account system, or production backend.
+Completed/current v1.2 scope includes:
 
-### Initial scope
+- Progressive Web App metadata and installability
+- Lightweight service worker for app-shell resilience
+- Map tiles, external sources, and changing network resources remain network-driven rather than implying full offline map support
+- Mobile Explore, Map, and Nearby navigation
+- Mobile search/filter sheets and compact map-first controls
+- Responsive filter wrapping and touch-friendly controls
+- Preserved search, collections, geolocation, place details, and validation
+- Generalized base place data in `data/places.json`
+- A deliberately small green/mixed field-test pilot
+- Water and Land discovery filters, with mixed places discoverable through both
+- Current runtime validation resolving 89 unique active places
+- Custom public domain and branded alpha/testing entry routes
 
-- Add Progressive Web App metadata and installability
-- Add a lightweight service worker for app-shell resilience
-- Keep map tiles, live network resources, and external source content network-driven rather than implying full offline map support
-- Refine the phone layout from a stacked responsive page toward a map-first app experience
-- Add mobile navigation or mobile sheets only where they simplify field use
-- Preserve existing search, filters, collections, geolocation, place details, validation, and canonical data workflow
-- Review accessibility, touch targets, safe-area behavior, and install-state behavior on mobile
-- Field-test common tasks on a phone before considering native app packaging
+### Current field-test pilot
+
+The field-test layer contains 10 records: four mixed blue/green destinations and six green-space destinations. One record, Diamond Valley Lake, overlays the existing stable-ID place rather than creating a duplicate, so the pilot contributes nine net-new runtime places.
+
+This pilot tests whether the current BlueGreen architecture, taxonomy, wayfinding, mobile UX, and place model work beyond paddle-only discovery. It is maintenance/validation work, not the start of Phase 2.
+
+Field testing should focus on:
+
+- Mobile usability in real outdoor planning contexts
+- Water/Land/mixed discovery semantics
+- Search and filter usefulness
+- Practical visitor, launch, shoreline, and trail-access marker placement
+- Place-card and detail clarity
+- Launch Suitability usefulness for paddle-relevant places
+- Source and verification wording
+- Representative imagery and photography gaps
+- Defects or confusing interactions that should be corrected before expanding scope
 
 ### Explicitly out of scope for v1.2
 
-- Phase 2 structured-place-data expansion
+- Phase 2 structured-place-data expansion across the full dataset
 - Accounts or cloud-synced favorites
 - Community features
 - Live weather, wind, tide, or water-quality integrations
 - AI recommendations
 - React, React Native, or another framework rewrite
 - Capacitor/App Store packaging before the PWA/mobile UX is proven
-
-The preferred progression is PWA foundation first, then mobile UX refinement, then field testing. A later native-app proof can reuse the working web application if store distribution becomes useful.
 
 ## Phase 2: Structured Place Details — On Hold
 
@@ -96,9 +112,9 @@ When resumed, begin with a limited pilot using existing places and normalized fi
 - Official links
 - Last verified date
 
-The Launch Suitability Profile does not reopen Phase 2. It is a completed maintenance improvement to the existing launch-discovery experience.
+The Launch Suitability Profile and current green/mixed field-test pilot do not reopen Phase 2. They are maintenance improvements used to validate the existing architecture and identify what the structured place model actually needs.
 
-Do not expand into accounts, community features, live conditions, AI, or a framework rewrite as part of the pilot.
+Do not expand into accounts, community features, live conditions, AI, or a framework rewrite as part of the Phase 2 pilot.
 
 ## Phase 3: Live Conditions and Trip Planning
 
@@ -115,7 +131,7 @@ Potential integrations:
 
 Live conditions will supplement—not replace—the existing curated planning guidance. Best Time and Wind Sensitivity describe general place characteristics or planning context, while current weather, wind, tides, forecasts, and advisories will be presented as a separate live-data layer.
 
-Conditions are planning aids, not safety guarantees. See [Data Model](data-model.md#later-data-layers) for the separation between place data, curated guidance, live data, environmental context, and derived insights.
+Conditions are planning aids, not safety guarantees.
 
 ## Phase 3.5: Environmental Intelligence
 
