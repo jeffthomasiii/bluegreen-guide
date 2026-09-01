@@ -1,4 +1,4 @@
-const CACHE_NAME = "bgg-v1.2-shell-v17";
+const CACHE_NAME = "bgg-v1.2-shell-v18";
 
 const APP_SHELL = [
   "./",
@@ -36,9 +36,7 @@ const APP_SHELL = [
 ];
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL))
-  );
+  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));
   self.skipWaiting();
 });
 
@@ -59,6 +57,14 @@ self.addEventListener("fetch", (event) => {
 
   // Keep map tiles, fonts, source links, and other third-party data network-driven.
   if (url.origin !== self.location.origin) return;
+
+  // Public documentation changes independently from the offline app shell.
+  // Do not let cache-first PWA assets leave docs HTML and CSS out of sync.
+  const scopePath = new URL(self.registration.scope).pathname;
+  const relativePath = url.pathname.startsWith(scopePath)
+    ? url.pathname.slice(scopePath.length)
+    : url.pathname.replace(/^\//, "");
+  if (relativePath === "docs" || relativePath.startsWith("docs/")) return;
 
   if (request.mode === "navigate") {
     event.respondWith(

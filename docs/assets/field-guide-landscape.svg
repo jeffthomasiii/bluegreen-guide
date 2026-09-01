@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">BlueGreen Guide landscape illustration</title>
+  <desc id="desc">Calm water, mountain silhouettes, shoreline trees, and a small paddler in the distance.</desc>
+  <rect width="1200" height="520" fill="#eef6f8"/>
+  <path d="M0 250 155 115l120 110 120-92 155 126 100-83 150 124 140-96 260 136V0H0Z" fill="#dceff5"/>
+  <path d="M0 286 120 196l84 55 94-70 108 85 96-56 116 82 108-66 118 73 104-54 152 74v111H0Z" fill="#c9dce4"/>
+  <path d="M0 330c115-36 215-25 315 5 99 30 184 33 273 5 109-35 211-30 306 6 102 39 202 37 306 3v171H0Z" fill="#dceff5"/>
+  <path d="M0 378c145-19 251-8 337 17 112 32 210 34 312 7 110-29 214-25 317 7 78 24 156 27 234 12v99H0Z" fill="#176f8f" opacity=".17"/>
+  <path d="M0 410c158-13 267 0 358 23 113 29 225 28 334 2 110-26 216-25 318 2 75 20 138 25 190 20v63H0Z" fill="#176f8f" opacity=".24"/>
+  <path d="M900 230c38 42 67 95 80 160h220V232c-48-16-91-18-129-4-26 9-51 11-75 7-33-6-65-8-96-5Z" fill="#6f8f63" opacity=".65"/>
+  <g fill="#4f7047">
+    <path d="m1010 232 18 45h-11l16 34h-18l18 41h-47l18-41h-18l16-34h-11z"/>
+    <path d="m1080 214 20 50h-12l17 38h-19l20 46h-52l20-46h-19l17-38h-12z"/>
+    <path d="m1148 244 16 39h-10l14 31h-16l17 38h-43l16-38h-15l14-31h-10z"/>
+  </g>
+  <g transform="translate(586 374)">
+    <path d="M-26 9c20-8 43-8 66 0-21 9-43 9-66 0Z" fill="#0f4f67"/>
+    <circle cx="7" cy="-13" r="5" fill="#10252e"/>
+    <path d="M7-8 2 5M7-7l14 10M3-1l-15 11" stroke="#10252e" stroke-width="4" stroke-linecap="round"/>
+    <path d="m-18 18 58-24" stroke="#5a6f78" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>

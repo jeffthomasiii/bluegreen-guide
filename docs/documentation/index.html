@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Structured BlueGreen Guide product documentation." />
+<title>BlueGreen Guide Documentation</title>
+<link rel="stylesheet" href="../modern-docs.css" />
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+<a class="brand" href="../"><img src="../../assets/brand/bluegreen-guide-logo-primary-transparent.svg" alt="BlueGreen Guide — Discover Better Outdoors" /><span class="product-label">Documentation</span></a>
+<div class="docs-header-actions">
+<label class="header-search"><svg aria-hidden="true"><use href="../assets/documentation-icons.svg#icon-search"></use></svg><input id="docs-search" type="search" placeholder="Search docs…" aria-label="Search documentation topics" /></label>
+<a class="button" href="../../">Open App ↗</a>
+</div>
+</header>
+<details class="mobile-topic-menu"><summary>Documentation topics</summary><div class="mobile-topic-links"><a href="./">Overview</a><a href="../quick-start/">Quick Start</a><a href="map/">Map</a><a href="search/">Search</a><a href="filters/">Filters</a><a href="collections/">Collections</a><a href="place-details/">Place Details</a><a href="verification-sources/">Verification &amp; Sources</a><a href="safety/">Safety</a><a href="../field-guide/">Field Guide</a><a href="../help/">Help</a></div></details>
+<div class="docs-layout">
+<aside class="sidebar" aria-label="Documentation topics">
+<h3>Get started</h3><a class="active" href="./">Overview</a><a href="../quick-start/">Quick Start</a>
+<h3>Using BlueGreen Guide</h3><a href="map/">Explore the map</a><a href="search/">Search</a><a href="filters/">Filters</a><a href="collections/">Collections</a>
+<h3>Understand places</h3><a href="place-details/">Place Details</a><a href="verification-sources/">Verification &amp; Sources</a>
+<h3>More</h3><a href="../blue-and-green-spaces/">Blue + Green</a><a href="safety/">Safety</a><a href="../field-guide/">Field Guide</a><a href="../help/">Help</a>
+<div class="sidebar-safety"><strong>Check before you go</strong><p>Conditions and access can change. BlueGreen Guide is a planning aid, not a safety guarantee.</p><p><a href="safety/">Safety guidance →</a></p></div>
+</aside>
+<main class="docs-main">
+<p class="eyebrow">Field Guide</p>
+<h1>Find your way outdoors.</h1>
+<p class="lead">BlueGreen Guide helps you discover and compare curated outdoor places, understand practical place information, and see what still needs verification before you go.</p>
+<img class="docs-overview-shot" src="../screenshots/placeholders/home-screen-desktop.png" alt="BlueGreen Guide desktop interface" />
+
+<h2 class="hub-title">Start here</h2>
+<div class="start-grid" id="start-grid">
+<article class="start-card" data-keywords="explore map markers browse nearby"><span class="icon"><svg aria-hidden="true"><use href="../assets/documentation-icons.svg#icon-map"></use></svg></span><h2>Explore the map</h2><p>Browse places visually and understand the map controls and markers.</p><a href="map/">Learn how →</a></article>
+<article class="start-card" data-keywords="find search place region activity amenity"><span class="icon land"><svg aria-hidden="true"><use href="../assets/documentation-icons.svg#icon-search"></use></svg></span><h2>Find a place</h2><p>Search by place, region, activity, water type, amenity, and descriptive text.</p><a href="search/">Learn how →</a></article>
+<article class="start-card" data-keywords="understand details verification sources place"><span class="icon neutral"><svg aria-hidden="true"><use href="../assets/documentation-icons.svg#icon-details"></use></svg></span><h2>Understand details</h2><p>Review practical place information, verification notes, and source links.</p><a href="place-details/">Learn how →</a></article>
+</div>
+
+<h2 class="hub-title">Popular topics</h2>
+<div class="popular-grid" id="popular-grid">
+<a class="popular-link" data-keywords="map markers pan zoom fit bounds" href="map/"><svg aria-hidden="true"><use href="../assets/documentation-icons.svg#icon-map"></use></svg><span><strong>Using the map</strong><span>Pan, zoom, select markers, and work with the current map area.</span></span></a>
+<a class="popular-link" data-keywords="filters skill activity difficulty region" href="filters/"><svg aria-hidden="true"><use href="../assets/documentation-icons.svg#icon-filter"></use></svg><span><strong>Use filters</strong><span>Narrow results by region, skill, activity, and difficulty.</span></span></a>
+<a class="popular-link" data-keywords="details place information photo source" href="place-details/"><svg aria-hidden="true"><use href="../assets/documentation-icons.svg#icon-details"></use></svg><span><strong>Place details</strong><span>Understand the fuller information shown for a place.</span></span></a>
+<a class="popular-link" data-keywords="search find name region activity amenity" href="search/"><svg aria-hidden="true"><use href="../assets/documentation-icons.svg#icon-search"></use></svg><span><strong>Search for places</strong><span>Find places using names, regions, activities, amenities, and more.</span></span></a>
+<a class="popular-link" data-keywords="collections curated beginner family calm harbor scenic" href="collections/"><svg aria-hidden="true"><use href="../assets/documentation-icons.svg#icon-collection"></use></svg><span><strong>Collections</strong><span>Use curated groups as quick starting points for common needs.</span></span></a>
+<a class="popular-link" data-keywords="verification sources official needs verification confidence" href="verification-sources/"><svg aria-hidden="true"><use href="../assets/documentation-icons.svg#icon-verify"></use></svg><span><strong>Verification &amp; sources</strong><span>See what has been checked and what still needs confirmation.</span></span></a>
+</div>
+<p class="docs-empty" id="docs-empty" hidden>No matching documentation topics found. Try a broader term such as “map,” “filter,” “place,” or “verification.”</p>
+</main>
+</div>
+<footer class="footer"><span>BlueGreen Guide Documentation</span><span><a href="../">Guide</a> · <a href="../field-guide/">Field Guide</a> · <a href="../help/">Help</a></span></footer>
+</div>
+<script>
+(() => {
+  const input = document.getElementById('docs-search');
+  const items = [...document.querySelectorAll('#start-grid [data-keywords], #popular-grid [data-keywords]')];
+  const empty = document.getElementById('docs-empty');
+  if (!input || !empty) return;
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    let visible = 0;
+    items.forEach((item) => {
+      const haystack = `${item.textContent} ${item.dataset.keywords || ''}`.toLowerCase();
+      const match = !q || haystack.includes(q);
+      item.hidden = !match;
+      if (match) visible += 1;
+    });
+    empty.hidden = visible !== 0;
+  });
+})();
+</script>
+</body>
+</html>
