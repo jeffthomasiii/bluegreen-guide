@@ -3,573 +3,113 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="BlueGreen Guide field guide and user manual for the curated outdoor launch map."
-    />
-
+    <meta name="description" content="BlueGreen Guide field guide and user manual for the current blue-space, green-space, and mixed-place field-test build." />
     <title>BlueGreen Guide Field Guide &amp; User Manual</title>
-
     <link rel="stylesheet" href="../brand-docs.css" />
   </head>
-
   <body>
     <main class="wrap">
       <header class="site-header">
-        <a href="../../" aria-label="Back to BlueGreen Guide app">
-          <img
-            class="site-logo"
-            src="../../assets/brand/bluegreen-guide-logo-primary-transparent.svg"
-            alt="BlueGreen Guide — Discover Better Outdoors"
-          />
-        </a>
-
-        <nav class="site-nav" aria-label="User guide navigation">
-          <a class="button secondary" href="../">Documentation Home</a>
-          <a class="button" href="../../">Back to App</a>
-        </nav>
+        <a href="../../" aria-label="Back to BlueGreen Guide app"><img class="site-logo" src="../../assets/brand/bluegreen-guide-logo-primary-transparent.svg" alt="BlueGreen Guide — Discover Better Outdoors" /></a>
+        <nav class="site-nav" aria-label="User guide navigation"><a class="button secondary" href="../">Documentation Home</a><a class="button" href="../../">Back to App</a></nav>
       </header>
 
       <section class="hero">
         <p class="eyebrow">Field Guide &amp; User Manual</p>
-
         <h1>How to use BlueGreen Guide</h1>
-
-        <p>
-          A practical guide to navigating the curated launch map, search,
-          filters, collections, cards, details, ratings, and verification notes.
-        </p>
-
-        <div class="actions">
-          <a class="button" href="../../">Open the App</a>
-          <a class="button secondary" href="../">Documentation Home</a>
-        </div>
+        <p>A practical guide to the current field-test build: map-first discovery, Water and Land wayfinding, mobile navigation, search, filters, collections, place details, Launch Suitability guidance, and verification notes.</p>
+        <div class="actions"><a class="button" href="../../">Open the App</a><a class="button secondary" href="../quick-start/">Quick Start</a></div>
       </section>
 
       <section class="wayfinding-strip" aria-label="Wayfinding legend">
-        <article class="wayfinding-card water">
-          <span class="symbol" aria-hidden="true">
-            <svg class="doc-icon">
-              <use href="../../assets/icons/wayfinding.svg#icon-water"></use>
-            </svg>
-          </span>
-
-          <span>
-            <strong>Blue = water</strong>
-            <span>
-              Launches, lakes, rivers, bays, beaches, and paddling
-            </span>
-          </span>
-        </article>
-
-        <article class="wayfinding-card land">
-          <span class="symbol" aria-hidden="true">
-            <svg class="doc-icon">
-              <use href="../../assets/icons/wayfinding.svg#icon-park"></use>
-            </svg>
-          </span>
-
-          <span>
-            <strong>Green = land</strong>
-            <span>
-              Parks, trails, forests, campgrounds, and gardens
-            </span>
-          </span>
-        </article>
-
-        <article class="wayfinding-card neutral">
-          <span class="symbol" aria-hidden="true">
-            <svg class="doc-icon">
-              <use href="../../assets/icons/wayfinding.svg#icon-parking"></use>
-            </svg>
-          </span>
-
-          <span>
-            <strong>Neutral = universal</strong>
-            <span>
-              Parking, restrooms, accessibility, rentals, and attributes
-            </span>
-          </span>
-        </article>
+        <article class="wayfinding-card water"><span class="symbol" aria-hidden="true"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-water"></use></svg></span><span><strong>Blue = water</strong><span>Launches, lakes, rivers, bays, beaches, harbors, and water activities</span></span></article>
+        <article class="wayfinding-card land"><span class="symbol" aria-hidden="true"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-park"></use></svg></span><span><strong>Green = land</strong><span>Parks, reserves, trails, gardens, forests, campgrounds, and land activities</span></span></article>
+        <article class="wayfinding-card neutral"><span class="symbol" aria-hidden="true"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-parking"></use></svg></span><span><strong>Neutral = universal</strong><span>Parking, restrooms, accessibility, rentals, scenic value, and other shared attributes</span></span></article>
       </section>
 
-      <div class="note safety">
-        <strong>Safety note:</strong>
-        BlueGreen Guide is a planning aid, not a safety service. Always review
-        official sources, current conditions, access information, and local
-        advisories before going.
+      <div class="note safety"><strong>Safety note:</strong> BlueGreen Guide is a planning aid, not a safety service. Always review official sources, current conditions, access information, and local advisories before going.</div>
+
+      <h2 id="current-build">Current field-test build</h2>
+      <p class="section-intro">The current v1.2 field-test runtime resolves 89 active places. Most are still part of the original water/paddle discovery use case, with a deliberately small green/mixed pilot added to test the broader BlueGreen model. Mixed destinations intentionally participate in both Water and Land discovery.</p>
+
+      <h2 id="desktop">Desktop and tablet</h2>
+      <p class="section-intro">On larger screens, the map remains the central discovery surface while search, filters, collections, results, and place details sit alongside it. Use the map and list together: narrow the results, inspect markers, and open details without treating any single label as a guarantee.</p>
+      <img class="screen screen-full" src="../screenshots/placeholders/home-screen-desktop.png" alt="BlueGreen Guide desktop home screen" />
+
+      <h2 id="mobile">Mobile navigation</h2>
+      <div class="chip-row"><span class="chip neutral">Explore</span><span class="chip water">Map</span><span class="chip neutral">Nearby</span></div>
+      <div class="grid">
+        <article class="card"><h3>Explore</h3><p>Use search, Water/Land discovery, curated collections, and additional filters to build a useful shortlist. Controls wrap for small screens rather than requiring horizontal scrolling.</p></article>
+        <article class="card"><h3>Map</h3><p>Use the interactive map and compact map tools to understand where the current results are located. Search and filter access remains available from the map workflow.</p></article>
+        <article class="card"><h3>Nearby</h3><p>Use browser geolocation when you want to orient discovery around your current area. Location permission and accuracy vary by browser and device.</p></article>
       </div>
 
-      <h2 id="home">Home screen</h2>
-
-      <div class="chip-row">
-        <span class="chip water">
-          <svg class="doc-icon">
-            <use href="../../assets/icons/wayfinding.svg#icon-map"></use>
-          </svg>
-          Map-first
-        </span>
-
-        <span class="chip neutral">
-          <svg class="doc-icon">
-            <use href="../../assets/icons/wayfinding.svg#icon-filter"></use>
-          </svg>
-          Search
-        </span>
-
-        <span class="chip neutral">
-          <svg class="doc-icon">
-            <use href="../../assets/icons/wayfinding.svg#icon-filter"></use>
-          </svg>
-          Filters
-        </span>
-
-        <span class="chip water">
-          <svg class="doc-icon">
-            <use href="../../assets/icons/wayfinding.svg#icon-paddle"></use>
-          </svg>
-          Launch cards
-        </span>
-      </div>
-
-      <p class="section-intro">
-        The home screen combines search, filters, curated collections, result
-        cards, and an interactive map. The map remains the central discovery
-        tool while the sidebar helps narrow the current list.
-      </p>
-
-      <img
-        class="screen screen-full"
-        src="../screenshots/placeholders/home-screen-desktop.png"
-        alt="BlueGreen Guide desktop home screen"
-      />
+      <h2 id="water-land">Water, Land, and mixed places</h2>
+      <p class="section-intro"><strong>Water</strong> is for water-centered places and activities. <strong>Land</strong> is for land-centered places and activities. <strong>Mixed</strong> is not a new brand color; it describes places with meaningful blue-space and green-space characteristics. Mixed places can appear in either relevant discovery filter.</p>
+      <div class="note"><strong>Color is not the only meaning:</strong> BlueGreen Guide also uses labels, icon shapes, and place/activity names so the interface remains understandable without relying on color alone.</div>
 
       <h2 id="collections">Curated collections</h2>
-
-      <div class="chip-row">
-        <span class="chip neutral">
-          <svg class="doc-icon">
-            <use href="../../assets/icons/wayfinding.svg#icon-beginner"></use>
-          </svg>
-          Beginner Favorites
-        </span>
-
-        <span class="chip neutral">
-          <svg class="doc-icon">
-            <use href="../../assets/icons/wayfinding.svg#icon-family"></use>
-          </svg>
-          Family Friendly
-        </span>
-
-        <span class="chip water">
-          <svg class="doc-icon">
-            <use href="../../assets/icons/wayfinding.svg#icon-water"></use>
-          </svg>
-          Calm Water
-        </span>
-
-        <span class="chip water">
-          <svg class="doc-icon">
-            <use href="../../assets/icons/wayfinding.svg#icon-marina"></use>
-          </svg>
-          Harbor Paddles
-        </span>
-
-        <span class="chip neutral">
-          <svg class="doc-icon">
-            <use href="../../assets/icons/wayfinding.svg#icon-scenic"></use>
-          </svg>
-          Scenic Views
-        </span>
-      </div>
-
-      <p class="section-intro">
-        Collections provide a quick starting point for common needs. Selecting
-        one filters the map and result list. Clear the collection to return to
-        the full launch map.
-      </p>
+      <div class="chip-row"><span class="chip neutral">Beginner Favorites</span><span class="chip neutral">Family Friendly</span><span class="chip water">Calm Water</span><span class="chip water">Harbor Paddles</span><span class="chip neutral">Scenic Views</span></div>
+      <p class="section-intro">Collections are editorial shortlists based on explicit place IDs. Selecting one filters the current results. Collections can be combined with search and applicable filters.</p>
 
       <h2 id="map">Explore the map</h2>
-
-      <div class="chip-row">
-        <span class="chip water">
-          <svg class="doc-icon">
-            <use href="../../assets/icons/wayfinding.svg#icon-water"></use>
-          </svg>
-          Blue circle = water place
-        </span>
-
-        <span class="chip land">
-          <svg class="doc-icon">
-            <use href="../../assets/icons/wayfinding.svg#icon-park"></use>
-          </svg>
-          Green square = land place
-        </span>
-
-        <span class="chip neutral">
-          <svg class="doc-icon">
-            <use href="../../assets/icons/wayfinding.svg#icon-parking"></use>
-          </svg>
-          Outline = universal
-        </span>
-      </div>
-
-      <p class="section-intro">
-        Drag to pan, zoom in and out, select markers, use
-        <strong>Fit all places</strong> to reset the view, or show only launch
-        points inside the current map area.
-      </p>
-
-      <img
-        class="screen screen-medium"
-        src="../screenshots/placeholders/map-marker-popup.png"
-        alt="Map marker and launch popup"
-      />
+      <p class="section-intro">Pan and zoom, select markers, fit all places when needed, or filter around the visible map area. Blue markers communicate water semantics and green markers communicate land semantics. Mixed destinations use the appropriate blue/green semantics rather than a separate arbitrary color.</p>
+      <img class="screen screen-medium" src="../screenshots/placeholders/map-marker-popup.png" alt="BlueGreen Guide map marker and place popup" />
 
       <h2 id="search">Search</h2>
-
-      <p class="section-intro">
-        Search by place, region, activity, water type, amenity, water body, tag,
-        or descriptive text. Examples include Newport, Dana Point Harbor,
-        beginner, rentals, scenic, or calm water.
-      </p>
-
-      <img
-        class="screen screen-narrow"
-        src="../screenshots/placeholders/search-results-desktop.png"
-        alt="Filtered BlueGreen Guide search results"
-      />
+      <p class="section-intro">Search uses place names, aliases, regions, water bodies, taxonomy, activities, amenities, tags, descriptions, and paddle-suitability values where relevant. The same search should help whether you know a place name or only know the kind of experience you want.</p>
 
       <h2 id="filters">Filters</h2>
+      <p class="section-intro">Water/Land discovery is the broad environment-level filter. Paddle-relevant places also retain region, skill, water-activity, and maximum-difficulty filters. These can be combined with search and curated collections.</p>
+      <div class="note"><strong>Why some fields are paddle-specific:</strong> BlueGreen Guide began with paddleboarding and kayaking. The green-space pilot is intentionally small, so land places are not forced to carry paddle-only fields simply to fit the older model.</div>
 
-      <p class="section-intro">
-        Filter by region, skill, water activity, and maximum difficulty. Filters
-        can be combined with search and curated collections to create a smaller
-        planning list.
-      </p>
+      <h2 id="cards">Place cards</h2>
+      <p class="section-intro">Place cards summarize the most useful information available for a record. Paddle-relevant cards may prioritize SUP Suitability, Difficulty, Wind Sensitivity, Typical Use, Staging Space, activities, amenities, and verification status. Green-space cards focus on the place and land-relevant information available in the field-test record.</p>
+      <p>The legacy numeric Popularity field may still exist internally during migration, but it is not the preferred user-facing crowd signal. <strong>Typical Use</strong> and <strong>Crowd Sensitivity</strong> communicate that planning context more directly.</p>
+      <img class="screen screen-narrow" src="../screenshots/placeholders/launch-card-desktop.png" alt="BlueGreen Guide place card" />
 
-      <img
-        class="screen screen-narrow"
-        src="../screenshots/placeholders/filters-desktop.png"
-        alt="BlueGreen Guide search filters"
-      />
+      <h2 id="details">Place details</h2>
+      <p class="section-intro">Open a place detail view for the fuller description, relevant planning fields, image information, source links, environment context, verification notes, and Launch Suitability fields where the place is paddle-relevant.</p>
+      <img class="screen screen-narrow" src="../screenshots/placeholders/launch-detail-desktop.png" alt="BlueGreen Guide place detail panel" />
 
-      <h2 id="cards">Launch cards</h2>
-
-      <div class="chip-row">
-        <span class="chip water">
-          <svg class="doc-icon">
-            <use href="../../assets/icons/wayfinding.svg#icon-paddle"></use>
-          </svg>
-          Activities
-        </span>
-
-        <span class="chip neutral">
-          <svg class="doc-icon">
-            <use href="../../assets/icons/wayfinding.svg#icon-parking"></use>
-          </svg>
-          Amenities
-        </span>
-
-        <span class="chip neutral">
-          <svg class="doc-icon">
-            <use href="../../assets/icons/wayfinding.svg#icon-alert"></use>
-          </svg>
-          Verification
-        </span>
-      </div>
-
-      <p class="section-intro">
-        Launch cards summarize skill level, water type, difficulty, popularity,
-        best general time, activities, amenities, and verification status.
-        These are quick planning summaries, not guarantees about current
-        conditions.
-      </p>
-
-      <p>
-        See
-        <a href="#understanding-launch-ratings">
-          Understanding Launch Ratings
-        </a>
-        for details about how these planning fields should be interpreted.
-      </p>
-
-      <img
-        class="screen screen-narrow"
-        src="../screenshots/placeholders/launch-card-desktop.png"
-        alt="BlueGreen Guide launch card"
-      />
-
-      <h2 id="details">Launch details</h2>
-
-      <p class="section-intro">
-        Open a place detail panel to review the fuller description, general
-        planning fields, representative photo information, source links,
-        water-body context, and verification notes.
-      </p>
-
-      <img
-        class="screen screen-narrow"
-        src="../screenshots/placeholders/launch-detail-desktop.png"
-        alt="BlueGreen Guide launch detail panel"
-      />
-
-      <section
-        id="understanding-launch-ratings"
-        class="guide-section"
-        aria-labelledby="launch-ratings-heading"
-      >
-        <h2 id="launch-ratings-heading">Understanding launch ratings</h2>
-
-        <p>
-          BlueGreen Guide includes several fields that help compare launch
-          locations. These values are curated planning guidance rather than
-          precise measurements, live conditions, or safety guarantees.
-        </p>
-
-        <h3 id="best-time">Best Time</h3>
-
-        <p>
-          <strong>Best Time</strong> represents the time of day generally
-          considered most suitable for paddling based on the typical
-          characteristics of the location. It may reflect common patterns such
-          as calmer mornings, wind exposure, general water behavior, or the
-          overall paddling experience.
-        </p>
-
-        <p>
-          Best Time is a
-          <strong>general planning recommendation</strong>, not a live
-          conditions indicator. Future versions of BlueGreen Guide will
-          supplement this guidance with current weather, wind, tide, forecast,
-          and environmental information. Best Time will continue to describe
-          the location's typical or generally preferred paddling window.
-        </p>
-
-        <p>
-          Always review current weather, water conditions, access information,
-          and official advisories before your trip.
-        </p>
-
-        <h3 id="skill-level">Skill Level</h3>
-
-        <p>
-          <strong>Skill Level</strong> indicates the paddling experience
-          generally recommended for using the location under typical
-          conditions. It may consider open-water exposure, distance from shore,
-          wave or wake exposure, launch complexity, navigation demands, and the
-          amount of judgment normally required.
-        </p>
-
-        <p>
-          Skill Level describes the location. It does not measure an
-          individual's ability, fitness, equipment, confidence, or
-          preparedness.
-        </p>
-
-        <h3 id="difficulty">Difficulty</h3>
-
-        <p>
-          <strong>Difficulty</strong> is a comparative rating that helps
-          distinguish generally easier launch experiences from more demanding
-          ones. It may consider launch access, expected paddling effort,
-          exposure, boat traffic, wind sensitivity, water movement, and overall
-          complexity.
-        </p>
-
-        <p>
-          Difficulty is <strong>not a safety rating</strong>. A lower-rated
-          location may still become unsuitable because of changing weather,
-          water, access, equipment, or personal circumstances.
-        </p>
-
-        <h3 id="popularity">Popularity</h3>
-
-        <p>
-          <strong>Popularity</strong> is a relative estimate of how recognized
-          or commonly used a location appears to be. It may draw from public
-          recreation information, inclusion in official or recognized guides,
-          general local familiarity, and evidence of recreational use.
-        </p>
-
-        <p>
-          Popularity is not based on verified attendance totals, real-time crowd
-          levels, or live visitor counts.
-        </p>
-
-        <p class="guide-see-also">
-          <strong>See also:</strong>
-          <a href="#verification-and-sources">
-            Verification and Sources
-          </a>
-          and the
-          <a
-            href="../roadmap/#phase-3"
-          >
-            Phase Roadmap
-          </a>.
-        </p>
+      <section id="launch-suitability" class="guide-section" aria-labelledby="launch-suitability-heading">
+        <h2 id="launch-suitability-heading">Launch Suitability Profile</h2>
+        <p>The Launch Suitability Profile is a paddle-specific planning layer. It helps compare paddle-relevant places but is not a live-conditions system or safety score.</p>
+        <div class="grid">
+          <article class="card"><h3>SUP Suitability</h3><p>Overall recreational stand-up paddleboarding fit: Excellent, Good, Fair, or Challenging.</p></article>
+          <article class="card"><h3>Wind Sensitivity</h3><p>How strongly increasing wind can degrade the paddling experience. It is not current wind data.</p></article>
+          <article class="card"><h3>Typical Use</h3><p>A general low-to-very-high use signal. It is not a live visitor count.</p></article>
+          <article class="card"><h3>Crowd Sensitivity</h3><p>How much crowding can interfere with launching, staging, resting, or paddling.</p></article>
+          <article class="card"><h3>Staging Space</h3><p>Practical room for unloading, rigging, launching, exiting, and temporarily placing paddle equipment.</p></article>
+          <article class="card"><h3>Assessment Confidence</h3><p>Confidence in the curated suitability assessment. It is separate from factual place verification.</p></article>
+        </div>
+        <p>Difficulty, Skill Level, and Best Time remain separate planning signals. Always compare them with current conditions and your own experience, equipment, and comfort level.</p>
+        <p><a href="../launch-suitability/">Read the full Launch Suitability Profile guide</a>.</p>
       </section>
 
-      <section
-        id="verification-and-sources"
-        class="guide-section"
-        aria-labelledby="verification-heading"
-      >
+      <section id="verification-and-sources" class="guide-section" aria-labelledby="verification-heading">
         <h2 id="verification-heading">Verification and sources</h2>
-
-        <div class="chip-row">
-          <span class="chip neutral">
-            <svg class="doc-icon">
-              <use href="../../assets/icons/wayfinding.svg#icon-source"></use>
-            </svg>
-            Official source
-          </span>
-
-          <span class="chip neutral">
-            <svg class="doc-icon">
-              <use href="../../assets/icons/wayfinding.svg#icon-alert"></use>
-            </svg>
-            Needs verification
-          </span>
-
-          <span class="chip neutral">
-            <svg class="doc-icon">
-              <use href="../../assets/icons/wayfinding.svg#icon-clock"></use>
-            </svg>
-            Conditions vary
-          </span>
-        </div>
-
-        <p class="section-intro">
-          Information marked <strong>Needs Verification</strong> should be
-          confirmed through official park, harbor, marina, city, county, or
-          agency sources before use. Access, legal launch points, fees, parking,
-          tides, wind, water quality, closures, and hazards may change.
-        </p>
-
-        <section
-          id="why-needs-verification"
-          class="guide-subsection"
-          aria-labelledby="needs-verification-heading"
-        >
-          <h3 id="needs-verification-heading">
-            Why do so many places say “Needs Verification”?
-          </h3>
-
-          <p>
-            BlueGreen Guide intentionally favors transparency over assumptions.
-            Phase 1 is a curated proof of concept, and many launch points were
-            assembled from official agencies, maps, recognized recreation
-            sources, and other public information. However, an official source
-            may confirm only part of a record, and individual details may still
-            require manual review.
-          </p>
-
-          <p>
-            Access rules, parking, fees, hours, facilities, local regulations,
-            and other practical details can change. Rather than presenting
-            those details as fully confirmed, BlueGreen Guide uses
-            <strong>Needs Verification</strong> when one or more material fields
-            have not been individually checked against a current, reliable
-            source.
-          </p>
-
-          <p>
-            Ongoing maintenance will allow records to move toward
-            <strong>Verified</strong> as information is reviewed and a
-            verification date is recorded. Verification status reflects
-            confidence in the available place information—not the quality of
-            the launch or a guarantee that conditions are suitable.
-          </p>
-
-          <p class="guide-see-also">
-            <strong>See also:</strong>
-            <a href="#understanding-launch-ratings">
-              Understanding Launch Ratings
-            </a>
-            and the
-            <a href="../roadmap/">Phase Roadmap</a>.
-          </p>
-        </section>
-
-        <img
-          class="screen screen-narrow"
-          src="../screenshots/placeholders/verification-sources.png"
-          alt="Verification status and source links"
-        />
+        <div class="chip-row"><span class="chip neutral">Official source</span><span class="chip neutral">Needs verification</span><span class="chip neutral">Conditions vary</span></div>
+        <p class="section-intro">An official source link does not automatically verify every field. Access, legal activity areas, parking, fees, facilities, closures, water quality, fire restrictions, trail conditions, weather, wind, tides, and hazards may require separate current checks.</p>
+        <h3>Why do so many places say “Needs verification”?</h3>
+        <p>BlueGreen Guide intentionally favors transparency over assumptions. A managing agency may confirm that a park, launch, lake, trail system, or facility exists without confirming every operational detail in the record. The app keeps material uncertainty visible instead of converting partial evidence into a fully verified claim.</p>
+        <p><strong>Verification status</strong> describes confidence in available place facts. It does not mean a destination is good, bad, safe, or suitable for every person.</p>
       </section>
 
-      <h2 id="mobile">Mobile use</h2>
+      <h2 id="photos">Photography</h2>
+      <p class="section-intro">Existing paddle records may use credited representative photography. New green/mixed field-test photography still needs verification in some cases. Treat image labels and credits literally: a representative image is not proof that the photo shows the exact access point or current conditions.</p>
 
-      <p class="section-intro">
-        On mobile, the interface stacks the brand header, wayfinding key,
-        collections, filters, result summary, map, and cards. Keep the map
-        available for geographic context, then open details and official
-        sources before leaving.
-      </p>
+      <h2 id="coordinates">Map coordinates</h2>
+      <p class="section-intro">Markers aim to represent practical visitor, launch, shoreline-access, or trail-access locations where that can be reasonably supported. When an exact GPS point is inferred rather than published by an official source, it should be documented as representative rather than presented as an official waypoint.</p>
 
-      <div class="mobile-screens">
-        <img
-          class="screen screen-mobile"
-          src="../screenshots/placeholders/mobile-home.png"
-          alt="BlueGreen Guide mobile home screen"
-        />
-
-        <img
-          class="screen screen-mobile"
-          src="../screenshots/placeholders/mobile-detail.png"
-          alt="BlueGreen Guide mobile detail view"
-        />
-      </div>
-
-      <h2 id="faq">Frequently asked questions</h2>
-
+      <h2 id="before-you-go">Before you go</h2>
       <div class="grid">
-        <div class="card">
-          <h3>Is it nationwide?</h3>
-          <p>
-            Not yet. The current release is a curated proof of concept focused
-            on selected launch points in California, Nevada, and Arizona.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Are conditions live?</h3>
-          <p>
-            Not in the current release. Future planning phases may add weather,
-            wind, tide, water-quality, and other changing conditions as separate
-            data layers.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Does Beginner mean safe?</h3>
-          <p>
-            No. Beginner describes the location's general planning
-            classification under typical conditions. Conditions vary, and
-            official sources should always be checked.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Are the photos always the actual place?</h3>
-          <p>
-            No. Current Phase 1 images may be credited representative
-            placeholders until verified location photography is available.
-          </p>
-        </div>
+        <article class="card"><h3>Confirm access</h3><p>Check current official access, parking, fees, hours, closures, permits, and local rules.</p></article>
+        <article class="card"><h3>Check conditions</h3><p>Review the current conditions relevant to your activity—weather, wind, tides, water quality, trail status, fire restrictions, or other advisories.</p></article>
+        <article class="card"><h3>Use your own judgment</h3><p>Consider experience, equipment, companions, mobility needs, and comfort level. BlueGreen Guide planning labels do not replace personal judgment or official guidance.</p></article>
       </div>
 
-      <footer class="footer">
-        <span>BlueGreen Guide Field Guide &amp; User Manual</span>
-
-        <span>
-          <a href="../">Documentation Home</a>
-          ·
-          <a href="../../">Back to App</a>
-        </span>
-      </footer>
+      <footer class="footer"><span>BlueGreen Guide Field Guide &amp; User Manual</span><span><a href="../">Documentation Home</a> · <a href="../quick-start/">Quick Start</a> · <a href="../roadmap/">Roadmap</a> · <a href="../../">Back to App</a></span></footer>
     </main>
   </body>
 </html>

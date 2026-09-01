@@ -2,13 +2,13 @@
 
 **Discover Better Outdoors**
 
-BlueGreen Guide is a static proof-of-concept outdoor discovery and wayfinding app for blue spaces and green spaces. It begins with paddleboarding and kayaking launch points, while the long-term vision is broader: helping people find, understand, and plan practical outdoor experiences across water and land.
+BlueGreen Guide is a static proof-of-concept outdoor discovery and wayfinding app for blue spaces and green spaces. It began with paddleboarding and kayaking launch points, while the long-term vision is broader: helping people find, understand, and plan practical outdoor experiences across water and land.
 
 Blue spaces include oceans, bays, rivers, lakes, reservoirs, lagoons, and harbors. Green spaces include parks, woods, gardens, trails, campgrounds, shoreline open space, and wildlife areas.
 
 ## Current Field-Test Build
 
-Phase 1 remains complete as a working proof of concept. The current field-test build adds a deliberately small green/mixed pilot so the BlueGreen product model can be tested on site before Phase 2 resumes.
+Phase 1 remains complete as a working proof of concept. The current **v1.2 field-test build** adds mobile/PWA readiness, the Launch Suitability Profile, generalized place data, and a deliberately small green/mixed pilot so the BlueGreen product model can be tested on site before Phase 2 resumes.
 
 Repository validation resolves **89 unique active runtime places**. The pre-pilot runtime contains 80 unique places. The field-test layer contains 10 records, but one of them, Diamond Valley Lake, intentionally updates an existing place by stable ID rather than creating a duplicate. The pilot therefore adds 9 net-new places and enriches 1 existing place.
 
@@ -23,6 +23,8 @@ The green/mixed pilot includes Lake Perris State Recreation Area, Yucaipa Region
 Current capabilities include:
 
 - Interactive OpenStreetMap and Leaflet map
+- Installable Progressive Web App shell with network-driven map tiles and external content
+- Mobile Explore, Map, and Nearby navigation with responsive sheets and controls
 - Search across place names, aliases, water bodies, taxonomy, amenities, activities, tags, descriptions, and launch-suitability values
 - Blue, green, and mixed place semantics
 - Water and Land mobile discovery filters; mixed places intentionally appear in either relevant filter
@@ -39,7 +41,7 @@ Current capabilities include:
 
 ## Phase Status
 
-Phase 1 remains closed as a **complete proof of concept**. This green-space field-test pilot is a maintenance/validation expansion intended to test the existing BlueGreen architecture, not the beginning of the larger Phase 2 structured-place-detail work.
+Phase 1 remains closed as a **complete proof of concept**. v1.2 is the current field-test/maintenance build and does not reopen Phase 1. The green-space field-test pilot is a maintenance/validation expansion intended to test the existing BlueGreen architecture, not the beginning of the larger Phase 2 structured-place-detail work.
 
 Most records remain marked **Needs verification**. Users should confirm current access, legal activity locations, parking, fees, closures, water quality, weather, wind, tides, vessel traffic, fire restrictions, trail conditions, and hazards through official sources before going.
 
@@ -116,12 +118,15 @@ py -m http.server 8080
 
 Then open `http://localhost:8080`.
 
-## GitHub Pages
+## Live Site
 
-The repository is configured for GitHub Pages from the `main` branch and repository root.
+GitHub Pages publishes from the `main` branch and repository root. The custom domain is the canonical public URL.
 
-- App: `https://jeffthomasiii.github.io/bluegreen-guide/`
-- Documentation: `https://jeffthomasiii.github.io/bluegreen-guide/docs/`
+- App: `https://bgg.justathoughtblog.org/`
+- Documentation: `https://bgg.justathoughtblog.org/docs/`
+- Alpha entry: `https://bgg.justathoughtblog.org/alpha/`
+
+The underlying GitHub Pages repository URL remains part of the hosting infrastructure but is not the preferred public-facing address.
 
 ## Project Structure
 
@@ -134,9 +139,14 @@ The repository is configured for GitHub Pages from the `main` branch and reposit
 ├── brand-refresh.css
 ├── ui-refresh.css
 ├── ui-responsive-fixes.css
+├── mobile-ux.css
+├── mobile-compact.css
+├── mobile-layout-polish.css
 ├── app.js
 ├── collections-ui.js
 ├── ui-refresh.js
+├── service-worker.js
+├── manifest.webmanifest
 ├── assets/
 │   ├── brand/
 │   └── icons/
@@ -161,6 +171,7 @@ The repository is configured for GitHub Pages from the `main` branch and reposit
 │   ├── release-notes/
 │   ├── roadmap/
 │   └── project reference Markdown
+├── alpha/
 ├── chatgpt-project/
 └── .github/
 ```
@@ -186,3 +197,5 @@ The repository is configured for GitHub Pages from the `main` branch and reposit
 - [Image Strategy](docs/image-strategy.md)
 - [Design System 2.0](docs/brand-guide.md)
 - [Wayfinding System](docs/wayfinding-system.md)
+- [Development Workflow](docs/development-workflow.md)
+- [Changelog](docs/changelog.md)
