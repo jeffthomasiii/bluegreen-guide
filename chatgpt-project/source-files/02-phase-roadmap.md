@@ -10,35 +10,17 @@ Brand semantics:
 - Green — land places and land activities
 - Neutral — amenities, services, and universal attributes
 
-The permanent brand identity represents water, land, discovery, and guidance without being tied to one activity.
-
 ## Phase 1: Curated Launch Map — Complete POC
 
 **Release:** v1.1.0
 
-Completed release scope:
+The v1.1.0 closeout contained 56 canonical launch records plus the map, search, filters, five curated collections, responsive place details, source-review information, Design System 2.0, public documentation, and lightweight validation.
 
-- Static HTML, CSS, and JavaScript app
-- Leaflet and OpenStreetMap
-- 56 canonical launch records at the v1.1.0 closeout
-- Search across names, aliases, regions, water bodies, taxonomy, activities, amenities, tags, and descriptions
-- Region, skill, activity, and difficulty filters
-- Five curated collections using explicit place IDs
-- Map-bounds filtering and geolocation
-- Launch cards and responsive place details
-- Representative credited images
-- Official source links, source-review metadata, and verification notes
-- Final Design System 2.0 implementation
-- Public HTML documentation
-- Canonical data workflow and lightweight validation
+The 56-place count is historical release context, not the current runtime total.
 
-Phase 1 is closed as a working proof of concept. Ongoing source checks, field verification, image replacement, defect correction, data refinement, and future clustering evaluation are maintenance rather than unfinished features.
+### Post-v1.1.0 — Launch Suitability Profile Complete
 
-### Post-v1.1.0 Maintenance — Launch Suitability Profile Complete
-
-The Launch Suitability Profile maintenance enhancement was completed and merged on 2026-08-14. The runtime map now contains 59 launch records, including separate Crown Point, De Anza Cove, and Sail Bay launch points within Mission Bay while retaining Mission Bay as the broader destination entry.
-
-The profile adds:
+Paddle-relevant places can use:
 
 - SUP Suitability
 - Wind Sensitivity
@@ -47,63 +29,42 @@ The profile adds:
 - Staging Space
 - Assessment Confidence
 
-Difficulty and Best Time remain separate planning signals. The legacy numeric Popularity value is retained internally during migration but is no longer presented as a positive star rating. Typical Use and Crowd Sensitivity communicate crowding more directly.
+Difficulty and Best Time remain separate planning signals. Legacy Popularity may remain internally but is not the preferred user-facing crowd signal.
 
-The implementation passed repository validation and received a manual spot review against familiar real-world locations. For the sampled places, SUP Suitability, Staging Space, and Assessment Confidence aligned with known on-the-ground experience. Treat this as a useful POC quality check, not as official verification or complete field validation across all records.
+## v1.2: Mobile/PWA Field-Test Build — Current
 
-These fields are curated planning guidance. They do not represent live wind, weather, tides, visitor counts, safety guarantees, or official agency ratings.
+Phase 1 remains complete. v1.2 prepares the proof of concept for phone and on-site testing without reopening Phase 2.
+
+Current scope includes:
+
+- Progressive Web App metadata and service-worker app shell
+- Explore, Map, and Nearby mobile navigation
+- Mobile search/filter sheets and compact map tools
+- Responsive filter wrapping and touch-oriented controls
+- Generalized `data/places.json` base data
+- Launch Suitability guidance for paddle-relevant places
+- Water/Land discovery and blue/green/mixed place semantics
+- A deliberately small 10-record green/mixed field-test layer
+- 89 unique active runtime places after stable-ID overlays
+- Custom domain `bgg.justathoughtblog.org` and branded alpha/testing entry routes
+
+Diamond Valley Lake intentionally overlays an existing stable-ID record, so the 10-record pilot contributes nine net-new runtime places.
+
+The pilot tests mobile usability, classification, wayfinding, marker placement, imagery, source wording, and practical planning value before broader structured-place expansion.
 
 ## Phase 2: Structured Place Details — On Hold
 
-When resumed, begin with a limited pilot using existing places and normalized fields for:
-
-- Entry or launch type
-- Access notes
-- Parking
-- Fees and permits
-- Restrooms
-- Rentals
-- Dog policy
-- Accessibility
-- Hazards
-- Official links
-- Last verified date
-
-The Launch Suitability Profile does not reopen Phase 2. It is a completed maintenance improvement to the existing launch-discovery experience.
+When resumed, begin with a limited pilot using existing places and normalized fields for access, parking, fees, restrooms, rentals, dog policy, accessibility, hazards, official links, and verification dates.
 
 Do not expand into accounts, community features, live conditions, AI, or a framework rewrite as part of the pilot.
 
 ## Phase 3: Live Conditions and Trip Planning
 
-Potential integrations:
-
-- Weather
-- Wind speed and direction
-- Tide information
-- NOAA marine forecast links
-- Water temperature
-- Sunrise and sunset
-- Seasonal access notes
-- Plain-language suitability guidance
-
-Live conditions will supplement—not replace—the existing curated planning guidance. Best Time and Wind Sensitivity describe general place characteristics or planning context, while current weather, wind, tides, forecasts, and advisories will be presented as a separate live-data layer.
-
-Conditions are planning aids, not safety guarantees.
+Potential integrations include weather, wind, tides, water temperature, sunrise/sunset, seasonal access notes, and plain-language suitability guidance. Keep live conditions separate from static place facts and curated guidance.
 
 ## Phase 3.5: Environmental Intelligence
 
-Potential features:
-
-- Climate normals and seasonal patterns
-- Typical morning and afternoon conditions
-- Water-quality advisories
-- Harmful algae bloom notices
-- Reservoir or lake-level context
-- Air quality, smoke, wildfire, and UV context
-- Seasonal closures
-- Best months to visit
-
-Keep permanent place facts, curated guidance, live conditions, environmental context, and derived insights structurally distinct.
+Potential features include climate normals, seasonal patterns, water-quality advisories, algae notices, lake-level context, air quality, smoke, wildfire, UV, seasonal closures, and best-month guidance.
 
 ## Phase 4: Community Layer
 
