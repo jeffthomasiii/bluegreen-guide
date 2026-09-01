@@ -2,74 +2,63 @@
 
 ## Current Architecture
 
-BlueGreen Guide remains a static GitHub Pages-friendly project using:
+BlueGreen Guide remains a static GitHub Pages-friendly project using HTML, CSS, browser JavaScript, Leaflet/OpenStreetMap, canonical JSON place data, a Progressive Web App shell, and small Node.js maintenance/validation scripts.
 
-- HTML
-- CSS
-- JavaScript
-- Leaflet and OpenStreetMap
-- JSON place data
-- Small Node.js maintenance and validation scripts
-
-Do not introduce a framework, database, account system, build platform, or production backend unless a later phase clearly requires it.
+Do not introduce a framework, database, account system, build platform, production backend, live-data layer, community layer, or AI feature unless a later phase explicitly requires it.
 
 ## Canonical Data Workflow
 
-The generalized place dataset now uses:
+Canonical place records currently live in three JSON layers:
 
 - `data/places.json` — authoritative base place records
-- `data/mission-bay-launch-points.json` — authoritative Mission Bay place-pilot records that replace the legacy aggregate Mission Bay record at runtime
-- `data/green-space-field-test.json` — authoritative 10-place green/mixed field-test supplement during on-site testing
+- `data/mission-bay-launch-points.json` — Mission Bay compatibility/pilot records
+- `data/green-space-field-test.json` — current 10-record green/mixed field-test supplement
 
-After editing canonical place data:
+After changing canonical place data:
 
 ```bash
 node scripts/build-place-data-js.js
 node scripts/validate-repo.js
 ```
 
-The build script generates `data/places.js` and refreshes the Mission Bay browser loader. `data/green-space-field-test.js` loads the field-test supplement. Do not edit generated/browser place files directly when the canonical JSON should be changed instead.
+Do not restore the retired `data/launch-points.json` / `data/launch-points.js` workflow.
 
-`data/launch-profile.js` enriches paddle-relevant records with suitability guidance. It must not create or own place records and must leave records with `paddleRelevant: false` unchanged.
+`data/launch-profile.js` enriches paddle-relevant places with Launch Suitability guidance and must not create or own place records.
 
-Curated collections are maintained in `data/collections.js`. Collection `placeIds` must reference existing runtime place IDs.
+Curated collections remain in `data/collections.js` and use explicit runtime place IDs.
 
-Repository validation resolves 89 active runtime places in the field-test branch: 79 existing active records after the legacy aggregate Mission Bay record is replaced plus four mixed and six green pilot records. A recent deployed-app screenshot displayed 80 places before the pilot; investigate that one-place cache/runtime difference rather than adding an unsupported record. Keller Trail / Greer Ranch remains outside the canonical dataset until the exact trailhead/access point can be better verified.
+Repository validation currently resolves 89 unique active runtime places. Diamond Valley Lake is a stable-ID overlay, so the 10-record green/mixed pilot contributes nine net-new places. Keller Trail / Greer Ranch remains outside the dataset pending better trailhead/access verification.
 
-### Coordinate Rule
+## Mobile/PWA Review
 
-Markers should represent a practical visitor, launch, shoreline-access, or trail-access area when that location can be reasonably supported rather than a broad centroid when a more useful access point is known.
+The current v1.2 field-test build includes:
 
-If an official source confirms a place but does not publish an exact GPS waypoint, document the limitation in `sourceNotes` and do not present the inferred coordinate as official. Use on-site testing to refine representative access coordinates where useful.
+- Explore, Map, and Nearby mobile navigation
+- Mobile search/filter sheets
+- Compact map tools
+- Responsive filter wrapping
+- PWA manifest and installability
+- Versioned service-worker app-shell caching
+
+Map tiles, official source pages, and other changing network resources remain network-driven. Do not describe BlueGreen Guide as fully offline.
+
+When app-shell assets change, review the service-worker cache version so field testers do not remain on stale UI.
 
 ## Local Review
 
-Start a local server from the repository root:
+Run a local server:
 
 ```bash
 python3 -m http.server 8080
 ```
 
-On Windows:
+Windows:
 
 ```powershell
 py -m http.server 8080
 ```
 
-Review:
-
-- Desktop layout
-- Tablet layout
-- Mobile layout
-- Map rendering and marker behavior
-- Blue, green, and mixed marker behavior
-- Water and Land discovery filters, including mixed places appearing in both relevant filters
-- Marker placement at practical visitor/launch/trail access locations
-- Search and filters
-- Curated collection counts and results
-- Place cards and details
-- Source links and verification wording
-- Documentation navigation and screenshots
+Review desktop, tablet, and mobile layouts; Explore/Map/Nearby behavior; blue/green/mixed markers; Water/Land discovery; search; paddle filters; curated collections; place cards/details; Launch Suitability; source links; verification wording; marker access locations; and documentation navigation.
 
 ## Validation
 
@@ -77,56 +66,41 @@ Run:
 
 ```bash
 node scripts/validate-repo.js
+git diff --check
 ```
 
-The script checks:
-
-- Valid canonical JSON layers
-- Required place fields
-- Unique IDs
-- Coordinate, difficulty, and legacy popularity ranges where applicable
-- Launch Suitability Profile enum values for paddle places
-- Green/mixed pilot composition
-- Keller/Greer exclusion pending verification
-- Collection IDs and place references
-- Browser/runtime data synchronization
-- Required script loading
-- Internal HTML links
-- Absence of public `.md` links from the HTML documentation site
-
-GitHub Actions runs the same validation on pushes and pull requests.
+GitHub Actions runs repository validation on pushes and pull requests.
 
 ## Documentation Rule
 
-Keep these layers synchronized:
+Keep synchronized:
 
-1. Public HTML documentation for app users
-2. Repository Markdown for maintainers
-3. ChatGPT project source files for future collaboration
+1. Public HTML documentation
+2. Repository Markdown
+3. ChatGPT project source files
 
 The root `README.md` is the authoritative repository status summary. `docs/phase-roadmap.md` is the detailed roadmap. `docs/changelog.md` is the release history.
 
+Preserve historical v1.1.0 counts and closeout details when they are clearly identified as historical; do not present them as the current runtime state.
+
 ## Safety and Data Rule
 
-Do not invent or overstate:
-
-- Legal access
-- Parking
-- Fees
-- Hours or closures
-- Restrooms or rentals
-- Tides or wind
-- Water quality
-- Hazards
-- Verified photography
-- Exact visitor, launch, or trail coordinates when only a general facility location is supported
+Do not invent or overstate legal access, parking, fees, hours/closures, restrooms/rentals, tides/wind, water quality, trail conditions, fire restrictions, hazards, verified photography, or exact access coordinates when only a general location is supported.
 
 Use `Unknown`, `Needs verification`, `Check official source`, or `Conditions vary` when material details remain uncertain.
 
-Official sources may establish place identity and general recreation without verifying every operational detail. Keep temporary closures and other changing conditions out of static place facts unless explicitly represented as a current/live layer.
+Keep static place facts, curated guidance, live conditions, environmental context, and derived insights distinct.
 
 ## Phase Discipline
 
-Phase 1 is complete as of v1.1.0. Phase 2 is on hold.
+Phase 1 is complete as of v1.1.0. v1.2 is the current mobile/PWA field-test and maintenance build. Phase 2 is on hold.
 
-The green-space field-test pilot is a maintenance/validation expansion of the existing proof of concept. Maintenance work may improve source links, verification, photography, accessibility, coordinates, taxonomy, and defects without reopening Phase 1 or expanding scope into live conditions, community features, accounts, or AI.
+The green/mixed pilot is intended to validate the existing architecture before larger structured-place expansion. Maintenance may improve source links, verification, photography, accessibility, coordinates, taxonomy, mobile UX, documentation, and defects without reopening Phase 1.
+
+## Public URLs
+
+Use the custom domain as the canonical public location:
+
+- App: `https://bgg.justathoughtblog.org/`
+- Documentation: `https://bgg.justathoughtblog.org/docs/`
+- Alpha: `https://bgg.justathoughtblog.org/alpha/`
