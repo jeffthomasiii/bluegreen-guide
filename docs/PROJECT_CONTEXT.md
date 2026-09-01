@@ -1,654 +1,234 @@
 # BlueGreen Guide Project Context
 
-> Repository inspected: 2026-07-28  
+> Current repository context refreshed: 2026-09-01  
 > Repository: `jeffthomasiii/bluegreen-guide`  
 > Default branch: `main`
->
-> Status labels used below:
->
-> - **Verified** — confirmed in the current repository.
-> - **Project decision** — established in project documentation and consistent with the repository.
-> - **Unverified** — not confirmable from the available repository access.
-> - **Inferred** — strongly suggested by the code but not manually reproduced.
 
-## 1. Project Purpose
+## 1. Product State
 
-### Problem being solved
+BlueGreen Guide is a static, map-first outdoor discovery and wayfinding proof of concept for blue spaces and green spaces.
 
-BlueGreen Guide reduces the friction between wanting to spend time outdoors and selecting a practical, suitable place.
+Phase 1 is complete. The current **v1.2 field-test build** extends that proof of concept with mobile/PWA readiness, Launch Suitability guidance for paddle-relevant places, generalized place data, and a deliberately small green/mixed pilot. Phase 2 remains on hold.
 
-The initial proof of concept helps users find paddleboarding and kayaking launch points and understand:
+Current repository validation resolves **89 unique active runtime places**. The green/mixed field-test layer contains 10 records but contributes nine net-new runtime places because Diamond Valley Lake intentionally overlays an existing stable-ID record.
 
-- Where a launch is located.
-- What type of water or setting it offers.
-- What experience level it may suit.
-- What amenities or planning notes are available.
-- Which facts still require an official-source check.
+The public app is served through the custom domain:
 
-### Intended users
+- App: `https://bgg.justathoughtblog.org/`
+- Documentation: `https://bgg.justathoughtblog.org/docs/`
+- Alpha: `https://bgg.justathoughtblog.org/alpha/`
 
-The current product serves people planning paddleboarding, kayaking, or canoe outings across the initial California, Nevada, and Arizona dataset.
+## 2. Product Purpose
 
-The longer-term audience includes people discovering both:
+BlueGreen Guide reduces the friction between wanting to spend time outdoors and choosing a practical place.
 
-- **Blue spaces:** oceans, bays, rivers, lakes, reservoirs, lagoons, and harbors.
-- **Green spaces:** parks, trails, gardens, woods, campgrounds, shoreline open space, and wildlife areas.
+It began with paddleboarding and kayaking launch discovery because practical information such as where to stage, launch, park, and what to verify can be difficult to find even when people know where paddling occurs.
 
-No narrower user personas are formally defined in the repository.
+The broader product direction includes:
 
-### Primary goals
+- **Blue spaces:** oceans, bays, rivers, lakes, reservoirs, lagoons, harbors, beaches, and other water-centered places.
+- **Green spaces:** parks, trails, gardens, woods, campgrounds, shoreline open space, reserves, and wildlife areas.
 
-- Provide map-first outdoor discovery.
-- Present practical, structured place information.
-- Support different skill and experience levels.
-- Be mobile-friendly and accessible.
-- Clearly distinguish verified facts from uncertain information.
-- Establish a data and brand foundation that can later expand beyond paddling.
-- Remain simple enough to maintain as a static proof of concept.
+The permanent brand identity represents water, land, discovery, and guidance rather than one activity.
 
-### Current non-goals
+## 3. Current Architecture
 
-The following are intentionally outside the completed Phase 1 scope:
+- HTML5
+- Plain CSS
+- Browser JavaScript
+- Leaflet 1.9.4
+- OpenStreetMap
+- Canonical JSON place data
+- Node.js maintenance/validation scripts
+- Progressive Web App manifest
+- Versioned service worker
+- GitHub Pages
+- GitHub Actions validation
+- No framework
+- No database
+- No production backend
+- No package manager or `package.json`
 
-- Production-grade architecture.
-- Accounts, authentication, or user profiles.
-- Favorites, reviews, ratings, or community submissions.
-- Payments or bookings.
-- Live weather, wind, tide, water-quality, or hazard integrations.
-- AI recommendations or natural-language trip planning.
-- A framework rewrite, database, or production backend.
+Do not introduce a framework, backend, database, account system, community layer, live-data layer, or AI feature unless the approved roadmap and user request require it.
 
-## 2. Architecture and Technology Choices
+## 4. Canonical Data
 
-### Technology stack
+Canonical place layers:
 
-| Area | Current choice | Status |
-|---|---|---|
-| Markup | HTML5 | Verified |
-| Styling | Plain CSS | Verified |
-| Application logic | Browser JavaScript | Verified |
-| Mapping | Leaflet 1.9.4 | Verified |
-| Basemap | OpenStreetMap tiles | Verified |
-| Canonical data | JSON | Verified |
-| Browser data delivery | Generated JavaScript global | Verified |
-| Maintenance scripts | Node.js/CommonJS | Verified |
-| Hosting | GitHub Pages | Repository-documented |
-| CI | GitHub Actions with Node 22 | Verified |
-| Database | None | Verified |
-| Backend/API | None | Verified |
-| Package manager | None; no `package.json` exists | Verified |
+- `data/places.json` — authoritative base place records
+- `data/mission-bay-launch-points.json` — Mission Bay compatibility/pilot records
+- `data/green-space-field-test.json` — current green/mixed field-test supplement
 
-### External runtime integrations
+Runtime/browser loaders:
 
-- Leaflet CSS and JavaScript from `unpkg.com`.
-- OpenStreetMap raster tiles.
-- Google Fonts:
-  - Cormorant Garamond.
-  - Inter.
-- Browser Geolocation API.
-- Wikimedia Commons representative-image URLs.
-- Creative Commons license and attribution links.
-- Official park, city, marina, agency, and facility source URLs stored in place data.
+- `data/places.js`
+- `data/mission-bay-launch-points.js`
+- `data/green-space-field-test.js`
 
-### Environment variables
+Other runtime data:
 
-None are currently required.
+- `data/launch-profile.js` — paddle-specific Launch Suitability enrichment only; it does not create or own place records
+- `data/collections.js` — curated collection definitions using explicit place IDs
 
-Do not introduce secrets or `.env` files into this static client application without an approved architecture change.
-
-### Major components
-
-#### `index.html`
-
-Defines the application shell, map container, filters, curated collections, result cards, detail panel, and script/style load order.
-
-Current JavaScript order:
-
-1. `data/launch-points.js`
-2. `data/collections.js`
-3. `app.js`
-4. `collections-ui.js`
-5. `ui-refresh.js`
-
-Do not casually reorder these files. `ui-refresh.js` depends on globals created by `app.js` and replaces some core functions at runtime.
-
-#### `app.js`
-
-Owns the main application state and baseline behavior:
-
-- Leaflet map and tile layer.
-- Marker layer.
-- Search and filters.
-- Map-bounds filtering.
-- Geolocation.
-- Result cards.
-- Place-detail rendering.
-- Source and verification presentation.
-- Representative-image fallback library.
-- HTML escaping helpers.
-
-#### `collections-ui.js`
-
-Renders curated collections and stores the active collection IDs in:
-
-```js
-window.BLUEGREEN_ACTIVE_COLLECTION_IDS
-````
-
-It triggers filtering by dispatching an `input` event on the search control.
-
-#### `ui-refresh.js`
-
-Applies Design System 2.0 presentation and enhanced behavior:
-
-* Adds wayfinding icons and category classes.
-* Expands searchable fields.
-* Adds collection filtering to `applyFilters`.
-* Replaces marker rendering with blue, green, and neutral semantics.
-* Decorates dynamically rendered content through `MutationObserver`.
-
-This runtime override pattern is functional but is technical debt.
-
-#### CSS layers
-
-The application currently loads:
-
-1. `styles.css`
-2. `design-system.css`
-3. `phase-1-expansion.css`
-4. `brand-refresh.css`
-5. `ui-refresh.css`
-6. `ui-responsive-fixes.css`
-
-Later files may intentionally override earlier rules. Preserve load order unless the styles are deliberately consolidated and regression-tested.
-
-#### Canonical data
-
-* `data/launch-points.json` — authoritative place records.
-* `data/launch-points.js` — generated browser copy; do not edit directly.
-* `data/collections.js` — curated collection definitions using exact `placeIds`.
-
-#### Maintenance scripts
-
-* `scripts/build-launch-data-js.js` — regenerates the browser data file.
-* `scripts/validate-repo.js` — validates data, collections, generated synchronization, scripts, and HTML links.
-* `scripts/consolidate-launch-data.js` — Phase 1 migration/closeout utility that rewrites canonical files and removes legacy layers. Do not run during routine maintenance.
-
-#### Documentation
-
-* Public HTML documentation under `docs/`.
-* Maintainer Markdown under `docs/`.
-* ChatGPT project references under `chatgpt-project/`.
-* Root `README.md` is the authoritative repository status summary.
-
-### Why these technologies were selected
-
-**Project decision:** The static architecture supports a low-complexity, GitHub Pages-friendly proof of concept with no deployment service, database, package installation, or secret management.
-
-Consequences:
-
-* The repository is easy to understand and publish.
-* Data changes remain reviewable as JSON.
-* Hosting costs and infrastructure requirements are minimal.
-* Complex live data, accounts, write operations, and personalized features cannot be added safely without a later architecture decision.
-
-## 3. Current Implemented State
-
-### Complete and working
-
-**Verified against repository:**
-
-* v1.1.0 Phase 1 proof of concept.
-* 56 canonical launch records.
-* Leaflet/OpenStreetMap map.
-* Search across names, aliases, regions, water bodies, activities, amenities, tags, descriptions, and wayfinding taxonomy.
-* Region, skill, activity, and maximum-difficulty filters.
-* Five curated collections using explicit place IDs.
-* Map-bounds filtering.
-* Browser geolocation.
-* Result cards and responsive place details.
-* Official-source links and source-review metadata.
-* Verification and uncertainty wording.
-* Credited representative images.
-* Responsive desktop, tablet, and mobile layouts.
-* Option B2 brand assets.
-* Blue, green, and neutral wayfinding semantics.
-* Public Quick Start, Field Guide, Release Notes, and Roadmap pages.
-* Canonical data-generation workflow.
-* GitHub Actions validation on pushes and pull requests to `main`.
-
-### Partially implemented or intentionally limited
-
-* Most place records remain `Needs verification`.
-* Representative images often depict a similar setting rather than the exact launch.
-* Ratings and `bestTime` are curated comparison guidance, not measured statistics or live conditions.
-* The current content remains primarily paddle-launch focused; broader green-space discovery is represented in the brand and taxonomy but is not the implemented dataset.
-* Automated verification covers structural data and links, not browser interaction, accessibility, visual regressions, or source truthfulness.
-* Design System 2.0 is applied through several cumulative CSS and JavaScript override layers rather than a consolidated component architecture.
-
-### Planned but not implemented
-
-#### Phase 2 — on hold
-
-A limited structured place-detail pilot may later add normalized fields for:
-
-* Entry or launch type.
-* Access notes.
-* Parking.
-* Fees and permits.
-* Restrooms.
-* Rentals.
-* Dog policy.
-* Accessibility.
-* Hazards.
-* Official links.
-* Last verified date.
-
-#### Later roadmap
-
-* Live weather, wind, tide, water temperature, and forecast context.
-* Environmental intelligence and advisories.
-* Community contributions.
-* Personalized or intelligent recommendations.
-* Routes, trip planning, clubs, outfitters, and broader blue/green discovery.
-
-These plans do not authorize implementation before the phase is explicitly resumed.
-
-### Branches, pull requests, and issues
-
-* Default branch: `main`.
-* No open pull requests were returned by the connected repository.
-* No open issues were returned by the connected repository.
-* Other branches, branch protection, and merge requirements were not verified.
-* v1.1.0 is documented as the current release; GitHub Release/tag state was not independently checked.
-
-## 4. Important Decisions and Rejected Alternatives
-
-### Static architecture instead of a framework/backend
-
-**Decision:** Continue with HTML, CSS, JavaScript, JSON, and GitHub Pages.
-
-**Reasoning:** It is the smallest architecture that proves the product, map, data model, and brand.
-
-**Rejected for the current phase:**
-
-* React, Vue, or another framework.
-* A database.
-* A production API.
-* Authentication.
-* A build platform.
-
-**Tradeoff:** Low operational complexity, but limited support for server-side features and increasingly difficult UI composition if override layers continue to grow.
-
-### Canonical JSON plus generated browser JavaScript
-
-**Decision:** Edit `data/launch-points.json` and generate `data/launch-points.js`.
-
-**Reasoning:** JSON remains the authoritative, tool-friendly source while the generated JavaScript supports direct static loading.
-
-**Rejected:** Editing two copies manually or relying only on runtime JSON fetching.
-
-**Tradeoff:** Every data edit requires regeneration and validation.
-
-### Explicit collection membership
-
-**Decision:** Curated collections use exact `placeIds`.
-
-**Reasoning:** Editorial collections remain stable and predictable.
-
-**Rejected:** Text-query-based collection membership.
-
-**Tradeoff:** Collection membership must be maintained manually when places change.
-
-### Two-layer brand identity
-
-**Decision:** Use the Option B2 landscape mark for the permanent brand and a separate wayfinding system for activities, places, amenities, and attributes.
-
-**Rejected:** An activity-specific logo containing a paddler, kayak, hiker, animal, or equipment.
-
-**Tradeoff:** More assets and governance are required, but the brand can expand beyond paddling.
-
-### Blue, green, and neutral semantics
-
-**Decision:**
-
-* Blue represents water places and activities.
-* Green represents land places and activities.
-* Neutral represents amenities and universal attributes.
-
-Color must be paired with labels, icons, or shapes.
-
-**Rejected:** Arbitrary category colors or assigning cross-environment attributes such as accessibility or dog-friendly to blue or green.
-
-### Safety-aware uncertainty
-
-**Decision:** Use `Unknown`, `Needs verification`, `Check official source`, or `Conditions vary` instead of presenting uncertain facts as confirmed.
-
-**Rejected:** Inferring access, fees, hazards, parking, water quality, or legal launch status from incomplete sources.
-
-**Tradeoff:** Some records feel less complete, but user trust and safety take priority.
-
-### Phase discipline
-
-**Decision:** Phase 1 is closed and Phase 2 is on hold.
-
-**Rejected for maintenance work:** Accounts, community features, live conditions, AI, and broad architecture changes.
-
-**Tradeoff:** Growth is slower, but maintenance remains focused and the proof of concept avoids premature complexity.
-
-### Separate future data layers
-
-**Decision:** Keep place facts, live conditions, environmental context, and derived guidance structurally distinct.
-
-**Reasoning:** These sources have different update frequencies, reliability, and safety implications.
-
-## 5. Known Bugs and Technical Debt
-
-### Most records remain unverified
-
-* **Type:** Known content limitation.
-* **Impact:** Users must independently confirm access and conditions.
-* **Cause:** An official link does not validate every field.
-* **Workaround:** Keep `Needs verification` and direct users to official sources.
-* **Priority:** High maintenance priority.
-
-### Representative imagery is often not location-specific
-
-* **Type:** Known content limitation.
-* **Impact:** Images may communicate the general setting rather than the exact launch.
-* **Cause:** Phase 1 used a small credited fallback library.
-* **Workaround:** Clearly display `Representative image`.
-* **Priority:** Medium.
-
-### JavaScript and CSS use cumulative override layers
-
-* **Type:** Technical debt.
-* **Impact:** Behavior and styling depend on load order; changes are harder to trace and regress.
-* **Cause:** Incremental Phase 1 and Design System upgrades.
-* **Workaround:** Preserve load order and manually test all major interactions.
-* **Priority:** Medium; do not perform a broad rewrite without approval.
-
-### Validation hard-codes 56 places and five collections
-
-* **Type:** Technical debt.
-* **Impact:** Legitimate dataset growth fails validation until the expected counts are changed.
-* **Cause:** Phase 1 closeout assertions.
-* **Workaround:** Update the expected counts intentionally when an approved dataset change occurs.
-* **Priority:** Medium before future expansion; low during maintenance-only work.
-
-### No automated browser, accessibility, unit, lint, or type tests
-
-* **Type:** Test coverage gap.
-* **Impact:** Interactive and visual regressions may pass CI.
-* **Cause:** Lightweight proof-of-concept scope.
-* **Workaround:** Perform the documented desktop, tablet, mobile, map, filter, detail, and documentation review.
-* **Priority:** Medium.
-
-### Geolocation marker may disappear after filtering
-
-* **Type:** Inferred bug; not manually reproduced.
-* **Impact:** The approximate-location marker is added to the same layer that `renderMarkers` clears.
-* **Suspected cause:** `markerLayer.clearLayers()` runs whenever filters are applied.
-* **Workaround:** Use geolocation after changing filters.
-* **Priority:** Low.
-
-### Runtime depends on third-party services
-
-* **Type:** Operational limitation.
-* **Impact:** Fonts, map tiles, Leaflet assets, and remote images require network access and their providers to remain available.
-* **Workaround:** None currently implemented.
-* **Priority:** Low for the proof of concept.
-
-## 6. Development and Deployment Commands
-
-### Prerequisites
-
-* Git.
-* Node.js 22 recommended because CI uses Node 22.
-* Python 3 for the documented local server.
-* A modern browser.
-* Internet access for maps, fonts, Leaflet CDN assets, and remote images.
-
-### Initial setup
+After editing canonical place JSON:
 
 ```bash
-git clone https://github.com/jeffthomasiii/bluegreen-guide.git
-cd bluegreen-guide
-node --version
-```
-
-There is no `package.json` and no package-install command.
-
-### Environment configuration
-
-No environment variables are required.
-
-No `.env` file is expected.
-
-### Local development
-
-macOS/Linux:
-
-```bash
-python3 -m http.server 8080
-```
-
-Windows PowerShell:
-
-```powershell
-py -m http.server 8080
-```
-
-Open:
-
-```text
-http://localhost:8080
-```
-
-The repository also states that `index.html` can be opened directly, but the local server is preferred.
-
-### Canonical data generation
-
-After changing `data/launch-points.json`:
-
-```bash
-node scripts/build-launch-data-js.js
+node scripts/build-place-data-js.js
 node scripts/validate-repo.js
 ```
 
-### Tests
+The retired `data/launch-points.json` / `data/launch-points.js` workflow is no longer current and must not be restored as the canonical maintenance path.
 
-There is no dedicated unit or browser test suite.
+## 5. Place Classification
 
-Required repository validation:
+Keep environment, place type, activity, amenities, and attributes separate.
 
-```bash
-node scripts/validate-repo.js
-```
+### `spaceType`
 
-Required manual review:
+- `blue` — water place or water-centered access point
+- `green` — land place or land-centered access point
+- `mixed` — meaningful blue-space and green-space characteristics
 
-* Desktop, tablet, and mobile layout.
-* Map rendering and marker behavior.
-* Search and every filter.
-* Collection counts and results.
-* Cards and place details.
-* Source links and verification wording.
-* Documentation links and screenshots.
+Mixed places intentionally qualify for both Water and Land discovery filters.
 
-### Linting and formatting
+Color is not the only source of meaning. BlueGreen Guide pairs color with recognizable icons, shapes, and labels.
 
-No linter or formatter is configured.
+## 6. Mobile/PWA State
 
-CI performs:
+v1.2 includes:
 
-```bash
-git diff --check
-```
+- Explore, Map, and Nearby mobile navigation
+- Mobile search/filter sheets
+- Compact map controls
+- Responsive filter wrapping
+- Touch-oriented layouts
+- PWA metadata and installability
+- Versioned service-worker app-shell caching
 
-Run it locally before submission:
+The app is not fully offline. Map tiles, official-source pages, and other changing external resources remain network-driven.
 
-```bash
-git diff --check
-```
+When shipped app-shell assets change, review the service-worker cache version so testers do not remain on stale UI.
 
-### Type checking
+## 7. Launch Suitability
 
-No type checker is configured.
+Paddle-relevant places may use:
 
-### Production build
+- SUP Suitability
+- Wind Sensitivity
+- Typical Use
+- Crowd Sensitivity
+- Staging Space
+- Assessment Confidence
 
-There is no application build step.
+Difficulty, Skill Level, and Best Time remain separate planning signals.
 
-The only generated build-like artifact is:
+Legacy numeric Popularity may remain internally during migration, but Typical Use and Crowd Sensitivity are the preferred user-facing crowd/use signals.
 
-```bash
-node scripts/build-launch-data-js.js
-```
+Launch Suitability fields are curated planning guidance, not live data, official ratings, or safety guarantees.
 
-Do not run `scripts/consolidate-launch-data.js` as a routine build command. It is a destructive Phase 1 migration utility.
+## 8. Green/Mixed Field-Test Pilot
 
-### Deployment
+The current pilot includes 10 records across mixed and green spaces. It is intentionally small.
 
-There is no deploy CLI command.
+Its purpose is to test whether the current architecture can support broader outdoor discovery without prematurely starting Phase 2.
 
-The repository documents GitHub Pages as publishing from:
+Field testing should evaluate:
 
-```text
-Branch: main
-Directory: repository root
-```
+- Mobile usability
+- Water/Land/mixed discovery semantics
+- Search and filters
+- Marker placement at practical visitor, launch, shoreline, or trail-access locations
+- Place-card and detail clarity
+- Launch Suitability usefulness where applicable
+- Source and verification wording
+- Representative photography and image gaps
+- Defects and confusing interactions
 
-Changes are deployed after they reach `main`.
+Keller Trail / Greer Ranch remains outside the dataset until a specific access/trailhead point can be better verified.
 
-**Unverified:** The Pages settings were not independently inspected through the connector.
+## 9. Verification and Safety
 
-### Database migrations or seeds
+Do not invent or overstate:
 
-Not applicable. The project has no database.
+- Legal access
+- Parking
+- Fees or permits
+- Hours or closures
+- Restrooms or rentals
+- Accessibility
+- Tides or wind
+- Water quality
+- Fire restrictions or trail conditions
+- Hazards
+- Verified photography
+- Exact access coordinates when only a general facility location is supported
 
-## 7. Immediate Next Three Tasks
+Use:
 
-### Task 1 — Complete a focused source-verification maintenance batch
+- `Unknown`
+- `Needs verification`
+- `Check official source`
+- `Conditions vary`
 
-**Objective**
+An official link does not automatically verify every field. Verification status describes confidence in available place facts, not whether a destination is safe or suitable.
 
-Improve the reliability of a small, explicitly selected group of existing launch records.
+## 10. Data-Layer Separation
 
-**Why next**
+Keep these distinct:
 
-Verification is the largest remaining content limitation and directly affects trust and safety.
+1. Static place facts
+2. Curated planning guidance
+3. Live/current conditions
+4. Environmental context
+5. Derived insights
 
-**Likely files**
+Do not embed temporary closures, current weather, current wind, current tides, or other changing conditions as permanent static place facts.
 
-* `data/launch-points.json`
-* `data/launch-points.js` — generated
-* `docs/source-verification.md` only if policy changes
-* Public documentation only when user-facing wording changes
+## 11. Design System 2.0
 
-**Acceptance criteria**
+Approved permanent identity: Option B2 landscape mark.
 
-* Each selected record uses the most specific available official source.
-* `sourceReviewDate` reflects review of source authority and relevance.
-* `lastVerified` is set only when material place facts were checked.
-* Unconfirmed details remain clearly labeled.
-* No access, parking, fee, amenity, hazard, water-quality, wind, or tide details are invented.
-* Generated data is synchronized.
-* `node scripts/validate-repo.js` passes.
-* `git diff --check` passes.
+Wayfinding semantics:
 
-**Dependencies and risks**
+- Blue — water places and water activities
+- Green — land places and land activities
+- Neutral — amenities, services, and universal attributes
+- Mixed — represented through relevant blue and green semantics, not a new arbitrary brand color
 
-* The repository does not identify which records should be verified first.
-* Official information may be incomplete or change frequently.
-* A source review must not be mistaken for full field verification.
+Core palette:
 
-### Task 2 — Replace representative imagery for a selected place batch
+- Primary blue `#176f8f`
+- Dark blue `#0f4f67`
+- Soft blue `#dceff5`
+- Green `#6f8f63`
+- Dark green `#4f7047`
+- Background `#eef6f8`
+- Panel `#fbfdff`
+- Text `#10252e`
+- Muted `#5a6f78`
+- Line `#c9dce4`
 
-**Objective**
+Use Inter for product UI and documentation. Use Cormorant Garamond sparingly for approved brand/editorial applications.
 
-Replace generic fallback images with confirmed location-specific photography where reuse rights are clear.
+## 12. Phase Discipline
 
-**Why next**
+- Phase 1: complete as of v1.1.0
+- v1.2: current mobile/PWA field-test and maintenance build
+- Phase 2: on hold
+- Later live conditions, environmental intelligence, community features, AI recommendations, and route/ecosystem work remain future roadmap phases
 
-The current labels are honest, but location-specific imagery would materially improve usefulness and credibility without expanding product scope.
+The historical v1.1.0 count of 56 places should remain preserved when describing that release, but it must not be presented as the current runtime total.
 
-**Likely files**
+## 13. Source-of-Truth Order
 
-* `data/launch-points.json`
-* `data/launch-points.js` — generated
-* `app.js` only if the fallback library itself changes
-* `assets/` if approved images are stored locally
-* `docs/image-strategy.md` only if policy changes
+When sources conflict:
 
-**Acceptance criteria**
+1. Current executable code and canonical data
+2. Root `README.md`
+3. `docs/phase-roadmap.md`
+4. `docs/data-model.md` and `docs/development-workflow.md`
+5. Other current repository documentation
+6. `chatgpt-project/` reference files
+7. Historical plans and conversation context
 
-* `photoStatus: location` is used only for an image confirmed to show the named place.
-* Each image includes usable alt text, credit, source URL, license, and license URL where applicable.
-* No uncredited copyrighted images are introduced.
-* Representative images continue to be labeled accurately.
-* Images render in cards and details at desktop and mobile sizes.
-* Generated data and validation pass.
-
-**Dependencies and risks**
-
-* Image reuse rights and hotlinking policies must be checked.
-* The repository does not specify whether future images should be remote or locally hosted.
-* Exact launch-point photos may not be publicly reusable.
-
-### Task 3 — Perform an accessibility and responsive regression pass
-
-**Objective**
-
-Identify and fix high-value defects without changing the application architecture or reopening Phase 1.
-
-**Why next**
-
-CI does not test browser interaction, keyboard behavior, focus handling, responsive layout, or visual regressions.
-
-**Likely files**
-
-* `index.html`
-* `app.js`
-* `collections-ui.js`
-* `ui-refresh.js`
-* `styles.css`
-* `design-system.css`
-* `phase-1-expansion.css`
-* `brand-refresh.css`
-* `ui-refresh.css`
-* `ui-responsive-fixes.css`
-* Public documentation screenshots if visible UI changes
-
-**Acceptance criteria**
-
-* Search, filters, collections, bounds filtering, cards, details, and geolocation still work.
-* Controls have understandable labels and visible keyboard focus.
-* The detail panel can be opened and closed by keyboard.
-* No horizontal overflow or unusable map state occurs at representative desktop, tablet, and mobile widths.
-* Blue, green, and neutral meanings remain paired with labels/icons/shapes.
-* No unsupported safety or verification language is introduced.
-* Repository validation and whitespace checks pass.
-* Any inferred geolocation-marker issue is either reproduced and fixed or documented as not reproduced.
-
-**Dependencies and risks**
-
-* No formal supported browser/device matrix exists.
-* CSS and JavaScript behavior depends on file load order.
-* Broad consolidation should be separated from defect fixes.
-
-## 8. Open Questions
-
-1. Which launch records should be prioritized for the next verification pass?
-2. Should location-specific images be hosted in the repository or referenced from approved external sources?
-3. Is CSS/JavaScript layer consolidation desired during maintenance, or should the current architecture remain untouched until Phase 2?
-4. Should validation continue enforcing exactly 56 places and five collections?
-5. What browser, device, and accessibility support matrix should be considered required?
-6. Are branch protection, pull-request reviews, or a specific merge method required?
-7. Are GitHub Pages settings definitely still `main` plus repository root?
-8. When, and under what approval criteria, may Phase 2 resume?
-9. Should map-marker clustering be evaluated as maintenance or deferred until dataset growth?
-10. Should the approximate geolocation marker persist when filters or collections change?
-
-```
-```
+Do not silently reconcile contradictions. Follow the higher-priority current source and update stale documentation when appropriate.
