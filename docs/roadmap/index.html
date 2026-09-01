@@ -3,114 +3,69 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="BlueGreen Guide phase roadmap from the completed curated launch-map proof of concept through broader outdoor discovery and planning." />
+    <meta name="description" content="BlueGreen Guide roadmap from the completed Phase 1 proof of concept through the current v1.2 field test and future outdoor discovery phases." />
     <title>BlueGreen Guide Roadmap</title>
     <link rel="stylesheet" href="../brand-docs.css" />
   </head>
   <body>
     <main class="wrap">
       <header class="site-header">
-        <a href="../../" aria-label="Back to BlueGreen Guide app">
-          <img class="site-logo" src="../../assets/brand/bluegreen-guide-logo-primary-transparent.svg" alt="BlueGreen Guide — Discover Better Outdoors" />
-        </a>
-        <nav class="site-nav" aria-label="Roadmap navigation">
-          <a class="button secondary" href="../">Documentation Home</a>
-          <a class="button" href="../../">Back to App</a>
-        </nav>
+        <a href="../../" aria-label="Back to BlueGreen Guide app"><img class="site-logo" src="../../assets/brand/bluegreen-guide-logo-primary-transparent.svg" alt="BlueGreen Guide — Discover Better Outdoors" /></a>
+        <nav class="site-nav" aria-label="Roadmap navigation"><a class="button secondary" href="../">Documentation Home</a><a class="button" href="../../">Back to App</a></nav>
       </header>
 
       <section class="hero">
         <p class="eyebrow">What Comes Next · Roadmap</p>
         <h1>Grow the guide one useful phase at a time.</h1>
-        <p>Phase 1 is complete as a curated launch-map proof of concept. Future phases will add richer place information only when the supporting data, verification process, and user need are clear.</p>
-        <div class="actions">
-          <a class="button" href="../../">Open the Current App</a>
-          <a class="button secondary" href="../release-notes/">Review v1.1.0</a>
-        </div>
+        <p>Phase 1 is complete. The current v1.2 field-test build is validating mobile use and a small blue/green/mixed place pilot before BlueGreen Guide commits to broader Phase 2 place-detail work.</p>
+        <div class="actions"><a class="button" href="../../">Open the Current App</a><a class="button secondary" href="../release-notes/">View Release Notes</a></div>
       </section>
 
       <section class="wayfinding-strip" aria-label="Roadmap principles">
-        <article class="wayfinding-card water">
-          <span class="symbol" aria-hidden="true"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-water"></use></svg></span>
-          <span><strong>Prove the blue-space use case</strong><span>Phase 1 establishes the practical launch-map foundation</span></span>
-        </article>
-        <article class="wayfinding-card land">
-          <span class="symbol" aria-hidden="true"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-park"></use></svg></span>
-          <span><strong>Expand deliberately</strong><span>Green spaces follow after the core structure is proven</span></span>
-        </article>
-        <article class="wayfinding-card neutral">
-          <span class="symbol" aria-hidden="true"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-check"></use></svg></span>
-          <span><strong>Verify before scaling</strong><span>Improve usefulness and data quality before adding volume</span></span>
-        </article>
+        <article class="wayfinding-card water"><span class="symbol" aria-hidden="true"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-water"></use></svg></span><span><strong>Blue-space foundation</strong><span>Phase 1 proved the launch-discovery use case</span></span></article>
+        <article class="wayfinding-card land"><span class="symbol" aria-hidden="true"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-park"></use></svg></span><span><strong>Test land deliberately</strong><span>v1.2 uses a small green/mixed pilot before scaling</span></span></article>
+        <article class="wayfinding-card neutral"><span class="symbol" aria-hidden="true"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-check"></use></svg></span><span><strong>Verify before scaling</strong><span>Improve usefulness and data quality before adding volume</span></span></article>
       </section>
 
       <div class="note"><strong>Roadmap principle:</strong> Each phase should deliver a useful improvement without requiring a large rewrite or introducing advanced features before the supporting data and workflows are ready.</div>
 
       <section aria-labelledby="phase-1">
         <h2 id="phase-1">Phase 1 — Curated Launch Map</h2>
-        <div class="chip-row">
-          <span class="chip water"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-check"></use></svg>Complete POC</span>
-          <span class="chip neutral">v1.1.0</span>
-          <span class="chip neutral">56 places</span>
-        </div>
-        <p class="section-intro">The working proof of concept now includes the map, canonical launch data, search, filters, curated collections, cards, place details, source-review information, responsive layouts, final branding, documentation, and lightweight validation.</p>
+        <div class="chip-row"><span class="chip water"><svg class="doc-icon"><use href="../../assets/icons/wayfinding.svg#icon-check"></use></svg>Complete POC</span><span class="chip neutral">v1.1.0 closeout</span><span class="chip neutral">56 places at closeout</span></div>
+        <p class="section-intro">Phase 1 established the static map, canonical data workflow, search, filters, curated collections, place cards/details, source-review approach, responsive layouts, final Design System 2.0 branding, documentation, and validation.</p>
+        <div class="note"><strong>Historical count:</strong> 56 places describes the v1.1.0 closeout, not the current field-test runtime.</div>
+      </section>
+
+      <section aria-labelledby="v1-2">
+        <h2 id="v1-2">v1.2 — Mobile/PWA Field-Test Build</h2>
+        <div class="chip-row"><span class="chip water">Current</span><span class="chip neutral">89 active runtime places</span><span class="chip land">Green/mixed pilot</span></div>
+        <p class="section-intro">v1.2 keeps Phase 1 closed while making the proof of concept usable for real phone and on-site testing.</p>
         <div class="grid">
-          <article class="card"><h3>Core experience</h3><p>Interactive map, 56 launch records, search, filters, collections, cards, and responsive details.</p></article>
-          <article class="card"><h3>Trust and clarity</h3><p>Official source links, review metadata, verification labels, representative-image notices, and safety-aware wording.</p></article>
-          <article class="card"><h3>Maintainability</h3><p>Canonical JSON, generated browser data, separated collection configuration, and repository validation.</p></article>
+          <article class="card"><h3>Mobile field use</h3><p>Explore, Map, and Nearby navigation; mobile sheets; compact map tools; responsive filters; PWA metadata; and a versioned service-worker app shell.</p></article>
+          <article class="card"><h3>Broader place model</h3><p>The base dataset is now generalized to places, with Water, Land, and mixed discovery semantics. Mixed destinations intentionally qualify for both relevant discovery views.</p></article>
+          <article class="card"><h3>Small field-test pilot</h3><p>Ten green/mixed pilot records test whether the architecture works beyond paddling. Diamond Valley Lake overlays an existing stable-ID place, producing nine net-new runtime places.</p></article>
         </div>
-        <div class="note"><strong>Maintenance continues:</strong> Official links, individual fields, and place photography can be improved over time without reopening Phase 1 feature development.</div>
+        <div class="note"><strong>Field-test goal:</strong> Learn what works on site—mobile usability, place classification, marker placement, source wording, imagery, and practical planning value—before expanding scope.</div>
       </section>
 
       <section aria-labelledby="phase-2">
         <h2 id="phase-2">Phase 2 — Structured Place Details</h2>
         <div class="chip-row"><span class="chip neutral">On hold</span></div>
         <p class="section-intro">When resumed, begin with a small pilot using existing places and normalized planning fields rather than expanding the entire dataset at once.</p>
-        <div class="chip-row">
-          <span class="chip neutral">Entry type</span>
-          <span class="chip neutral">Access</span>
-          <span class="chip neutral">Parking</span>
-          <span class="chip neutral">Fees</span>
-          <span class="chip neutral">Restrooms</span>
-          <span class="chip neutral">Rentals</span>
-          <span class="chip neutral">Dog policy</span>
-          <span class="chip neutral">Accessibility</span>
-          <span class="chip neutral">Hazards</span>
-          <span class="chip neutral">Verification date</span>
-        </div>
+        <div class="chip-row"><span class="chip neutral">Entry type</span><span class="chip neutral">Access</span><span class="chip neutral">Parking</span><span class="chip neutral">Fees</span><span class="chip neutral">Restrooms</span><span class="chip neutral">Rentals</span><span class="chip neutral">Dog policy</span><span class="chip neutral">Accessibility</span><span class="chip neutral">Hazards</span><span class="chip neutral">Verification date</span></div>
       </section>
 
       <section aria-labelledby="phase-3">
         <h2 id="phase-3">Phase 3 — Conditions and Planning</h2>
-        <p class="section-intro">Connect places with clearly sourced information that helps users decide when to go.</p>
-        <div class="grid">
-          <article class="card"><h3>Weather and wind</h3><p>Current or forecast conditions that materially affect outdoor planning.</p></article>
-          <article class="card"><h3>Water conditions</h3><p>Tides where relevant, water temperature, water quality context, and seasonal access notes.</p></article>
-          <article class="card"><h3>Daylight</h3><p>Sunrise and sunset information for practical trip timing.</p></article>
-        </div>
+        <p class="section-intro">Connect places with clearly sourced current information while keeping live data separate from static place facts and curated guidance.</p>
+        <div class="grid"><article class="card"><h3>Weather and wind</h3><p>Current or forecast conditions that materially affect outdoor planning.</p></article><article class="card"><h3>Water conditions</h3><p>Tides where relevant, water temperature, water-quality context, and seasonal access notes.</p></article><article class="card"><h3>Daylight</h3><p>Sunrise and sunset information for practical trip timing.</p></article></div>
       </section>
 
-      <section aria-labelledby="phase-4">
-        <h2 id="phase-4">Phase 4 — Community Layer</h2>
-        <p class="section-intro">Allow responsible contributions while preserving source quality and moderation.</p>
-        <div class="chip-row">
-          <span class="chip neutral">Ratings</span><span class="chip neutral">Reviews</span><span class="chip neutral">Photos</span><span class="chip neutral">Suggested edits</span><span class="chip neutral">Favorites</span><span class="chip neutral">Trip notes</span>
-        </div>
-      </section>
-
-      <section aria-labelledby="phase-5">
-        <h2 id="phase-5">Phase 5 — Intelligent Recommendations</h2>
-        <p class="section-intro">Use structured place and condition data to support natural-language discovery and ranked recommendations.</p>
-        <div class="note"><strong>Example:</strong> Find somewhere within an hour of Riverside that is beginner-friendly, calm in the morning, dog-friendly, and not too crowded.</div>
-      </section>
-
-      <section aria-labelledby="phase-6">
-        <h2 id="phase-6">Phase 6 — Routes and Ecosystem</h2>
-        <p class="section-intro">Expand beyond individual launch points into routes, estimated duration, trip logging, clubs, outfitters, lessons, shareable plans, and broader blue-space and green-space discovery.</p>
-      </section>
+      <section aria-labelledby="phase-4"><h2 id="phase-4">Phase 4 — Community Layer</h2><p class="section-intro">Potential features include ratings, reviews, photos, suggested edits, favorites, reports of inaccurate information, and trip notes.</p></section>
+      <section aria-labelledby="phase-5"><h2 id="phase-5">Phase 5 — Intelligent Recommendations</h2><p class="section-intro">Potential features include natural-language discovery, ranked recommendations, personalized filters, and conditions-aware suggestions after the underlying data is mature enough to support them.</p></section>
+      <section aria-labelledby="phase-6"><h2 id="phase-6">Phase 6 — Routes and Ecosystem</h2><p class="section-intro">Potential features include paddle routes, hiking and shoreline routes, duration, trip logging, clubs, outfitters, lessons, shareable plans, and broader blue-space and green-space discovery.</p></section>
 
       <div class="note safety"><strong>Roadmap, not a promise:</strong> Scope and sequence may change as the prototype is tested, data quality improves, and the most useful next step becomes clearer.</div>
-
       <footer class="footer"><span>BlueGreen Guide Roadmap</span><span><a href="../">Documentation Home</a> · <a href="../release-notes/">Release Notes</a> · <a href="../../">Back to App</a></span></footer>
     </main>
   </body>
