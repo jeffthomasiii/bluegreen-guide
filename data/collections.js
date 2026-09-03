@@ -83,5 +83,19 @@ window.BLUEGREEN_COLLECTIONS = [
       "kendall-frost-reserve",
       "famosa-slough"
     ]
+  },
+  {
+    "id": "utah-alpha-test",
+    "name": "Utah Alpha Test",
+    "description": "A small Utah reviewer set spanning paddle-oriented reservoirs, mixed blue-green recreation, and a pure green-space trail park. Local access details still need field verification.",
+    "query": "Utah alpha",
+    "placeIds": [
+      "jordanelle-hailstone",
+      "deer-creek-state-park-ut",
+      "hyrum-state-park-swim-beach",
+      "quail-creek-state-park",
+      "sand-hollow-state-park",
+      "snow-canyon-state-park"
+    ]
   }
 ];
