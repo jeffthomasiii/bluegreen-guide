@@ -8,9 +8,11 @@ const dataDir = path.join(root, "data");
 const baseJsonPath = path.join(dataDir, "places.json");
 const missionBayJsonPath = path.join(dataDir, "mission-bay-launch-points.json");
 const fieldTestJsonPath = path.join(dataDir, "green-space-field-test.json");
+const utahFieldTestJsonPath = path.join(dataDir, "utah-field-test.json");
 const baseJsPath = path.join(dataDir, "places.js");
 const missionBayJsPath = path.join(dataDir, "mission-bay-launch-points.js");
 const fieldTestJsPath = path.join(dataDir, "green-space-field-test.js");
+const utahFieldTestJsPath = path.join(dataDir, "utah-field-test.js");
 const profilePath = path.join(dataDir, "launch-profile.js");
 const collectionsPath = path.join(dataDir, "collections.js");
 const indexPath = path.join(root, "index.html");
@@ -48,7 +50,8 @@ function overlayPlaces(basePlaces, overlay) {
 function loadCanonicalData() {
   const base = readJson(baseJsonPath).filter((place) => place.id !== "mission-bay");
   const withMissionBay = mergeUniquePlaces(base, readJson(missionBayJsonPath));
-  return overlayPlaces(withMissionBay, readJson(fieldTestJsonPath));
+  const withFieldTest = overlayPlaces(withMissionBay, readJson(fieldTestJsonPath));
+  return mergeUniquePlaces(withFieldTest, readJson(utahFieldTestJsonPath));
 }
 
 function loadRuntimeData() {
@@ -58,6 +61,7 @@ function loadRuntimeData() {
   const basePlaces = (window.LAUNCH_POINTS || []).filter((place) => place.id !== "mission-bay");
   window.LAUNCH_POINTS = mergeUniquePlaces(basePlaces, readJson(missionBayJsonPath));
   window.LAUNCH_POINTS = overlayPlaces(window.LAUNCH_POINTS, readJson(fieldTestJsonPath));
+  window.LAUNCH_POINTS = mergeUniquePlaces(window.LAUNCH_POINTS, readJson(utahFieldTestJsonPath));
 
   const rawPlaces = [...window.LAUNCH_POINTS];
   if (fs.existsSync(profilePath)) runBrowserDataFile(profilePath);
@@ -163,11 +167,21 @@ function validateGeneratedData(rawRuntimePlaces) {
   check(fieldTestLoader.includes('data/green-space-field-test.json'), "Green-space field-test loader must read its canonical JSON file.");
   check(fieldTestLoader.includes("replacements.get(place.id) || place"), "Green-space field-test loader must overlay existing records by stable ID.");
 
+  const utahLoader = fs.readFileSync(utahFieldTestJsPath, "utf8");
+  check(utahLoader.includes('data/utah-field-test.json'), "Utah field-test loader must read its canonical JSON file.");
+
   const fieldTestPlaces = readJson(fieldTestJsonPath);
   check(fieldTestPlaces.length === 10, `Green-space field-test dataset must contain 10 pilot records; found ${fieldTestPlaces.length}.`);
   check(fieldTestPlaces.filter((place) => place.spaceType === "mixed").length === 4, "Green-space field-test dataset must contain four mixed records.");
   check(fieldTestPlaces.filter((place) => place.spaceType === "green").length === 6, "Green-space field-test dataset must contain six green records.");
   check(!fieldTestPlaces.some((place) => /keller|greer/i.test(`${place.id} ${place.name}`)), "Keller/Greer Ranch must remain outside the canonical field-test dataset until verified.");
+
+  const utahPlaces = readJson(utahFieldTestJsonPath);
+  check(utahPlaces.length === 6, `Utah field-test dataset must contain six pilot records; found ${utahPlaces.length}.`);
+  check(utahPlaces.every((place) => place.state === "UT"), "Utah field-test records must use state UT.");
+  check(utahPlaces.filter((place) => place.spaceType === "mixed").length === 5, "Utah field-test dataset must contain five mixed records.");
+  check(utahPlaces.filter((place) => place.spaceType === "green").length === 1, "Utah field-test dataset must contain one green record.");
+  check(utahPlaces.every((place) => place.verificationStatus === "Needs verification"), "Utah field-test records must remain Needs verification until local review.");
 
   const baseActive = readJson(baseJsonPath).filter((place) => place.id !== "mission-bay");
   const existingBeforeFieldTest = mergeUniquePlaces(baseActive, readJson(missionBayJsonPath));
@@ -183,6 +197,7 @@ function validateGeneratedData(rawRuntimePlaces) {
     'src="data/places.js"',
     'src="data/mission-bay-launch-points.js"',
     'src="data/green-space-field-test.js"',
+    'src="data/utah-field-test.js"',
     'src="data/launch-profile.js"',
     'src="data/collections.js"',
     'src="mission-bay-place-pilot.js"',
@@ -240,4 +255,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Validation passed: ${runtime.places.length} active runtime places, ${runtime.collections.length} collections, Mission Bay pilot data, green/mixed field-test overlays, and internal links are valid.`);
+console.log(`Validation passed: ${runtime.places.length} active runtime places, ${runtime.collections.length} collections, Mission Bay pilot data, green/mixed field-test overlays, Utah alpha field-test data, and internal links are valid.`);
