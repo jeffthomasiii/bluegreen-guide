@@ -1,0 +1,448 @@
+/* BlueGreen Guide premium interface refinement
+   Visual evolution of Design System 2.0. This layer intentionally preserves
+   the existing app structure, data model, map behavior, and wayfinding semantics.
+*/
+
+:root {
+  --premium-canvas: #f4f6f3;
+  --premium-paper: #fffefa;
+  --premium-panel: #fbfdff;
+  --premium-ink: #10252e;
+  --premium-navy: #0b3447;
+  --premium-blue: #176f8f;
+  --premium-green: #6f8f63;
+  --premium-line: rgba(15, 79, 103, 0.14);
+  --premium-shadow: 0 18px 44px rgba(16, 37, 46, 0.10);
+  --premium-shadow-soft: 0 8px 24px rgba(16, 37, 46, 0.07);
+  --premium-radius-lg: 22px;
+  --premium-radius-md: 15px;
+  --premium-radius-sm: 11px;
+}
+
+body {
+  background:
+    radial-gradient(circle at 8% 0%, rgba(220, 239, 245, 0.82), transparent 32%),
+    linear-gradient(135deg, #f8f7f2 0%, var(--premium-canvas) 48%, #edf3f1 100%);
+}
+
+/* Desktop product frame */
+@media (min-width: 861px) {
+  .app-shell {
+    grid-template-columns: minmax(420px, 485px) minmax(0, 1fr);
+    gap: 14px;
+    padding: 14px;
+    background: transparent;
+  }
+
+  .sidebar,
+  .map-panel {
+    border: 1px solid var(--premium-line);
+    border-radius: var(--premium-radius-lg);
+    box-shadow: var(--premium-shadow);
+  }
+
+  .sidebar {
+    padding: 22px 20px 28px;
+    background:
+      linear-gradient(180deg, rgba(255, 254, 250, 0.98) 0%, rgba(251, 253, 255, 0.98) 44%, rgba(238, 246, 248, 0.96) 100%);
+  }
+
+  .map-panel {
+    margin: 0;
+    overflow: hidden;
+    background: #dfecef;
+  }
+}
+
+/* Brand lockup: quieter, editorial, premium */
+.brand {
+  position: relative;
+  margin-bottom: 14px;
+  border: 0;
+  padding: 2px 2px 17px;
+}
+
+.brand::after {
+  content: "DISCOVER BETTER OUTDOORS";
+  display: block;
+  margin-top: 10px;
+  color: var(--premium-green);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+}
+
+.brand-logo-image {
+  width: min(325px, 100%);
+}
+
+.brand-stack {
+  gap: 5px;
+}
+
+.documentation-link {
+  width: fit-content;
+  border: 1px solid var(--premium-line);
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--premium-navy);
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(16, 37, 46, 0.04);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+}
+
+.documentation-link:hover {
+  border-color: rgba(23, 111, 143, 0.36);
+  background: #fff;
+}
+
+/* Main information groups */
+.wayfinding-key,
+.collections-panel,
+.controls {
+  border: 1px solid var(--premium-line);
+  border-radius: var(--premium-radius-md);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--premium-shadow-soft);
+}
+
+.wayfinding-key,
+.collections-panel {
+  padding: 16px;
+}
+
+.controls {
+  padding: 15px;
+}
+
+.eyebrow {
+  color: var(--premium-blue);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.wayfinding-key h2,
+.collections-heading h2,
+.mobile-nearby-heading h2 {
+  color: var(--premium-navy);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+
+.wayfinding-items {
+  gap: 9px;
+}
+
+.wayfinding-item {
+  min-height: 64px;
+  border-radius: var(--premium-radius-sm);
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.wayfinding-water {
+  background: linear-gradient(180deg, #f7fcfe, var(--ui-blue-soft));
+}
+
+.wayfinding-land {
+  background: linear-gradient(180deg, #fbfdf9, var(--ui-green-soft));
+}
+
+.wayfinding-symbol {
+  width: 34px;
+  height: 34px;
+  box-shadow: 0 4px 10px rgba(16, 37, 46, 0.06);
+}
+
+/* Curated collections become compact premium discovery cards. */
+.collections-list {
+  gap: 8px;
+}
+
+.collection-button {
+  min-height: 66px;
+  border: 1px solid var(--premium-line);
+  border-radius: var(--premium-radius-sm);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 5px 14px rgba(16, 37, 46, 0.035);
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.collection-button:hover {
+  border-color: rgba(23, 111, 143, 0.34);
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(16, 37, 46, 0.07);
+  transform: translateY(-1px);
+}
+
+.collection-button.is-active {
+  border-color: rgba(23, 111, 143, 0.46);
+  background: linear-gradient(90deg, #edf7fa, #fff);
+  box-shadow: inset 3px 0 0 var(--premium-blue), 0 8px 18px rgba(16, 37, 46, 0.06);
+}
+
+.collection-icon,
+.collection-count {
+  border-radius: 9px;
+}
+
+/* Search and controls */
+.field span {
+  color: var(--premium-navy);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+input,
+select {
+  min-height: 46px;
+  border: 1px solid rgba(15, 79, 103, 0.18);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+input:focus,
+select:focus {
+  border-color: var(--premium-blue);
+  box-shadow: 0 0 0 3px rgba(23, 111, 143, 0.11);
+}
+
+.button,
+.card-button {
+  border-radius: 12px;
+  box-shadow: none;
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.button-primary,
+.card-button {
+  border-color: var(--premium-navy);
+  background: linear-gradient(180deg, var(--premium-blue), var(--premium-navy));
+}
+
+.button-primary:hover,
+.card-button:hover {
+  background: var(--premium-navy);
+  transform: translateY(-1px);
+}
+
+.button-secondary,
+.button-tertiary {
+  border-color: rgba(15, 79, 103, 0.18);
+  background: #fff;
+}
+
+/* Results */
+.result-summary {
+  margin-top: 20px;
+  padding: 0 4px;
+}
+
+.result-summary strong {
+  color: var(--premium-navy);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.results {
+  gap: 14px;
+}
+
+.launch-card {
+  border: 1px solid var(--premium-line);
+  border-radius: 17px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: var(--premium-shadow-soft);
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.launch-card:hover {
+  border-color: rgba(23, 111, 143, 0.32);
+  box-shadow: 0 13px 28px rgba(16, 37, 46, 0.10);
+  transform: translateY(-1px);
+}
+
+.launch-image {
+  min-height: 145px;
+}
+
+.launch-body {
+  padding: 15px 16px 16px;
+}
+
+.launch-heading h2 {
+  color: var(--premium-navy);
+  font-size: 27px;
+  line-height: 1.02;
+}
+
+.pill,
+.photo-badge,
+.rating,
+.tag {
+  border-radius: 999px;
+}
+
+.verification-line {
+  border: 1px solid rgba(217, 161, 92, 0.26);
+  border-left: 3px solid var(--ui-warning);
+  border-radius: 9px;
+  background: rgba(255, 247, 235, 0.84);
+}
+
+/* Map presentation */
+.map-label {
+  top: 18px;
+  left: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  padding: 9px 12px;
+  background: rgba(255, 255, 255, 0.90);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(16, 37, 46, 0.12);
+  color: var(--premium-navy);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.leaflet-control-zoom,
+.leaflet-popup-content-wrapper {
+  border: 1px solid var(--premium-line);
+  border-radius: 12px;
+  box-shadow: 0 9px 22px rgba(16, 37, 46, 0.12);
+}
+
+.launch-marker {
+  box-shadow: 0 7px 16px rgba(15, 79, 103, 0.24);
+}
+
+/* Place-detail sheet */
+.detail-panel {
+  background: rgba(11, 52, 71, 0.22);
+  backdrop-filter: blur(3px);
+}
+
+.detail-card {
+  border-color: var(--premium-line);
+  border-radius: 19px;
+  box-shadow: 0 30px 80px rgba(16, 37, 46, 0.26);
+}
+
+.detail-card h2 {
+  color: var(--premium-navy);
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.detail-close,
+.detail-photo img,
+.detail-status,
+.detail-grid div {
+  border-radius: 12px;
+}
+
+/* Mobile: match the same visual language without changing navigation behavior. */
+@media (max-width: 860px) {
+  body {
+    background: #f7f8f5;
+  }
+
+  .mobile-app-bar {
+    border-bottom: 1px solid var(--premium-line);
+    background: rgba(255, 254, 250, 0.96);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 5px 18px rgba(16, 37, 46, 0.06);
+  }
+
+  .mobile-brand-link img {
+    max-height: 38px;
+  }
+
+  .mobile-docs-link,
+  .mobile-view-label {
+    border-radius: 999px;
+  }
+
+  .sidebar {
+    background: linear-gradient(180deg, #fffefa, #f4f8f8);
+  }
+
+  .brand::after {
+    margin-left: 1px;
+  }
+
+  .wayfinding-key,
+  .collections-panel,
+  .controls,
+  .mobile-nearby-panel {
+    border-radius: 16px;
+  }
+
+  .mobile-basic-search,
+  .mobile-map-search,
+  .mobile-advanced-link,
+  .mobile-map-filter,
+  .mobile-discovery-chip,
+  body[data-mobile-view="explore"] .collection-button {
+    border-color: var(--premium-line);
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 6px 16px rgba(16, 37, 46, 0.06);
+  }
+
+  .mobile-bottom-nav {
+    border-top: 1px solid var(--premium-line);
+    background: rgba(255, 254, 250, 0.96);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 -8px 24px rgba(16, 37, 46, 0.08);
+  }
+
+  .mobile-nav-button {
+    color: #526973;
+  }
+
+  .mobile-nav-button[aria-current="page"] {
+    color: var(--premium-blue);
+  }
+
+  .mobile-nearby-card {
+    border-radius: 14px;
+    border-color: var(--premium-line);
+    background: #fff;
+    box-shadow: 0 7px 18px rgba(16, 37, 46, 0.05);
+  }
+}
+
+@media (max-width: 520px) {
+  .brand-logo-image {
+    width: min(300px, 86vw);
+  }
+
+  .wayfinding-key h2,
+  .collections-heading h2,
+  .mobile-nearby-heading h2 {
+    font-size: 23px;
+  }
+
+  .launch-heading h2 {
+    font-size: 25px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collection-button,
+  .launch-card,
+  .button,
+  .card-button {
+    transition: none;
+  }
+}
