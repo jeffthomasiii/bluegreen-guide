@@ -24,7 +24,7 @@ Current capabilities include:
 
 - Interactive OpenStreetMap and Leaflet map
 - Installable Progressive Web App shell with network-driven map tiles and external content
-- Mobile Explore, Map, and Nearby navigation with responsive sheets and controls
+- Mobile Explore, Map, Nearby, and Guide navigation with responsive sheets and controls
 - Search across place names, aliases, water bodies, taxonomy, amenities, activities, tags, descriptions, and launch-suitability values
 - Blue, green, and mixed place semantics
 - Water and Land mobile discovery filters; mixed places intentionally appear in either relevant filter
@@ -142,10 +142,12 @@ The underlying GitHub Pages repository URL remains part of the hosting infrastru
 ├── mobile-ux.css
 ├── mobile-compact.css
 ├── mobile-layout-polish.css
+├── mobile-pwa-standard.css
 ├── app.js
 ├── collections-ui.js
 ├── ui-refresh.js
 ├── service-worker.js
+├── pwa.js
 ├── manifest.webmanifest
 ├── assets/
 │   ├── brand/
