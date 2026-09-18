@@ -28,10 +28,15 @@
   exploreTools.className = "mobile-compact-explore";
   exploreTools.setAttribute("aria-label", "Explore places");
   exploreTools.innerHTML = `
+    <div class="mobile-explore-intro">
+      <p class="eyebrow">Discover better outdoors</p>
+      <h1>Explore the outdoors with confidence</h1>
+      <p>Real places. Practical guidance. Check details before you go.</p>
+    </div>
     <label class="mobile-basic-search">
       <span class="sr-only">Search places</span>
       ${searchIcon}
-      <input id="mobileExploreSearch" type="search" placeholder="Search places" autocomplete="off" />
+      <input id="mobileExploreSearch" type="search" placeholder="Search places, regions, or activities…" autocomplete="off" />
     </label>
     <div class="mobile-discovery-row" aria-label="Place type filters">
       <button type="button" class="mobile-discovery-chip chip-water" data-mobile-space="blue" aria-pressed="false">${icon("water")}<span>Water</span></button>
@@ -48,7 +53,7 @@
     <label class="mobile-map-search">
       <span class="sr-only">Search places</span>
       ${searchIcon}
-      <input id="mobileMapSearch" type="search" placeholder="Search places" autocomplete="off" />
+      <input id="mobileMapSearch" type="search" placeholder="Search places, regions, or activities…" autocomplete="off" />
     </label>
     <button type="button" class="mobile-map-filter" data-open-mobile-filters aria-label="Advanced filters">${icon("filter")}</button>
     <button type="button" class="mobile-search-area">Search this area</button>
