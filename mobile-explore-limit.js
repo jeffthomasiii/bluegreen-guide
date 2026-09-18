@@ -1,6 +1,6 @@
 (() => {
   const MOBILE_QUERY = window.matchMedia("(max-width: 720px)");
-  const RESULTS_LIMIT = 10;
+  const RESULTS_LIMIT = 4;
   const body = document.body;
   const results = document.querySelector("#resultsList");
 

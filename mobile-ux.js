@@ -2,7 +2,6 @@
   const MOBILE_QUERY = window.matchMedia("(max-width: 720px)");
   const body = document.body;
   const nav = document.querySelector("#mobileBottomNav");
-  const viewLabel = document.querySelector("#mobileViewLabel");
   const nearbyStatus = document.querySelector("#mobileNearbyStatus");
   const nearbyResults = document.querySelector("#mobileNearbyResults");
   const detailPanel = document.querySelector("#detailPanel");
@@ -16,9 +15,17 @@
     return MOBILE_QUERY.matches;
   }
 
+  function closeCurrentDetail() {
+    if (detailPanel.hidden) return;
+    const closeButton = detailPanel.querySelector("[data-close-detail]");
+    if (closeButton) closeButton.click();
+  }
+
   function setView(view, options = {}) {
     const allowed = new Set(["explore", "map", "nearby"]);
     const nextView = allowed.has(view) ? view : "map";
+
+    if (options.keepDetail !== true) closeCurrentDetail();
     body.dataset.mobileView = nextView;
 
     navButtons.forEach((button) => {
@@ -27,16 +34,10 @@
       else button.removeAttribute("aria-current");
     });
 
-    if (viewLabel) {
-      viewLabel.textContent = nextView === "map" ? "Map" : nextView === "nearby" ? "Nearby" : "Explore";
-    }
-
     if (nextView === "nearby" && options.loadNearby !== false) loadNearby();
 
     if (nextView === "map") {
-      requestAnimationFrame(() => {
-        window.dispatchEvent(new Event("resize"));
-      });
+      requestAnimationFrame(() => window.dispatchEvent(new Event("resize")));
     }
   }
 
@@ -44,31 +45,39 @@
     button.addEventListener("click", () => setView(button.dataset.mobileViewTarget));
   });
 
-  function prepareMobileSheet() {
+  function prepareMobileDetail() {
     if (!isMobile() || detailPanel.hidden) return;
 
-    detailPanel.classList.add("mobile-sheet-collapsed");
     const detailCard = detailPanel.querySelector(".detail-card");
-    if (!detailCard || detailCard.querySelector(".mobile-sheet-expand")) return;
+    if (!detailCard) return;
 
-    const expandButton = document.createElement("button");
-    expandButton.type = "button";
-    expandButton.className = "mobile-sheet-expand";
-    expandButton.textContent = "View full place details";
-    expandButton.addEventListener("click", () => {
-      detailPanel.classList.remove("mobile-sheet-collapsed");
-      expandButton.setAttribute("aria-expanded", "true");
-    });
-    expandButton.setAttribute("aria-expanded", "false");
-    detailCard.append(expandButton);
+    const shouldPreviewOnMap =
+      body.dataset.mobileView === "map" && !detailPanel.classList.contains("mobile-detail-expanded");
+    detailPanel.classList.toggle("mobile-sheet-collapsed", shouldPreviewOnMap);
+
+    let expandButton = detailCard.querySelector(".mobile-sheet-expand");
+    if (!expandButton) {
+      expandButton = document.createElement("button");
+      expandButton.type = "button";
+      expandButton.className = "mobile-sheet-expand";
+      expandButton.textContent = "View place details";
+      expandButton.setAttribute("aria-expanded", "false");
+      expandButton.addEventListener("click", () => {
+        detailPanel.classList.remove("mobile-sheet-collapsed");
+        detailPanel.classList.add("mobile-detail-expanded");
+        expandButton.setAttribute("aria-expanded", "true");
+        detailCard.scrollTop = 0;
+      });
+      detailCard.append(expandButton);
+    }
   }
 
   const detailObserver = new MutationObserver(() => {
     if (detailPanel.hidden) {
-      detailPanel.classList.remove("mobile-sheet-collapsed");
+      detailPanel.classList.remove("mobile-sheet-collapsed", "mobile-detail-expanded");
       return;
     }
-    prepareMobileSheet();
+    prepareMobileDetail();
   });
 
   detailObserver.observe(detailPanel, {
@@ -107,6 +116,49 @@
     if (nearbyResults) nearbyResults.innerHTML = "";
   }
 
+  function placePhoto(launch) {
+    const photos = Array.isArray(launch?.photoUrls) ? launch.photoUrls : [];
+    return photos.find((item) => item && item.url)?.url || launch?.image || "";
+  }
+
+  function placeTypeLabel(launch) {
+    if (Array.isArray(launch?.placeTypes) && launch.placeTypes.length) {
+      return String(launch.placeTypes[0]).replace(/-/g, " ");
+    }
+    if (launch?.spaceType === "green") return "Land place";
+    if (launch?.spaceType === "mixed") return "Water + land place";
+    return launch?.waterType || "Water place";
+  }
+
+  function nearbyThumbMarkup(launch) {
+    const photo = placePhoto(launch);
+    if (photo) {
+      return `<span class="mobile-nearby-thumb"><img src="${escapeAttribute(photo)}" alt="" loading="lazy" /></span>`;
+    }
+
+    const className =
+      launch?.spaceType === "green"
+        ? "is-land"
+        : launch?.spaceType === "mixed"
+          ? "is-mixed"
+          : "is-water";
+    return `<span class="mobile-nearby-thumb mobile-nearby-thumb-fallback ${className}" aria-hidden="true"></span>`;
+  }
+
+  function openNearbyDetail(launch) {
+    const opener =
+      typeof window.openLaunchDetail === "function"
+        ? window.openLaunchDetail
+        : typeof openLaunchDetail === "function"
+          ? openLaunchDetail
+          : null;
+
+    if (opener) {
+      opener(launch.id, { focusMap: false });
+      requestAnimationFrame(prepareMobileDetail);
+    }
+  }
+
   function renderNearby(latitude, longitude) {
     const launches = Array.isArray(window.LAUNCH_POINTS) ? window.LAUNCH_POINTS : [];
     if (!launches.length) {
@@ -124,7 +176,8 @@
       .slice(0, 8);
 
     if (nearbyStatus) {
-      nearbyStatus.textContent = "Nearest known BGG places based on your approximate device location. Distance is straight-line and does not confirm access or route conditions.";
+      nearbyStatus.textContent =
+        "Distances are straight-line estimates from your approximate device location. Check official sources for access and route details.";
     }
 
     nearbyResults.innerHTML = "";
@@ -133,18 +186,14 @@
       button.type = "button";
       button.className = "mobile-nearby-card";
       button.innerHTML = `
-        <span>
+        ${nearbyThumbMarkup(launch)}
+        <span class="mobile-nearby-copy">
           <strong>${escapeHtml(launch.name)}</strong>
-          <span>${escapeHtml(launch.region)}, ${escapeHtml(launch.state)} · ${escapeHtml(launch.skillLevel || "Skill unknown")}</span>
+          <span>${escapeHtml(launch.region)}, ${escapeHtml(launch.state)} · ${escapeHtml(placeTypeLabel(launch))}</span>
         </span>
         <span class="mobile-nearby-distance">${formatDistance(miles)}</span>
       `;
-      button.addEventListener("click", () => {
-        setView("map", { loadNearby: false });
-        if (typeof window.openLaunchDetail === "function") {
-          window.openLaunchDetail(launch.id);
-        }
-      });
+      button.addEventListener("click", () => openNearbyDetail(launch));
       nearbyResults.append(button);
     });
   }
@@ -175,12 +224,16 @@
       .replace(/'/g, "&#039;");
   }
 
+  function escapeAttribute(value) {
+    return escapeHtml(value);
+  }
+
   function syncResponsiveState() {
     if (isMobile()) {
       if (!body.dataset.mobileView) setView("map", { loadNearby: false });
-      prepareMobileSheet();
+      prepareMobileDetail();
     } else {
-      detailPanel.classList.remove("mobile-sheet-collapsed");
+      detailPanel.classList.remove("mobile-sheet-collapsed", "mobile-detail-expanded");
     }
   }
 
