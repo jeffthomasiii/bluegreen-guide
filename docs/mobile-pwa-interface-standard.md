@@ -1,72 +1,146 @@
 # Mobile and PWA Interface Standard
 
-**Status:** Approved direction, implementation in review  
+**Status:** Mobile Shell 2.0 implementation in review  
 **Scope:** Mobile browser and installed PWA only  
 **Desktop:** Deferred to a separate design and testing phase
 
 ## Purpose
 
-The September 2026 BlueGreen Guide product mockup is the visual reference for the next UI/UX refinement. The implementation should carry its design principles into the working product without treating every future-looking mockup element as an approved feature.
+The September 2026 BlueGreen Guide mobile product mockup is the UI/UX composition target, not merely a styling reference.
 
-This pass intentionally keeps the existing static architecture and current Phase 1 feature set.
+Mobile implementation should reproduce the mockup's hierarchy, density, image-led discovery, map-first behavior, and place-detail flow while using only capabilities and data that exist in the current BlueGreen Guide proof of concept.
+
+The static HTML/CSS/JavaScript architecture remains unchanged.
 
 ## Approved mobile/PWA direction
 
 - Use the approved Option B2 BlueGreen Guide identity.
 - Keep Primary Blue `#176F8F` as the principal interaction color.
 - Keep Green Accent `#6F8F63` for land semantics and natural-space accents.
-- Use Cormorant Garamond for editorial/place headings and Inter for functional UI.
-- Favor image-led place cards, restrained borders, soft elevation, and generous but efficient spacing.
+- Use Cormorant Garamond for editorial and place headings; use Inter for functional UI.
+- Use real or correctly labeled representative imagery already supported by the place-data/photo strategy.
+- Favor image-led discovery, restrained borders, compact cards, soft elevation, and clear hierarchy.
 - Keep search and map access prominent.
-- Keep Explore, Map, and Nearby as the current mobile navigation model.
-- Present filters as touch-friendly controls and sheets rather than dense desktop-style forms.
-- Use the blue/green/neutral Wayfinding System consistently; color is never the only cue.
-- Make verification and official-source guidance visible without turning the interface into a warning-heavy experience.
-- Respect safe areas and standalone PWA display behavior.
+- Use four current destinations in the mobile shell: Explore, Map, Nearby, and Guide.
+- Present advanced filters in a touch-friendly bottom sheet.
+- Use blue/green/neutral Wayfinding System semantics consistently; color is never the only cue.
+- Keep verification and official-source guidance visible without allowing warnings to dominate the interface.
+- Respect safe areas and installed-PWA display behavior.
 
-## Current implementation
+## Mobile Shell 2.0 composition
 
-The mobile/PWA refinement is implemented as a final mobile-only stylesheet, `mobile-pwa-standard.css`, loaded after the existing responsive layers.
+### Explore
 
-A small semantic Explore introduction is added by `mobile-compact.js` to establish the editorial hierarchy shown in the approved mockup:
+Explore is a discovery page rather than a mobile rendering of the desktop filter rail.
 
-- Discover Better Outdoors
-- Explore the outdoors with confidence
-- Real places. Practical guidance. Check details before you go.
+It uses:
 
-The service-worker shell cache is versioned so installed field-test builds receive the new interface assets.
+1. An image-led hero with the BlueGreen Guide editorial voice.
+2. Search overlapping the bottom of the hero.
+3. Water, Land, and Amenities quick wayfinding controls.
+4. A compact `Places to explore` result set.
+5. One larger image-led first result followed by compact browse cards.
+6. Curated Collections after the initial discovery results.
+7. Progressive disclosure instead of rendering a long list of full-size cards.
 
-## Intentionally unchanged
+### Map
 
-This mobile/PWA pass does not add:
+Map remains the primary spatial discovery surface.
+
+It uses:
+
+- Search at the top of the map.
+- Compact All, Water, Land, and Near me controls.
+- A separate filter button for advanced filters.
+- `Search this area` after map movement.
+- Blue, green, and mixed wayfinding markers.
+- A compact selected-place preview anchored above bottom navigation.
+- Full place details only after the user chooses `View place details`.
+
+### Place Detail
+
+Place Detail is a dedicated mobile screen rather than an enlarged result card.
+
+It prioritizes:
+
+- Place photography.
+- Place name and location/context.
+- Verification status.
+- Practical planning attributes.
+- Amenities and planning notes.
+- Official sources and safety-aware guidance.
+
+Map selection first opens a compact preview. Explore and Nearby open the full place-detail screen directly.
+
+### Nearby
+
+Nearby uses the user's approximate device location only after browser permission.
+
+It shows:
+
+- A concise distance disclaimer.
+- Image-led or semantic-fallback place cards.
+- Place name, region/state, place type, and straight-line distance.
+- Full place details without forcing the user through the Map screen first.
+
+## Existing capabilities intentionally used
+
+Mobile Shell 2.0 reuses the current:
+
+- Search
+- Water/Land discovery filtering
+- Advanced filters
+- Curated collections
+- Leaflet/OpenStreetMap map
+- Geolocation
+- Place photos
+- Place details
+- Verification/source information
+- Public Guide/documentation
+
+## Intentionally not added
+
+The mockup contains future-looking concepts that are not part of this phase:
 
 - Accounts or profile behavior
 - Saved Places persistence
-- Trips or Journal
+- Trips
+- Journal
 - Community ratings or reviews
 - Live weather, wind, tides, water quality, or hazards
 - AI recommendations
 - A framework, backend, or database
 - Desktop styling changes
 
-Desktop refinement should be handled in a separate branch and review phase when desktop testing is available.
+Desktop refinement remains a separate branch and review phase.
+
+## PWA update behavior
+
+The service-worker shell cache is versioned whenever shipped UI assets change.
+
+Mobile Shell 2.0 also refreshes an already-controlled page when a newly installed service worker takes control. This is intended to avoid a mixed interface where new CSS is displayed with older cached JavaScript.
+
+BlueGreen Guide still should not be described as fully offline. Map tiles and external resources remain network-driven.
 
 ## Review checklist
 
-Before merge, verify on a real phone or installed PWA:
+Before merge, verify on a real phone and installed PWA:
 
-- Header/logo clarity and safe-area spacing
-- Explore editorial hierarchy
-- Search and filter controls
-- Water, Land, and Amenities wayfinding controls
-- Curated collection wrapping
-- Place-card readability and tap targets
-- Map search/filter placement
+- Compact header/logo and safe-area spacing
+- Hero image and editorial hierarchy
+- Search overlap and filter control
+- Water, Land, and Amenities quick controls
+- Compact Explore cards and four-result progressive disclosure
+- Curated collection behavior after the result list
+- Map search and quick-filter row
 - Search-this-area behavior
-- Marker selection and place-detail sheet
-- Nearby flow and geolocation fallback wording
-- Bottom navigation active state
-- PWA refresh after the service-worker cache update
+- Marker rendering and selection
+- Compact map place preview
+- Full-screen Place Detail from Explore and Nearby
+- Expand-to-detail behavior from Map
+- Nearby thumbnails/fallbacks and distance wording
+- Four-item bottom navigation including Guide
+- Service-worker refresh from the previous shell
 - No horizontal overflow at common phone widths
 
-Automated validation remains required, but it does not replace device review.
+Automated repository validation is required, but it does not replace device review.
