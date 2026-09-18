@@ -1,6 +1,6 @@
 # Mobile and PWA Interface Standard
 
-**Status:** Mobile Shell 2.0 implementation in review  
+**Status:** Mobile Shell 2.0 merged to `main`; real-device refinement pending  
 **Scope:** Mobile browser and installed PWA only  
 **Desktop:** Deferred to a separate design and testing phase
 
@@ -124,7 +124,7 @@ BlueGreen Guide still should not be described as fully offline. Map tiles and ex
 
 ## Review checklist
 
-Before merge, verify on a real phone and installed PWA:
+After the GitHub Pages rebuild completes, verify on a real phone and installed PWA:
 
 - Compact header/logo and safe-area spacing
 - Hero image and editorial hierarchy
@@ -144,3 +144,12 @@ Before merge, verify on a real phone and installed PWA:
 - No horizontal overflow at common phone widths
 
 Automated repository validation is required, but it does not replace device review.
+
+
+## Current handoff state — 2026-09-17
+
+PR #24 merged Mobile Shell 2.0 to `main`. GitHub Pages still needs to rebuild before the new shell can be evaluated on the installed PWA.
+
+The next work session should begin with real-device review rather than new feature work. Capture screenshots of Explore, Map, Place Detail, and Nearby, note visual or interaction mismatches against the approved mockup, and make a tightly scoped follow-up refinement PR.
+
+Do not advance desktop work until the mobile/PWA refinement is accepted.
