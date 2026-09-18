@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-09-17 — Mobile Shell 2.0
+
+### Changed
+
+- PR #24 rebuilt the mobile/PWA composition around the approved September 2026 product mockup rather than treating it only as a visual styling reference
+- Explore now uses an image-led hero, overlapping search, quick Water/Land/Amenities discovery controls, compact place results, progressive disclosure, and Curated Collections after the initial result set
+- Map now uses compact search and wayfinding controls with a selected-place preview above bottom navigation
+- Place Detail now has a dedicated mobile presentation, with Map using a preview-first flow
+- Nearby now supports thumbnail/fallback presentation and place-type wording
+- Mobile navigation now exposes Explore, Map, Nearby, and Guide
+- The service-worker shell cache advanced to `bgg-v1.2-shell-v20`, with controlled-page refresh behavior when a new service worker takes control
+
+### Validation and next step
+
+- Repository validation passed for PR #24 before merge
+- PR #24 is merged to `main`
+- GitHub Pages rebuild and real-device/PWA visual acceptance are still pending
+- Desktop UI refinement remains deferred until mobile/PWA refinement is accepted
+
 ## 2026-09-01 — Documentation State Sync
 
 ### Changed
