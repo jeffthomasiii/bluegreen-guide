@@ -24,14 +24,14 @@ Current capabilities include:
 
 - Interactive OpenStreetMap and Leaflet map
 - Installable Progressive Web App shell with network-driven map tiles and external content
-- Mobile Explore, Map, and Nearby navigation with responsive sheets and controls
+- Mobile Explore, Map, Nearby, Saved, and More navigation with responsive sheets and controls; Saved Places and My Trips are clearly labeled non-persistent placeholders in the current field-test build
 - Search across place names, aliases, water bodies, taxonomy, amenities, activities, tags, descriptions, and launch-suitability values
 - Blue, green, and mixed place semantics
 - Water and Land mobile discovery filters; mixed places intentionally appear in either relevant filter
 - Region, paddling skill, water activity, and maximum paddle-difficulty filters for the existing paddle use case
 - Five curated collections that use explicit place IDs
 - Map-bounds filtering and browser geolocation
-- Responsive place cards and details
+- Responsive place cards and a mobile hero-led Place Detail flow with Overview, context-sensitive Info, Nearby, Get Directions, and non-persistent Save placeholder actions
 - Launch Suitability Profile for paddle-relevant places
 - Verification status, source-review metadata, official links, and safety-aware notes
 - Credited representative photography for existing paddle places; new green/mixed pilot photography remains to be verified
@@ -142,10 +142,12 @@ The underlying GitHub Pages repository URL remains part of the hosting infrastru
 ├── mobile-ux.css
 ├── mobile-compact.css
 ├── mobile-layout-polish.css
+├── mobile-pwa-standard.css
 ├── app.js
 ├── collections-ui.js
 ├── ui-refresh.js
 ├── service-worker.js
+├── pwa.js
 ├── manifest.webmanifest
 ├── assets/
 │   ├── brand/

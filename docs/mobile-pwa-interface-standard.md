@@ -1,6 +1,6 @@
 # Mobile and PWA Interface Standard
 
-**Status:** Mobile Shell 2.0 implementation in review  
+**Status:** Mobile Shell 2.0 merged; refinement round 1 in review  
 **Scope:** Mobile browser and installed PWA only  
 **Desktop:** Deferred to a separate design and testing phase
 
@@ -8,7 +8,7 @@
 
 The September 2026 BlueGreen Guide mobile product mockup is the UI/UX composition target, not merely a styling reference.
 
-Mobile implementation should reproduce the mockup's hierarchy, density, image-led discovery, map-first behavior, and place-detail flow while using only capabilities and data that exist in the current BlueGreen Guide proof of concept.
+Mobile work should reproduce the mockup's hierarchy, density, image-led discovery, map-first behavior, and place-detail flow while using only capabilities and data appropriate to the current field-test build.
 
 The static HTML/CSS/JavaScript architecture remains unchanged.
 
@@ -21,13 +21,14 @@ The static HTML/CSS/JavaScript architecture remains unchanged.
 - Use real or correctly labeled representative imagery already supported by the place-data/photo strategy.
 - Favor image-led discovery, restrained borders, compact cards, soft elevation, and clear hierarchy.
 - Keep search and map access prominent.
-- Use four current destinations in the mobile shell: Explore, Map, Nearby, and Guide.
-- Present advanced filters in a touch-friendly bottom sheet.
+- Use the mobile bottom navigation: Explore, Map, Nearby, Saved, More.
+- Saved and Trips are visual placeholders only in the current field-test build; no data is persisted.
+- Present advanced filters in a compact touch-friendly bottom sheet.
 - Use blue/green/neutral Wayfinding System semantics consistently; color is never the only cue.
 - Keep verification and official-source guidance visible without allowing warnings to dominate the interface.
 - Respect safe areas and installed-PWA display behavior.
 
-## Mobile Shell 2.0 composition
+## Current mobile composition
 
 ### Explore
 
@@ -35,13 +36,17 @@ Explore is a discovery page rather than a mobile rendering of the desktop filter
 
 It uses:
 
-1. An image-led hero with the BlueGreen Guide editorial voice.
-2. Search overlapping the bottom of the hero.
-3. Water, Land, and Amenities quick wayfinding controls.
-4. A compact `Places to explore` result set.
-5. One larger image-led first result followed by compact browse cards.
-6. Curated Collections after the initial discovery results.
-7. Progressive disclosure instead of rendering a long list of full-size cards.
+1. A condensed, image-led hero with the BlueGreen Guide editorial voice.
+2. A rotating set of existing supported place/representative images.
+3. Search and a square rounded filter control.
+4. Water, Land, and Nearby quick controls on one row.
+5. Blue water icon semantics, green land icon semantics, and dark-blue Nearby semantics.
+6. A compact `Places to explore` result set designed to expose the first result without requiring an initial scroll on common phone heights.
+7. One larger first result followed by compact browse cards.
+8. Curated Collections after the initial discovery results.
+9. Progressive disclosure instead of rendering a long list of full-size cards.
+
+Amenities is not shown as a quick control until it has a dedicated, meaningful interaction rather than opening the generic filter sheet.
 
 ### Map
 
@@ -49,10 +54,9 @@ Map remains the primary spatial discovery surface.
 
 It uses:
 
-- Search at the top of the map.
+- A rounded-rectangle search field with a separate square rounded filter button.
 - Compact All, Water, Land, and Near me controls.
-- A separate filter button for advanced filters.
-- `Search this area` after map movement.
+- `Search this area` as a rounded rectangle rather than a pill.
 - Blue, green, and mixed wayfinding markers.
 - A compact selected-place preview anchored above bottom navigation.
 - Full place details only after the user chooses `View place details`.
@@ -61,16 +65,20 @@ It uses:
 
 Place Detail is a dedicated mobile screen rather than an enlarged result card.
 
-It prioritizes:
+It uses:
 
-- Place photography.
-- Place name and location/context.
-- Verification status.
-- Practical planning attributes.
-- Amenities and planning notes.
-- Official sources and safety-aware guidance.
+- A full-width place-specific or correctly labeled representative hero image.
+- A back arrow rather than a close X.
+- Place name, location/context, and verification status.
+- Overview, context-appropriate information, and Nearby tabs.
+- Compact Key Details.
+- A sticky Get Directions action.
+- A visible Save placeholder that does not persist data.
+- Official sources and safety-aware planning guidance.
 
-Map selection first opens a compact preview. Explore and Nearby open the full place-detail screen directly.
+For water/paddle places the second tab may be labeled `Launch Info`. For trail/land contexts it may be labeled `Trail Info`. Otherwise use `Place Info`.
+
+Desktop Place Detail remains on the existing desktop presentation until the separate desktop refinement phase.
 
 ### Nearby
 
@@ -78,33 +86,68 @@ Nearby uses the user's approximate device location only after browser permission
 
 It shows:
 
-- A concise distance disclaimer.
-- Image-led or semantic-fallback place cards.
-- Place name, region/state, place type, and straight-line distance.
-- Full place details without forcing the user through the Map screen first.
+- A concise straight-line distance disclaimer.
+- The same supported place/representative imagery used elsewhere in the app when available.
+- Place name, region/state, place type, and distance.
+- Save and More placeholder actions.
+- Direct access to full Place Detail.
 
-## Existing capabilities intentionally used
+### Saved
 
-Mobile Shell 2.0 reuses the current:
+Saved is a visual planning placeholder only.
 
-- Search
-- Water/Land discovery filtering
-- Advanced filters
-- Curated collections
-- Leaflet/OpenStreetMap map
-- Geolocation
-- Place photos
-- Place details
-- Verification/source information
-- Public Guide/documentation
+It includes:
+
+- Saved Places
+- My Trips
+
+The current build must clearly state that nothing is stored and no account or persistent planning model has been introduced.
+
+### More
+
+More is the mobile/PWA resource hub.
+
+It currently exposes:
+
+- User Guide
+- Quick Start
+- Blue + Green Spaces explainer
+- Planning Guidance / Launch Suitability
+- Documentation home
+- Settings placeholder
+
+Public documentation should use a compact mobile/PWA presentation when opened from More.
+
+## Filter behavior
+
+Advanced filters remain available, but the sheet should be less visually dominant than the earlier implementation.
+
+Use:
+
+- a shallower bottom sheet
+- compact two-column controls when space allows
+- concise actions
+- a dimmed but not heavy backdrop
+
+Do not add a dedicated Amenities quick filter until there is a clear amenity-specific interaction.
+
+## PWA update behavior
+
+The service-worker shell cache is versioned whenever shipped UI assets change.
+
+The current refinement uses `bgg-v1.2-shell-v21`.
+
+Already-controlled PWA pages refresh when a newly installed service worker takes control. This helps avoid mixed old-JavaScript/new-CSS states.
+
+Selected documentation pages and the shared documentation stylesheet are included in the app shell for a more coherent installed-PWA experience, but BlueGreen Guide still should not be described as fully offline. Map tiles and external resources remain network-driven.
 
 ## Intentionally not added
 
-The mockup contains future-looking concepts that are not part of this phase:
+This refinement does not add:
 
 - Accounts or profile behavior
-- Saved Places persistence
-- Trips
+- Persistent Saved Places
+- Persistent Trips
 - Journal
 - Community ratings or reviews
 - Live weather, wind, tides, water quality, or hazards
@@ -112,35 +155,31 @@ The mockup contains future-looking concepts that are not part of this phase:
 - A framework, backend, or database
 - Desktop styling changes
 
-Desktop refinement remains a separate branch and review phase.
+## Real-device review checklist
 
-## PWA update behavior
-
-The service-worker shell cache is versioned whenever shipped UI assets change.
-
-Mobile Shell 2.0 also refreshes an already-controlled page when a newly installed service worker takes control. This is intended to avoid a mixed interface where new CSS is displayed with older cached JavaScript.
-
-BlueGreen Guide still should not be described as fully offline. Map tiles and external resources remain network-driven.
-
-## Review checklist
-
-Before merge, verify on a real phone and installed PWA:
+After the GitHub Pages rebuild completes, verify on a real phone and installed PWA:
 
 - Compact header/logo and safe-area spacing
-- Hero image and editorial hierarchy
-- Search overlap and filter control
-- Water, Land, and Amenities quick controls
-- Compact Explore cards and four-result progressive disclosure
-- Curated collection behavior after the result list
-- Map search and quick-filter row
-- Search-this-area behavior
+- Rotating Explore hero imagery
+- Explore search/filter geometry
+- Water/Land/Nearby quick-control layout and color semantics
+- First Explore place visible in the initial viewport
+- Compact result-card density
+- Curated collection behavior
+- Map search/filter geometry
+- Search-this-area control
 - Marker rendering and selection
 - Compact map place preview
-- Full-screen Place Detail from Explore and Nearby
-- Expand-to-detail behavior from Map
-- Nearby thumbnails/fallbacks and distance wording
-- Four-item bottom navigation including Guide
-- Service-worker refresh from the previous shell
+- Back-arrow Place Detail flow
+- Place hero imagery
+- Overview / Info / Nearby tabs
+- Get Directions and Save placeholder actions
+- Nearby imagery, distance, Save, and More actions
+- Saved Places / My Trips placeholder screen
+- More resource screen
+- Mobile documentation presentation
+- Five-item bottom navigation and active-state treatment
+- Service-worker v21 refresh behavior
 - No horizontal overflow at common phone widths
 
 Automated repository validation is required, but it does not replace device review.

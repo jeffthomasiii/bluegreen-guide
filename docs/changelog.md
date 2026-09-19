@@ -1,5 +1,45 @@
 # Changelog
 
+## 2026-09-18 — Mobile/PWA Refinement Round 1
+
+### Changed
+
+- Search, filter, quick-filter, and Search-this-area controls now use rounded-rectangle/square geometry closer to the approved mockup instead of pill/circle-heavy styling
+- Water, Land, and Nearby quick controls now use approved BlueGreen Guide color semantics while retaining labels and icons
+- Explore hero imagery now rotates through existing supported place/representative imagery and the overall Explore composition is more condensed
+- Amenities was removed from the quick-control row until a dedicated amenity interaction is defined
+- Advanced filters remain available in a shallower, less-obtrusive bottom sheet
+- Place Detail now uses a hero-led mobile layout with a back arrow, compact tabs, Key Details, Nearby places, Get Directions, and a non-persistent Save placeholder
+- Nearby cards now reuse the same supported imagery pipeline as other place surfaces and include distance, Save, and More actions
+- Mobile navigation now follows the mockup structure: Explore, Map, Nearby, Saved, and More
+- Saved Places and My Trips are present only as clearly labeled visual placeholders; no persistent storage or account system was added
+- More now groups User Guide, Quick Start, Blue + Green Spaces, Planning Guidance, Documentation, and a Settings placeholder
+- Public documentation received a compact mobile/PWA presentation
+- Service-worker shell cache advanced to `bgg-v1.2-shell-v21` and includes the primary mobile documentation pages/styles
+
+### Scope
+
+Desktop remains deferred. Phase 2 remains on hold. No accounts, persistent saved places/trips, reviews, live conditions, backend, or AI features were added.
+
+## 2026-09-17 — Mobile Shell 2.0
+
+### Changed
+
+- PR #24 rebuilt the mobile/PWA composition around the approved September 2026 product mockup rather than treating it only as a visual styling reference
+- Explore now uses an image-led hero, overlapping search, quick Water/Land/Amenities discovery controls, compact place results, progressive disclosure, and Curated Collections after the initial result set
+- Map now uses compact search and wayfinding controls with a selected-place preview above bottom navigation
+- Place Detail now has a dedicated mobile presentation, with Map using a preview-first flow
+- Nearby now supports thumbnail/fallback presentation and place-type wording
+- Mobile navigation now exposes Explore, Map, Nearby, and Guide
+- The service-worker shell cache advanced to `bgg-v1.2-shell-v20`, with controlled-page refresh behavior when a new service worker takes control
+
+### Validation and next step
+
+- Repository validation passed for PR #24 before merge
+- PR #24 is merged to `main`
+- GitHub Pages rebuild and real-device/PWA visual acceptance are still pending
+- Desktop UI refinement remains deferred until mobile/PWA refinement is accepted
+
 ## 2026-09-01 — Documentation State Sync
 
 ### Changed

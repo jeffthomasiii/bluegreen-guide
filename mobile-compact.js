@@ -26,22 +26,37 @@
     '<svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
 
   function primaryPhoto(place) {
-    if (!place) return "";
-    const photos = Array.isArray(place.photoUrls) ? place.photoUrls : [];
-    const photo = photos.find((item) => item && item.url);
-    return photo?.url || place.image || "";
+    const photo =
+      typeof window.BLUEGREEN_GET_PRIMARY_PHOTO === "function"
+        ? window.BLUEGREEN_GET_PRIMARY_PHOTO(place)
+        : null;
+
+    if (photo?.url) return photo;
+
+    const photos = Array.isArray(place?.photoUrls) ? place.photoUrls : [];
+    const fallback = photos.find((item) => item && item.url);
+    if (fallback) return fallback;
+    if (place?.image) return { url: place.image, status: place.photoStatus || "representative" };
+    return null;
   }
 
-  function heroPlace() {
+  function heroPool() {
     const places = Array.isArray(window.LAUNCH_POINTS) ? window.LAUNCH_POINTS : [];
-    const beginner = (Array.isArray(window.BLUEGREEN_COLLECTIONS) ? window.BLUEGREEN_COLLECTIONS : []).find(
-      (collection) => collection.id === "beginner-favorites"
-    );
-    const curated = (beginner?.placeIds || [])
-      .map((id) => places.find((place) => place.id === id))
-      .filter(Boolean);
+    const seen = new Set();
+    const withPhotos = [];
 
-    return curated.find(primaryPhoto) || places.find(primaryPhoto) || null;
+    places.forEach((place) => {
+      const photo = primaryPhoto(place);
+      if (!photo?.url || seen.has(photo.url)) return;
+      seen.add(photo.url);
+      withPhotos.push({ place, photo });
+    });
+
+    for (let index = withPhotos.length - 1; index > 0; index -= 1) {
+      const swap = Math.floor(Math.random() * (index + 1));
+      [withPhotos[index], withPhotos[swap]] = [withPhotos[swap], withPhotos[index]];
+    }
+    return withPhotos.slice(0, 10);
   }
 
   const exploreTools = document.createElement("section");
@@ -64,26 +79,44 @@
       </label>
       <button type="button" class="mobile-advanced-link" data-open-mobile-filters aria-label="Open filters">${icon("filter")}<span>Filters</span></button>
     </div>
-    <div class="mobile-discovery-row" aria-label="Place type filters">
+    <div class="mobile-discovery-row" aria-label="Quick discovery">
       <button type="button" class="mobile-discovery-chip chip-water" data-mobile-space="blue" aria-pressed="false">${icon("water")}<span>Water</span></button>
       <button type="button" class="mobile-discovery-chip chip-land" data-mobile-space="green" aria-pressed="false">${icon("park")}<span>Land</span></button>
-      <button type="button" class="mobile-discovery-chip chip-neutral" data-open-mobile-filters>${icon("check")}<span>Amenities</span></button>
+      <button type="button" class="mobile-discovery-chip chip-nearby" data-mobile-nearby-action>${icon("location")}<span>Nearby</span></button>
     </div>
   `;
   sidebar.insertBefore(exploreTools, wayfinding);
 
-  const featuredHeroPlace = heroPlace();
   const hero = exploreTools.querySelector(".mobile-explore-intro");
   const heroCaption = exploreTools.querySelector(".mobile-hero-caption");
-  const heroImage = primaryPhoto(featuredHeroPlace);
-  if (heroImage) {
+  const heroItems = heroPool();
+  let heroIndex = 0;
+
+  function showHero(item) {
+    if (!hero || !item?.photo?.url) return;
+
     hero.style.backgroundImage =
-      `linear-gradient(180deg, rgba(10, 43, 57, 0.12) 0%, rgba(10, 43, 57, 0.72) 100%), url("${heroImage}")`;
+      `linear-gradient(180deg, rgba(10, 43, 57, 0.10) 0%, rgba(10, 43, 57, 0.72) 100%), url("${item.photo.url}")`;
+
     if (heroCaption) {
+      heroCaption.hidden = false;
       heroCaption.textContent =
-        featuredHeroPlace?.photoStatus === "location"
-          ? featuredHeroPlace.name
+        item.photo.status === "location"
+          ? item.place.name
           : "Representative outdoor image";
+    }
+  }
+
+  if (heroItems.length) {
+    heroIndex = Math.floor(Math.random() * heroItems.length);
+    showHero(heroItems[heroIndex]);
+
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && heroItems.length > 1) {
+      window.setInterval(() => {
+        if (!MOBILE_QUERY.matches || body.dataset.mobileView !== "explore") return;
+        heroIndex = (heroIndex + 1) % heroItems.length;
+        showHero(heroItems[heroIndex]);
+      }, 12000);
     }
   } else if (heroCaption) {
     heroCaption.hidden = true;
@@ -102,7 +135,7 @@
       <button type="button" class="mobile-map-chip" data-map-space="all" aria-pressed="true">All</button>
       <button type="button" class="mobile-map-chip chip-water" data-map-space="blue" aria-pressed="false">${icon("water")}<span>Water</span></button>
       <button type="button" class="mobile-map-chip chip-land" data-map-space="green" aria-pressed="false">${icon("park")}<span>Land</span></button>
-      <button type="button" class="mobile-map-chip" data-map-location>${icon("location")}<span>Near me</span></button>
+      <button type="button" class="mobile-map-chip chip-nearby" data-map-location>${icon("location")}<span>Near me</span></button>
     </div>
     <button type="button" class="mobile-search-area">Search this area</button>
   `;
@@ -116,7 +149,7 @@
     <section class="mobile-filter-card" role="dialog" aria-modal="true" aria-labelledby="mobileFilterTitle">
       <div class="mobile-filter-handle" aria-hidden="true"></div>
       <div class="mobile-filter-heading">
-        <div><p class="eyebrow">Explore</p><h2 id="mobileFilterTitle">Filters</h2></div>
+        <div><p class="eyebrow">Refine results</p><h2 id="mobileFilterTitle">Filters</h2></div>
         <button type="button" class="mobile-filter-close" data-close-mobile-filters aria-label="Close filters">&times;</button>
       </div>
       <div class="mobile-filter-fields">
@@ -131,7 +164,7 @@
       </div>
       <div class="mobile-filter-actions">
         <button type="button" class="mobile-filter-reset">Reset</button>
-        <button type="button" class="mobile-filter-apply">Apply filters</button>
+        <button type="button" class="mobile-filter-apply">Apply</button>
       </div>
     </section>
   `;
@@ -161,9 +194,11 @@
 
   function syncSpaceButtons() {
     const active = window.BLUEGREEN_MOBILE_SPACE_TYPE || "all";
+
     spaceButtons.forEach((button) => {
       button.setAttribute("aria-pressed", button.dataset.mobileSpace === active ? "true" : "false");
     });
+
     mapSpaceButtons.forEach((button) => {
       button.setAttribute("aria-pressed", button.dataset.mapSpace === active ? "true" : "false");
     });
@@ -179,14 +214,18 @@
   spaceButtons.forEach((button) =>
     button.addEventListener("click", () => setSpaceType(button.dataset.mobileSpace, true))
   );
+
   mapSpaceButtons.forEach((button) =>
     button.addEventListener("click", () => setSpaceType(button.dataset.mapSpace, false))
   );
 
+  exploreTools.querySelector("[data-mobile-nearby-action]")?.addEventListener("click", () => {
+    document.querySelector('[data-mobile-view-target="nearby"]')?.click();
+  });
+
   function syncProxySelects() {
     proxySelects.forEach((proxy) => {
-      const key = proxy.dataset.proxyFilter;
-      const source = original[key];
+      const source = original[proxy.dataset.proxyFilter];
       if (!source) return;
       proxy.innerHTML = source.innerHTML;
       proxy.value = source.value;
@@ -208,6 +247,7 @@
   document.querySelectorAll("[data-open-mobile-filters]").forEach((button) =>
     button.addEventListener("click", openFilters)
   );
+
   filterSheet.querySelectorAll("[data-close-mobile-filters]").forEach((button) =>
     button.addEventListener("click", closeFilters)
   );
@@ -222,6 +262,7 @@
   });
 
   filterSheet.querySelector(".mobile-filter-apply")?.addEventListener("click", closeFilters);
+
   filterSheet.querySelector(".mobile-filter-reset")?.addEventListener("click", () => {
     original.region.value = "all";
     original.skill.value = "all";

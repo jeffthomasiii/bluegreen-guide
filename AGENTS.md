@@ -206,7 +206,7 @@ Use Inter for product UI/documentation and Cormorant Garamond sparingly for appr
 
 - Treat `docs/mobile-pwa-interface-standard.md` as the current approved visual direction for mobile browser and installed PWA work.
 - Keep desktop visual refinement in a separate phase unless the user explicitly asks to combine scopes.
-- Preserve the approved Explore, Map, Nearby, and Guide mobile navigation unless a requested UX change explicitly replaces it.
+- Preserve the approved Explore, Map, Nearby, Saved, and More mobile navigation unless a requested UX change explicitly replaces it. Saved Places and My Trips remain non-persistent placeholders until explicitly approved for implementation.
 - Keep mobile filters touch-friendly and avoid horizontal-only control discovery when wrapping is practical.
 - Do not describe the app as fully offline; map tiles and external/current resources remain network-driven.
 - When shipped app-shell assets change, review `service-worker.js` cache versioning so field testers do not remain on stale UI.
