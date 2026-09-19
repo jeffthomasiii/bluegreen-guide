@@ -143,3 +143,26 @@ For the next refinement pass:
 - Keep the current static HTML/CSS/JavaScript architecture.
 - Preserve the approved Option B2 logo, brand palette, typography direction, and BlueGreen Guide Wayfinding System.
 - Keep safety, verification, source, and image-status wording grounded in the existing data.
+
+
+## Real-device feedback captured — 2026-09-18
+
+The first post-PR #24 device review identified several concrete refinements:
+
+- Replace pill/circle-heavy controls with rounded rectangles and square rounded filter buttons.
+- Keep Water blue, Land green, and Nearby within the approved dark-blue family.
+- Use a Home-style icon for Explore.
+- Keep the active-state top line, but also give the selected bottom-nav item a stronger full-color treatment.
+- Change bottom navigation to Explore, Map, Nearby, Saved, More.
+- Keep Saved Places and My Trips as non-persistent placeholders only.
+- Move Guide/documentation resources into More.
+- Rotate Explore hero imagery through supported places.
+- Remove the Amenities quick control until it has a dedicated interaction.
+- Make advanced filters less obtrusive.
+- Condense Explore so the first place is visible sooner.
+- Rework Place Detail toward the mockup: hero image, back arrow, compact tabs, Key Details, Get Directions, Save placeholder, and Nearby.
+- Reuse the same place/representative image pipeline for Nearby thumbnails.
+- Add Save and More actions to Nearby cards.
+- Rework public documentation for a compact mobile/PWA presentation.
+
+These items are implemented on the `mobile-refinement-round-1` branch for review. Desktop remains deferred.
