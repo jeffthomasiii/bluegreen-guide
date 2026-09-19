@@ -439,7 +439,79 @@ function nearbyPlacesMarkup(launch) {
     .join("");
 }
 
+function desktopDetailMarkup(launch) {
+  const photo = getPrimaryPhoto(launch);
+  const photoMarkup = photo
+    ? `
+      <figure class="detail-photo">
+        <img src="${escapeAttribute(photo.url)}" alt="${escapeAttribute(photo.alt || `${launch.name} representative image`)}" loading="lazy" />
+        <figcaption>${photoCreditMarkup(photo)}</figcaption>
+      </figure>
+    `
+    : "";
+  const sourceUrls = Array.isArray(launch.sourceUrls)
+    ? launch.sourceUrls
+        .map((source) => (typeof source === "string" ? { label: source, url: source } : source))
+        .filter((source) => source && source.url)
+    : [];
+  const sourceItems = sourceUrls.length
+    ? sourceUrls
+        .map((source) => `<li><a href="${escapeAttribute(source.url)}" target="_blank" rel="noopener">${escapeHtml(source.label || source.url)}</a></li>`)
+        .join("")
+    : '<li class="muted-list-item">No official source added yet.</li>';
+
+  return `
+    <div class="detail-card" role="dialog" aria-modal="false" aria-labelledby="detailTitle">
+      <button class="detail-close" type="button" aria-label="Close place details" data-close-detail>&times;</button>
+      <div class="detail-kicker">${escapeHtml(launch.region)}, ${escapeHtml(launch.state)}</div>
+      <h2 id="detailTitle">${escapeHtml(launch.name)}</h2>
+      <p class="detail-subtitle">${escapeHtml(launch.waterBody || launch.waterType)} | ${escapeHtml(formatList(launch.activities))} | ${escapeHtml(launch.skillLevel)}</p>
+
+      ${photoMarkup}
+
+      <div class="detail-status ${verificationClass(launch)}">
+        <strong>${escapeHtml(launch.verificationStatus || "Needs verification")}</strong>
+        <span>${escapeHtml(lastVerifiedText(launch))}</span>
+      </div>
+
+      <p>${escapeHtml(launch.description)}</p>
+
+      <dl class="detail-grid">
+        <div><dt>SUP Suitability</dt><dd>${escapeHtml(launch.supSuitability || "Unknown")}</dd></div>
+        <div><dt>Difficulty</dt><dd>${escapeHtml(launch.difficulty)}/5</dd></div>
+        <div><dt>Wind Sensitivity</dt><dd>${escapeHtml(launch.windSensitivity || "Unknown")}</dd></div>
+        <div><dt>Typical Use</dt><dd>${escapeHtml(launch.useLevel || "Unknown")}</dd></div>
+        <div><dt>Crowd Sensitivity</dt><dd>${escapeHtml(launch.crowdSensitivity || "Unknown")}</dd></div>
+        <div><dt>Staging Space</dt><dd>${escapeHtml(launch.stagingSpace || "Unknown")}</dd></div>
+        <div><dt>Best Time</dt><dd>${escapeHtml(launch.bestTime || "Unknown")}</dd></div>
+        <div><dt>Assessment Confidence</dt><dd>${escapeHtml(launch.assessmentConfidence || "Unknown")}</dd></div>
+      </dl>
+
+      <p class="source-note"><strong>BlueGreen Guide assessment:</strong> Suitability and sensitivity fields are curated planning guidance, not live condition measurements or safety guarantees. Conditions and use levels vary.</p>
+
+      <section class="detail-section">
+        <h3>Amenities</h3>
+        <p>${escapeHtml(formatList(launch.amenities))}</p>
+      </section>
+
+      <section class="detail-section">
+        <h3>Planning Notes</h3>
+        <p>${escapeHtml(formatList(launch.tags))}</p>
+      </section>
+
+      <section class="detail-section">
+        <h3>Sources</h3>
+        <ul class="source-list">${sourceItems}</ul>
+        <p class="source-note">${escapeHtml(launch.sourceNotes || "Check official sources before relying on access, fees, parking, rentals, rules, tides, wind, or hazard details.")}</p>
+      </section>
+    </div>
+  `;
+}
+
 function detailMarkup(launch) {
+  if (!window.matchMedia("(max-width: 720px)").matches) {
+    return desktopDetailMarkup(launch);
+  }
   const photo = getPrimaryPhoto(launch);
   const sourceUrls = Array.isArray(launch.sourceUrls)
     ? launch.sourceUrls
