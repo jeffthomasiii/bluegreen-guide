@@ -345,9 +345,12 @@ function handleDetailClick(event) {
     return;
   }
 
-  if (event.target.closest("[data-save-placeholder]")) {
-    if (typeof window.BLUEGREEN_SHOW_TOAST === "function") {
-      window.BLUEGREEN_SHOW_TOAST("Saved Places is a placeholder in this field-test build. Nothing is stored yet.");
+  const saveButton = event.target.closest("[data-save-place-id]");
+  if (saveButton) {
+    if (typeof window.BLUEGREEN_TOGGLE_SAVED_PLACE === "function") {
+      window.BLUEGREEN_TOGGLE_SAVED_PLACE(saveButton.dataset.savePlaceId);
+    } else if (typeof window.BLUEGREEN_SHOW_TOAST === "function") {
+      window.BLUEGREEN_SHOW_TOAST("Saving is not available yet.");
     }
     return;
   }
@@ -429,7 +432,12 @@ function nearbyPlacesMarkup(launch) {
       const thumb = photo
         ? `<img src="${escapeAttribute(photo.url)}" alt="" loading="lazy" />`
         : '<span class="detail-nearby-fallback" aria-hidden="true">BGG</span>';
-      const distance = miles < 10 ? `${miles.toFixed(1)} mi` : `${Math.round(miles)} mi`;
+      const distance =
+        typeof window.BLUEGREEN_FORMAT_DISTANCE === "function"
+          ? window.BLUEGREEN_FORMAT_DISTANCE(miles)
+          : miles < 10
+            ? `${miles.toFixed(1)} mi`
+            : `${Math.round(miles)} mi`;
 
       return `
         <button class="detail-nearby-card" type="button" data-open-place-id="${escapeAttribute(item.id)}">
@@ -553,6 +561,9 @@ function detailMarkup(launch) {
   const context = launch.waterBody || launch.waterType || (launch.placeTypes || [])[0] || "Outdoor place";
   const activities = Array.isArray(launch.activities) && launch.activities.length ? formatList(launch.activities) : "";
   const subtitleParts = [context, activities, launch.skillLevel].filter(Boolean);
+  const savedState =
+    typeof window.BLUEGREEN_IS_SAVED_PLACE === "function" &&
+    window.BLUEGREEN_IS_SAVED_PLACE(launch.id);
 
   return `
     <div class="detail-card" role="dialog" aria-modal="false" aria-labelledby="detailTitle">
@@ -627,9 +638,9 @@ function detailMarkup(launch) {
                 <span>Get directions</span>
               </a>`
             : ""}
-          <button class="detail-action detail-action-secondary" type="button" data-save-placeholder>
+          <button class="detail-action detail-action-secondary${savedState ? " is-saved" : ""}" type="button" data-save-place-id="${escapeAttribute(launch.id)}" aria-pressed="${savedState ? "true" : "false"}">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10a1 1 0 0 1 1 1v15l-6-3-6 3V5a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /></svg>
-            <span>Save</span>
+            <span>${savedState ? "Saved" : "Save"}</span>
           </button>
         </div>
       </div>

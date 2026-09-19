@@ -173,7 +173,11 @@
   });
 
   morePanel.querySelector("[data-settings-placeholder]")?.addEventListener("click", () => {
-    window.BLUEGREEN_SHOW_TOAST("Settings are not enabled in this field-test build yet.");
+    if (typeof window.BLUEGREEN_OPEN_SETTINGS === "function") {
+      window.BLUEGREEN_OPEN_SETTINGS();
+    } else {
+      window.BLUEGREEN_SHOW_TOAST("Settings are not available yet.");
+    }
   });
 
   function prepareMobileDetail() {
@@ -220,6 +224,11 @@
 
   function loadNearby() {
     if (!isMobile() || nearbyLoading || nearbyLoaded) return;
+
+    if (typeof window.BLUEGREEN_LOCATION_ALLOWED === "function" && !window.BLUEGREEN_LOCATION_ALLOWED()) {
+      setNearbyMessage("Nearby location use is turned off in Settings.");
+      return;
+    }
 
     if (!navigator.geolocation) {
       setNearbyMessage("Location is not available in this browser. Use Explore or Map to browse places.");
@@ -367,7 +376,7 @@
           </span>
         </button>
         <span class="mobile-nearby-distance">${formatDistance(miles)}</span>
-        <button type="button" class="mobile-nearby-action" data-nearby-save aria-label="Save ${escapeAttribute(launch.name)}">${icon("saved")}</button>
+        <button type="button" class="mobile-nearby-action" data-nearby-save data-place-id="${escapeAttribute(launch.id)}" aria-label="Save ${escapeAttribute(launch.name)}">${icon("saved")}</button>
         <button type="button" class="mobile-nearby-action" data-nearby-more aria-label="More options for ${escapeAttribute(launch.name)}"><span aria-hidden="true">•••</span></button>
       `;
 
@@ -380,16 +389,40 @@
       card.querySelector(".mobile-nearby-main")?.addEventListener("click", () => openNearbyDetail(launch));
 
       card.querySelector("[data-nearby-save]")?.addEventListener("click", () => {
-        window.BLUEGREEN_SHOW_TOAST("Saved Places is a placeholder in this field-test build. Nothing is stored yet.");
+        if (typeof window.BLUEGREEN_TOGGLE_SAVED_PLACE === "function") {
+          window.BLUEGREEN_TOGGLE_SAVED_PLACE(launch.id);
+        } else {
+          window.BLUEGREEN_SHOW_TOAST("Saving is not available yet.");
+        }
       });
 
       card.querySelector("[data-nearby-more]")?.addEventListener("click", () => {
-        window.BLUEGREEN_SHOW_TOAST("Additional place actions are not enabled in this field-test build yet.");
+        if (typeof window.BLUEGREEN_OPEN_PLACE_ACTIONS === "function") {
+          window.BLUEGREEN_OPEN_PLACE_ACTIONS(resolvedPlace(launch));
+        } else {
+          window.BLUEGREEN_SHOW_TOAST("Place actions are not available yet.");
+        }
       });
 
       nearbyResults.append(card);
     });
+
+    window.BLUEGREEN_SYNC_SAVE_BUTTONS?.();
   }
+
+  window.BLUEGREEN_LOCATION_PREFERENCE_CHANGED = (enabled) => {
+    nearbyLoaded = false;
+    if (!enabled) {
+      setNearbyMessage("Nearby location use is turned off in Settings.");
+    } else if (body.dataset.mobileView === "nearby") {
+      loadNearby();
+    }
+  };
+
+  window.BLUEGREEN_DISTANCE_PREFERENCE_CHANGED = () => {
+    nearbyLoaded = false;
+    if (body.dataset.mobileView === "nearby") loadNearby();
+  };
 
   function distanceMiles(lat1, lon1, lat2, lon2) {
     const earthRadiusMiles = 3958.8;
@@ -403,6 +436,9 @@
   }
 
   function formatDistance(miles) {
+    if (typeof window.BLUEGREEN_FORMAT_DISTANCE === "function") {
+      return window.BLUEGREEN_FORMAT_DISTANCE(miles);
+    }
     if (miles < 0.1) return "<0.1 mi";
     if (miles < 10) return `${miles.toFixed(1)} mi`;
     return `${Math.round(miles)} mi`;

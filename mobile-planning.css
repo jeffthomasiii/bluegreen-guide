@@ -1,0 +1,894 @@
+/* BlueGreen Guide — Saved Places, Trips, place actions, and Settings
+   Mobile/PWA-only feature layer. Overall visual refinement follows in the next pass.
+*/
+
+@media (max-width: 720px) {
+  /* More: rebalance larger square cards with a stronger visual anchor. */
+  .mobile-more-card {
+    gap: 17px;
+    padding: 18px;
+  }
+
+  .mobile-more-card > .ui-icon {
+    box-sizing: content-box;
+    width: 42px;
+    height: 42px;
+    margin: 1px 0 0;
+    border-radius: 15px;
+    padding: 8px;
+    background: #edf7fa;
+    color: var(--mobile-blue);
+  }
+
+  .mobile-more-card strong {
+    font-size: 11px;
+  }
+
+  .mobile-more-card small {
+    margin-top: 3px;
+    font-size: 9.25px;
+    line-height: 1.3;
+  }
+
+  /* Shared saved/trip surfaces. */
+  .mobile-saved-content[hidden] {
+    display: none !important;
+  }
+
+  .mobile-saved-list-heading,
+  .mobile-trips-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 1px 2px 9px;
+  }
+
+  .mobile-saved-list-heading strong,
+  .mobile-trips-toolbar strong {
+    display: block;
+    color: var(--mobile-ink);
+    font-size: 10px;
+  }
+
+  .mobile-saved-list-heading small,
+  .mobile-trips-toolbar small {
+    display: block;
+    margin-top: 2px;
+    color: var(--mobile-muted);
+    font-size: 8.5px;
+  }
+
+  .mobile-saved-list,
+  .mobile-trip-list {
+    display: grid;
+    gap: 8px;
+  }
+
+  .mobile-saved-place-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 6px;
+    align-items: center;
+    min-height: 92px;
+    border: 1px solid rgba(15, 79, 103, 0.13);
+    border-radius: 13px;
+    padding: 6px 7px 6px 6px;
+    background: #fff;
+    box-shadow: var(--mobile-shadow-soft);
+  }
+
+  .mobile-saved-place-main,
+  .mobile-trip-place-main {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 9px;
+    align-items: center;
+    min-width: 0;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+  }
+
+  .mobile-plan-thumb {
+    display: grid;
+    width: 72px;
+    height: 68px;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 9px;
+    background: var(--mobile-blue-soft);
+  }
+
+  .mobile-plan-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .mobile-plan-thumb-fallback {
+    background: linear-gradient(135deg, var(--mobile-blue), var(--mobile-green));
+    color: #fff;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+  }
+
+  .mobile-saved-place-main strong,
+  .mobile-saved-place-main small,
+  .mobile-trip-place-main strong,
+  .mobile-trip-place-main small {
+    display: block;
+  }
+
+  .mobile-saved-place-main strong,
+  .mobile-trip-place-main strong {
+    color: var(--mobile-ink);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 17px;
+    line-height: 0.98;
+  }
+
+  .mobile-saved-place-main small,
+  .mobile-trip-place-main small {
+    margin-top: 4px;
+    color: var(--mobile-muted);
+    font-size: 8px;
+    line-height: 1.3;
+  }
+
+  .mobile-saved-place-action {
+    display: grid;
+    width: 32px;
+    height: 32px;
+    place-items: center;
+    border: 1px solid rgba(15, 79, 103, 0.12);
+    border-radius: 8px;
+    background: #fbfdff;
+    color: var(--mobile-navy);
+  }
+
+  .mobile-saved-place-action .ui-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mobile-nearby-action.is-saved,
+  .mobile-saved-place-action.is-saved,
+  .detail-action-secondary.is-saved {
+    border-color: rgba(23, 111, 143, 0.34);
+    background: var(--mobile-blue-soft);
+    color: var(--mobile-blue);
+  }
+
+  .mobile-nearby-action.is-saved .ui-icon path,
+  .mobile-saved-place-action.is-saved .ui-icon path,
+  .detail-action-secondary.is-saved svg path {
+    fill: currentColor !important;
+  }
+
+  .mobile-saved-placeholder button .ui-icon,
+  .mobile-trips-toolbar button .ui-icon,
+  .mobile-trip-editor-actions button .ui-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .mobile-saved-placeholder button,
+  .mobile-trips-toolbar button,
+  .mobile-trip-editor-actions button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  /* Trips */
+  .mobile-trips-toolbar > button {
+    min-height: 34px;
+    border: 1px solid rgba(15, 79, 103, 0.16);
+    border-radius: 9px;
+    padding: 0 10px;
+    background: #fff;
+    color: var(--mobile-navy);
+    font: inherit;
+    font-size: 9px;
+    font-weight: 800;
+  }
+
+  .mobile-trip-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    min-height: 84px;
+    border: 1px solid rgba(15, 79, 103, 0.13);
+    border-radius: 13px;
+    padding: 10px 12px;
+    background: #fff;
+    color: var(--mobile-ink);
+    box-shadow: var(--mobile-shadow-soft);
+    text-align: left;
+  }
+
+  .mobile-trip-icon {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--mobile-blue-soft);
+    color: var(--mobile-blue);
+  }
+
+  .mobile-trip-icon .ui-icon {
+    width: 23px;
+    height: 23px;
+  }
+
+  .mobile-trip-card > span:nth-child(2) strong,
+  .mobile-trip-card > span:nth-child(2) small,
+  .mobile-trip-card > span:nth-child(2) em {
+    display: block;
+  }
+
+  .mobile-trip-card > span:nth-child(2) strong {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .mobile-trip-card > span:nth-child(2) small,
+  .mobile-trip-card > span:nth-child(2) em {
+    margin-top: 3px;
+    color: var(--mobile-muted);
+    font-size: 8px;
+    font-style: normal;
+  }
+
+  .mobile-trip-card > .ui-icon {
+    width: 17px;
+    height: 17px;
+    color: var(--mobile-muted);
+  }
+
+  .mobile-trip-editor {
+    overflow: hidden;
+    border: 1px solid rgba(15, 79, 103, 0.13);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .mobile-trip-editor-heading {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 9px;
+    align-items: center;
+    padding: 14px 14px 10px;
+  }
+
+  .mobile-trip-editor-heading > button {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border: 1px solid rgba(15, 79, 103, 0.13);
+    border-radius: 9px;
+    background: #fff;
+    color: var(--mobile-navy);
+  }
+
+  .mobile-trip-editor-heading > button .ui-icon {
+    width: 17px;
+    height: 17px;
+  }
+
+  .mobile-trip-editor-heading .eyebrow {
+    margin: 0 0 2px;
+    color: var(--mobile-blue);
+    font-size: 7px;
+    letter-spacing: 0.14em;
+  }
+
+  .mobile-trip-editor-heading h3 {
+    margin: 0;
+    color: var(--mobile-ink);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .mobile-trip-editor-heading small {
+    display: block;
+    margin-top: 3px;
+    color: var(--mobile-muted);
+    font-size: 8.5px;
+  }
+
+  .mobile-trip-notes {
+    margin: 0 14px 10px;
+    border-left: 3px solid var(--mobile-green);
+    border-radius: 7px;
+    padding: 8px 10px;
+    background: #f5f8f3;
+    color: var(--mobile-muted);
+    font-size: 9px;
+    line-height: 1.4;
+  }
+
+  .mobile-trip-place-list {
+    display: grid;
+    gap: 8px;
+    padding: 0 10px 10px;
+  }
+
+  .mobile-trip-place {
+    border: 1px solid rgba(15, 79, 103, 0.11);
+    border-radius: 11px;
+    padding: 7px;
+    background: #fff;
+  }
+
+  .mobile-trip-place-main {
+    grid-template-columns: 58px minmax(0, 1fr);
+  }
+
+  .mobile-trip-place-main .mobile-plan-thumb {
+    width: 58px;
+    height: 54px;
+  }
+
+  .mobile-trip-place-controls {
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+    margin-top: 6px;
+  }
+
+  .mobile-trip-place-controls button {
+    min-height: 28px;
+    border: 1px solid rgba(15, 79, 103, 0.13);
+    border-radius: 7px;
+    padding: 0 8px;
+    background: #fff;
+    color: var(--mobile-navy);
+    font: inherit;
+    font-size: 8px;
+    font-weight: 700;
+  }
+
+  .mobile-trip-place-controls button:disabled {
+    opacity: 0.35;
+  }
+
+  .mobile-trip-empty {
+    border: 1px dashed rgba(15, 79, 103, 0.2);
+    border-radius: 10px;
+    padding: 18px 14px;
+    text-align: center;
+  }
+
+  .mobile-trip-empty p {
+    margin: 0;
+    color: var(--mobile-ink);
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .mobile-trip-empty small {
+    display: block;
+    margin-top: 4px;
+    color: var(--mobile-muted);
+    font-size: 8.5px;
+    line-height: 1.4;
+  }
+
+  .mobile-trip-editor-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+    padding: 10px 12px 13px;
+    border-top: 1px solid rgba(15, 79, 103, 0.1);
+  }
+
+  .mobile-trip-editor-actions button {
+    min-height: 36px;
+    border: 1px solid rgba(15, 79, 103, 0.15);
+    border-radius: 9px;
+    background: #fff;
+    color: var(--mobile-navy);
+    font: inherit;
+    font-size: 9px;
+    font-weight: 800;
+  }
+
+  .mobile-trip-editor-actions .is-danger {
+    color: #8b3a3a;
+  }
+
+  /* Settings */
+  .mobile-settings-panel {
+    position: fixed;
+    inset: var(--mobile-appbar-height) 0 var(--mobile-nav-height) 0;
+    z-index: 1250;
+    overflow-y: auto;
+    padding: 16px 14px 28px;
+    background:
+      radial-gradient(circle at 100% 0%, rgba(220, 239, 245, 0.72), transparent 34%),
+      linear-gradient(180deg, #fffefa 0%, #eef6f8 100%);
+  }
+
+  .mobile-settings-panel[hidden] {
+    display: none !important;
+  }
+
+  .mobile-settings-header {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 10px;
+    align-items: center;
+    margin: 0 2px 13px;
+  }
+
+  .mobile-settings-header > button {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border: 1px solid rgba(15, 79, 103, 0.13);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--mobile-navy);
+    box-shadow: var(--mobile-shadow-soft);
+  }
+
+  .mobile-settings-header > button .ui-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .mobile-settings-header .eyebrow {
+    margin: 0 0 2px;
+    color: var(--mobile-blue);
+    font-size: 8px;
+    letter-spacing: 0.14em;
+  }
+
+  .mobile-settings-header h2 {
+    margin: 0;
+    color: var(--mobile-ink);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 31px;
+    line-height: 0.95;
+  }
+
+  .mobile-settings-groups {
+    display: grid;
+    gap: 9px;
+  }
+
+  .mobile-settings-card {
+    overflow: hidden;
+    border: 1px solid rgba(15, 79, 103, 0.13);
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: var(--mobile-shadow-soft);
+  }
+
+  .mobile-settings-section-heading {
+    display: flex;
+    gap: 9px;
+    align-items: center;
+    padding: 12px 13px 10px;
+  }
+
+  .mobile-settings-section-heading > .ui-icon {
+    width: 23px;
+    height: 23px;
+    color: var(--mobile-blue);
+  }
+
+  .mobile-settings-section-heading strong,
+  .mobile-settings-section-heading small {
+    display: block;
+  }
+
+  .mobile-settings-section-heading strong {
+    color: var(--mobile-ink);
+    font-size: 10.5px;
+  }
+
+  .mobile-settings-section-heading small {
+    margin-top: 2px;
+    color: var(--mobile-muted);
+    font-size: 8px;
+    line-height: 1.35;
+  }
+
+  .mobile-setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 13px 12px;
+    border-top: 1px solid rgba(15, 79, 103, 0.09);
+  }
+
+  .mobile-setting-row strong,
+  .mobile-setting-row small {
+    display: block;
+  }
+
+  .mobile-setting-row strong {
+    color: var(--mobile-ink);
+    font-size: 9.5px;
+  }
+
+  .mobile-setting-row small {
+    max-width: 260px;
+    margin-top: 3px;
+    color: var(--mobile-muted);
+    font-size: 8px;
+    line-height: 1.35;
+  }
+
+  .mobile-setting-row input[type="checkbox"] {
+    width: 38px;
+    height: 22px;
+    flex: 0 0 auto;
+    accent-color: var(--mobile-blue);
+  }
+
+  .mobile-setting-choice {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+    padding: 0 12px 12px;
+  }
+
+  .mobile-setting-choice label {
+    display: flex;
+    min-height: 38px;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid rgba(15, 79, 103, 0.13);
+    border-radius: 9px;
+    padding: 0 10px;
+    color: var(--mobile-ink);
+    font-size: 9px;
+    font-weight: 700;
+  }
+
+  .mobile-setting-choice input {
+    accent-color: var(--mobile-blue);
+  }
+
+  .mobile-settings-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+    padding: 0 12px 10px;
+  }
+
+  .mobile-settings-stats > span {
+    border-radius: 9px;
+    padding: 9px 10px;
+    background: #f2f8fa;
+  }
+
+  .mobile-settings-stats strong,
+  .mobile-settings-stats small {
+    display: block;
+  }
+
+  .mobile-settings-stats strong {
+    color: var(--mobile-blue);
+    font-size: 15px;
+  }
+
+  .mobile-settings-stats small {
+    margin-top: 2px;
+    color: var(--mobile-muted);
+    font-size: 8px;
+  }
+
+  .mobile-settings-data-actions {
+    display: grid;
+    gap: 6px;
+    padding: 0 12px 12px;
+  }
+
+  .mobile-settings-data-actions button {
+    min-height: 36px;
+    border: 1px solid rgba(15, 79, 103, 0.13);
+    border-radius: 9px;
+    background: #fff;
+    color: var(--mobile-navy);
+    font: inherit;
+    font-size: 9px;
+    font-weight: 700;
+  }
+
+  .mobile-settings-data-actions button.is-danger {
+    color: #8b3a3a;
+  }
+
+  /* Bottom action sheets */
+  .mobile-action-sheet-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1900;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0;
+    background: rgba(16, 37, 46, 0.34);
+    backdrop-filter: blur(2px);
+  }
+
+  .mobile-action-sheet-backdrop[hidden] {
+    display: none !important;
+  }
+
+  .mobile-action-sheet {
+    width: 100%;
+    max-height: min(78dvh, 680px);
+    overflow-y: auto;
+    border-radius: 20px 20px 0 0;
+    padding: 7px 14px max(16px, env(safe-area-inset-bottom));
+    background: #fffefa;
+    box-shadow: 0 -18px 42px rgba(16, 37, 46, 0.2);
+  }
+
+  .mobile-action-sheet-handle {
+    width: 38px;
+    height: 4px;
+    margin: 1px auto 9px;
+    border-radius: 999px;
+    background: rgba(15, 79, 103, 0.22);
+  }
+
+  .mobile-action-sheet-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 0 1px 10px;
+  }
+
+  .mobile-action-sheet-header h2 {
+    margin: 0;
+    color: var(--mobile-ink);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 25px;
+    line-height: 1;
+  }
+
+  .mobile-action-sheet-header p {
+    margin: 4px 0 0;
+    color: var(--mobile-muted);
+    font-size: 9px;
+    line-height: 1.35;
+  }
+
+  .mobile-action-sheet-header > button {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border: 1px solid rgba(15, 79, 103, 0.12);
+    border-radius: 9px;
+    background: #fff;
+    color: var(--mobile-navy);
+    font-size: 20px;
+  }
+
+  .mobile-action-sheet-body {
+    display: grid;
+    gap: 6px;
+  }
+
+  .mobile-sheet-action,
+  .mobile-trip-picker-row {
+    display: grid;
+    width: 100%;
+    min-height: 52px;
+    align-items: center;
+    border: 1px solid rgba(15, 79, 103, 0.12);
+    border-radius: 10px;
+    padding: 8px 11px;
+    background: #fff;
+    color: var(--mobile-ink);
+    font: inherit;
+    text-align: left;
+  }
+
+  .mobile-sheet-action {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .mobile-sheet-action > .ui-icon {
+    width: 21px;
+    height: 21px;
+    color: var(--mobile-blue);
+  }
+
+  .mobile-sheet-action strong,
+  .mobile-sheet-action small {
+    display: block;
+  }
+
+  .mobile-sheet-action strong {
+    font-size: 9.5px;
+  }
+
+  .mobile-sheet-action small {
+    margin-top: 2px;
+    color: var(--mobile-muted);
+    font-size: 8px;
+  }
+
+  .mobile-sheet-action.is-danger {
+    display: flex;
+    justify-content: center;
+    color: #8b3a3a;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  .mobile-sheet-create {
+    margin-top: 3px;
+    border-color: rgba(23, 111, 143, 0.22);
+    background: var(--mobile-blue-soft);
+  }
+
+  .mobile-trip-picker-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+
+  .mobile-trip-picker-row > span {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .mobile-trip-picker-row .ui-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--mobile-blue);
+  }
+
+  .mobile-trip-picker-row strong {
+    font-size: 9.5px;
+  }
+
+  .mobile-trip-picker-row small {
+    color: var(--mobile-muted);
+    font-size: 8px;
+  }
+
+  .mobile-trip-picker-row.is-added {
+    background: #f2f8fa;
+    color: var(--mobile-blue);
+    opacity: 0.76;
+  }
+
+  .mobile-sheet-empty {
+    margin: 0;
+    border: 1px dashed rgba(15, 79, 103, 0.2);
+    border-radius: 10px;
+    padding: 14px;
+    color: var(--mobile-muted);
+    font-size: 9px;
+    text-align: center;
+  }
+
+  .mobile-trip-form {
+    display: grid;
+    gap: 9px;
+  }
+
+  .mobile-trip-form label {
+    display: grid;
+    gap: 4px;
+    color: var(--mobile-ink);
+    font-size: 9px;
+    font-weight: 700;
+  }
+
+  .mobile-trip-form label span small {
+    color: var(--mobile-muted);
+    font-size: 7.5px;
+    font-weight: 500;
+  }
+
+  .mobile-trip-form input,
+  .mobile-trip-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(15, 79, 103, 0.16);
+    border-radius: 9px;
+    padding: 9px 10px;
+    background: #fff;
+    color: var(--mobile-ink);
+    font: inherit;
+    font-size: 10px;
+  }
+
+  .mobile-trip-form-dates {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+  }
+
+  .mobile-trip-form-submit {
+    min-height: 42px;
+    border: 1px solid var(--mobile-blue);
+    border-radius: 10px;
+    background: var(--mobile-blue);
+    color: #fff;
+    font: inherit;
+    font-size: 10px;
+    font-weight: 800;
+  }
+
+  body.mobile-sheet-open {
+    overflow: hidden;
+  }
+
+  /* Toast now supports a compact Undo action. */
+  .mobile-toast-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    text-align: left;
+  }
+
+  .mobile-toast-actions > span {
+    min-width: 0;
+  }
+
+  .mobile-toast-actions > button {
+    flex: 0 0 auto;
+    border: 0;
+    padding: 3px 0;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    font-size: 9.5px;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .mobile-toast-actions > button[hidden] {
+    display: none !important;
+  }
+
+  .detail-action-secondary.is-saved {
+    font-weight: 800;
+  }
+}
+
+@media (max-width: 380px) {
+  .mobile-more-card > .ui-icon {
+    width: 38px;
+    height: 38px;
+    padding: 7px;
+  }
+
+  .mobile-saved-place-main {
+    grid-template-columns: 62px minmax(0, 1fr);
+  }
+
+  .mobile-plan-thumb {
+    width: 62px;
+    height: 60px;
+  }
+}
