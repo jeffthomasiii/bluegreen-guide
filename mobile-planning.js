@@ -212,6 +212,10 @@
 
   const placesPanel = savedPanel.querySelector('[data-saved-panel="places"]');
   const tripsPanel = savedPanel.querySelector('[data-saved-panel="trips"]');
+  [placesPanel, tripsPanel].forEach((panel) => {
+    panel?.classList.remove("mobile-saved-placeholder");
+    panel?.classList.add("mobile-saved-content");
+  });
 
   function persistSaved() {
     write(KEYS.saved, [...saved]);
