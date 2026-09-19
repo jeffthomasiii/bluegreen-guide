@@ -759,6 +759,7 @@
   }
 
   .detail-panel.mobile-sheet-collapsed .detail-card {
+    position: relative;
     display: grid;
     grid-template-columns: 104px minmax(0, 1fr);
     width: 100%;
