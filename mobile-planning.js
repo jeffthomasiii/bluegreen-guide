@@ -504,4 +504,83 @@
       syncButtons();
       syncSettings();
       closeSheet();
-      window.BLUEGRE
+      window.BLUEGREEN_LOCATION_PREFERENCE_CHANGED?.(true);
+      return showToast("BlueGreen Guide app data reset.");
+    }
+  });
+
+  sheet.addEventListener("submit", (event) => {
+    const form = event.target.closest("[data-trip-form]");
+    if (!form) return;
+    event.preventDefault();
+    const data = new FormData(form);
+    const name = String(data.get("name") || "").trim();
+    if (!name) return;
+    const now = new Date().toISOString();
+    const pendingPlace = sheetContext?.pendingPlace || null;
+    const trip = {
+      id: crypto.randomUUID?.() || `trip-${Date.now()}`,
+      name,
+      startDate: String(data.get("startDate") || ""),
+      endDate: String(data.get("endDate") || ""),
+      notes: String(data.get("notes") || "").trim(),
+      placeIds: pendingPlace ? [pendingPlace.id] : [],
+      createdAt: now,
+      updatedAt: now,
+    };
+    trips.unshift(trip);
+    write(KEYS.trips, trips);
+    renderTrips();
+    syncSettings();
+    closeSheet();
+    showToast(pendingPlace ? `${pendingPlace.name} added to ${trip.name}.` : `${trip.name} created.`);
+  });
+
+  settings.querySelector("[data-clear-saved]").addEventListener("click", () => {
+    if (!saved.size) return showToast("There are no saved places to clear.");
+    showSheet("Clear Saved Places?", "This removes every saved place from this device.", '<button type="button" class="mobile-sheet-action is-danger" data-confirm-clear-saved>Clear Saved Places</button><button type="button" class="mobile-sheet-action" data-sheet-close>Cancel</button>');
+  });
+  settings.querySelector("[data-clear-trips]").addEventListener("click", () => {
+    if (!trips.length) return showToast("There are no trips to clear.");
+    showSheet("Clear Trips?", "This removes every trip from this device.", '<button type="button" class="mobile-sheet-action is-danger" data-confirm-clear-trips>Clear Trips</button><button type="button" class="mobile-sheet-action" data-sheet-close>Cancel</button>');
+  });
+  settings.querySelector("[data-reset-data]").addEventListener("click", () => {
+    showSheet("Reset app data?", "Saved Places, Trips, and BlueGreen Guide preferences on this device will be cleared.", '<button type="button" class="mobile-sheet-action is-danger" data-confirm-reset>Reset app data</button><button type="button" class="mobile-sheet-action" data-sheet-close>Cancel</button>');
+  });
+
+  savedPanel.querySelectorAll("[data-saved-tab]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (button.dataset.savedTab === "places") activeTripId = null;
+      renderSaved();
+      renderTrips();
+    });
+  });
+
+  const detailObserver = new MutationObserver(syncButtons);
+  detailObserver.observe(detailPanel, { childList: true, subtree: true });
+
+  const nearbyObserver = nearbyResults ? new MutationObserver(syncButtons) : null;
+  nearbyObserver?.observe(nearbyResults, { childList: true, subtree: true });
+
+  window.addEventListener("storage", (event) => {
+    if (![KEYS.saved, KEYS.trips, KEYS.prefs].includes(event.key)) return;
+    saved = new Set(Array.isArray(read(KEYS.saved, [])) ? read(KEYS.saved, []).filter(Boolean) : []);
+    trips = Array.isArray(read(KEYS.trips, [])) ? read(KEYS.trips, []).filter((trip) => trip?.id && trip?.name) : [];
+    prefs = { ...DEFAULT_PREFS, ...(read(KEYS.prefs, {}) || {}) };
+    renderSaved();
+    renderTrips();
+    syncButtons();
+    syncSettings();
+  });
+
+  if (MOBILE_QUERY.matches) {
+    const params = new URLSearchParams(location.search);
+    const placeId = params.get("place");
+    if (placeId && placeById(placeId)) requestAnimationFrame(() => window.openLaunchDetail?.(placeId, { focusMap: false }));
+  }
+
+  renderSaved();
+  renderTrips();
+  syncSettings();
+  syncButtons();
+})();
