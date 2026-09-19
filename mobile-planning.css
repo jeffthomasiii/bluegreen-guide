@@ -1,0 +1,316 @@
+/* BlueGreen Guide — Saved Places, Trips, place actions, and Settings
+   Mobile/PWA-only feature layer. Overall visual refinement follows in the next pass.
+*/
+
+@media (max-width: 720px) {
+  /* More: rebalance larger square cards with a stronger visual anchor. */
+  .mobile-more-card {
+    gap: 17px;
+    padding: 18px;
+  }
+
+  .mobile-more-card > .ui-icon {
+    box-sizing: content-box;
+    width: 42px;
+    height: 42px;
+    margin: 1px 0 0;
+    border-radius: 15px;
+    padding: 8px;
+    background: #edf7fa;
+    color: var(--mobile-blue);
+  }
+
+  .mobile-more-card strong {
+    font-size: 11px;
+  }
+
+  .mobile-more-card small {
+    margin-top: 3px;
+    font-size: 9.25px;
+    line-height: 1.3;
+  }
+
+  /* Shared saved/trip surfaces. */
+  .mobile-saved-content[hidden] {
+    display: none !important;
+  }
+
+  .mobile-saved-list-heading,
+  .mobile-trips-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 1px 2px 9px;
+  }
+
+  .mobile-saved-list-heading strong,
+  .mobile-trips-toolbar strong {
+    display: block;
+    color: var(--mobile-ink);
+    font-size: 10px;
+  }
+
+  .mobile-saved-list-heading small,
+  .mobile-trips-toolbar small {
+    display: block;
+    margin-top: 2px;
+    color: var(--mobile-muted);
+    font-size: 8.5px;
+  }
+
+  .mobile-saved-list,
+  .mobile-trip-list {
+    display: grid;
+    gap: 8px;
+  }
+
+  .mobile-saved-place-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 6px;
+    align-items: center;
+    min-height: 92px;
+    border: 1px solid rgba(15, 79, 103, 0.13);
+    border-radius: 13px;
+    padding: 6px 7px 6px 6px;
+    background: #fff;
+    box-shadow: var(--mobile-shadow-soft);
+  }
+
+  .mobile-saved-place-main,
+  .mobile-trip-place-main {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 9px;
+    align-items: center;
+    min-width: 0;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+  }
+
+  .mobile-plan-thumb {
+    display: grid;
+    width: 72px;
+    height: 68px;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 9px;
+    background: var(--mobile-blue-soft);
+  }
+
+  .mobile-plan-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .mobile-plan-thumb-fallback {
+    background: linear-gradient(135deg, var(--mobile-blue), var(--mobile-green));
+    color: #fff;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+  }
+
+  .mobile-saved-place-main strong,
+  .mobile-saved-place-main small,
+  .mobile-trip-place-main strong,
+  .mobile-trip-place-main small {
+    display: block;
+  }
+
+  .mobile-saved-place-main strong,
+  .mobile-trip-place-main strong {
+    color: var(--mobile-ink);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 17px;
+    line-height: 0.98;
+  }
+
+  .mobile-saved-place-main small,
+  .mobile-trip-place-main small {
+    margin-top: 4px;
+    color: var(--mobile-muted);
+    font-size: 8px;
+    line-height: 1.3;
+  }
+
+  .mobile-saved-place-action {
+    display: grid;
+    width: 32px;
+    height: 32px;
+    place-items: center;
+    border: 1px solid rgba(15, 79, 103, 0.12);
+    border-radius: 8px;
+    background: #fbfdff;
+    color: var(--mobile-navy);
+  }
+
+  .mobile-saved-place-action .ui-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mobile-nearby-action.is-saved,
+  .mobile-saved-place-action.is-saved,
+  .detail-action-secondary.is-saved {
+    border-color: rgba(23, 111, 143, 0.34);
+    background: var(--mobile-blue-soft);
+    color: var(--mobile-blue);
+  }
+
+  .mobile-nearby-action.is-saved .ui-icon path,
+  .mobile-saved-place-action.is-saved .ui-icon path,
+  .detail-action-secondary.is-saved svg path {
+    fill: currentColor !important;
+  }
+
+  .mobile-saved-placeholder button .ui-icon,
+  .mobile-trips-toolbar button .ui-icon,
+  .mobile-trip-editor-actions button .ui-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .mobile-saved-placeholder button,
+  .mobile-trips-toolbar button,
+  .mobile-trip-editor-actions button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  /* Trips */
+  .mobile-trips-toolbar > button {
+    min-height: 34px;
+    border: 1px solid rgba(15, 79, 103, 0.16);
+    border-radius: 9px;
+    padding: 0 10px;
+    background: #fff;
+    color: var(--mobile-navy);
+    font: inherit;
+    font-size: 9px;
+    font-weight: 800;
+  }
+
+  .mobile-trip-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    min-height: 84px;
+    border: 1px solid rgba(15, 79, 103, 0.13);
+    border-radius: 13px;
+    padding: 10px 12px;
+    background: #fff;
+    color: var(--mobile-ink);
+    box-shadow: var(--mobile-shadow-soft);
+    text-align: left;
+  }
+
+  .mobile-trip-icon {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--mobile-blue-soft);
+    color: var(--mobile-blue);
+  }
+
+  .mobile-trip-icon .ui-icon {
+    width: 23px;
+    height: 23px;
+  }
+
+  .mobile-trip-card > span:nth-child(2) strong,
+  .mobile-trip-card > span:nth-child(2) small,
+  .mobile-trip-card > span:nth-child(2) em {
+    display: block;
+  }
+
+  .mobile-trip-card > span:nth-child(2) strong {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .mobile-trip-card > span:nth-child(2) small,
+  .mobile-trip-card > span:nth-child(2) em {
+    margin-top: 3px;
+    color: var(--mobile-muted);
+    font-size: 8px;
+    font-style: normal;
+  }
+
+  .mobile-trip-card > .ui-icon {
+    width: 17px;
+    height: 17px;
+    color: var(--mobile-muted);
+  }
+
+  .mobile-trip-editor {
+    overflow: hidden;
+    border: 1px solid rgba(15, 79, 103, 0.13);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .mobile-trip-editor-heading {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 9px;
+    align-items: center;
+    padding: 14px 14px 10px;
+  }
+
+  .mobile-trip-editor-heading > button {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border: 1px solid rgba(15, 79, 103, 0.13);
+    border-radius: 9px;
+    background: #fff;
+    color: var(--mobile-navy);
+  }
+
+  .mobile-trip-editor-heading > button .ui-icon {
+    width: 17px;
+    height: 17px;
+  }
+
+  .mobile-trip-editor-heading .eyebrow {
+    margin: 0 0 2px;
+    color: var(--mobile-blue);
+    font-size: 7px;
+    letter-spacing: 0.14em;
+  }
+
+  .mobile-trip-editor-heading h3 {
+    margin: 0;
+    color: var(--mobile-ink);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .mobile-trip-editor-heading small {
+    display: block;
+    margin-top: 3px;
+    color: var(--mobile-muted);
+    font-size: 8.5px;
+  }
+
+  .mobile-trip-notes {
+    margin: 0 14px 10px;
+    border-left: 3px solid var(--mobile-green);
+    border-radius: 7px;
+    padding: 8px 10px;
+    b
