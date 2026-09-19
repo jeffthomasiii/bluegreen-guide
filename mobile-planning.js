@@ -132,4 +132,146 @@
   }
   function closeSheet() {
     sheet.hidden = true;
-    document.body.classList.rem
+    document.body.classList.remove("mobile-sheet-open");
+    sheetContext = null;
+  }
+
+  const settings = document.createElement("section");
+  settings.className = "mobile-settings-panel";
+  settings.hidden = true;
+  settings.innerHTML = `
+    <header class="mobile-settings-header">
+      <button type="button" data-close-settings aria-label="Back to More">${icon("back")}</button>
+      <div><p class="eyebrow">BlueGreen Guide</p><h2>Settings</h2></div>
+    </header>
+    <div class="mobile-settings-groups">
+      <section class="mobile-settings-card">
+        <div class="mobile-settings-section-heading">${icon("location")}<span><strong>Location</strong><small>Nearby discovery</small></span></div>
+        <label class="mobile-setting-row"><span><strong>Use device location</strong><small>Allow Nearby to request your approximate device location.</small></span><input type="checkbox" data-setting-location /></label>
+      </section>
+      <section class="mobile-settings-card">
+        <div class="mobile-settings-section-heading">${icon("map")}<span><strong>Distance</strong><small>Choose how distances are shown.</small></span></div>
+        <div class="mobile-setting-choice" role="radiogroup" aria-label="Distance units">
+          <label><input type="radio" name="distanceUnit" value="miles" data-setting-distance /> Miles</label>
+          <label><input type="radio" name="distanceUnit" value="kilometers" data-setting-distance /> Kilometers</label>
+        </div>
+      </section>
+      <section class="mobile-settings-card">
+        <div class="mobile-settings-section-heading">${icon("saved")}<span><strong>Data & privacy</strong><small>Saved places, trips, and preferences stay on this device in this build.</small></span></div>
+        <div class="mobile-settings-stats"><span><strong data-saved-count>0</strong><small>Saved places</small></span><span><strong data-trip-count>0</strong><small>Trips</small></span></div>
+        <div class="mobile-settings-data-actions">
+          <button type="button" data-clear-saved>Clear Saved Places</button>
+          <button type="button" data-clear-trips>Clear Trips</button>
+          <button type="button" class="is-danger" data-reset-data>Reset app data</button>
+        </div>
+      </section>
+    </div>`;
+  document.body.append(settings);
+
+  function syncSettings() {
+    settings.querySelector("[data-setting-location]").checked = prefs.locationEnabled !== false;
+    settings.querySelectorAll("[data-setting-distance]").forEach((input) => {
+      input.checked = input.value === prefs.distanceUnit;
+    });
+    settings.querySelector("[data-saved-count]").textContent = String(saved.size);
+    settings.querySelector("[data-trip-count]").textContent = String(trips.length);
+  }
+  function openSettings() {
+    syncSettings();
+    settings.hidden = false;
+    settings.scrollTop = 0;
+  }
+  window.BLUEGREEN_OPEN_SETTINGS = openSettings;
+  settings.querySelector("[data-close-settings]").addEventListener("click", () => (settings.hidden = true));
+  settings.querySelector("[data-setting-location]").addEventListener("change", (event) => {
+    prefs.locationEnabled = event.target.checked;
+    write(KEYS.prefs, prefs);
+    window.BLUEGREEN_LOCATION_PREFERENCE_CHANGED?.(prefs.locationEnabled);
+  });
+  settings.querySelectorAll("[data-setting-distance]").forEach((input) => {
+    input.addEventListener("change", (event) => {
+      if (!event.target.checked) return;
+      prefs.distanceUnit = event.target.value === "kilometers" ? "kilometers" : "miles";
+      write(KEYS.prefs, prefs);
+      window.BLUEGREEN_DISTANCE_PREFERENCE_CHANGED?.();
+    });
+  });
+
+  const originalSettingsButton = morePanel.querySelector("[data-settings-placeholder]");
+  if (originalSettingsButton) {
+    const replacement = originalSettingsButton.cloneNode(true);
+    replacement.removeAttribute("data-settings-placeholder");
+    replacement.setAttribute("data-open-settings", "");
+    replacement.querySelector("small").textContent = "App preferences";
+    originalSettingsButton.replaceWith(replacement);
+    replacement.addEventListener("click", openSettings);
+  }
+
+  const savedHeadingCopy = savedPanel.querySelector(".mobile-saved-heading p:last-child");
+  if (savedHeadingCopy) savedHeadingCopy.textContent = "Keep places you want to remember and group them into future trips.";
+
+  const placesPanel = savedPanel.querySelector('[data-saved-panel="places"]');
+  const tripsPanel = savedPanel.querySelector('[data-saved-panel="trips"]');
+
+  function persistSaved() {
+    write(KEYS.saved, [...saved]);
+  }
+  function isSaved(id) {
+    return saved.has(id);
+  }
+  window.BLUEGREEN_IS_SAVED_PLACE = isSaved;
+
+  function setSaved(id, value, withToast = true) {
+    const place = placeById(id);
+    if (!place) return;
+    const before = saved.has(id);
+    if (value) saved.add(id);
+    else saved.delete(id);
+    if (before === value) return;
+    persistSaved();
+    renderSaved();
+    syncButtons();
+    syncSettings();
+    if (withToast) {
+      showToast(value ? "Saved to Saved Places." : "Removed from Saved Places.", "Undo", () => setSaved(id, before, false));
+    }
+  }
+  function toggleSaved(id) {
+    setSaved(id, !saved.has(id));
+  }
+  window.BLUEGREEN_TOGGLE_SAVED_PLACE = toggleSaved;
+
+  function syncButtons() {
+    document.querySelectorAll("[data-nearby-save][data-place-id]").forEach((button) => {
+      const yes = saved.has(button.dataset.placeId);
+      button.classList.toggle("is-saved", yes);
+      button.setAttribute("aria-pressed", String(yes));
+    });
+    detailPanel.querySelectorAll("[data-save-place-id]").forEach((button) => {
+      const yes = saved.has(button.dataset.savePlaceId);
+      button.classList.toggle("is-saved", yes);
+      button.setAttribute("aria-pressed", String(yes));
+      const label = button.querySelector("span");
+      const next = yes ? "Saved" : "Save";
+      if (label && label.textContent !== next) label.textContent = next;
+    });
+  }
+  window.BLUEGREEN_SYNC_SAVE_BUTTONS = syncButtons;
+
+  function renderSaved() {
+    const places = [...saved].map(placeById).filter(Boolean);
+    if (!places.length) {
+      placesPanel.innerHTML = `
+        <section class="mobile-saved-placeholder">
+          ${icon("saved")}<h3>Saved Places</h3>
+          <p>Bookmark places you want to remember. They will stay saved on this device.</p>
+          <button type="button" data-go-explore>Explore places</button>
+        </section>`;
+      placesPanel.querySelector("[data-go-explore]")?.addEventListener("click", () => window.BLUEGREEN_SET_MOBILE_VIEW?.("explore"));
+      return;
+    }
+    placesPanel.innerHTML = `
+      <div class="mobile-saved-list-heading"><strong>${places.length} saved ${places.length === 1 ? "place" : "places"}</strong><small>Stored on this device</small></div>
+      <div class="mobile-saved-list">${places.map((place) => `
+        <article class="mobile-saved-place-card">
+          <button type="button" class="mobile-saved-place-main" data-open-saved="${escapeHtml(place.id)}">${thumb(place)}<span><strong>
