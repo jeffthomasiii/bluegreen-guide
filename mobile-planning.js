@@ -274,4 +274,95 @@
       <div class="mobile-saved-list-heading"><strong>${places.length} saved ${places.length === 1 ? "place" : "places"}</strong><small>Stored on this device</small></div>
       <div class="mobile-saved-list">${places.map((place) => `
         <article class="mobile-saved-place-card">
-          <button type="button" class="mobile-saved-place-main" data-open-saved="${escapeHtml(place.id)}">${thumb(place)}<span><strong>
+          <button type="button" class="mobile-saved-place-main" data-open-saved="${escapeHtml(place.id)}">${thumb(place)}<span><strong>${escapeHtml(place.name)}</strong><small>${escapeHtml(place.region)}, ${escapeHtml(place.state)} · ${escapeHtml(placeType(place))}</small></span></button>
+          <button type="button" class="mobile-saved-place-action is-saved" data-unsave="${escapeHtml(place.id)}" aria-label="Remove ${escapeHtml(place.name)}">${icon("saved")}</button>
+          <button type="button" class="mobile-saved-place-action" data-more="${escapeHtml(place.id)}" aria-label="More options for ${escapeHtml(place.name)}"><span aria-hidden="true">•••</span></button>
+        </article>`).join("")}</div>`;
+    placesPanel.querySelectorAll("[data-open-saved]").forEach((button) => button.addEventListener("click", () => window.openLaunchDetail?.(button.dataset.openSaved, { focusMap: false })));
+    placesPanel.querySelectorAll("[data-unsave]").forEach((button) => button.addEventListener("click", () => toggleSaved(button.dataset.unsave)));
+    placesPanel.querySelectorAll("[data-more]").forEach((button) => button.addEventListener("click", () => openPlaceActions(placeById(button.dataset.more))));
+  }
+
+  function tripDates(trip) {
+    const fmt = (value) => {
+      if (!value) return "";
+      const d = new Date(`${value}T12:00:00`);
+      return Number.isNaN(d.getTime()) ? value : new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric", year: "numeric" }).format(d);
+    };
+    if (trip.startDate && trip.endDate) return `${fmt(trip.startDate)} – ${fmt(trip.endDate)}`;
+    return fmt(trip.startDate || trip.endDate) || "Dates not set";
+  }
+
+  function renderTrips() {
+    const trip = activeTripId ? trips.find((item) => item.id === activeTripId) : null;
+    if (trip) return renderTripEditor(trip);
+    if (!trips.length) {
+      tripsPanel.innerHTML = `
+        <section class="mobile-saved-placeholder">
+          ${icon("trip")}<h3>My Trips</h3>
+          <p>Group BlueGreen Guide places into a simple trip plan. Trip data stays on this device.</p>
+          <button type="button" data-new-trip>${icon("plus")}<span>Create a Trip</span></button>
+        </section>`;
+      tripsPanel.querySelector("[data-new-trip]")?.addEventListener("click", () => openCreateTrip());
+      return;
+    }
+    tripsPanel.innerHTML = `
+      <div class="mobile-trips-toolbar"><div><strong>${trips.length} ${trips.length === 1 ? "trip" : "trips"}</strong><small>Stored on this device</small></div><button type="button" data-new-trip>${icon("plus")}<span>New trip</span></button></div>
+      <div class="mobile-trip-list">${trips.map((trip) => `
+        <button type="button" class="mobile-trip-card" data-trip="${escapeHtml(trip.id)}"><span class="mobile-trip-icon">${icon("trip")}</span><span><strong>${escapeHtml(trip.name)}</strong><small>${escapeHtml(tripDates(trip))}</small><em>${trip.placeIds?.length || 0} ${(trip.placeIds?.length || 0) === 1 ? "place" : "places"}</em></span>${icon("chevron")}</button>`).join("")}</div>`;
+    tripsPanel.querySelector("[data-new-trip]")?.addEventListener("click", () => openCreateTrip());
+    tripsPanel.querySelectorAll("[data-trip]").forEach((button) => button.addEventListener("click", () => {
+      activeTripId = button.dataset.trip;
+      renderTrips();
+    }));
+  }
+
+  function renderTripEditor(trip) {
+    const places = (trip.placeIds || []).map(placeById).filter(Boolean);
+    tripsPanel.innerHTML = `
+      <section class="mobile-trip-editor">
+        <div class="mobile-trip-editor-heading"><button type="button" data-trip-back aria-label="Back to trips">${icon("back")}</button><div><p class="eyebrow">My Trip</p><h3>${escapeHtml(trip.name)}</h3><small>${escapeHtml(tripDates(trip))}</small></div></div>
+        ${trip.notes ? `<p class="mobile-trip-notes">${escapeHtml(trip.notes)}</p>` : ""}
+        <div class="mobile-trip-place-list">${places.length ? places.map((place, index) => `
+          <article class="mobile-trip-place">
+            <button type="button" class="mobile-trip-place-main" data-trip-place="${escapeHtml(place.id)}">${thumb(place)}<span><strong>${escapeHtml(place.name)}</strong><small>${escapeHtml(place.region)}, ${escapeHtml(place.state)}</small></span></button>
+            <div class="mobile-trip-place-controls"><button type="button" data-move="${escapeHtml(place.id)}" data-dir="up" ${index === 0 ? "disabled" : ""}>↑</button><button type="button" data-move="${escapeHtml(place.id)}" data-dir="down" ${index === places.length - 1 ? "disabled" : ""}>↓</button><button type="button" data-remove="${escapeHtml(place.id)}">Remove</button></div>
+          </article>`).join("") : '<div class="mobile-trip-empty"><p>No places are in this trip yet.</p><small>Open a place and choose Add to Trip from the ••• menu.</small></div>'}</div>
+        <div class="mobile-trip-editor-actions"><button type="button" data-explore>Explore places</button><button type="button" class="is-danger" data-delete-trip>${icon("trash")}<span>Delete trip</span></button></div>
+      </section>`;
+    tripsPanel.querySelector("[data-trip-back]").addEventListener("click", () => {
+      activeTripId = null;
+      renderTrips();
+    });
+    tripsPanel.querySelector("[data-explore]").addEventListener("click", () => window.BLUEGREEN_SET_MOBILE_VIEW?.("explore"));
+    tripsPanel.querySelectorAll("[data-trip-place]").forEach((button) => button.addEventListener("click", () => window.openLaunchDetail?.(button.dataset.tripPlace, { focusMap: false })));
+    tripsPanel.querySelectorAll("[data-remove]").forEach((button) => button.addEventListener("click", () => {
+      trip.placeIds = trip.placeIds.filter((id) => id !== button.dataset.remove);
+      trip.updatedAt = new Date().toISOString();
+      write(KEYS.trips, trips);
+      renderTrips();
+    }));
+    tripsPanel.querySelectorAll("[data-move]").forEach((button) => button.addEventListener("click", () => {
+      const current = trip.placeIds.indexOf(button.dataset.move);
+      const next = button.dataset.dir === "up" ? current - 1 : current + 1;
+      if (current < 0 || next < 0 || next >= trip.placeIds.length) return;
+      [trip.placeIds[current], trip.placeIds[next]] = [trip.placeIds[next], trip.placeIds[current]];
+      trip.updatedAt = new Date().toISOString();
+      write(KEYS.trips, trips);
+      renderTrips();
+    }));
+    tripsPanel.querySelector("[data-delete-trip]").addEventListener("click", () => {
+      showSheet(`Delete ${trip.name}?`, "This trip will be removed from this device. Saved Places are not affected.", '<button type="button" class="mobile-sheet-action is-danger" data-delete-confirm>Delete trip</button><button type="button" class="mobile-sheet-action" data-sheet-close>Cancel</button>', { trip });
+      sheet.querySelector("[data-delete-confirm]").addEventListener("click", () => {
+        trips = trips.filter((item) => item.id !== trip.id);
+        activeTripId = null;
+        write(KEYS.trips, trips);
+        renderTrips();
+        syncSettings();
+        closeSheet();
+        showToast("Trip deleted.");
+      }, { once: true });
+    });
+  }
+
+  function openC
