@@ -2,32 +2,62 @@
 
 This folder is the clean home for the refined BlueGreen Guide brand-logo package.
 
-## Canonical source
+## Package status
 
-The refinement standard is the current approved Option B2 landscape identity. During the logo-package transition, do not treat older files directly under `assets/brand/` as authoritative simply because they already exist.
+The package is being staged and reviewed before BlueGreen Guide is repointed to these assets.
 
-The new package should preserve:
+**Already created in this branch:**
 
-- the rounded landscape badge
+- editable source/master SVGs
+- source reference PNG
+- PWA/mobile app icons
+- folder structure for the final SVG, PNG, and favicon exports
+
+**Still to upload from the prepared logo package:**
+
+- production logo variants in `svg/`
+- matching transparent raster exports in `png/`
+- favicon exports in `favicons/`
+
+Do **not** delete or overwrite the older files directly under `assets/brand/` yet. The app will be repointed to the approved package in a separate controlled PR after review.
+
+## Canonical design direction
+
+The refinement standard is the approved Option B2 landscape identity.
+
+Preserve:
+
+- rounded landscape badge
 - mountain / land / water composition
 - BlueGreen Guide wordmark
 - approved blue and green palette
 - activity-neutral permanent brand identity
 - `Discover Better Outdoors` tagline where appropriate
 
+Activity-specific equipment or people belong in the Wayfinding System, not the permanent logo.
+
 ## Folder structure
 
-### `source/`
-Editable/master artwork used to generate final exports.
+### `source/` — created
 
-Recommended uploads:
-- `bluegreen-guide-logo-master.svg`
-- Illustrator source may be retained here later if desired
+Editable/master artwork and reference material.
 
-### `svg/`
+Included:
+
+- `bluegreen-guide-logo-master.svg` — editable primary master with live brand typography
+- `bluegreen-guide-mark-master.svg` — editable icon-only landscape mark
+- `bluegreen-guide-logo-master-reference.png` — raster reference for visual comparison
+
+The SVG files are the working source masters. The PNG is a reference image, not the authoritative editable artwork.
+
+If a print/vendor copy requires font-independent artwork, convert the live wordmark/tagline type to outlines in Illustrator for that delivery copy. Keep an editable master with live type.
+
+### `svg/` — upload prepared files here
+
 Production-ready scalable logo variants.
 
 Expected filenames:
+
 - `bluegreen-guide-logo-primary.svg`
 - `bluegreen-guide-logo-primary-dark-mode.svg`
 - `bluegreen-guide-logo-mobile.svg`
@@ -40,10 +70,12 @@ Expected filenames:
 - `bluegreen-guide-logo-one-color-dark.svg`
 - `bluegreen-guide-logo-one-color-white.svg`
 
-### `png/`
+### `png/` — upload prepared files here
+
 Transparent raster exports matching the SVG variants.
 
 Expected filenames:
+
 - `bluegreen-guide-logo-primary.png`
 - `bluegreen-guide-logo-primary-dark-mode.png`
 - `bluegreen-guide-logo-mobile.png`
@@ -56,19 +88,28 @@ Expected filenames:
 - `bluegreen-guide-logo-one-color-dark.png`
 - `bluegreen-guide-logo-one-color-white.png`
 
-### `app-icons/`
-Square-safe brand-mark exports for PWA, mobile, social/profile, and platform icons.
+### `app-icons/` — created
 
-Expected filenames:
-- `bluegreen-guide-app-icon.svg`
-- `bluegreen-guide-app-icon-1024.png`
-- `bluegreen-guide-app-icon-transparent-1024.png`
-- additional platform-specific exports as needed
+Square-safe brand-mark exports for the PWA, mobile home screen, and other app-icon uses.
 
-### `favicons/`
+Included:
+
+- `bluegreen-guide-app-icon.svg` — scalable app-icon source
+- `bluegreen-guide-app-icon-1024.png` — high-resolution master raster
+- `bluegreen-guide-app-icon-512.png` — standard PWA large icon
+- `bluegreen-guide-app-icon-192.png` — standard PWA small icon
+- `bluegreen-guide-app-icon-maskable-512.png` — maskable-safe 512px export
+
+The app-icon artwork intentionally uses a safe background rather than relying on transparency so it behaves predictably when installed on mobile platforms.
+
+A transparent 1024px app-icon export may be kept as a supplemental design asset, but it is not required for the PWA manifest.
+
+### `favicons/` — upload prepared files here
+
 Small-size simplified brand-mark exports.
 
 Expected filenames:
+
 - `bluegreen-guide-favicon.svg`
 - `bluegreen-guide-favicon-16x16.png`
 - `bluegreen-guide-favicon-32x32.png`
@@ -77,10 +118,20 @@ Expected filenames:
 - `bluegreen-guide-favicon-192x192.png`
 - `bluegreen-guide-favicon-512x512.png`
 
-## Upload rule
+## Approved color references
 
-Upload refined assets into this package first. Do **not** overwrite or delete the existing files directly under `assets/brand/` until the new package has been reviewed and approved. After approval, the app can be repointed to the new canonical assets in a separate PR.
+- Primary Blue — `#176F8F`
+- Deep Blue — `#0F4F67`
+- Soft Blue — `#DCEFF5`
+- Green Accent — `#6F8F63`
+- Deep Green — `#4F7047`
+- Background — `#EEF6F8`
+- Text — `#10252E`
 
 ## Naming
 
 Use lowercase kebab-case. Every production logo asset should begin with `bluegreen-guide-`.
+
+## Integration rule
+
+Complete and review this package first. Repoint the PWA manifest, app header, documentation, favicon references, social/profile assets, and any other product usage only after the new package is approved.
