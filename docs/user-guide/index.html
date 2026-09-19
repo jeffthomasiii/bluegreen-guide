@@ -7,12 +7,49 @@
     <title>BlueGreen Guide Field Guide &amp; User Manual</title>
     <link rel="stylesheet" href="../brand-docs.css" />
   </head>
-  <body>
+  <body class="user-guide-page">
     <main class="wrap">
       <header class="site-header">
         <a href="../../" aria-label="Back to BlueGreen Guide app"><img class="site-logo" src="../../assets/brand/bluegreen-guide-logo-primary-transparent.svg" alt="BlueGreen Guide — Discover Better Outdoors" /></a>
         <nav class="site-nav" aria-label="User guide navigation"><a class="button secondary" href="../">Documentation Home</a><a class="button" href="../../?view=more">Back to App</a></nav>
       </header>
+
+      <section class="mobile-guide-hero" aria-labelledby="mobileGuideHeroTitle">
+        <p class="eyebrow">Field Guide</p>
+        <h1 id="mobileGuideHeroTitle">A More Confident Adventure</h1>
+        <p>Practical knowledge for better outdoor experiences.</p>
+      </section>
+
+      <section class="mobile-guide-principles" aria-label="BlueGreen Guide planning principles">
+        <article class="mobile-guide-principle">
+          <span class="mobile-guide-principle-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m15 9-2 4-4 2 2-4 4-2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </span>
+          <h2>Orient</h2>
+          <p>Know where you are and where you're going.</p>
+        </article>
+        <article class="mobile-guide-principle">
+          <span class="mobile-guide-principle-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Zm6-3v15m6-12v15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          </span>
+          <h2>Understand</h2>
+          <p>Get clear, practical information before you go.</p>
+        </article>
+        <article class="mobile-guide-principle">
+          <span class="mobile-guide-principle-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3 19 6v5c0 4.5-2.6 7.7-7 10-4.4-2.3-7-5.5-7-10V6l7-3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.5 12 2.2 2.2 4.8-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h2>Verify</h2>
+          <p>Rely on trusted, up-to-date details and official sources.</p>
+        </article>
+        <article class="mobile-guide-principle">
+          <span class="mobile-guide-principle-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M19 4C11 5 6 9.5 5 17c4.5.8 9-1.2 11.5-5.2C18 9.4 18.8 6.9 19 4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 19c2.8-4.5 6-7.2 10-9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+          <h2>Check</h2>
+          <p>Respect the place, current conditions, and what you find.</p>
+        </article>
+      </section>
 
       <section class="hero">
         <p class="eyebrow">Field Guide &amp; User Manual</p>
@@ -32,9 +69,11 @@
       <h2 id="current-build">Current field-test build</h2>
       <p class="section-intro">The current v1.2 field-test runtime resolves 89 active places. Most are still part of the original water/paddle discovery use case, with a deliberately small green/mixed pilot added to test the broader BlueGreen model. Mixed destinations intentionally participate in both Water and Land discovery.</p>
 
-      <h2 id="desktop">Desktop and tablet</h2>
-      <p class="section-intro">On larger screens, the map remains the central discovery surface while search, filters, collections, results, and place details sit alongside it. Use the map and list together: narrow the results, inspect markers, and open details without treating any single label as a guarantee.</p>
-      <img class="screen screen-full" src="../screenshots/placeholders/home-screen-desktop.png" alt="BlueGreen Guide desktop home screen" />
+      <section class="desktop-guide-only">
+        <h2 id="desktop">Desktop and tablet</h2>
+        <p class="section-intro">On larger screens, the map remains the central discovery surface while search, filters, collections, results, and place details sit alongside it. Use the map and list together: narrow the results, inspect markers, and open details without treating any single label as a guarantee.</p>
+        <img class="screen screen-full" src="../screenshots/placeholders/home-screen-desktop.png" alt="BlueGreen Guide desktop home screen" />
+      </section>
 
       <h2 id="mobile">Mobile navigation</h2>
       <div class="chip-row"><span class="chip neutral">Explore</span><span class="chip water">Map</span><span class="chip neutral">Nearby</span><span class="chip neutral">Saved</span><span class="chip neutral">More</span></div>
