@@ -24,20 +24,23 @@ Current capabilities include:
 
 - Interactive OpenStreetMap and Leaflet map
 - Installable Progressive Web App shell with network-driven map tiles and external content
-- Mobile Explore, Map, Nearby, Saved, and More navigation with responsive sheets and controls; Saved Places and My Trips are clearly labeled non-persistent placeholders in the current field-test build
+- Mobile Explore, Map, Nearby, Saved, and More navigation with responsive sheets and controls; Saved Places and My Trips now persist locally on the current device without requiring an account
 - Search across place names, aliases, water bodies, taxonomy, amenities, activities, tags, descriptions, and launch-suitability values
 - Blue, green, and mixed place semantics
 - Water and Land mobile discovery filters; mixed places intentionally appear in either relevant filter
 - Region, paddling skill, water activity, and maximum paddle-difficulty filters for the existing paddle use case
 - Five curated collections that use explicit place IDs
 - Map-bounds filtering, browser geolocation, mobile fit-to-results reset, and a Leaflet place-layer toggle
-- Responsive place cards and a mobile hero-led Place Detail flow with Overview, context-sensitive Info, Nearby, Get Directions, and non-persistent Save placeholder actions
+- Responsive place cards and a mobile hero-led Place Detail flow with Overview, context-sensitive Info, Nearby, Get Directions, and functional local Save actions
 - Launch Suitability Profile for paddle-relevant places
 - Verification status, source-review metadata, official links, and safety-aware notes
 - Credited representative photography for existing paddle places; new green/mixed pilot photography remains to be verified
 - Responsive desktop, tablet, and mobile layouts
 - Final Option B2 brand assets and blue, green, and neutral wayfinding semantics
 - Lightweight repository validation for data integrity, place taxonomy, pilot composition, generated-data synchronization, and internal links
+- Local-first mobile planning features: device-local Saved Places, named Trips with optional dates/notes, add-to-trip actions, simple trip reordering/removal, and a focused Settings screen for location use, distance units, and local-data controls
+- Nearby place overflow actions for full details, Add to Trip, Open in Maps, Share, and official-source access when available
+- Versioned PWA static-asset refresh behavior so CSS/JavaScript/manifest updates prefer the network with cached fallback; current mobile planning stylesheet is cache-busted
 
 ## Phase Status
 
@@ -143,6 +146,7 @@ The underlying GitHub Pages repository URL remains part of the hosting infrastru
 ├── mobile-compact.css
 ├── mobile-layout-polish.css
 ├── mobile-pwa-standard.css
+├── mobile-planning.css
 ├── app.js
 ├── collections-ui.js
 ├── ui-refresh.js
