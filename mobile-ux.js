@@ -9,6 +9,7 @@
   const navButtons = [...document.querySelectorAll("[data-mobile-view-target]")];
   let nearbyLoaded = false;
   let nearbyLoading = false;
+  let mapHasOpened = false;
 
   if (!nav || !detailPanel || !appShell) return;
 
@@ -127,7 +128,18 @@
     if (nextView === "nearby" && options.loadNearby !== false) loadNearby();
 
     if (nextView === "map") {
-      requestAnimationFrame(() => window.dispatchEvent(new Event("resize")));
+      requestAnimationFrame(() => {
+        window.dispatchEvent(new Event("resize"));
+
+        if (!mapHasOpened) {
+          mapHasOpened = true;
+          if (typeof window.BLUEGREEN_FIT_FILTERED === "function") {
+            window.BLUEGREEN_FIT_FILTERED();
+          } else {
+            document.querySelector("#fitButton")?.click();
+          }
+        }
+      });
     }
 
     if (options.updateUrl !== false && isMobile()) {
@@ -236,15 +248,45 @@
     if (nearbyResults) nearbyResults.innerHTML = "";
   }
 
+  function resolvedPlace(launch) {
+    if (!launch?.id || typeof window.BLUEGREEN_GET_PLACE_BY_ID !== "function") return launch;
+    return window.BLUEGREEN_GET_PLACE_BY_ID(launch.id) || launch;
+  }
+
   function placePhoto(launch) {
+    const place = resolvedPlace(launch);
     const primary =
       typeof window.BLUEGREEN_GET_PRIMARY_PHOTO === "function"
-        ? window.BLUEGREEN_GET_PRIMARY_PHOTO(launch)
+        ? window.BLUEGREEN_GET_PRIMARY_PHOTO(place)
         : null;
     if (primary?.url) return primary.url;
 
-    const photos = Array.isArray(launch?.photoUrls) ? launch.photoUrls : [];
-    return photos.find((item) => item && item.url)?.url || launch?.image || "";
+    const photos = Array.isArray(place?.photoUrls) ? place.photoUrls : [];
+    const directPhoto = photos.find((item) => item && item.url)?.url || place?.image || "";
+    if (directPhoto) return directPhoto;
+
+    const text = [
+      place?.name,
+      place?.spaceType,
+      place?.waterType,
+      ...(place?.placeTypes || []),
+      ...(place?.activities || []),
+      ...(place?.tags || []),
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+    if (text.includes("coast") || text.includes("beach") || text.includes("ocean") || text.includes("harbor")) {
+      return "https://commons.wikimedia.org/wiki/Special:FilePath/Sea_kayaking.jpg?width=640";
+    }
+    if (text.includes("river") || text.includes("canyon")) {
+      return "https://commons.wikimedia.org/wiki/Special:FilePath/River_Kayaking_(52304129654).jpg?width=640";
+    }
+    if (text.includes("lake") || text.includes("reservoir") || text.includes("mountain") || text.includes("park")) {
+      return "https://commons.wikimedia.org/wiki/Special:FilePath/Paddling_on_the_lake_(Unsplash).jpg?width=640";
+    }
+    return "https://commons.wikimedia.org/wiki/Special:FilePath/Stand_Up_Paddleboard_(30512687396).jpg?width=640";
   }
 
   function placeTypeLabel(launch) {
@@ -256,12 +298,7 @@
     return launch?.waterType || "Water place";
   }
 
-  function nearbyThumbMarkup(launch) {
-    const photo = placePhoto(launch);
-    if (photo) {
-      return `<span class="mobile-nearby-thumb"><img src="${escapeAttribute(photo)}" alt="" loading="lazy" /></span>`;
-    }
-
+  function nearbyFallbackMarkup(launch) {
     const className =
       launch?.spaceType === "green"
         ? "is-land"
@@ -270,6 +307,15 @@
           : "is-water";
 
     return `<span class="mobile-nearby-thumb mobile-nearby-thumb-fallback ${className}" aria-hidden="true">BGG</span>`;
+  }
+
+  function nearbyThumbMarkup(launch) {
+    const photo = placePhoto(launch);
+    if (photo) {
+      return `<span class="mobile-nearby-thumb"><img src="${escapeAttribute(photo)}" alt="" loading="lazy" decoding="async" /></span>`;
+    }
+
+    return nearbyFallbackMarkup(launch);
   }
 
   function openNearbyDetail(launch) {
@@ -324,6 +370,12 @@
         <button type="button" class="mobile-nearby-action" data-nearby-save aria-label="Save ${escapeAttribute(launch.name)}">${icon("saved")}</button>
         <button type="button" class="mobile-nearby-action" data-nearby-more aria-label="More options for ${escapeAttribute(launch.name)}"><span aria-hidden="true">•••</span></button>
       `;
+
+      const nearbyImage = card.querySelector(".mobile-nearby-thumb img");
+      nearbyImage?.addEventListener("error", () => {
+        const thumb = nearbyImage.closest(".mobile-nearby-thumb");
+        if (thumb) thumb.outerHTML = nearbyFallbackMarkup(launch);
+      });
 
       card.querySelector(".mobile-nearby-main")?.addEventListener("click", () => openNearbyDetail(launch));
 

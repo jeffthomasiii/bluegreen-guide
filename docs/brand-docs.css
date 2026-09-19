@@ -167,6 +167,11 @@ h3 { margin-top: 0; font-size: 16px; }
 .section-intro { color: var(--muted); max-width: 780px; }
 .footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; margin-top: 44px; border-top: 1px solid var(--line); padding-top: 20px; color: var(--muted); font-size: 14px; }
 
+.mobile-guide-hero,
+.mobile-guide-principles {
+  display: none;
+}
+
 @media (max-width: 700px) {
   body {
     background: linear-gradient(180deg, #fbfdff 0, var(--bg) 100%);
@@ -399,5 +404,220 @@ h3 { margin-top: 0; font-size: 16px; }
     display: flex;
     flex-wrap: wrap;
     gap: 5px 9px;
+  }
+
+  /* App-like mobile documentation treatment */
+  .docs-home-page,
+  .user-guide-page {
+    background:
+      radial-gradient(circle at 100% 0%, rgba(220,239,245,.76), transparent 34%),
+      linear-gradient(180deg, #fffefa 0%, #eef6f8 100%);
+  }
+
+  .docs-home-page .hero {
+    border: 0;
+    background:
+      linear-gradient(145deg, rgba(15,79,103,.96), rgba(23,111,143,.82));
+    color: #fff;
+  }
+
+  .docs-home-page .hero .eyebrow,
+  .docs-home-page .hero h1,
+  .docs-home-page .hero p {
+    color: #fff;
+  }
+
+  .docs-home-page .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .docs-home-page .grid .card {
+    display: flex;
+    min-height: 168px;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid rgba(15,79,103,.13);
+    border-radius: 14px;
+    padding: 14px;
+    background: #fff;
+    box-shadow: 0 7px 18px rgba(16,37,46,.07);
+  }
+
+  .docs-home-page .grid .card h2 {
+    margin: 2px 0 8px;
+    font-size: 23px;
+    line-height: .98;
+  }
+
+  .docs-home-page .grid .card p {
+    margin: 0 0 8px;
+    color: var(--muted);
+    font-size: 9.5px;
+    line-height: 1.45;
+  }
+
+  .docs-home-page .grid .card p:last-child {
+    margin-top: auto;
+  }
+
+  .docs-home-page .grid .card a {
+    display: inline-flex;
+    min-height: 32px;
+    align-items: center;
+    border-radius: 8px;
+    padding: 0 9px;
+    background: var(--soft);
+    color: var(--blue-dark);
+    font-size: 9px;
+    text-decoration: none;
+  }
+
+  .user-guide-page > .wrap > .hero {
+    display: none;
+  }
+
+  .user-guide-page .mobile-guide-hero {
+    display: block;
+    margin: 0 -14px;
+    padding: 30px 18px 42px;
+    background:
+      linear-gradient(145deg, rgba(15,79,103,.97), rgba(79,112,71,.84));
+    color: #fff;
+  }
+
+  .user-guide-page .mobile-guide-hero .eyebrow,
+  .user-guide-page .mobile-guide-hero h1,
+  .user-guide-page .mobile-guide-hero p {
+    color: #fff;
+  }
+
+  .user-guide-page .mobile-guide-hero .eyebrow {
+    margin-bottom: 6px;
+    font-size: 8px;
+    letter-spacing: .18em;
+  }
+
+  .user-guide-page .mobile-guide-hero h1 {
+    max-width: 340px;
+    font-size: 40px;
+    line-height: .9;
+    letter-spacing: -.03em;
+  }
+
+  .user-guide-page .mobile-guide-hero p {
+    max-width: 310px;
+    margin: 9px 0 0;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .user-guide-page .mobile-guide-principles {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin: -24px 0 14px;
+  }
+
+  .mobile-guide-principle {
+    min-height: 158px;
+    border: 1px solid rgba(15,79,103,.13);
+    border-radius: 14px;
+    padding: 14px;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(16,37,46,.08);
+  }
+
+  .mobile-guide-principle-icon {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    place-items: center;
+    border: 1px solid rgba(23,111,143,.22);
+    border-radius: 12px;
+    background: var(--soft);
+    color: var(--blue);
+  }
+
+  .mobile-guide-principle:nth-child(4) .mobile-guide-principle-icon {
+    border-color: rgba(111,143,99,.28);
+    background: var(--green-soft);
+    color: var(--green-dark);
+  }
+
+  .mobile-guide-principle-icon svg {
+    width: 23px;
+    height: 23px;
+  }
+
+  .mobile-guide-principle h2 {
+    margin: 12px 0 5px;
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .mobile-guide-principle p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 9.5px;
+    line-height: 1.45;
+  }
+
+  .user-guide-page .desktop-guide-only {
+    display: none;
+  }
+
+  .user-guide-page #mobile {
+    margin-top: 24px;
+  }
+
+  .user-guide-page #mobile + .chip-row {
+    margin: 8px 0 12px;
+  }
+
+  .user-guide-page #mobile + .chip-row + .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .user-guide-page #mobile + .chip-row + .grid .card {
+    min-height: 138px;
+    border: 1px solid rgba(15,79,103,.13);
+    border-radius: 13px;
+    padding: 13px;
+    background: #fff;
+    box-shadow: 0 6px 16px rgba(16,37,46,.06);
+  }
+
+  .user-guide-page #mobile + .chip-row + .grid .card h3 {
+    margin-bottom: 6px;
+    color: var(--blue-dark);
+    font-size: 11px;
+  }
+
+  .user-guide-page #mobile + .chip-row + .grid .card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 9.5px;
+    line-height: 1.45;
+  }
+
+  .user-guide-page .guide-section {
+    margin-top: 26px;
+    border-top: 1px solid rgba(15,79,103,.12);
+    padding-top: 2px;
+  }
+
+  .user-guide-page .guide-section .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .user-guide-page .guide-section .card {
+    border-radius: 12px;
+    background: #fff;
   }
 }

@@ -147,7 +147,7 @@
   .mobile-explore-intro {
     position: relative;
     display: flex;
-    min-height: 158px;
+    min-height: 194px;
     align-items: flex-end;
     overflow: hidden;
     margin: 0;
@@ -205,7 +205,7 @@
   .mobile-explore-intro p:last-child {
     margin: 6px 0 0;
     color: rgba(255, 255, 255, 0.95);
-    font-size: 10.5px;
+    font-size: 11px;
     line-height: 1.35;
   }
 
@@ -398,17 +398,17 @@
   }
 
   body[data-mobile-view="explore"] .launch-card:first-child .launch-image {
-    min-height: 118px;
+    min-height: 146px;
   }
 
   body[data-mobile-view="explore"] .launch-card:not(:first-child) {
     display: grid;
-    grid-template-columns: 96px minmax(0, 1fr);
-    min-height: 108px;
+    grid-template-columns: 108px minmax(0, 1fr);
+    min-height: 120px;
   }
 
   body[data-mobile-view="explore"] .launch-card:not(:first-child) .launch-image {
-    width: 96px;
+    width: 108px;
     min-height: 100%;
     height: 100%;
   }
@@ -741,6 +741,44 @@
     bottom: 8px;
     border-radius: 10px;
     box-shadow: var(--mobile-shadow-soft);
+  }
+
+  .bgg-map-fit-control,
+  .bgg-layer-control {
+    overflow: hidden;
+    border: 1px solid rgba(15, 79, 103, 0.14) !important;
+    border-radius: 10px !important;
+    background: #fff;
+    box-shadow: var(--mobile-shadow-soft) !important;
+  }
+
+  .bgg-map-fit-button {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border: 0;
+    background: #fff;
+    color: var(--mobile-navy);
+  }
+
+  .bgg-map-fit-button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .bgg-layer-control .leaflet-control-layers-toggle {
+    width: 36px;
+    height: 36px;
+    background-size: 19px 19px;
+  }
+
+  .bgg-layer-control.leaflet-control-layers-expanded {
+    border-radius: 10px !important;
+    padding: 8px 10px;
+    color: var(--mobile-ink);
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 10px;
   }
 
   /* Place detail: map preview */
@@ -1258,7 +1296,7 @@
     grid-template-columns: minmax(0, 1fr) auto auto auto;
     gap: 6px;
     align-items: center;
-    min-height: 78px;
+    min-height: 94px;
     border: 1px solid rgba(15, 79, 103, 0.13);
     border-radius: 12px;
     padding: 6px 7px 6px 6px;
@@ -1268,7 +1306,7 @@
 
   .mobile-nearby-main {
     display: grid;
-    grid-template-columns: 66px minmax(0, 1fr);
+    grid-template-columns: 74px minmax(0, 1fr);
     gap: 9px;
     align-items: center;
     min-width: 0;
@@ -1281,8 +1319,8 @@
 
   .mobile-nearby-thumb {
     display: grid;
-    width: 66px;
-    height: 62px;
+    width: 74px;
+    height: 70px;
     place-items: center;
     overflow: hidden;
     border-radius: 9px;
@@ -1467,13 +1505,14 @@
 
   .mobile-more-card {
     display: grid;
-    min-height: 104px;
-    align-content: center;
+    min-height: 0;
+    aspect-ratio: 1 / 1;
+    align-content: start;
     justify-items: start;
-    gap: 8px;
+    gap: 13px;
     border: 1px solid rgba(15, 79, 103, 0.13);
     border-radius: 13px;
-    padding: 13px;
+    padding: 16px;
     background: #fff;
     color: var(--mobile-ink);
     box-shadow: var(--mobile-shadow-soft);
@@ -1483,8 +1522,8 @@
   }
 
   .mobile-more-card > .ui-icon {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     color: var(--mobile-blue);
   }
 
@@ -1499,7 +1538,7 @@
   .mobile-more-card small {
     margin-top: 2px;
     color: var(--mobile-muted);
-    font-size: 8.5px;
+    font-size: 9px;
     font-weight: 500;
   }
 
@@ -1757,7 +1796,7 @@
 
 @media (max-width: 380px) {
   .mobile-explore-intro {
-    min-height: 150px;
+    min-height: 184px;
   }
 
   .mobile-explore-intro h1 {
@@ -1770,21 +1809,21 @@
   }
 
   body[data-mobile-view="explore"] .launch-card:not(:first-child) {
-    grid-template-columns: 88px minmax(0, 1fr);
+    grid-template-columns: 96px minmax(0, 1fr);
   }
 
   body[data-mobile-view="explore"] .launch-card:not(:first-child) .launch-image {
-    width: 88px;
+    width: 96px;
   }
 
   .mobile-nearby-main {
-    grid-template-columns: 58px minmax(0, 1fr);
+    grid-template-columns: 66px minmax(0, 1fr);
     gap: 7px;
   }
 
   .mobile-nearby-thumb {
-    width: 58px;
-    height: 56px;
+    width: 66px;
+    height: 64px;
   }
 
   .mobile-nearby-card {

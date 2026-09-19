@@ -299,7 +299,13 @@ function openLaunchDetail(id, options = {}) {
   els.detail.hidden = false;
   els.detail.innerHTML = detailMarkup(launch);
 
-  if (options.focusMap !== false) focusLaunch(id);
+  const isMobile = window.matchMedia("(max-width: 720px)").matches;
+  const mobileMapView = document.body.dataset.mobileView === "map";
+  const shouldFocusMap =
+    options.focusMap !== false &&
+    (!isMobile || mobileMapView);
+
+  if (shouldFocusMap) focusLaunch(id);
 }
 
 function closeLaunchDetail() {
@@ -707,6 +713,9 @@ function escapeAttribute(value) {
 }
 
 window.BLUEGREEN_GET_PRIMARY_PHOTO = getPrimaryPhoto;
+window.BLUEGREEN_GET_PLACE_BY_ID = (id) => state.allLaunches.find((place) => place.id === id) || null;
+window.BLUEGREEN_MOBILE_DETAIL_MARKUP = detailMarkup;
+window.BLUEGREEN_FIT_FILTERED = () => fitToLaunches(state.filteredLaunches);
 window.openLaunchDetail = openLaunchDetail;
 
 function fitToLaunches(launches) {

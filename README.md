@@ -30,7 +30,7 @@ Current capabilities include:
 - Water and Land mobile discovery filters; mixed places intentionally appear in either relevant filter
 - Region, paddling skill, water activity, and maximum paddle-difficulty filters for the existing paddle use case
 - Five curated collections that use explicit place IDs
-- Map-bounds filtering and browser geolocation
+- Map-bounds filtering, browser geolocation, mobile fit-to-results reset, and a Leaflet place-layer toggle
 - Responsive place cards and a mobile hero-led Place Detail flow with Overview, context-sensitive Info, Nearby, Get Directions, and non-persistent Save placeholder actions
 - Launch Suitability Profile for paddle-relevant places
 - Verification status, source-review metadata, official links, and safety-aware notes

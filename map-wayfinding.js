@@ -185,7 +185,47 @@
     mapPanel.append(legend);
   }
 
+  function addMobileMapControls() {
+    if (!window.matchMedia("(max-width: 720px)").matches) return;
+
+    const fitControl = L.control({ position: "bottomleft" });
+    fitControl.onAdd = () => {
+      const container = L.DomUtil.create("div", "leaflet-bar bgg-map-fit-control");
+      const button = L.DomUtil.create("button", "bgg-map-fit-button", container);
+      button.type = "button";
+      button.title = "Fit all visible BlueGreen Guide places";
+      button.setAttribute("aria-label", "Fit all visible BlueGreen Guide places");
+      button.innerHTML = `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 4H4v4M16 4h4v4M8 20H4v-4M16 20h4v-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      `;
+
+      L.DomEvent.disableClickPropagation(container);
+      L.DomEvent.on(button, "click", (event) => {
+        L.DomEvent.preventDefault(event);
+        if (typeof window.BLUEGREEN_FIT_FILTERED === "function") {
+          window.BLUEGREEN_FIT_FILTERED();
+        } else {
+          document.querySelector("#fitButton")?.click();
+        }
+      });
+
+      return container;
+    };
+    fitControl.addTo(map);
+
+    const layers = L.control.layers(
+      {},
+      { "BlueGreen places": markerLayer },
+      { position: "bottomleft", collapsed: true }
+    );
+    layers.addTo(map);
+    layers.getContainer()?.classList.add("bgg-layer-control");
+  }
+
   addMapLegend();
+  addMobileMapControls();
   if (typeof applyFilters === "function") applyFilters();
 
   function escapeHtml(value) {
