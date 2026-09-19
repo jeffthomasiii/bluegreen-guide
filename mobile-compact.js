@@ -42,9 +42,15 @@
 
   function heroPool() {
     const places = Array.isArray(window.LAUNCH_POINTS) ? window.LAUNCH_POINTS : [];
-    const withPhotos = places
-      .map((place) => ({ place, photo: primaryPhoto(place) }))
-      .filter(({ photo }) => photo?.url);
+    const seen = new Set();
+    const withPhotos = [];
+
+    places.forEach((place) => {
+      const photo = primaryPhoto(place);
+      if (!photo?.url || seen.has(photo.url)) return;
+      seen.add(photo.url);
+      withPhotos.push({ place, photo });
+    });
 
     for (let index = withPhotos.length - 1; index > 0; index -= 1) {
       const swap = Math.floor(Math.random() * (index + 1));
