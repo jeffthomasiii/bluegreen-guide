@@ -1,6 +1,6 @@
 # Mobile and PWA Interface Standard
 
-**Status:** Mobile Shell 2.0 merged; refinement round 1 in review  
+**Status:** Mobile Shell 2.0 merged; refinement round 2 in review  
 **Scope:** Mobile browser and installed PWA only  
 **Desktop:** Deferred to a separate design and testing phase
 
@@ -36,7 +36,7 @@ Explore is a discovery page rather than a mobile rendering of the desktop filter
 
 It uses:
 
-1. A condensed, image-led hero with the BlueGreen Guide editorial voice.
+1. An image-led hero with enough vertical presence to feel scenic rather than compressed.
 2. A rotating set of existing supported place/representative images.
 3. Search and a square rounded filter control.
 4. Water, Land, and Nearby quick controls on one row.
@@ -58,6 +58,8 @@ It uses:
 - Compact All, Water, Land, and Near me controls.
 - `Search this area` as a rounded rectangle rather than a pill.
 - Blue, green, and mixed wayfinding markers.
+- The first Map visit fits the current filtered result set, with a visible Fit control available to restore that overview.
+- A compact Leaflet Layers control exposes the existing BlueGreen Guide place-marker overlay.
 - A compact selected-place preview anchored above bottom navigation.
 - Full place details only after the user chooses `View place details`.
 
@@ -135,7 +137,7 @@ Do not add a dedicated Amenities quick filter until there is a clear amenity-spe
 
 The service-worker shell cache is versioned whenever shipped UI assets change.
 
-The current refinement uses `bgg-v1.2-shell-v21`.
+The current refinement uses `bgg-v1.2-shell-v22`.
 
 Already-controlled PWA pages refresh when a newly installed service worker takes control. This helps avoid mixed old-JavaScript/new-CSS states.
 
@@ -164,20 +166,22 @@ After the GitHub Pages rebuild completes, verify on a real phone and installed P
 - Explore search/filter geometry
 - Water/Land/Nearby quick-control layout and color semantics
 - First Explore place visible in the initial viewport
-- Compact result-card density
+- Balanced Explore card proportions and first-result density
 - Curated collection behavior
 - Map search/filter geometry
 - Search-this-area control
+- Initial fit-to-results map view
+- Fit control and BlueGreen place-layer toggle
 - Marker rendering and selection
 - Compact map place preview
 - Back-arrow Place Detail flow
 - Place hero imagery
 - Overview / Info / Nearby tabs
 - Get Directions and Save placeholder actions
-- Nearby imagery, distance, Save, and More actions
+- Nearby imagery consistency, distance, Save, and More actions
 - Saved Places / My Trips placeholder screen
 - More resource screen
-- Mobile documentation presentation
+- Mobile documentation presentation, including the Field Guide planning-card layout
 - Five-item bottom navigation and active-state treatment
 - Service-worker v21 refresh behavior
 - No horizontal overflow at common phone widths
