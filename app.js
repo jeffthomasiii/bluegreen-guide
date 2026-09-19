@@ -315,6 +315,37 @@ function handleDetailClick(event) {
     return;
   }
 
+  const tab = event.target.closest("[data-detail-tab]");
+  if (tab) {
+    const detailCard = tab.closest(".detail-card");
+    if (!detailCard) return;
+    const target = tab.dataset.detailTab;
+
+    detailCard.querySelectorAll("[data-detail-tab]").forEach((button) => {
+      const selected = button === tab;
+      button.setAttribute("aria-selected", selected ? "true" : "false");
+      button.tabIndex = selected ? 0 : -1;
+    });
+
+    detailCard.querySelectorAll("[data-detail-panel]").forEach((panel) => {
+      panel.hidden = panel.dataset.detailPanel !== target;
+    });
+    return;
+  }
+
+  const nearbyPlace = event.target.closest("[data-open-place-id]");
+  if (nearbyPlace) {
+    openLaunchDetail(nearbyPlace.dataset.openPlaceId, { focusMap: false });
+    return;
+  }
+
+  if (event.target.closest("[data-save-placeholder]")) {
+    if (typeof window.BLUEGREEN_SHOW_TOAST === "function") {
+      window.BLUEGREEN_SHOW_TOAST("Saved Places is a placeholder in this field-test build. Nothing is stored yet.");
+    }
+    return;
+  }
+
   const sourceLink = event.target.closest("a");
   if (sourceLink) return;
   if (event.target === els.detail) closeLaunchDetail();
@@ -330,16 +361,86 @@ function focusLaunch(id) {
   if (marker) setTimeout(() => marker.openPopup(), 250);
 }
 
+function detailInfoLabel(launch) {
+  const terms = [
+    launch.spaceType,
+    ...(launch.placeTypes || []),
+    ...(launch.activityTypes || []),
+    ...(launch.activities || []),
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  if (terms.includes("trail") || terms.includes("hike") || terms.includes("open-space") || terms.includes("wilderness")) {
+    return "Trail Info";
+  }
+  if (terms.includes("blue") || terms.includes("sup") || terms.includes("kayak") || launch.waterType) {
+    return "Launch Info";
+  }
+  return "Place Info";
+}
+
+function directionsUrl(launch) {
+  const lat = Number(launch.lat);
+  const lng = Number(launch.lng);
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return "";
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${lat},${lng}`)}`;
+}
+
+function distanceMilesBetween(a, b) {
+  const lat1 = Number(a?.lat);
+  const lon1 = Number(a?.lng);
+  const lat2 = Number(b?.lat);
+  const lon2 = Number(b?.lng);
+  if (![lat1, lon1, lat2, lon2].every(Number.isFinite)) return Infinity;
+
+  const radius = 3958.8;
+  const radians = (degrees) => (degrees * Math.PI) / 180;
+  const dLat = radians(lat2 - lat1);
+  const dLon = radians(lon2 - lon1);
+  const value =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(radians(lat1)) * Math.cos(radians(lat2)) * Math.sin(dLon / 2) ** 2;
+  return radius * 2 * Math.atan2(Math.sqrt(value), Math.sqrt(1 - value));
+}
+
+function nearbyPlacesMarkup(launch) {
+  const nearby = state.allLaunches
+    .filter((item) => item.id !== launch.id)
+    .map((item) => ({ item, miles: distanceMilesBetween(launch, item) }))
+    .filter(({ miles }) => Number.isFinite(miles))
+    .sort((a, b) => a.miles - b.miles)
+    .slice(0, 3);
+
+  if (!nearby.length) {
+    return '<p class="detail-empty">No nearby BlueGreen Guide places are available in the current dataset.</p>';
+  }
+
+  return nearby
+    .map(({ item, miles }) => {
+      const photo = getPrimaryPhoto(item);
+      const thumb = photo
+        ? `<img src="${escapeAttribute(photo.url)}" alt="" loading="lazy" />`
+        : '<span class="detail-nearby-fallback" aria-hidden="true">BGG</span>';
+      const distance = miles < 10 ? `${miles.toFixed(1)} mi` : `${Math.round(miles)} mi`;
+
+      return `
+        <button class="detail-nearby-card" type="button" data-open-place-id="${escapeAttribute(item.id)}">
+          <span class="detail-nearby-thumb">${thumb}</span>
+          <span class="detail-nearby-copy">
+            <strong>${escapeHtml(item.name)}</strong>
+            <span>${escapeHtml(item.region)}, ${escapeHtml(item.state)}</span>
+          </span>
+          <span class="detail-nearby-distance">${distance}</span>
+        </button>
+      `;
+    })
+    .join("");
+}
+
 function detailMarkup(launch) {
   const photo = getPrimaryPhoto(launch);
-  const photoMarkup = photo
-    ? `
-      <figure class="detail-photo">
-        <img src="${escapeAttribute(photo.url)}" alt="${escapeAttribute(photo.alt || `${launch.name} representative image`)}" loading="lazy" />
-        <figcaption>${photoCreditMarkup(photo)}</figcaption>
-      </figure>
-    `
-    : "";
   const sourceUrls = Array.isArray(launch.sourceUrls)
     ? launch.sourceUrls
         .map((source) => (typeof source === "string" ? { label: source, url: source } : source))
@@ -351,50 +452,109 @@ function detailMarkup(launch) {
         .join("")
     : '<li class="muted-list-item">No official source added yet.</li>';
 
+  const heroMarkup = photo
+    ? `
+      <figure class="detail-hero">
+        <img src="${escapeAttribute(photo.url)}" alt="${escapeAttribute(photo.alt || `${launch.name} representative image`)}" />
+        <button class="detail-back" type="button" aria-label="Back" data-close-detail>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </button>
+        <figcaption>${photoCreditMarkup(photo)}</figcaption>
+      </figure>
+    `
+    : `
+      <div class="detail-hero detail-hero-fallback">
+        <button class="detail-back" type="button" aria-label="Back" data-close-detail>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </button>
+      </div>
+    `;
+
+  const directionUrl = directionsUrl(launch);
+  const infoLabel = detailInfoLabel(launch);
+  const context = launch.waterBody || launch.waterType || (launch.placeTypes || [])[0] || "Outdoor place";
+  const activities = Array.isArray(launch.activities) && launch.activities.length ? formatList(launch.activities) : "";
+  const subtitleParts = [context, activities, launch.skillLevel].filter(Boolean);
+
   return `
     <div class="detail-card" role="dialog" aria-modal="false" aria-labelledby="detailTitle">
-      <button class="detail-close" type="button" aria-label="Close launch details" data-close-detail>&times;</button>
-      <div class="detail-kicker">${escapeHtml(launch.region)}, ${escapeHtml(launch.state)}</div>
-      <h2 id="detailTitle">${escapeHtml(launch.name)}</h2>
-      <p class="detail-subtitle">${escapeHtml(launch.waterBody || launch.waterType)} | ${escapeHtml(formatList(launch.activities))} | ${escapeHtml(launch.skillLevel)}</p>
+      ${heroMarkup}
+      <div class="detail-content">
+        <div class="detail-kicker">${escapeHtml(launch.region)}, ${escapeHtml(launch.state)}</div>
+        <h2 id="detailTitle">${escapeHtml(launch.name)}</h2>
+        <p class="detail-subtitle">${escapeHtml(subtitleParts.join(" · "))}</p>
 
-      ${photoMarkup}
+        <div class="detail-tabs" role="tablist" aria-label="Place detail sections">
+          <button type="button" role="tab" aria-selected="true" data-detail-tab="overview">Overview</button>
+          <button type="button" role="tab" aria-selected="false" tabindex="-1" data-detail-tab="info">${escapeHtml(infoLabel)}</button>
+          <button type="button" role="tab" aria-selected="false" tabindex="-1" data-detail-tab="nearby">Nearby</button>
+        </div>
 
-      <div class="detail-status ${verificationClass(launch)}">
-        <strong>${escapeHtml(launch.verificationStatus || "Needs verification")}</strong>
-        <span>${escapeHtml(lastVerifiedText(launch))}</span>
+        <section class="detail-tab-panel" data-detail-panel="overview">
+          <div class="detail-status ${verificationClass(launch)}">
+            <strong>${escapeHtml(launch.verificationStatus || "Needs verification")}</strong>
+            <span>${escapeHtml(lastVerifiedText(launch))}</span>
+          </div>
+
+          <p class="detail-description">${escapeHtml(launch.description)}</p>
+
+          <h3 class="detail-section-title">Key details</h3>
+          <dl class="detail-grid detail-grid-key">
+            <div><dt>Skill Level</dt><dd>${escapeHtml(launch.skillLevel || "Unknown")}</dd></div>
+            <div><dt>Best Time</dt><dd>${escapeHtml(launch.bestTime || "Conditions vary")}</dd></div>
+            <div><dt>Amenities</dt><dd>${escapeHtml((launch.amenities || []).slice(0, 2).join(", ") || "Unknown")}</dd></div>
+            <div><dt>Status</dt><dd>${escapeHtml(launch.verificationStatus || "Needs verification")}</dd></div>
+          </dl>
+        </section>
+
+        <section class="detail-tab-panel" data-detail-panel="info" hidden>
+          <dl class="detail-grid">
+            <div><dt>SUP Suitability</dt><dd>${escapeHtml(launch.supSuitability || "Unknown")}</dd></div>
+            <div><dt>Difficulty</dt><dd>${escapeHtml(launch.difficulty ?? "Unknown")}${Number.isFinite(Number(launch.difficulty)) ? "/5" : ""}</dd></div>
+            <div><dt>Wind Sensitivity</dt><dd>${escapeHtml(launch.windSensitivity || "Unknown")}</dd></div>
+            <div><dt>Typical Use</dt><dd>${escapeHtml(launch.useLevel || "Unknown")}</dd></div>
+            <div><dt>Crowd Sensitivity</dt><dd>${escapeHtml(launch.crowdSensitivity || "Unknown")}</dd></div>
+            <div><dt>Staging Space</dt><dd>${escapeHtml(launch.stagingSpace || "Unknown")}</dd></div>
+            <div><dt>Best Time</dt><dd>${escapeHtml(launch.bestTime || "Unknown")}</dd></div>
+            <div><dt>Assessment Confidence</dt><dd>${escapeHtml(launch.assessmentConfidence || "Unknown")}</dd></div>
+          </dl>
+
+          <section class="detail-section">
+            <h3>Amenities</h3>
+            <p>${escapeHtml(formatList(launch.amenities))}</p>
+          </section>
+
+          <section class="detail-section">
+            <h3>Planning Notes</h3>
+            <p>${escapeHtml(formatList(launch.tags))}</p>
+          </section>
+
+          <p class="source-note"><strong>BlueGreen Guide assessment:</strong> Suitability and sensitivity fields are curated planning guidance, not live condition measurements or safety guarantees. Conditions and use levels vary.</p>
+
+          <section class="detail-section">
+            <h3>Official sources</h3>
+            <ul class="source-list">${sourceItems}</ul>
+            <p class="source-note">${escapeHtml(launch.sourceNotes || "Check official sources before relying on access, fees, parking, rentals, rules, tides, wind, or hazard details.")}</p>
+          </section>
+        </section>
+
+        <section class="detail-tab-panel" data-detail-panel="nearby" hidden>
+          <div class="detail-nearby-list">${nearbyPlacesMarkup(launch)}</div>
+        </section>
+
+        <div class="detail-actions">
+          ${directionUrl
+            ? `<a class="detail-action detail-action-primary" href="${escapeAttribute(directionUrl)}" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 8-8 10-8-10 8-8Z" fill="none" stroke="currentColor" stroke-width="1.8" /><path d="M12 7v8m0 0 3-3m-3 3-3-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                <span>Get directions</span>
+              </a>`
+            : ""}
+          <button class="detail-action detail-action-secondary" type="button" data-save-placeholder>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10a1 1 0 0 1 1 1v15l-6-3-6 3V5a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /></svg>
+            <span>Save</span>
+          </button>
+        </div>
       </div>
-
-      <p>${escapeHtml(launch.description)}</p>
-
-      <dl class="detail-grid">
-        <div><dt>SUP Suitability</dt><dd>${escapeHtml(launch.supSuitability || "Unknown")}</dd></div>
-        <div><dt>Difficulty</dt><dd>${escapeHtml(launch.difficulty)}/5</dd></div>
-        <div><dt>Wind Sensitivity</dt><dd>${escapeHtml(launch.windSensitivity || "Unknown")}</dd></div>
-        <div><dt>Typical Use</dt><dd>${escapeHtml(launch.useLevel || "Unknown")}</dd></div>
-        <div><dt>Crowd Sensitivity</dt><dd>${escapeHtml(launch.crowdSensitivity || "Unknown")}</dd></div>
-        <div><dt>Staging Space</dt><dd>${escapeHtml(launch.stagingSpace || "Unknown")}</dd></div>
-        <div><dt>Best Time</dt><dd>${escapeHtml(launch.bestTime || "Unknown")}</dd></div>
-        <div><dt>Assessment Confidence</dt><dd>${escapeHtml(launch.assessmentConfidence || "Unknown")}</dd></div>
-      </dl>
-
-      <p class="source-note"><strong>BlueGreen Guide assessment:</strong> Suitability and sensitivity fields are curated planning guidance, not live condition measurements or safety guarantees. Conditions and use levels vary.</p>
-
-      <section class="detail-section">
-        <h3>Amenities</h3>
-        <p>${escapeHtml(formatList(launch.amenities))}</p>
-      </section>
-
-      <section class="detail-section">
-        <h3>Planning Notes</h3>
-        <p>${escapeHtml(formatList(launch.tags))}</p>
-      </section>
-
-      <section class="detail-section">
-        <h3>Sources</h3>
-        <ul class="source-list">${sourceItems}</ul>
-        <p class="source-note">${escapeHtml(launch.sourceNotes || "Check official sources before relying on access, fees, parking, rentals, rules, tides, wind, or hazard details.")}</p>
-      </section>
     </div>
   `;
 }
@@ -473,6 +633,9 @@ function escapeHtml(value) {
 function escapeAttribute(value) {
   return escapeHtml(value).replace(/`/g, "&#096;");
 }
+
+window.BLUEGREEN_GET_PRIMARY_PHOTO = getPrimaryPhoto;
+window.openLaunchDetail = openLaunchDetail;
 
 function fitToLaunches(launches) {
   if (!launches.length) return;
