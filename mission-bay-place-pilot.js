@@ -146,7 +146,7 @@ function renderCards(places) {
     const tags = card.querySelector(".tag-row");
     const button = card.querySelector(".card-button");
 
-    const photo = paddlePlace ? getPrimaryPhoto(place) : null;
+    const photo = getPrimaryPhoto(place);
     if (photo) {
       image.style.backgroundImage = `linear-gradient(135deg, rgba(20,32,35,.18), rgba(15,79,103,.16)), url("${photo.url}")`;
       photoBadge.textContent = photo.status === "location" ? "Place photo" : "Representative image";
@@ -202,6 +202,10 @@ function focusLaunch(id) {
 }
 
 function detailMarkup(place) {
+  if (window.matchMedia("(max-width: 720px)").matches && typeof window.BLUEGREEN_MOBILE_DETAIL_MARKUP === "function") {
+    return window.BLUEGREEN_MOBILE_DETAIL_MARKUP(place);
+  }
+
   const paddlePlace = isPaddlePlace(place);
   const photo = paddlePlace ? getPrimaryPhoto(place) : null;
   const photoMarkup = photo
