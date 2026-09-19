@@ -1,5 +1,25 @@
 # Changelog
 
+## 2026-09-18 — Mobile/PWA Refinement Round 2
+
+### Changed
+
+- Increased Explore hero height and relaxed card proportions so the mobile discovery surface feels less vertically compressed
+- Increased compact Explore and Nearby card height and thumbnail size for more balanced mobile proportions
+- Fixed the mobile Place Detail override so Explore and Nearby now use the intended hero-led detail screen with back navigation, tabs, Get Directions, and Save placeholder actions
+- Opening Place Detail from Explore no longer silently changes the hidden map zoom
+- The first mobile Map visit now fits the current result set instead of inheriting an unrelated place-focused zoom
+- Added a compact Fit control and Leaflet Layers control for the BlueGreen Guide place-marker overlay
+- Nearby now resolves the current runtime place record before selecting imagery, includes a representative-image fallback, and degrades to the semantic BGG fallback only when an image actually fails
+- More resource cards now use a more square Field Guide-style proportion
+- User Guide mobile presentation now opens with an app-like Field Guide hero and Orient / Understand / Verify / Check planning cards
+- Documentation home mobile cards now use a two-column app-like presentation
+- Service-worker shell cache advanced to `bgg-v1.2-shell-v22`
+
+### Scope
+
+Desktop refinement remains deferred. The Leaflet layer control exposes the existing BlueGreen Guide marker layer; no new third-party basemap provider was added in this pass.
+
 ## 2026-09-18 — Mobile/PWA Refinement Round 1
 
 ### Changed
