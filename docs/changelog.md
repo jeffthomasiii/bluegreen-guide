@@ -1,5 +1,33 @@
 # Changelog
 
+## 2026-09-18 — Local Planning, Settings, and More/PWA Refinement
+
+### Added
+
+- Device-local Saved Places with synchronized bookmark state across Nearby, Place Detail, and Saved
+- Undo feedback for save/remove actions
+- Device-local My Trips with trip name, optional dates, optional notes, Add to Trip, place reordering/removal, and trip deletion
+- Nearby overflow actions for View Place Details, Add to Trip, Open in Maps, Share Place, and official-source access when available
+- Functional mobile Settings for device-location preference, miles/kilometers, saved/trip counts, local-data clearing, and app-data reset
+
+### Changed
+
+- Saved Places and My Trips are no longer placeholders; they remain local-first and require no account, backend, or cloud synchronization
+- Settings controls were resized and restyled after real-device review
+- More cards were aligned more closely to the approved mockup with standalone teal line icons, upper-left icon placement, lower-left labels, and reduced excess whitespace
+- More icons were finalized at 56px on standard mobile widths and 52px on narrow phones
+- Saved-place overflow glyph sizing was reduced so the secondary action no longer competes visually with Save
+- PWA static-asset handling now uses network-first behavior with cached fallback for same-origin CSS, JavaScript, and manifest requests
+- `mobile-planning.css` is cache-busted as `mobile-planning.css?v=28`
+- Service-worker shell cache advanced to `bgg-v1.2-shell-v28`
+
+### Status / next step
+
+- PRs #28 through #33 are merged to `main`
+- Settings and More are accepted for the current mobile/PWA stage after real-device review
+- Next work begins with documentation synchronization, followed by a holistic mobile/PWA UX/UI refinement pass across Explore, Map, Nearby, Saved, Trips, More, Settings, and Place Detail
+- Desktop remains deferred and Phase 2 remains on hold
+
 ## 2026-09-18 — Mobile/PWA Refinement Round 2
 
 ### Changed

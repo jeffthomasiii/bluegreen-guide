@@ -1,6 +1,6 @@
 # Mobile and PWA Interface Standard
 
-**Status:** Mobile Shell 2.0 merged; refinement round 2 in review  
+**Status:** Mobile/PWA functional refinement through PR #33 merged; documentation and holistic UX/UI refinement next  
 **Scope:** Mobile browser and installed PWA only  
 **Desktop:** Deferred to a separate design and testing phase
 
@@ -22,7 +22,7 @@ The static HTML/CSS/JavaScript architecture remains unchanged.
 - Favor image-led discovery, restrained borders, compact cards, soft elevation, and clear hierarchy.
 - Keep search and map access prominent.
 - Use the mobile bottom navigation: Explore, Map, Nearby, Saved, More.
-- Saved and Trips are visual placeholders only in the current field-test build; no data is persisted.
+- Saved Places and Trips are local-first features that persist on the current device; no account or cloud synchronization is required.
 - Present advanced filters in a compact touch-friendly bottom sheet.
 - Use blue/green/neutral Wayfinding System semantics consistently; color is never the only cue.
 - Keep verification and official-source guidance visible without allowing warnings to dominate the interface.
@@ -75,7 +75,7 @@ It uses:
 - Overview, context-appropriate information, and Nearby tabs.
 - Compact Key Details.
 - A sticky Get Directions action.
-- A visible Save placeholder that does not persist data.
+- A functional Save action that persists the place locally on the current device.
 - Official sources and safety-aware planning guidance.
 
 For water/paddle places the second tab may be labeled `Launch Info`. For trail/land contexts it may be labeled `Trail Info`. Otherwise use `Place Info`.
@@ -91,19 +91,23 @@ It shows:
 - A concise straight-line distance disclaimer.
 - The same supported place/representative imagery used elsewhere in the app when available.
 - Place name, region/state, place type, and distance.
-- Save and More placeholder actions.
+- Functional Save and More actions.
 - Direct access to full Place Detail.
 
 ### Saved
 
-Saved is a visual planning placeholder only.
+Saved is the local-first planning surface.
 
 It includes:
 
-- Saved Places
-- My Trips
+- Saved Places persisted on the current device
+- My Trips persisted on the current device
+- trip creation with optional dates and notes
+- Add to Trip from place actions
+- simple place reordering/removal inside trips
+- trip deletion
 
-The current build must clearly state that nothing is stored and no account or persistent planning model has been introduced.
+The current build must clearly state that this data is device-local. No account, backend, or cloud synchronization has been introduced.
 
 ### More
 
@@ -116,7 +120,7 @@ It currently exposes:
 - Blue + Green Spaces explainer
 - Planning Guidance / Launch Suitability
 - Documentation home
-- Settings placeholder
+- Settings
 
 Public documentation should use a compact mobile/PWA presentation when opened from More.
 
@@ -137,9 +141,9 @@ Do not add a dedicated Amenities quick filter until there is a clear amenity-spe
 
 The service-worker shell cache is versioned whenever shipped UI assets change.
 
-The current refinement uses `bgg-v1.2-shell-v22`.
+The current refinement uses `bgg-v1.2-shell-v28`, and `mobile-planning.css` is explicitly cache-busted as `mobile-planning.css?v=28`.
 
-Already-controlled PWA pages refresh when a newly installed service worker takes control. This helps avoid mixed old-JavaScript/new-CSS states.
+Already-controlled PWA pages refresh when a newly installed service worker takes control. Same-origin CSS, JavaScript, and manifest requests use network-first behavior with cached fallback so installed-PWA refinements do not remain stuck on stale static assets.
 
 Selected documentation pages and the shared documentation stylesheet are included in the app shell for a more coherent installed-PWA experience, but BlueGreen Guide still should not be described as fully offline. Map tiles and external resources remain network-driven.
 
@@ -148,8 +152,7 @@ Selected documentation pages and the shared documentation stylesheet are include
 This refinement does not add:
 
 - Accounts or profile behavior
-- Persistent Saved Places
-- Persistent Trips
+- Cloud synchronization for Saved Places or Trips
 - Journal
 - Community ratings or reviews
 - Live weather, wind, tides, water quality, or hazards
@@ -177,13 +180,13 @@ After the GitHub Pages rebuild completes, verify on a real phone and installed P
 - Back-arrow Place Detail flow
 - Place hero imagery
 - Overview / Info / Nearby tabs
-- Get Directions and Save placeholder actions
+- Get Directions and functional local Save actions
 - Nearby imagery consistency, distance, Save, and More actions
-- Saved Places / My Trips placeholder screen
+- Saved Places / My Trips local persistence and trip-management flow
 - More resource screen
 - Mobile documentation presentation, including the Field Guide planning-card layout
 - Five-item bottom navigation and active-state treatment
-- Service-worker v21 refresh behavior
+- Service-worker v28 and static-asset refresh behavior
 - No horizontal overflow at common phone widths
 
 Automated repository validation is required, but it does not replace device review.
