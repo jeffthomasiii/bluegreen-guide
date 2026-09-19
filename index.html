@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="map-wayfinding.css" />
     <link rel="stylesheet" href="mobile-pwa-standard.css" />
   </head>
-  <body data-mobile-view="map">
+  <body data-mobile-view="explore">
     <header class="mobile-app-bar" aria-label="BlueGreen Guide mobile header">
       <a class="mobile-brand-link" href="./" aria-label="BlueGreen Guide home">
         <img src="assets/brand/bluegreen-guide-logo-primary-transparent.svg" alt="BlueGreen Guide" />
@@ -112,11 +112,11 @@
     </main>
 
     <nav id="mobileBottomNav" class="mobile-bottom-nav" aria-label="Mobile app navigation">
-      <button class="mobile-nav-button" type="button" data-mobile-view-target="explore">
-        <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M7 12h10M10 19h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+      <button class="mobile-nav-button" type="button" data-mobile-view-target="explore" aria-current="page">
+        <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3l8.5 7.5v9a1 1 0 0 1-1 1h-5v-6h-5v6h-5a1 1 0 0 1-1-1v-9Z" fill="currentColor" /></svg>
         <span>Explore</span>
       </button>
-      <button class="mobile-nav-button" type="button" data-mobile-view-target="map" aria-current="page">
+      <button class="mobile-nav-button" type="button" data-mobile-view-target="map">
         <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Zm6-3v15m6-12v15" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /></svg>
         <span>Map</span>
       </button>
@@ -124,10 +124,14 @@
         <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z" fill="none" stroke="currentColor" stroke-width="2" /><circle cx="12" cy="10" r="2.2" fill="currentColor" /></svg>
         <span>Nearby</span>
       </button>
-      <a class="mobile-nav-button mobile-nav-link" href="docs/" aria-label="Open BlueGreen Guide field guide and documentation">
-        <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4.5c2.8-.9 5.5-.5 8 1.2v14c-2.5-1.7-5.2-2.1-8-1.2v-14Zm16 0c-2.8-.9-5.5-.5-8 1.2v14c2.5-1.7 5.2-2.1 8-1.2v-14Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /></svg>
-        <span>Guide</span>
-      </a>
+      <button class="mobile-nav-button" type="button" data-mobile-view-target="saved">
+        <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10a1 1 0 0 1 1 1v15l-6-3-6 3V5a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /></svg>
+        <span>Saved</span>
+      </button>
+      <button class="mobile-nav-button" type="button" data-mobile-view-target="more">
+        <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.7" fill="currentColor" /><circle cx="12" cy="12" r="1.7" fill="currentColor" /><circle cx="19" cy="12" r="1.7" fill="currentColor" /></svg>
+        <span>More</span>
+      </button>
     </nav>
 
     <template id="launchCardTemplate">
