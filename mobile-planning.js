@@ -365,4 +365,143 @@
     });
   }
 
-  function openC
+  function openCreateTrip(pendingPlace = null) {
+    showSheet("Create a Trip", pendingPlace ? `Start with ${pendingPlace.name}` : "Keep a simple plan on this device.", `
+      <form class="mobile-trip-form" data-trip-form>
+        <label><span>Trip name</span><input name="name" maxlength="80" required placeholder="Yosemite Weekend" /></label>
+        <div class="mobile-trip-form-dates"><label><span>Start date <small>optional</small></span><input name="startDate" type="date" /></label><label><span>End date <small>optional</small></span><input name="endDate" type="date" /></label></div>
+        <label><span>Notes <small>optional</small></span><textarea name="notes" rows="3" maxlength="500" placeholder="Anything you want to remember…"></textarea></label>
+        <button type="submit" class="mobile-trip-form-submit">Create Trip</button>
+      </form>`, { pendingPlace });
+  }
+
+  function openAddToTrip(place) {
+    const rows = trips.length ? trips.map((trip) => {
+      const added = (trip.placeIds || []).includes(place.id);
+      return `<button type="button" class="mobile-trip-picker-row ${added ? "is-added" : ""}" data-trip-choice="${escapeHtml(trip.id)}" ${added ? "disabled" : ""}><span>${icon("trip")}<strong>${escapeHtml(trip.name)}</strong></span><small>${added ? "Added" : `${trip.placeIds?.length || 0} ${(trip.placeIds?.length || 0) === 1 ? "place" : "places"}`}</small></button>`;
+    }).join("") : '<p class="mobile-sheet-empty">You have not created a trip yet.</p>';
+    showSheet("Add to a Trip", place.name, `${rows}<button type="button" class="mobile-sheet-action mobile-sheet-create" data-new-from-place>${icon("plus")}<span><strong>Create new trip</strong><small>Start a trip with this place</small></span></button>`, { place });
+  }
+
+  function firstSource(place) {
+    return (place?.sourceUrls || []).map((source) => (typeof source === "string" ? source : source?.url)).find(Boolean) || "";
+  }
+
+  function openPlaceActions(place) {
+    if (!place) return;
+    const source = firstSource(place);
+    showSheet(place.name, `${place.region}, ${place.state}`, `
+      <button type="button" class="mobile-sheet-action" data-action="details">${icon("info")}<span><strong>View place details</strong><small>Open the full BlueGreen Guide profile</small></span></button>
+      <button type="button" class="mobile-sheet-action" data-action="trip">${icon("trip")}<span><strong>Add to trip</strong><small>Group this place into a trip</small></span></button>
+      <button type="button" class="mobile-sheet-action" data-action="maps">${icon("map")}<span><strong>Open in Maps</strong><small>Get route options in your maps app</small></span></button>
+      <button type="button" class="mobile-sheet-action" data-action="share">${icon("share")}<span><strong>Share place</strong><small>Share a direct BlueGreen Guide link</small></span></button>
+      ${source ? `<button type="button" class="mobile-sheet-action" data-action="source">${icon("source")}<span><strong>Official source</strong><small>Open the first listed source</small></span></button>` : ""}`, { place });
+  }
+  window.BLUEGREEN_OPEN_PLACE_ACTIONS = openPlaceActions;
+
+  async function sharePlace(place) {
+    const url = new URL(location.href);
+    url.search = "";
+    url.hash = "";
+    url.searchParams.set("view", "explore");
+    url.searchParams.set("place", place.id);
+    const data = { title: place.name, text: `${place.name} on BlueGreen Guide`, url: url.toString() };
+    if (navigator.share) {
+      try {
+        await navigator.share(data);
+        return;
+      } catch (error) {
+        if (error?.name === "AbortError") return;
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(`${data.text}\n${data.url}`);
+      showToast("Place link copied.");
+    } catch {
+      showToast("Sharing is not available in this browser.");
+    }
+  }
+
+  function formatDistance(miles) {
+    if (prefs.distanceUnit === "kilometers") {
+      const km = miles * 1.609344;
+      return km < 0.1 ? "<0.1 km" : km < 10 ? `${km.toFixed(1)} km` : `${Math.round(km)} km`;
+    }
+    return miles < 0.1 ? "<0.1 mi" : miles < 10 ? `${miles.toFixed(1)} mi` : `${Math.round(miles)} mi`;
+  }
+  window.BLUEGREEN_FORMAT_DISTANCE = formatDistance;
+  window.BLUEGREEN_LOCATION_ALLOWED = () => prefs.locationEnabled !== false;
+
+  sheet.addEventListener("click", (event) => {
+    if (event.target === sheet || event.target.closest("[data-sheet-close]")) return closeSheet();
+    const choice = event.target.closest("[data-trip-choice]");
+    if (choice && sheetContext?.place) {
+      const trip = trips.find((item) => item.id === choice.dataset.tripChoice);
+      if (!trip || (trip.placeIds || []).includes(sheetContext.place.id)) return;
+      trip.placeIds = [...(trip.placeIds || []), sheetContext.place.id];
+      trip.updatedAt = new Date().toISOString();
+      write(KEYS.trips, trips);
+      renderTrips();
+      syncSettings();
+      closeSheet();
+      showToast(`Added to ${trip.name}.`);
+      return;
+    }
+    if (event.target.closest("[data-new-from-place]") && sheetContext?.place) return openCreateTrip(sheetContext.place);
+    const action = event.target.closest("[data-action]")?.dataset.action;
+    if (action && sheetContext?.place) {
+      const place = sheetContext.place;
+      if (action === "details") {
+        closeSheet();
+        return window.openLaunchDetail?.(place.id, { focusMap: false });
+      }
+      if (action === "trip") return openAddToTrip(place);
+      if (action === "maps") {
+        closeSheet();
+        const lat = Number(place.lat);
+        const lng = Number(place.lng);
+        if (!Number.isFinite(lat) || !Number.isFinite(lng)) return showToast("Map coordinates are not available for this place.");
+        return window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${lat},${lng}`)}`, "_blank", "noopener");
+      }
+      if (action === "share") {
+        closeSheet();
+        return sharePlace(place);
+      }
+      if (action === "source") {
+        const source = firstSource(place);
+        closeSheet();
+        if (source) window.open(source, "_blank", "noopener");
+      }
+    }
+    if (event.target.closest("[data-confirm-clear-saved]")) {
+      saved.clear();
+      persistSaved();
+      renderSaved();
+      syncButtons();
+      syncSettings();
+      closeSheet();
+      return showToast("Saved Places cleared.");
+    }
+    if (event.target.closest("[data-confirm-clear-trips]")) {
+      trips = [];
+      activeTripId = null;
+      write(KEYS.trips, trips);
+      renderTrips();
+      syncSettings();
+      closeSheet();
+      return showToast("Trips cleared.");
+    }
+    if (event.target.closest("[data-confirm-reset]")) {
+      saved.clear();
+      trips = [];
+      activeTripId = null;
+      prefs = { ...DEFAULT_PREFS };
+      persistSaved();
+      write(KEYS.trips, trips);
+      write(KEYS.prefs, prefs);
+      renderSaved();
+      renderTrips();
+      syncButtons();
+      syncSettings();
+      closeSheet();
+      window.BLUEGRE
