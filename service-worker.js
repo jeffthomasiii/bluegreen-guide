@@ -1,4 +1,4 @@
-const CACHE_NAME = "bgg-v1.2-shell-v26";
+const CACHE_NAME = "bgg-v1.2-shell-v27";
 
 const APP_SHELL = [
   "./",
@@ -16,7 +16,7 @@ const APP_SHELL = [
   "./mobile-explore-limit.css",
   "./map-wayfinding.css",
   "./mobile-pwa-standard.css",
-  "./mobile-planning.css",
+  "./mobile-planning.css?v=27",
   "./app.js",
   "./collections-ui.js",
   "./ui-refresh.js",
@@ -81,6 +81,25 @@ self.addEventListener("fetch", (event) => {
           return response;
         })
         .catch(() => caches.match("./index.html"))
+    );
+    return;
+  }
+
+  const isStaticAsset =
+    request.destination === "style" ||
+    request.destination === "script" ||
+    request.destination === "manifest";
+
+  if (isStaticAsset) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (!response || response.status !== 200 || response.type !== "basic") return response;
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+          return response;
+        })
+        .catch(() => caches.match(request))
     );
     return;
   }
