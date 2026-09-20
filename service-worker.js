@@ -1,4 +1,4 @@
-const CACHE_NAME = "bgg-v1.2-shell-v28";
+const CACHE_NAME = "bgg-v1.2-shell-v29";
 
 const APP_SHELL = [
   "./",
@@ -36,7 +36,14 @@ const APP_SHELL = [
   "./data/utah-field-test.json",
   "./data/launch-profile.js",
   "./data/collections.js",
-  "./assets/brand/bluegreen-guide-logo-primary-transparent.svg",
+  "./assets/brand/logo-package/svg/bluegreen-guide-logo-primary.svg",
+  "./assets/brand/logo-package/svg/bluegreen-guide-app-icon.svg",
+  "./assets/brand/logo-package/png/bluegreen-guide-logo-mobile.png",
+  "./assets/brand/logo-package/favicons/bluegreen-guide-favicon.svg",
+  "./assets/brand/logo-package/favicons/bluegreen-guide-favicon-180x180.png",
+  "./assets/brand/logo-package/favicons/bluegreen-guide-favicon-192x192.png",
+  "./assets/brand/logo-package/app-icons/bluegreen-guide-app-icon-512.png",
+  "./assets/brand/logo-package/app-icons/bluegreen-guide-app-icon-maskable-512.png",
   "./assets/icons/wayfinding.svg",
   "./docs/brand-docs.css",
   "./docs/index.html",
@@ -44,6 +51,7 @@ const APP_SHELL = [
   "./docs/quick-start/index.html",
   "./docs/blue-and-green-spaces/index.html",
   "./docs/launch-suitability/index.html",
+  "./docs/brand/index.html",
   "./manifest.webmanifest"
 ];
 
@@ -85,10 +93,13 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  const isBrandAsset = url.pathname.includes("/assets/brand/");
+
   const isStaticAsset =
     request.destination === "style" ||
     request.destination === "script" ||
-    request.destination === "manifest";
+    request.destination === "manifest" ||
+    isBrandAsset;
 
   if (isStaticAsset) {
     event.respondWith(
