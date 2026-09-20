@@ -1,137 +1,97 @@
 # BlueGreen Guide Logo Package
 
-This folder is the clean home for the refined BlueGreen Guide brand-logo package.
+This folder is the production home for the refined BlueGreen Guide logo system.
 
-## Package status
+The package is a refinement of the approved Option B2 landscape identity, not a new brand direction. It preserves the rounded landscape badge, mountain/land/water relationship, BlueGreen Guide wordmark, approved blue/green palette, and activity-neutral permanent identity.
 
-The package is being staged and reviewed before BlueGreen Guide is repointed to these assets.
+## Approved scalable SVG set
 
-**Already created in this branch:**
+Only these SVGs are approved for production use:
 
-- editable source/master SVGs
-- source reference PNG
-- PWA/mobile app icons
-- folder structure for the final SVG, PNG, and favicon exports
+- `svg/bluegreen-guide-logo-primary.svg`
+- `svg/bluegreen-guide-logo-primary-dark-mode.svg`
+- `svg/bluegreen-guide-logo-stacked.svg`
+- `svg/bluegreen-guide-logo-stacked-dark-mode.svg`
+- `svg/bluegreen-guide-mark.svg`
+- `svg/bluegreen-guide-app-icon.svg`
 
-**Still to upload from the prepared logo package:**
+Do not restore or reference deleted experimental SVG variants.
 
-- production logo variants in `svg/`
-- matching transparent raster exports in `png/`
-- favicon exports in `favicons/`
+## Approved raster assets
 
-Do **not** delete or overwrite the older files directly under `assets/brand/` yet. The app will be repointed to the approved package in a separate controlled PR after review.
+The surviving PNG assets in this package are approved for use where raster artwork is appropriate, including:
 
-## Canonical design direction
+- primary and dark-mode lockups
+- stacked and stacked dark-mode lockups
+- mobile/compact lockups
+- horizontal/compact lockups
+- icon-only mark
+- app icons
+- favicons
 
-The refinement standard is the approved Option B2 landscape identity.
+Mobile and horizontal PNGs are derived compact-use assets. They are not separate SVG masters.
 
-Preserve:
+### Provisional PNGs — do not use yet
 
-- rounded landscape badge
-- mountain / land / water composition
-- BlueGreen Guide wordmark
-- approved blue and green palette
-- activity-neutral permanent brand identity
-- `Discover Better Outdoors` tagline where appropriate
+These two files are intentionally retained for evaluation but are not currently approved for product, documentation, or marketing use:
 
-Activity-specific equipment or people belong in the Wayfinding System, not the permanent logo.
+- `png/bluegreen-guide-logo-one-color-dark.png`
+- `png/bluegreen-guide-logo-one-color-white.png`
 
-## Folder structure
+## Folder roles
 
-### `source/` — created
+### `svg/`
 
-Editable/master artwork and reference material.
+Approved scalable production artwork listed above.
 
-Included:
+### `png/`
 
-- `bluegreen-guide-logo-master.svg` — editable primary master with live brand typography
-- `bluegreen-guide-mark-master.svg` — editable icon-only landscape mark
-- `bluegreen-guide-logo-master-reference.png` — raster reference for visual comparison
+Transparent raster logo variants for raster-only placements and compact interface use.
 
-The SVG files are the working source masters. The PNG is a reference image, not the authoritative editable artwork.
+### `app-icons/`
 
-If a print/vendor copy requires font-independent artwork, convert the live wordmark/tagline type to outlines in Illustrator for that delivery copy. Keep an editable master with live type.
+Square-safe app/PWA icon exports. Use these for installed-app surfaces and manifest PNG entries.
 
-### `svg/` — upload prepared files here
+### `favicons/`
 
-Production-ready scalable logo variants.
+Browser favicon and touch-icon exports.
 
-Expected filenames:
+### `source/`
 
-- `bluegreen-guide-logo-primary.svg`
-- `bluegreen-guide-logo-primary-dark-mode.svg`
-- `bluegreen-guide-logo-mobile.svg`
-- `bluegreen-guide-logo-mobile-dark-mode.svg`
-- `bluegreen-guide-logo-horizontal.svg`
-- `bluegreen-guide-logo-horizontal-dark-mode.svg`
-- `bluegreen-guide-logo-stacked.svg`
-- `bluegreen-guide-logo-stacked-dark-mode.svg`
-- `bluegreen-guide-mark.svg`
-- `bluegreen-guide-logo-one-color-dark.svg`
-- `bluegreen-guide-logo-one-color-white.svg`
+Working source/master material retained for future refinement and vendor handoff.
 
-### `png/` — upload prepared files here
+## Product usage
 
-Transparent raster exports matching the SVG variants.
+Use:
 
-Expected filenames:
+- **Primary SVG** for standard light-background web and documentation branding.
+- **Primary dark-mode SVG** on dark backgrounds.
+- **Stacked SVG** for portrait/square compositions.
+- **Stacked dark-mode SVG** for dark portrait/square compositions.
+- **Brand mark SVG** for compact icon-only brand placements.
+- **App-icon SVG / app-icon PNGs** for PWA and mobile installation surfaces.
+- **Mobile PNG** for compact mobile/PWA headers when the full tagline lockup would be too small.
+- **Favicons** for browser tabs and touch icons.
 
-- `bluegreen-guide-logo-primary.png`
-- `bluegreen-guide-logo-primary-dark-mode.png`
-- `bluegreen-guide-logo-mobile.png`
-- `bluegreen-guide-logo-mobile-dark-mode.png`
-- `bluegreen-guide-logo-horizontal.png`
-- `bluegreen-guide-logo-horizontal-dark-mode.png`
-- `bluegreen-guide-logo-stacked.png`
-- `bluegreen-guide-logo-stacked-dark-mode.png`
-- `bluegreen-guide-mark.png`
-- `bluegreen-guide-logo-one-color-dark.png`
-- `bluegreen-guide-logo-one-color-white.png`
+The current app shell, PWA manifest, browser icons, and public documentation should reference this package instead of the legacy root-level logo asset.
 
-### `app-icons/` — created
+## Brand rules
 
-Square-safe brand-mark exports for the PWA, mobile home screen, and other app-icon uses.
+- Keep activity-specific equipment and people out of the permanent logo.
+- Do not stretch, rotate, recolor, bevel, outline, or add shadows.
+- Do not place the full-color logo directly over a busy photograph.
+- Preserve clear space around the mark and wordmark.
+- Use compact variants rather than shrinking the tagline lockup until it becomes unreadable.
+- Keep BlueGreen Guide wayfinding icons separate from the permanent brand logo.
 
-Included:
+## Brand colors
 
-- `bluegreen-guide-app-icon.svg` — scalable app-icon source
-- `bluegreen-guide-app-icon-1024.png` — high-resolution master raster
-- `bluegreen-guide-app-icon-512.png` — standard PWA large icon
-- `bluegreen-guide-app-icon-192.png` — standard PWA small icon
-- `bluegreen-guide-app-icon-maskable-512.png` — maskable-safe 512px export
+- Primary Blue: `#176F8F`
+- Deep Blue: `#0F4F67`
+- Soft Blue: `#DCEFF5`
+- Green Accent: `#6F8F63`
+- Deep Green: `#4F7047`
+- Background: `#EEF6F8`
+- Text: `#10252E`
 
-The app-icon artwork intentionally uses a safe background rather than relying on transparency so it behaves predictably when installed on mobile platforms.
-
-A transparent 1024px app-icon export may be kept as a supplemental design asset, but it is not required for the PWA manifest.
-
-### `favicons/` — upload prepared files here
-
-Small-size simplified brand-mark exports.
-
-Expected filenames:
-
-- `bluegreen-guide-favicon.svg`
-- `bluegreen-guide-favicon-16x16.png`
-- `bluegreen-guide-favicon-32x32.png`
-- `bluegreen-guide-favicon-48x48.png`
-- `bluegreen-guide-favicon-180x180.png`
-- `bluegreen-guide-favicon-192x192.png`
-- `bluegreen-guide-favicon-512x512.png`
-
-## Approved color references
-
-- Primary Blue — `#176F8F`
-- Deep Blue — `#0F4F67`
-- Soft Blue — `#DCEFF5`
-- Green Accent — `#6F8F63`
-- Deep Green — `#4F7047`
-- Background — `#EEF6F8`
-- Text — `#10252E`
-
-## Naming
-
-Use lowercase kebab-case. Every production logo asset should begin with `bluegreen-guide-`.
-
-## Integration rule
-
-Complete and review this package first. Repoint the PWA manifest, app header, documentation, favicon references, social/profile assets, and any other product usage only after the new package is approved.
+See `docs/brand-guide.md` for the full Design System 2.0 rules and `docs/brand/` on the public documentation site for the approved downloadable logo set.

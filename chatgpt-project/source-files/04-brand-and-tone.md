@@ -128,15 +128,16 @@ Use serif typography sparingly in functional interfaces. Clarity and mobile read
 
 ## Logo System
 
-Required assets:
+Approved scalable SVG assets:
 
-1. Primary logo
-2. Horizontal logo
-3. Stacked logo
-4. Icon-only brand mark
-5. One-color dark logo
-6. One-color white/reversed logo
-7. Simplified favicon/app-icon mark
+1. `assets/brand/logo-package/svg/bluegreen-guide-logo-primary.svg`
+2. `assets/brand/logo-package/svg/bluegreen-guide-logo-primary-dark-mode.svg`
+3. `assets/brand/logo-package/svg/bluegreen-guide-logo-stacked.svg`
+4. `assets/brand/logo-package/svg/bluegreen-guide-logo-stacked-dark-mode.svg`
+5. `assets/brand/logo-package/svg/bluegreen-guide-mark.svg`
+6. `assets/brand/logo-package/svg/bluegreen-guide-app-icon.svg`
+
+The surviving PNG assets in the logo package are approved for raster use, including compact mobile/horizontal lockups, app icons, and favicons, except for the one-color white and one-color dark PNG experiments, which remain provisional and should not be used unless explicitly approved later.
 
 ### Logo rules
 
