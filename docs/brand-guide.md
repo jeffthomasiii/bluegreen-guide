@@ -1,6 +1,6 @@
 # BlueGreen Guide — Design System 2.0
 
-**Status:** Approved and locked  
+**Status:** Approved identity with refined production logo package  
 **Primary use:** Brand identity, product UI, documentation, GitHub assets, and future cross-device experiences
 
 ---
@@ -161,15 +161,21 @@ Use serif typography sparingly inside functional interfaces. Readability takes p
 
 ## 5. Logo System
 
-Required assets:
+Approved scalable SVG assets:
 
-1. Primary logo
-2. Horizontal logo
-3. Stacked logo
-4. Icon-only brand mark
-5. One-color dark logo
-6. One-color white/reversed logo
-7. Simplified favicon and app-icon mark
+1. `assets/brand/logo-package/svg/bluegreen-guide-logo-primary.svg`
+2. `assets/brand/logo-package/svg/bluegreen-guide-logo-primary-dark-mode.svg`
+3. `assets/brand/logo-package/svg/bluegreen-guide-logo-stacked.svg`
+4. `assets/brand/logo-package/svg/bluegreen-guide-logo-stacked-dark-mode.svg`
+5. `assets/brand/logo-package/svg/bluegreen-guide-mark.svg`
+6. `assets/brand/logo-package/svg/bluegreen-guide-app-icon.svg`
+
+Approved raster exports also include the surviving primary, dark-mode, stacked, mark, mobile, horizontal, app-icon, and favicon PNGs in the logo package. Mobile and horizontal PNGs are derived compact lockups rather than separate SVG masters.
+
+The following PNG experiments remain provisional and should not be used in the product or documentation unless explicitly approved later:
+
+- `assets/brand/logo-package/png/bluegreen-guide-logo-one-color-dark.png`
+- `assets/brand/logo-package/png/bluegreen-guide-logo-one-color-white.png`
 
 ### Approved construction direction
 
@@ -194,10 +200,11 @@ X / 4
 
 | Asset | Minimum size |
 | --- | ---: |
-| Horizontal logo | 160px wide |
+| Compact/mobile raster lockup | 160px wide |
 | Primary logo | 180px wide |
 | Stacked logo | 140px wide |
 | Icon-only mark | 24px |
+| App icon | 48px |
 | Favicon | 16px simplified mark |
 
 ### Logo misuse
@@ -398,28 +405,33 @@ Avoid:
 
 Use lowercase kebab-case in the repo.
 
-Examples:
+Approved package layout:
 
 ```text
-bluegreen-guide-logo-primary.svg
-bluegreen-guide-logo-horizontal.svg
-bluegreen-guide-logo-stacked.svg
-bluegreen-guide-mark.svg
-bluegreen-guide-mark-32.png
+assets/brand/logo-package/
+├── svg/
+│   ├── bluegreen-guide-logo-primary.svg
+│   ├── bluegreen-guide-logo-primary-dark-mode.svg
+│   ├── bluegreen-guide-logo-stacked.svg
+│   ├── bluegreen-guide-logo-stacked-dark-mode.svg
+│   ├── bluegreen-guide-mark.svg
+│   └── bluegreen-guide-app-icon.svg
+├── png/
+├── app-icons/
+├── favicons/
+└── source/
 ```
 
-Preferred folder:
-
-```text
-assets/brand/
-```
+Use lowercase kebab-case for all production brand filenames.
 
 Export formats:
 
-- SVG for scalable web and documentation use
-- PNG for social profiles, app icons, and raster-only placements
-- PDF for print review and handoff
-- AI source file retained outside web delivery assets
+- SVG for the approved scalable brand masters and web/documentation use
+- PNG for compact mobile/horizontal lockups, social profiles, app icons, favicons, and raster-only placements
+- PDF for print review and handoff when needed
+- AI/source artwork retained separately from web delivery assets
+
+The PWA and public documentation should reference the package paths above rather than the older root-level logo file.
 
 ---
 
