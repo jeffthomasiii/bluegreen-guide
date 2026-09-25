@@ -11,6 +11,7 @@
   .app-shell {
     height: 100vh;
     grid-template-columns: 350px minmax(520px, 1fr) minmax(350px, 420px);
+    grid-template-areas: "sidebar map detail";
     gap: 12px;
     padding: 12px;
   }
@@ -111,6 +112,11 @@
     box-shadow: 0 8px 22px rgba(15, 79, 103, .12);
   }
 
+  .detail-panel {
+    grid-area: detail;
+    min-width: 0;
+  }
+
   .detail-panel:not([hidden]) {
     position: relative;
     display: block;
@@ -122,6 +128,9 @@
   }
 
   .detail-panel[hidden] {
+    position: relative;
+    inset: auto;
+    z-index: auto;
     display: block;
     min-height: calc(100vh - 24px);
     background:
@@ -183,6 +192,7 @@
 @media (min-width: 901px) and (max-width: 1180px) {
   .app-shell {
     grid-template-columns: 320px minmax(0, 1fr);
+    grid-template-areas: "sidebar map";
   }
 
   .detail-panel {
