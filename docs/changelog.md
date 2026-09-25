@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-09-24 — Verified Location Photography Pass 1
+
+### Changed
+
+- Replaced representative imagery with one verified actual-place image for 28 current BlueGreen Guide records where the depicted location, creator/source, and reuse terms were individually confirmed
+- Added per-photo creator, source-page, license, license-link, alt-text, and review-note metadata
+- Preferred public-domain/CC0 imagery where suitable and used Creative Commons attribution licenses when needed
+- Kept unresolved or ambiguous places on the existing representative-image fallback rather than implying an unverified location match
+- Renamed the visible credit label from `Launch photo` to `Location photo` so photography language also fits parks, gardens, reserves, and other land places
+- Documented the current one-primary-photo rule; multiple photos are deferred until BlueGreen Guide has an intentional gallery experience
+- Advanced the service-worker shell cache to `bgg-v1.2-shell-v30`
+
+### Scope
+
+This pass changes photography and attribution metadata only. A location photo verifies the depicted place, not access, launch suitability, amenities, rules, hazards, or current conditions.
+
 ## 2026-09-18 — Mobile/PWA Refinement Round 2
 
 ### Changed
