@@ -6,10 +6,10 @@
 
 - Adopted the approved premium web/documentation mockup as the visual measuring stick for desktop web and public documentation refinement
 - Added a dedicated desktop web styling layer with a three-surface composition for filters/results, map, and place detail on wide screens
-- Refined desktop panel proportions, card radii, shadows, control sizing, typography, and spacing to align with the established mobile/PWA visual language
-- Refined documentation headers, hero treatment, cards, actions, wayfinding panels, screenshots, and responsive desktop grids around the same premium visual standard
-- Preserved the accepted mobile/PWA composition while extending its design language to larger screens
-- Advanced the service-worker shell cache to `bgg-v1.2-shell-v32`
+- Rebuilt the desktop web composition directly from the approved web mockup, including top navigation, global search, Search & Filter / Collections tabs, map proportions, and desktop place-detail presentation
+- Rebuilt the desktop documentation home and Field Guide composition directly from the approved documentation mockup, including image-led hero treatment, feature cards, topic tabs, and image-led place/category cards
+- Kept the accepted mobile/PWA interface unchanged; desktop web and desktop documentation now follow their own mockup-led composition
+- Advanced the service-worker shell cache to `bgg-v1.2-shell-v34`
 
 ### Design reference
 
