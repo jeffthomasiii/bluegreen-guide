@@ -6,6 +6,10 @@
   const navItems = [...document.querySelectorAll("[data-desktop-nav]")];
   const menuButton = document.querySelector("[data-desktop-menu]");
   const savedPanel = document.querySelector("#mobileSavedPanel");
+  const desktopResultCount = document.querySelector("#desktopResultCount");
+  const resultCount = document.querySelector("#resultCount");
+  const clearFilters = document.querySelector("[data-desktop-clear-filters]");
+  const showPlaces = document.querySelector("[data-desktop-show-places]");
 
   function setTab(tab) {
     document.body.dataset.desktopActiveTab = tab;
@@ -60,6 +64,34 @@
         openSavedTab("trips");
       }
     });
+  });
+
+  const syncDesktopCount = () => {
+    if (desktopResultCount && resultCount) desktopResultCount.textContent = resultCount.textContent || "0";
+  };
+
+  const countObserver = resultCount ? new MutationObserver(syncDesktopCount) : null;
+  if (resultCount && countObserver) countObserver.observe(resultCount, { childList: true, characterData: true, subtree: true });
+  syncDesktopCount();
+
+  clearFilters?.addEventListener("click", () => {
+    if (appSearch) {
+      appSearch.value = "";
+      appSearch.dispatchEvent(new Event("input", { bubbles: true }));
+    }
+    ["regionFilter", "skillFilter", "activityFilter", "difficultyFilter"].forEach((id) => {
+      const control = document.getElementById(id);
+      if (!control) return;
+      control.value = "all";
+      control.dispatchEvent(new Event("change", { bubbles: true }));
+    });
+    document.querySelector("#clearCollectionButton:not([hidden])")?.click();
+    if (desktopSearch) desktopSearch.value = "";
+    setTab("filters");
+  });
+
+  showPlaces?.addEventListener("click", () => {
+    document.querySelector("#fitButton")?.click();
   });
 
   desktopSearch?.addEventListener("input", () => {
