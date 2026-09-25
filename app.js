@@ -677,7 +677,7 @@ function getRepresentativePhoto(launch) {
 }
 
 function photoCreditMarkup(photo) {
-  const statusLabel = photo.status === "location" ? "Launch photo" : "Representative image";
+  const statusLabel = photo.status === "location" ? "Location photo" : "Representative image";
   const credit = photo.credit || "Image source";
   const license = photo.licenseUrl
     ? ` | <a href="${escapeAttribute(photo.licenseUrl)}" target="_blank" rel="noopener">${escapeHtml(photo.license)}</a>`
