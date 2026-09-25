@@ -9,21 +9,69 @@
     "waterType": "Reservoir and state park",
     "waterBody": "Jordanelle Reservoir",
     "spaceType": "mixed",
-    "placeTypes": ["state-park", "reservoir", "park", "trail-network"],
-    "activities": ["Kayak", "SUP", "Canoe", "Boating", "Fishing", "Hiking", "Camping"],
-    "activityTypes": ["kayaking", "stand-up-paddleboarding", "canoeing", "boating", "fishing", "hiking", "camping"],
-    "amenities": ["Parking", "Restrooms", "Picnic Areas", "Camping", "Rentals"],
-    "amenityTypes": ["parking", "restrooms", "picnic-areas", "camping", "rentals"],
-    "attributeTypes": ["mixed-space", "scenic-view"],
-    "tags": ["Utah alpha", "non-motorized launch", "reservoir", "trails", "mixed blue green"],
+    "placeTypes": [
+      "state-park",
+      "reservoir",
+      "park",
+      "trail-network"
+    ],
+    "activities": [
+      "Kayak",
+      "SUP",
+      "Canoe",
+      "Boating",
+      "Fishing",
+      "Hiking",
+      "Camping"
+    ],
+    "activityTypes": [
+      "kayaking",
+      "stand-up-paddleboarding",
+      "canoeing",
+      "boating",
+      "fishing",
+      "hiking",
+      "camping"
+    ],
+    "amenities": [
+      "Parking",
+      "Restrooms",
+      "Picnic Areas",
+      "Camping",
+      "Rentals"
+    ],
+    "amenityTypes": [
+      "parking",
+      "restrooms",
+      "picnic-areas",
+      "camping",
+      "rentals"
+    ],
+    "attributeTypes": [
+      "mixed-space",
+      "scenic-view"
+    ],
+    "tags": [
+      "Utah alpha",
+      "non-motorized launch",
+      "reservoir",
+      "trails",
+      "mixed blue green"
+    ],
     "description": "A developed Jordanelle Reservoir recreation area with non-motorized launching for kayaks and paddleboards, plus camping, picnicking, trails, and other water recreation.",
     "paddleRelevant": false,
     "bestTime": "Conditions vary",
     "verificationStatus": "Needs verification",
     "lastVerified": null,
     "sourceUrls": [
-      {"label": "Utah State Parks - Jordanelle State Park Facilities", "url": "https://stateparks.utah.gov/parks/jordanelle/facilities/"},
-      {"label": "Utah State Parks - Jordanelle State Park Directions", "url": "https://stateparks.utah.gov/parks/jordanelle/directions/"}
+      {
+        "label": "Utah State Parks - Jordanelle State Park Facilities",
+        "url": "https://stateparks.utah.gov/parks/jordanelle/facilities/"
+      },
+      {
+        "label": "Utah State Parks - Jordanelle State Park Directions",
+        "url": "https://stateparks.utah.gov/parks/jordanelle/directions/"
+      }
     ],
     "sourceNotes": "Official Utah State Parks sources reviewed 2026-09-03 confirm Hailstone recreation facilities and non-motorized launching for kayaks and paddleboards. Current ramp availability, water level, invasive-species requirements, fees, hours, closures, weather, wind, hazards, and other trip-specific conditions must be checked before a visit. Coordinates are representative of the Hailstone recreation area and need local/field confirmation.",
     "sourceReviewDate": "2026-09-03",
@@ -42,28 +90,79 @@
     "waterType": "Reservoir and river recreation",
     "waterBody": "Deer Creek Reservoir",
     "spaceType": "mixed",
-    "placeTypes": ["state-park", "reservoir", "park", "campground"],
-    "activities": ["Kayak", "SUP", "Boating", "Fishing", "Swimming", "Camping"],
-    "activityTypes": ["kayaking", "stand-up-paddleboarding", "boating", "fishing", "swimming", "camping"],
-    "amenities": ["Parking", "Restrooms", "Camping"],
-    "amenityTypes": ["parking", "restrooms", "camping"],
-    "attributeTypes": ["mixed-space", "scenic-view"],
-    "tags": ["Utah alpha", "reservoir", "Lower Provo River", "water recreation", "mixed blue green"],
+    "placeTypes": [
+      "state-park",
+      "reservoir",
+      "park",
+      "campground"
+    ],
+    "activities": [
+      "Kayak",
+      "SUP",
+      "Boating",
+      "Fishing",
+      "Swimming",
+      "Camping"
+    ],
+    "activityTypes": [
+      "kayaking",
+      "stand-up-paddleboarding",
+      "boating",
+      "fishing",
+      "swimming",
+      "camping"
+    ],
+    "amenities": [
+      "Parking",
+      "Restrooms",
+      "Camping"
+    ],
+    "amenityTypes": [
+      "parking",
+      "restrooms",
+      "camping"
+    ],
+    "attributeTypes": [
+      "mixed-space",
+      "scenic-view"
+    ],
+    "tags": [
+      "Utah alpha",
+      "reservoir",
+      "Lower Provo River",
+      "water recreation",
+      "mixed blue green"
+    ],
     "description": "A Wasatch County state park centered on Deer Creek Reservoir, with boating, kayaking, swimming, fishing, camping, and access to nearby river recreation.",
     "paddleRelevant": false,
     "bestTime": "Conditions vary",
     "verificationStatus": "Needs verification",
     "lastVerified": null,
     "sourceUrls": [
-      {"label": "Utah State Parks - Deer Creek State Park", "url": "https://stateparks.utah.gov/parks/deer-creek/"},
-      {"label": "Utah State Parks - Deer Creek Directions", "url": "https://stateparks.utah.gov/parks/deer-creek/directions/"}
+      {
+        "label": "Utah State Parks - Deer Creek State Park",
+        "url": "https://stateparks.utah.gov/parks/deer-creek/"
+      },
+      {
+        "label": "Utah State Parks - Deer Creek Directions",
+        "url": "https://stateparks.utah.gov/parks/deer-creek/directions/"
+      }
     ],
     "sourceNotes": "Official Utah State Parks sources reviewed 2026-09-03 confirm reservoir recreation including kayaking, boating, swimming, fishing and camping, plus floating/kayaking on the lower Provo River. Current launch status, water level, invasive-species requirements, fees, hours, closures, weather, wind, hazards, and other trip-specific conditions must be checked before a visit. Coordinates are representative of the park and need local/field confirmation.",
     "sourceReviewDate": "2026-09-03",
     "sourceReviewStatus": "Official place sources added",
-    "photoStatus": "needs-verification",
-    "photoUrls": [],
-    "photoNotes": "Add a location-relevant image after local or source verification."
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Deer%20Creek%20Reservoir.jpg?width=1200",
+        "alt": "Deer Creek Reservoir in Utah",
+        "credit": "Eric Ward",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Deer_Creek_Reservoir.jpg",
+        "license": "CC BY-SA 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "hyrum-state-park-swim-beach",
@@ -75,21 +174,65 @@
     "waterType": "Reservoir swim beach",
     "waterBody": "Hyrum Reservoir",
     "spaceType": "mixed",
-    "placeTypes": ["state-park", "reservoir", "beach", "park"],
-    "activities": ["Kayak", "SUP", "Canoe", "Swimming", "Fishing", "Picnicking"],
-    "activityTypes": ["kayaking", "stand-up-paddleboarding", "canoeing", "swimming", "fishing", "picnicking"],
-    "amenities": ["Parking", "Restrooms", "Picnic Areas", "Pedestrian Dock"],
-    "amenityTypes": ["parking", "restrooms", "picnic-areas", "dock"],
-    "attributeTypes": ["mixed-space", "family-friendly"],
-    "tags": ["Utah alpha", "non-motorized hand launch", "swim beach", "reservoir", "mixed blue green"],
+    "placeTypes": [
+      "state-park",
+      "reservoir",
+      "beach",
+      "park"
+    ],
+    "activities": [
+      "Kayak",
+      "SUP",
+      "Canoe",
+      "Swimming",
+      "Fishing",
+      "Picnicking"
+    ],
+    "activityTypes": [
+      "kayaking",
+      "stand-up-paddleboarding",
+      "canoeing",
+      "swimming",
+      "fishing",
+      "picnicking"
+    ],
+    "amenities": [
+      "Parking",
+      "Restrooms",
+      "Picnic Areas",
+      "Pedestrian Dock"
+    ],
+    "amenityTypes": [
+      "parking",
+      "restrooms",
+      "picnic-areas",
+      "dock"
+    ],
+    "attributeTypes": [
+      "mixed-space",
+      "family-friendly"
+    ],
+    "tags": [
+      "Utah alpha",
+      "non-motorized hand launch",
+      "swim beach",
+      "reservoir",
+      "mixed blue green"
+    ],
     "description": "The Hyrum State Park swim-beach area provides beach access and an official non-motorized hand-launch ramp, making it a useful local-review case for small paddlecraft access.",
     "paddleRelevant": false,
     "bestTime": "Conditions vary",
     "verificationStatus": "Needs verification",
     "lastVerified": null,
     "sourceUrls": [
-      {"label": "Utah State Parks - Hyrum Amenities", "url": "https://stateparks.utah.gov/parks/hyrum/publications/"},
-      {"label": "Utah State Parks - Hyrum Directions", "url": "https://stateparks.utah.gov/parks/hyrum/directions/"}
+      {
+        "label": "Utah State Parks - Hyrum Amenities",
+        "url": "https://stateparks.utah.gov/parks/hyrum/publications/"
+      },
+      {
+        "label": "Utah State Parks - Hyrum Directions",
+        "url": "https://stateparks.utah.gov/parks/hyrum/directions/"
+      }
     ],
     "sourceNotes": "Official Utah State Parks sources reviewed 2026-09-03 confirm the swim beach, restrooms, grassy picnic area, beach access, pedestrian dock, and non-motorized hand-launch ramp. Current water level, launch usability, invasive-species requirements, fees, hours, closures, weather, wind, hazards, and other trip-specific conditions must be checked before a visit. Coordinates are representative of the swim-beach area and need local/field confirmation.",
     "sourceReviewDate": "2026-09-03",
@@ -108,21 +251,65 @@
     "waterType": "Reservoir and state park",
     "waterBody": "Quail Creek Reservoir",
     "spaceType": "mixed",
-    "placeTypes": ["state-park", "reservoir", "park", "campground"],
-    "activities": ["Kayak", "SUP", "Boating", "Fishing", "Swimming", "Camping"],
-    "activityTypes": ["kayaking", "stand-up-paddleboarding", "boating", "fishing", "swimming", "camping"],
-    "amenities": ["Parking", "Restrooms", "Camping", "Rentals"],
-    "amenityTypes": ["parking", "restrooms", "camping", "rentals"],
-    "attributeTypes": ["mixed-space", "scenic-view"],
-    "tags": ["Utah alpha", "reservoir", "paddlesports rentals", "southern Utah", "mixed blue green"],
+    "placeTypes": [
+      "state-park",
+      "reservoir",
+      "park",
+      "campground"
+    ],
+    "activities": [
+      "Kayak",
+      "SUP",
+      "Boating",
+      "Fishing",
+      "Swimming",
+      "Camping"
+    ],
+    "activityTypes": [
+      "kayaking",
+      "stand-up-paddleboarding",
+      "boating",
+      "fishing",
+      "swimming",
+      "camping"
+    ],
+    "amenities": [
+      "Parking",
+      "Restrooms",
+      "Camping",
+      "Rentals"
+    ],
+    "amenityTypes": [
+      "parking",
+      "restrooms",
+      "camping",
+      "rentals"
+    ],
+    "attributeTypes": [
+      "mixed-space",
+      "scenic-view"
+    ],
+    "tags": [
+      "Utah alpha",
+      "reservoir",
+      "paddlesports rentals",
+      "southern Utah",
+      "mixed blue green"
+    ],
     "description": "A southern Utah reservoir park with kayaking and stand-up paddleboarding, equipment rentals, camping, fishing, swimming, and other water recreation.",
     "paddleRelevant": false,
     "bestTime": "Conditions vary",
     "verificationStatus": "Needs verification",
     "lastVerified": null,
     "sourceUrls": [
-      {"label": "Utah State Parks - Quail Creek Rentals and Food", "url": "https://stateparks.utah.gov/parks/quail-creek/rentals-food/"},
-      {"label": "Utah State Parks - Quail Creek Directions", "url": "https://stateparks.utah.gov/parks/quail-creek/directions/"}
+      {
+        "label": "Utah State Parks - Quail Creek Rentals and Food",
+        "url": "https://stateparks.utah.gov/parks/quail-creek/rentals-food/"
+      },
+      {
+        "label": "Utah State Parks - Quail Creek Directions",
+        "url": "https://stateparks.utah.gov/parks/quail-creek/directions/"
+      }
     ],
     "sourceNotes": "Official Utah State Parks sources reviewed 2026-09-03 confirm kayak and stand-up paddleboard rentals and reservoir recreation. Current algae advisories, water level, launch/ramp hours, invasive-species requirements, fees, closures, weather, wind, hazards, and rental availability must be checked before a visit. Coordinates are representative of the park and need local/field confirmation.",
     "sourceReviewDate": "2026-09-03",
@@ -141,28 +328,81 @@
     "waterType": "Reservoir and desert recreation",
     "waterBody": "Sand Hollow Reservoir",
     "spaceType": "mixed",
-    "placeTypes": ["state-park", "reservoir", "park", "campground"],
-    "activities": ["SUP", "Boating", "Fishing", "Swimming", "Camping", "Off-Highway Vehicle Recreation"],
-    "activityTypes": ["stand-up-paddleboarding", "boating", "fishing", "swimming", "camping", "off-highway-vehicle-recreation"],
-    "amenities": ["Parking", "Restrooms", "Camping", "Beach Access"],
-    "amenityTypes": ["parking", "restrooms", "camping", "beach-access"],
-    "attributeTypes": ["mixed-space", "scenic-view"],
-    "tags": ["Utah alpha", "reservoir", "red sandstone", "desert recreation", "mixed blue green"],
+    "placeTypes": [
+      "state-park",
+      "reservoir",
+      "park",
+      "campground"
+    ],
+    "activities": [
+      "SUP",
+      "Boating",
+      "Fishing",
+      "Swimming",
+      "Camping",
+      "Off-Highway Vehicle Recreation"
+    ],
+    "activityTypes": [
+      "stand-up-paddleboarding",
+      "boating",
+      "fishing",
+      "swimming",
+      "camping",
+      "off-highway-vehicle-recreation"
+    ],
+    "amenities": [
+      "Parking",
+      "Restrooms",
+      "Camping",
+      "Beach Access"
+    ],
+    "amenityTypes": [
+      "parking",
+      "restrooms",
+      "camping",
+      "beach-access"
+    ],
+    "attributeTypes": [
+      "mixed-space",
+      "scenic-view"
+    ],
+    "tags": [
+      "Utah alpha",
+      "reservoir",
+      "red sandstone",
+      "desert recreation",
+      "mixed blue green"
+    ],
     "description": "A southern Utah state park combining reservoir recreation such as paddleboarding, boating and swimming with red-sandstone desert scenery, beaches, camping, and adjacent land recreation.",
     "paddleRelevant": false,
     "bestTime": "Conditions vary",
     "verificationStatus": "Needs verification",
     "lastVerified": null,
     "sourceUrls": [
-      {"label": "Utah State Parks - Sand Hollow Discover", "url": "https://stateparks.utah.gov/parks/sand-hollow/discover/"},
-      {"label": "Utah State Parks - Sand Hollow Directions", "url": "https://stateparks.utah.gov/parks/sand-hollow/directions/"}
+      {
+        "label": "Utah State Parks - Sand Hollow Discover",
+        "url": "https://stateparks.utah.gov/parks/sand-hollow/discover/"
+      },
+      {
+        "label": "Utah State Parks - Sand Hollow Directions",
+        "url": "https://stateparks.utah.gov/parks/sand-hollow/directions/"
+      }
     ],
     "sourceNotes": "Official Utah State Parks sources reviewed 2026-09-03 confirm paddleboarding and other reservoir recreation alongside beaches, camping and desert recreation. Current algae advisories, water level, launch access, invasive-species requirements, fees, hours, closures, weather, wind, hazards, and other trip-specific conditions must be checked before a visit. Coordinates are representative of the park and need local/field confirmation.",
     "sourceReviewDate": "2026-09-03",
     "sourceReviewStatus": "Official place sources added",
-    "photoStatus": "needs-verification",
-    "photoUrls": [],
-    "photoNotes": "Add a location-relevant image after local or source verification."
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sand%20Hollow%20State%20Park%2C%20Utah.jpg?width=1200",
+        "alt": "Sand Hollow State Park in Utah",
+        "credit": "Dylan Duvergé",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Sand_Hollow_State_Park%2C_Utah.jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "snow-canyon-state-park",
@@ -173,27 +413,83 @@
     "lng": -113.641,
     "waterType": "Desert park and open space",
     "spaceType": "green",
-    "placeTypes": ["state-park", "park", "trail-network", "open-space"],
-    "activities": ["Hiking", "Walking", "Biking", "Horseback Riding", "Camping", "Nature Viewing"],
-    "activityTypes": ["hiking", "walking", "biking", "horseback-riding", "camping", "nature-viewing"],
-    "amenities": ["Parking", "Restrooms", "Picnic Areas", "Visitor Center", "Camping"],
-    "amenityTypes": ["parking", "restrooms", "picnic-areas", "visitor-center", "camping"],
-    "attributeTypes": ["scenic-view", "educational"],
-    "tags": ["Utah alpha", "desert park", "trails", "sand dunes", "lava flows", "green space"],
+    "placeTypes": [
+      "state-park",
+      "park",
+      "trail-network",
+      "open-space"
+    ],
+    "activities": [
+      "Hiking",
+      "Walking",
+      "Biking",
+      "Horseback Riding",
+      "Camping",
+      "Nature Viewing"
+    ],
+    "activityTypes": [
+      "hiking",
+      "walking",
+      "biking",
+      "horseback-riding",
+      "camping",
+      "nature-viewing"
+    ],
+    "amenities": [
+      "Parking",
+      "Restrooms",
+      "Picnic Areas",
+      "Visitor Center",
+      "Camping"
+    ],
+    "amenityTypes": [
+      "parking",
+      "restrooms",
+      "picnic-areas",
+      "visitor-center",
+      "camping"
+    ],
+    "attributeTypes": [
+      "scenic-view",
+      "educational"
+    ],
+    "tags": [
+      "Utah alpha",
+      "desert park",
+      "trails",
+      "sand dunes",
+      "lava flows",
+      "green space"
+    ],
     "description": "A trail-focused desert state park near Ivins with red and white sandstone, lava flows, dunes, camping, hiking, biking, horseback riding, and nature-oriented recreation.",
     "paddleRelevant": false,
     "bestTime": "Conditions vary",
     "verificationStatus": "Needs verification",
     "lastVerified": null,
     "sourceUrls": [
-      {"label": "Utah State Parks - Snow Canyon State Park", "url": "https://stateparks.utah.gov/parks/snow-canyon/"},
-      {"label": "Utah State Parks - Snow Canyon Directions", "url": "https://stateparks.utah.gov/parks/snow-canyon/directions/"}
+      {
+        "label": "Utah State Parks - Snow Canyon State Park",
+        "url": "https://stateparks.utah.gov/parks/snow-canyon/"
+      },
+      {
+        "label": "Utah State Parks - Snow Canyon Directions",
+        "url": "https://stateparks.utah.gov/parks/snow-canyon/directions/"
+      }
     ],
     "sourceNotes": "Official Utah State Parks sources reviewed 2026-09-03 confirm hiking, biking, horseback riding, camping, dunes, lava-flow landscapes, visitor facilities and a substantial trail network. Current trail closures, heat, flash-flood risk, fire restrictions, fees, hours, parking, weather and other trip-specific conditions must be checked before a visit. Coordinates are representative of the park and need local/field confirmation.",
     "sourceReviewDate": "2026-09-03",
     "sourceReviewStatus": "Official place sources added",
-    "photoStatus": "needs-verification",
-    "photoUrls": [],
-    "photoNotes": "Add a location-relevant image after local or source verification."
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Snow%20Canyon%20State%20Park.jpg?width=1200",
+        "alt": "Snow Canyon State Park in Utah",
+        "credit": "joannapoe",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Snow_Canyon_State_Park.jpg",
+        "license": "CC BY-SA 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   }
 ]
