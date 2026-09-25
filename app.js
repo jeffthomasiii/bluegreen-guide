@@ -33,52 +33,14 @@ const els = {
   template: document.querySelector("#launchCardTemplate"),
 };
 
-const representativePhotos = {
-  calmWater: {
-    url: "https://commons.wikimedia.org/wiki/Special:FilePath/Stand_Up_Paddleboard_(30512687396).jpg?width=1200",
-    alt: "Stand up paddleboarder on calm open water",
-    credit: "Ed Dunens via Wikimedia Commons",
-    creditUrl: "https://commons.wikimedia.org/wiki/File:Stand_Up_Paddleboard_(30512687396).jpg",
-    license: "CC BY 2.0",
-    licenseUrl: "https://creativecommons.org/licenses/by/2.0/",
-    status: "representative",
-  },
-  mountainLake: {
-    url: "https://commons.wikimedia.org/wiki/Special:FilePath/Paddling_on_the_lake_(Unsplash).jpg?width=1200",
-    alt: "Paddleboarder on a clear mountain lake",
-    credit: "Kimon Maritz via Wikimedia Commons",
-    creditUrl: "https://commons.wikimedia.org/wiki/File:Paddling_on_the_lake_(Unsplash).jpg",
-    license: "CC0 1.0",
-    licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/",
-    status: "representative",
-  },
-  coastalKayak: {
-    url: "https://commons.wikimedia.org/wiki/Special:FilePath/Sea_kayaking.jpg?width=1200",
-    alt: "Kayakers paddling on coastal water",
-    credit: "Chris Light via Wikimedia Commons",
-    creditUrl: "https://commons.wikimedia.org/wiki/File:Sea_kayaking.jpg",
-    license: "CC BY-SA 4.0",
-    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
-    status: "representative",
-  },
-  lakeKayak: {
-    url: "https://commons.wikimedia.org/wiki/Special:FilePath/Man_kayaking_on_a_lake.jpg?width=1200",
-    alt: "Kayaker paddling on a quiet lake",
-    credit: "HappinessWithout via Wikimedia Commons",
-    creditUrl: "https://commons.wikimedia.org/wiki/File:Man_kayaking_on_a_lake.jpg",
-    license: "CC BY-SA 4.0",
-    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
-    status: "representative",
-  },
-  riverKayak: {
-    url: "https://commons.wikimedia.org/wiki/Special:FilePath/River_Kayaking_(52304129654).jpg?width=1200",
-    alt: "Kayaker paddling on a river",
-    credit: "Jennifer C. via Wikimedia Commons",
-    creditUrl: "https://commons.wikimedia.org/wiki/File:River_Kayaking_(52304129654).jpg",
-    license: "CC BY 2.0",
-    licenseUrl: "https://creativecommons.org/licenses/by/2.0/",
-    status: "representative",
-  },
+const brandedPlaceholderPhoto = {
+  url: "assets/placeholders/bluegreen-guide-placeholder-primary.png",
+  alt: "BlueGreen Guide placeholder illustration. Location photo coming soon.",
+  credit: "BlueGreen Guide",
+  creditUrl: "",
+  license: "BlueGreen Guide placeholder artwork",
+  licenseUrl: "",
+  status: "placeholder",
 };
 
 loadLaunches();
@@ -650,34 +612,21 @@ function detailMarkup(launch) {
 
 function getPrimaryPhoto(launch) {
   const photos = Array.isArray(launch.photoUrls) ? launch.photoUrls : [];
-  const photo = photos.find((item) => item && item.url) || (launch.image ? { url: launch.image } : getRepresentativePhoto(launch));
+  const photo = photos.find((item) => item && item.url) || (launch.image ? { url: launch.image } : getPlaceholderPhoto());
   if (!photo) return null;
 
   return {
     ...photo,
-    status: launch.photoStatus || photo.status || "representative",
+    status: launch.photoStatus === "location" ? "location" : (photo.status || "placeholder"),
   };
 }
 
-function getRepresentativePhoto(launch) {
-  const searchText = [
-    launch.name,
-    launch.region,
-    launch.waterType,
-    ...(launch.activities || []),
-    ...(launch.tags || []),
-  ].join(" ").toLowerCase();
-
-  if (searchText.includes("river") || searchText.includes("canyon")) return representativePhotos.riverKayak;
-  if (searchText.includes("ocean") || searchText.includes("coastal") || searchText.includes("surf") || searchText.includes("beach")) return representativePhotos.coastalKayak;
-  if (searchText.includes("mountain") || searchText.includes("alpine") || searchText.includes("tahoe") || searchText.includes("sierra")) return representativePhotos.mountainLake;
-  if ((launch.activities || []).length === 1 && launch.activities[0] === "Kayak") return representativePhotos.lakeKayak;
-  if (searchText.includes("reservoir") || searchText.includes("lake") || searchText.includes("desert")) return representativePhotos.mountainLake;
-  return representativePhotos.calmWater;
+function getPlaceholderPhoto() {
+  return brandedPlaceholderPhoto;
 }
 
 function photoCreditMarkup(photo) {
-  const statusLabel = photo.status === "location" ? "Launch photo" : "Representative image";
+  const statusLabel = photo.status === "location" ? "Location photo" : "Placeholder image";
   const credit = photo.credit || "Image source";
   const license = photo.licenseUrl
     ? ` | <a href="${escapeAttribute(photo.licenseUrl)}" target="_blank" rel="noopener">${escapeHtml(photo.license)}</a>`

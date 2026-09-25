@@ -1,39 +1,50 @@
 # Image Strategy
 
-Phase 1 uses credited representative images to make the prototype feel more complete without implying that every image shows the exact launch point.
-
-The current app includes a small representative image library in `app.js`. Individual launch records can override those defaults later by adding `photoUrls`.
+BlueGreen Guide should use real, location-relevant outdoor photography whenever the source and reuse terms are clear.
 
 ## Current Rule
 
-- Use the app-level representative image fallback when no launch-specific photo is available.
-- Use `photoStatus: representative` in the data when a launch record points to a similar blue-space setting but the image is not verified as the exact launch point.
-- Use `photoStatus: location` only when a launch record points to an image confirmed to show the specific launch point.
-- Every public image must include credit and license metadata.
-- Do not use uncredited copyrighted images.
+- Use one primary photo per place in the current interface.
+- Use `photoStatus: location` only when the image is confirmed to depict the named place.
+- For records that name a specific cove, beach, launch, access point, or recreation area, the photo must depict that specific place before it can be labeled a location photo.
+- A broad lake, reservoir, harbor, park, garden, or reserve record may use an image confirmed to depict that named place, but the photo must not be treated as proof of a specific launch, access route, amenity, rule, or current condition.
+- When a suitable reusable location photo has not been verified, use the standard BlueGreen Guide branded placeholder.
+- Every public image must include source/creator and license metadata.
+- Attribution is not permission. Do not use a copyrighted image unless its reuse license or public-domain status is explicit.
+- Prefer public-domain or CC0 imagery when quality is comparable, followed by attribution licenses that permit reuse.
+- Do not use third-party representative photography as the unresolved-place fallback. The placeholder should be clearly branded and should not imply that it depicts the location.\n- Do not add multiple unused images to a record merely because they are available. A multi-photo gallery should be implemented as a deliberate product feature later.
 
 ## Photo Object
 
-Each launch point can include `photoUrls`:
+Each place may include one primary item in `photoUrls`:
 
 ```json
 {
-  "url": "https://example.com/image.jpg",
-  "alt": "Kayaker paddling on calm water",
-  "credit": "Photographer or source",
-  "creditUrl": "https://example.com/source-page",
-  "license": "CC BY 2.0",
-  "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+  "photoStatus": "location",
+  "photoUrls": [
+    {
+      "url": "https://example.com/image.jpg",
+      "alt": "Clear description of the actual place",
+      "credit": "Photographer or source",
+      "creditUrl": "https://example.com/source-page",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+    }
+  ],
+  "photoNotes": "Source and reuse terms reviewed on YYYY-MM-DD."
 }
 ```
 
-## Upgrade Path
+## Source Priority
 
-Later phases can replace representative images with:
+1. Original BlueGreen Guide photography
+2. Verified actual-place public-domain or CC0 photography
+3. Verified actual-place Creative Commons photography with complete attribution
+4. Official agency or owner photography where reuse is explicitly permitted
+5. BlueGreen Guide branded placeholder when no verified reusable location photo is available
 
-- user-provided launch photos
-- official park, marina, or city photos where reuse is allowed
-- original BlueGreen Guide photos
-- community-submitted photos after moderation
+Do not assume that an image on a government, tourism, marina, resort, social-media, or business website is reusable. Verify the individual asset's terms.
 
-When a representative image is replaced by a verified launch-point image, update `photoStatus` to `location` and keep the credit metadata.
+## Future Gallery
+
+If BlueGreen Guide later adds galleries, multiple verified location photos can be stored and displayed with per-image attribution. Until then, choose the single image that best represents the place and keep the data intentionally simple.\n\n## Placeholder Standard\n\nThe unresolved-place fallback is `assets/placeholders/bluegreen-guide-placeholder-primary.png`. It is intentionally subdued so it does not compete visually with verified location photography. A secondary asset at `assets/placeholders/bluegreen-guide-placeholder-secondary.png` is reserved for future alternate surfaces. The interface labels it `Placeholder image`, not `Representative image` or `Location photo`.

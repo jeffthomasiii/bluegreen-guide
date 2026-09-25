@@ -61,9 +61,18 @@
     "sourceNotes": "Official Utah State Parks sources reviewed 2026-09-03 confirm reservoir recreation including kayaking, boating, swimming, fishing and camping, plus floating/kayaking on the lower Provo River. Current launch status, water level, invasive-species requirements, fees, hours, closures, weather, wind, hazards, and other trip-specific conditions must be checked before a visit. Coordinates are representative of the park and need local/field confirmation.",
     "sourceReviewDate": "2026-09-03",
     "sourceReviewStatus": "Official place sources added",
-    "photoStatus": "needs-verification",
-    "photoUrls": [],
-    "photoNotes": "Add a location-relevant image after local or source verification."
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Deer%20Creek%20Reservoir.jpg?width=1200",
+        "alt": "Deer Creek Reservoir in Utah",
+        "credit": "Eric Ward",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Deer_Creek_Reservoir.jpg",
+        "license": "CC BY-SA 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "hyrum-state-park-swim-beach",
@@ -160,9 +169,18 @@
     "sourceNotes": "Official Utah State Parks sources reviewed 2026-09-03 confirm paddleboarding and other reservoir recreation alongside beaches, camping and desert recreation. Current algae advisories, water level, launch access, invasive-species requirements, fees, hours, closures, weather, wind, hazards, and other trip-specific conditions must be checked before a visit. Coordinates are representative of the park and need local/field confirmation.",
     "sourceReviewDate": "2026-09-03",
     "sourceReviewStatus": "Official place sources added",
-    "photoStatus": "needs-verification",
-    "photoUrls": [],
-    "photoNotes": "Add a location-relevant image after local or source verification."
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sand%20Hollow%20State%20Park%2C%20Utah.jpg?width=1200",
+        "alt": "Sand Hollow State Park in Utah",
+        "credit": "Dylan Duvergé",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Sand_Hollow_State_Park%2C_Utah.jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "snow-canyon-state-park",
@@ -192,8 +210,17 @@
     "sourceNotes": "Official Utah State Parks sources reviewed 2026-09-03 confirm hiking, biking, horseback riding, camping, dunes, lava-flow landscapes, visitor facilities and a substantial trail network. Current trail closures, heat, flash-flood risk, fire restrictions, fees, hours, parking, weather and other trip-specific conditions must be checked before a visit. Coordinates are representative of the park and need local/field confirmation.",
     "sourceReviewDate": "2026-09-03",
     "sourceReviewStatus": "Official place sources added",
-    "photoStatus": "needs-verification",
-    "photoUrls": [],
-    "photoNotes": "Add a location-relevant image after local or source verification."
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Snow%20Canyon%20State%20Park.jpg?width=1200",
+        "alt": "Snow Canyon State Park in Utah",
+        "credit": "joannapoe",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Snow_Canyon_State_Park.jpg",
+        "license": "CC BY-SA 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   }
 ]

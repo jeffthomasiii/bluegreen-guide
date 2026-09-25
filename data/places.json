@@ -84,7 +84,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using location-specific official sources. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official location source added"
+    "sourceReviewStatus": "Official location source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/La%20Jolla%20shores%20(6484646863).jpg?width=1200",
+        "alt": "Pacific Ocean shoreline at La Jolla Shores in San Diego",
+        "credit": "Leandro Neumann Ciuffo",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:La_Jolla_shores_(6484646863).jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "oceanside-harbor",
@@ -126,7 +138,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using location-specific official sources. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official location source added"
+    "sourceReviewStatus": "Official location source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sunset%20Oceanside%20Harbor%20(52547236325).jpg?width=1200",
+        "alt": "Sunset over Oceanside Harbor",
+        "credit": "John D. (John Desjarlais)",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Sunset_Oceanside_Harbor_(52547236325).jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "carlsbad-lagoon",
@@ -210,7 +234,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using location-specific official sources. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official location source added"
+    "sourceReviewStatus": "Official location source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Agua%20Hedionda%20Lagoon%201.jpg?width=1200",
+        "alt": "Western end of Agua Hedionda Lagoon in Carlsbad",
+        "credit": "Bovlb",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Agua_Hedionda_Lagoon_1.jpg",
+        "license": "Public domain",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Public_domain"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "newport-back-bay",
@@ -254,7 +290,19 @@
     "sourceNotes": "Official-source pass completed 2026-07-11 using location-specific official sources. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "waterBody": "Upper Newport Bay",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official location source added"
+    "sourceReviewStatus": "Official location source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Upper%20Newport%20Bay.jpg?width=1200",
+        "alt": "Upper Newport Bay looking south",
+        "credit": "Basar",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Upper_Newport_Bay.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "newport-harbor",
@@ -412,7 +460,19 @@
       "scenic-view"
     ],
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official location source added"
+    "sourceReviewStatus": "Official location source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Huntington%20Harbor%2C%20CA.jpg?width=1200",
+        "alt": "Aerial view of Huntington Harbour in Huntington Beach",
+        "credit": "Sfoskett",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Huntington_Harbor%2C_CA.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "mothers-beach-huntington-beach",
@@ -646,7 +706,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using location-specific official sources. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official location source added"
+    "sourceReviewStatus": "Official location source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cabrillo%20Beach%20Pier%20-%20California.jpg?width=1200",
+        "alt": "Cabrillo Beach Pier in San Pedro, California",
+        "credit": "Tequask",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Cabrillo_Beach_Pier_-_California.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "channel-islands-harbor",
@@ -690,7 +762,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using location-specific official sources. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official location source added"
+    "sourceReviewStatus": "Official location source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Channel%20Islands%2C%20Oxnard%2C%20CA%2093035%2C%20USA%20-%20panoramio%20-%20Sergei%20Gussev.jpg?width=1200",
+        "alt": "Channel Islands Harbor area in Oxnard",
+        "credit": "Sergei Gussev",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Channel_Islands%2C_Oxnard%2C_CA_93035%2C_USA_-_panoramio_-_Sergei_Gussev.jpg",
+        "license": "CC BY 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "ventura-harbor",
@@ -733,7 +817,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using location-specific official sources. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official location source added"
+    "sourceReviewStatus": "Official location source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ventura%20Harbor.jpg?width=1200",
+        "alt": "Boat entering Ventura Harbor with mountains in the background",
+        "credit": "Ken Lund",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Ventura_Harbor.jpg",
+        "license": "CC BY-SA 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "santa-barbara-harbor",
@@ -777,7 +873,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using location-specific official sources. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official location source added"
+    "sourceReviewStatus": "Official location source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Santa%20Barbara%20Harbor%2C%20California%2C%20US.jpg?width=1200",
+        "alt": "Santa Barbara Harbor in California",
+        "credit": "Clyde Charles Brown",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Santa_Barbara_Harbor%2C_California%2C_US.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "lake-perris",
@@ -866,7 +974,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using location-specific official sources. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official location source added"
+    "sourceReviewStatus": "Official location source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Big%20Bear%20Lake.jpg?width=1200",
+        "alt": "Big Bear Lake in the San Bernardino Mountains",
+        "credit": "Plane777",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Big_Bear_Lake.jpg",
+        "license": "Public domain",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Public_domain"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "silverwood-lake",
@@ -910,7 +1030,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using location-specific official sources. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official location source added"
+    "sourceReviewStatus": "Official location source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Silverwood%20Lake%202.jpg?width=1200",
+        "alt": "Silverwood Lake looking east toward the marina",
+        "credit": "J. P. Rohde / Reallyprettysad",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Silverwood_Lake_2.jpg",
+        "license": "Public domain",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Public_domain"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "castaic-lake",
@@ -953,7 +1085,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using location-specific official sources. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official location source added"
+    "sourceReviewStatus": "Official location source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Castaic%20Lake%201.jpg?width=1200",
+        "alt": "Castaic Lake State Recreation Area",
+        "credit": "Kjkolb",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Castaic_Lake_1.jpg",
+        "license": "CC BY 2.5",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.5/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "pyramid-lake-ca",
@@ -995,7 +1139,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using location-specific official sources. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official location source added"
+    "sourceReviewStatus": "Official location source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/PyramidLakeCalifornia.jpg?width=1200",
+        "alt": "Pyramid Lake in Los Angeles County, California",
+        "credit": "Bonnie Byler",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:PyramidLakeCalifornia.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "diamond-valley-lake",
@@ -1081,7 +1237,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Morro%20Bay%20city%20view.jpg?width=1200",
+        "alt": "View across Morro Bay, California",
+        "credit": "Pacificmaker",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Morro_Bay_city_view.jpg",
+        "license": "CC0 1.0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "avila-beach",
@@ -1124,7 +1292,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Avila-Beach-CA.jpg?width=1200",
+        "alt": "Avila Beach and its pier",
+        "credit": "Gregg Erickson",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Avila-Beach-CA.jpg",
+        "license": "Public domain",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Public_domain"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "elkhorn-slough",
@@ -1211,7 +1391,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/MontereyWharf%26Harbor.jpg?width=1200",
+        "alt": "Monterey Harbor and Fisherman's Wharf",
+        "credit": "Smatprt",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:MontereyWharf%26Harbor.jpg",
+        "license": "Public domain",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Public_domain"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "lovers-point",
@@ -1253,7 +1445,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lovers%20Point%20Park%20-%20Pacific%20Grove%2C%20CA%20-%20DSC06504.JPG?width=1200",
+        "alt": "Lovers Point Park in Pacific Grove",
+        "credit": "Daderot",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Lovers_Point_Park_-_Pacific_Grove%2C_CA_-_DSC06504.JPG",
+        "license": "CC0 1.0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "santa-cruz-harbor",
@@ -1297,7 +1501,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Santa%20Cruz%20Harbor.jpg?width=1200",
+        "alt": "View of Santa Cruz Harbor from the Murray Street Bridge",
+        "credit": "Ponderosapine210",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Santa_Cruz_Harbor.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "san-luis-reservoir",
@@ -1339,7 +1555,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/San%20Luis%20reservoir.jpg?width=1200",
+        "alt": "San Luis Reservoir and the eastern Diablo Range",
+        "credit": "Clarkma5",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:San_Luis_reservoir.jpg",
+        "license": "Public domain",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Public_domain"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "lake-nacimiento",
@@ -1383,7 +1611,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lake%20Nacimiento%2C%20Ca.jpg?width=1200",
+        "alt": "Creek leading into Lake Nacimiento",
+        "credit": "TarynLessi",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Lake_Nacimiento%2C_Ca.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "lake-san-antonio",
@@ -1470,7 +1710,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bass%20Lake%20California%20Duceys%20on%20the%20Lake.jpg?width=1200",
+        "alt": "Bass Lake in Madera County near Ducey's on the Lake",
+        "credit": "Guywelch2000",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Bass_Lake_California_Duceys_on_the_Lake.jpg",
+        "license": "CC0 1.0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "millerton-lake",
@@ -1514,7 +1766,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Millerton%20Lake%201.jpg?width=1200",
+        "alt": "Millerton Lake near Friant",
+        "credit": "Kjkolb",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Millerton_Lake_1.jpg",
+        "license": "CC BY 2.5",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.5/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "shaver-lake",
@@ -1558,7 +1822,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Shaver%20Lake%201.jpg?width=1200",
+        "alt": "Shaver Lake in the Sierra Nevada",
+        "credit": "Kjkolb",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Shaver_Lake_1.jpg",
+        "license": "CC BY 2.5",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.5/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "pine-flat-lake",
@@ -1601,7 +1877,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pine%20Flat%20Lake%202024.JPG?width=1200",
+        "alt": "Aerial view of Pine Flat Lake",
+        "credit": "Jeffrey Beall",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Pine_Flat_Lake_2024.JPG",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "huntington-lake",
@@ -1645,7 +1933,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Huntington%20Lake.jpg?width=1200",
+        "alt": "Aerial view of Huntington Lake in the Sierra Nevada",
+        "credit": "Trovatore",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Huntington_Lake.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "don-pedro-reservoir",
@@ -1688,7 +1988,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Don%20Pedro%20Reservoir%2C%20California%20(10753729936).jpg?width=1200",
+        "alt": "Don Pedro Reservoir in the Sierra foothills",
+        "credit": "Ken Lund",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Don_Pedro_Reservoir%2C_California_(10753729936).jpg",
+        "license": "CC BY-SA 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "lake-mead-boulder-beach",
@@ -1732,7 +2044,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Visitors%20swim%20and%20relax%20at%20Boulder%20Beach%20(3036f423-6d95-4750-bf51-04f11ee237cb).jpg?width=1200",
+        "alt": "Visitors at Boulder Beach on Lake Mead",
+        "credit": "NPS / Andrew Cattoir",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Visitors_swim_and_relax_at_Boulder_Beach_(3036f423-6d95-4750-bf51-04f11ee237cb).jpg",
+        "license": "Public domain (U.S. National Park Service)",
+        "licenseUrl": "https://www.nps.gov/aboutus/disclaimer.htm"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "lake-mead-hemenway",
@@ -1908,7 +2232,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lake%20Mohave%201.jpg?width=1200",
+        "alt": "Lake Mohave on the Nevada-Arizona border",
+        "credit": "Kjkolb",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Lake_Mohave_1.jpg",
+        "license": "CC BY 2.5",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.5/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "sand-harbor",
@@ -1952,7 +2288,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sand%20Harbor%2C%20Lake%20Tahoe%209-10%20(14708783414).jpg?width=1200",
+        "alt": "Path leading to the water at Sand Harbor on Lake Tahoe",
+        "credit": "Don Graham (inkknife_2000)",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Sand_Harbor%2C_Lake_Tahoe_9-10_(14708783414).jpg",
+        "license": "CC BY-SA 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "kings-beach",
@@ -2039,7 +2387,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cave%20Rock%20State%20Park%2C%20Lake%20Tahoe%2C%20Nevada%2C%2020220514%2C%2009.jpg?width=1200",
+        "alt": "Cave Rock State Park on Lake Tahoe in Nevada",
+        "credit": "Blake Everett Carroll",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Cave_Rock_State_Park%2C_Lake_Tahoe%2C_Nevada%2C_20220514%2C_09.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "washoe-lake",
@@ -2081,7 +2441,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Washoe%20Lake.jpg?width=1200",
+        "alt": "Washoe Lake in western Nevada",
+        "credit": "Andys627",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Washoe_Lake.jpg",
+        "license": "CC BY-SA 2.5",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "sparks-marina",
@@ -2124,7 +2496,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sparks%20Marina%20-%20Sparks%2C%20Nevada.jpg?width=1200",
+        "alt": "Sparks Marina in Sparks, Nevada",
+        "credit": "Janusz Sobolewski",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Sparks_Marina_-_Sparks%2C_Nevada.jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "tempe-town-lake",
@@ -2168,7 +2552,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tempetownlake.jpg?width=1200",
+        "alt": "Tempe Town Lake in Tempe, Arizona",
+        "credit": "Schwnj at English Wikipedia",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Tempetownlake.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "lake-pleasant",
@@ -2213,7 +2609,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lake%20Pleasant%20Arizona.jpg?width=1200",
+        "alt": "Lake Pleasant in Arizona",
+        "credit": "Shereth",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Lake_Pleasant_Arizona.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "saguaro-lake",
@@ -2257,7 +2665,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Saguaro%20Lake-Arizona-and%20marina.jpg?width=1200",
+        "alt": "Saguaro Lake and marina in Arizona",
+        "credit": "2candle",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Saguaro_Lake-Arizona-and_marina.jpg",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "canyon-lake-az",
@@ -2301,7 +2721,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/CanyonLake.JPG?width=1200",
+        "alt": "Canyon Lake in Tonto National Forest",
+        "credit": "Smiles1479",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:CanyonLake.JPG",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "watson-lake",
@@ -2346,7 +2778,19 @@
     ],
     "sourceNotes": "Official-source pass completed 2026-07-11 using official regional/state source directories. Source authority was reviewed, but access, legal hand-launch points, fees, parking, amenities, hours, closures, water quality, weather, wind, tides, vessel traffic, and hazards still require a current trip-specific check. Previous note: Phase 1 seed data. Verify access, parking, fees, rentals, rules, tides, wind, and hazards with official sources before relying on this entry.",
     "sourceReviewDate": "2026-07-11",
-    "sourceReviewStatus": "Official directory source added"
+    "sourceReviewStatus": "Official directory source added",
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Watson%20Lake%20in%20Prescott%20AZ.jpg?width=1200",
+        "alt": "Watson Lake in Prescott, Arizona",
+        "credit": "David Quigley",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Watson_Lake_in_Prescott_AZ.jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "baby-beach-dana-point",
