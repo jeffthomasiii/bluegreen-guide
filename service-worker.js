@@ -1,4 +1,4 @@
-const CACHE_NAME = "bgg-v1.2-shell-v32";
+const CACHE_NAME = "bgg-v1.2-shell-v33";
 
 const APP_SHELL = [
   "./",
@@ -17,7 +17,7 @@ const APP_SHELL = [
   "./map-wayfinding.css",
   "./mobile-pwa-standard.css",
   "./mobile-planning.css?v=28",
-  "./premium-web.css?v=32",
+  "./premium-web.css?v=33",
   "./app.js",
   "./collections-ui.js",
   "./ui-refresh.js",
