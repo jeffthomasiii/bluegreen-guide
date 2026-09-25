@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="map-wayfinding.css" />
     <link rel="stylesheet" href="mobile-pwa-standard.css" />
     <link rel="stylesheet" href="mobile-planning.css?v=28" />
-    <link rel="stylesheet" href="premium-web.css?v=34" />
+    <link rel="stylesheet" href="premium-web.css?v=35" />
   </head>
   <body data-mobile-view="explore">
     <header class="mobile-app-bar" aria-label="BlueGreen Guide mobile header">
@@ -42,7 +42,7 @@
 
     <header class="desktop-app-header" aria-label="BlueGreen Guide desktop navigation">
       <a class="desktop-brand" href="./" aria-label="BlueGreen Guide home">
-        <img src="assets/brand/logo-package/svg/bluegreen-guide-logo-primary.svg" alt="BlueGreen Guide — Discover Better Outdoors" />
+        <img src="assets/brand/logo-package/png/bluegreen-guide-logo-mobile.png" alt="BlueGreen Guide — Discover Better Outdoors" />
       </a>
       <nav class="desktop-primary-nav" aria-label="Primary navigation">
         <button type="button" class="desktop-nav-item is-active" data-desktop-nav="map" aria-current="page"><span aria-hidden="true">●</span>Map</button>
@@ -119,6 +119,10 @@
           <button id="boundsButton" class="button button-tertiary button-wide" type="button">Show places in current map view</button>
         </section>
 
+        <div class="desktop-filter-actions" aria-label="Filter actions">
+          <button type="button" class="desktop-clear-filters" data-desktop-clear-filters>Clear Filters</button>
+          <button type="button" class="desktop-show-places" data-desktop-show-places>Show <span id="desktopResultCount">0</span> Places</button>
+        </div>
         <section class="result-summary" aria-live="polite"><strong id="resultCount">0</strong><span>places shown</span></section>
         <section id="resultsList" class="results" aria-label="Outdoor place results"></section>
       </aside>
@@ -186,7 +190,7 @@
     <script src="data/utah-field-test.js"></script>
     <script src="data/launch-profile.js"></script>
     <script src="data/collections.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js?v=35"></script>
     <script src="collections-ui.js"></script>
     <script src="ui-refresh.js"></script>
     <script src="mission-bay-place-pilot.js"></script>
@@ -195,7 +199,7 @@
     <script src="mobile-compact.js"></script>
     <script src="mobile-explore-limit.js"></script>
     <script src="map-wayfinding.js"></script>
-    <script src="desktop-premium.js"></script>
+    <script src="desktop-premium.js?v=35"></script>
     <script src="pwa.js"></script>
   </body>
 </html>
