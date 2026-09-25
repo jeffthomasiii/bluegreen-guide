@@ -28,9 +28,18 @@
     "sourceNotes": "Official sources reviewed 2026-08-20 confirm the recreation area, lake, trails, boating, hiking, biking, fishing, swimming, camping, wildlife viewing, parking, restrooms, picnic areas, and boat-rental facilities. Hours, fees, closures, water access, water quality, rules, hazards, and current conditions vary and should be checked with the official source before a visit. Map coordinates are representative of the recreation area and need on-site confirmation for the best visitor access point.",
     "sourceReviewDate": "2026-08-20",
     "sourceReviewStatus": "Official place sources added",
-    "photoStatus": "needs-verification",
-    "photoUrls": [],
-    "photoNotes": "Add a location-relevant image after field or source verification."
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/30%20Lake%20Perris%20Boat%20Launch.jpg?width=1200",
+        "alt": "Boat launch at Lake Perris State Recreation Area",
+        "credit": "Summit Hopper",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:30_Lake_Perris_Boat_Launch.jpg",
+        "license": "CC BY 2.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "yucaipa-regional-park",
@@ -124,9 +133,18 @@
     "sourceNotes": "Official Metropolitan Water District source reviewed 2026-08-20 confirms boating, fishing, kayaking, canoeing, sailing, adjacent trails, bike paths, shoreline fishing, marina facilities, and rentals. Because this is a drinking-water reservoir, current watercraft rules, inspections, fees, hours, closures, trail access, and other restrictions must be checked before a visit. Coordinates represent the marina/visitor-access area and should be confirmed on site.",
     "sourceReviewDate": "2026-08-20",
     "sourceReviewStatus": "Official place source added",
-    "photoStatus": "needs-verification",
-    "photoUrls": [],
-    "photoNotes": "Add a location-relevant image after field or source verification."
+    "photoStatus": "location",
+    "photoUrls": [
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Diamond%20Valley%20Lake%20seen%20from%20Double%20Butte.jpg?width=1200",
+        "alt": "Diamond Valley Lake viewed from Double Butte",
+        "credit": "Z3lvs",
+        "creditUrl": "https://commons.wikimedia.org/wiki/File:Diamond_Valley_Lake_seen_from_Double_Butte.jpg",
+        "license": "CC0 1.0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
+    ],
+    "photoNotes": "Actual-place image source and reuse terms reviewed 2026-09-24. The image represents the named place; it does not by itself verify access, amenities, launch conditions, rules, or current safety conditions."
   },
   {
     "id": "box-springs-mountain-reserve",
