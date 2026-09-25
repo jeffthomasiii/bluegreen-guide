@@ -1,4 +1,4 @@
-const CACHE_NAME = "bgg-v1.2-shell-v30";
+const CACHE_NAME = "bgg-v1.2-shell-v31";
 
 const APP_SHELL = [
   "./",
@@ -36,6 +36,7 @@ const APP_SHELL = [
   "./data/utah-field-test.json",
   "./data/launch-profile.js",
   "./data/collections.js",
+  "./assets/placeholders/bluegreen-guide-location-placeholder.svg",
   "./assets/brand/logo-package/svg/bluegreen-guide-logo-primary.svg",
   "./assets/brand/logo-package/svg/bluegreen-guide-app-icon.svg",
   "./assets/brand/logo-package/png/bluegreen-guide-logo-mobile.png",
