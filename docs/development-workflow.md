@@ -96,11 +96,10 @@ GitHub Actions runs the same validation on pushes and pull requests.
 
 ## Documentation Rule
 
-Keep these layers synchronized:
+Keep these documentation layers synchronized:
 
 1. Public HTML documentation for app users
 2. Repository Markdown for maintainers
-3. ChatGPT project source files for future collaboration
 
 The root `README.md` is the authoritative repository status summary. `docs/phase-roadmap.md` is the detailed roadmap. `docs/changelog.md` is the release history.
 

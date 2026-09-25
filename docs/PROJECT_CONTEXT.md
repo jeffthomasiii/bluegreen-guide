@@ -228,7 +228,6 @@ When sources conflict:
 3. `docs/phase-roadmap.md`
 4. `docs/data-model.md` and `docs/development-workflow.md`
 5. Other current repository documentation
-6. `chatgpt-project/` reference files
-7. Historical plans and conversation context
+6. Historical plans and archived project context
 
 Do not silently reconcile contradictions. Follow the higher-priority current source and update stale documentation when appropriate.
