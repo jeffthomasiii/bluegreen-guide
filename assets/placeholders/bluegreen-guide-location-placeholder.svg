@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086" role="img" aria-labelledby="title desc">
+  <title id="title">BlueGreen Guide location photo coming soon</title>
+  <desc id="desc">A soft illustrated blue and green landscape placeholder with calm water, distant hills, subtle trees, and topographic linework.</desc>
+  <rect width="1448" height="1086" fill="#eef6f8"/>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbfdff"/>
+      <stop offset="1" stop-color="#dceff5"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dceff5"/>
+      <stop offset="1" stop-color="#eef6f8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1448" height="720" fill="url(#sky)"/>
+  <g fill="none" stroke="#c9dce4" stroke-width="2" opacity=".55">
+    <path d="M860 0c76 58 179 25 253 78s111 18 185 74 106 33 150 31"/>
+    <path d="M900 0c76 75 173 52 248 96s110 37 176 82 89 53 124 59"/>
+    <path d="M951 0c60 69 150 71 220 100s100 63 160 91 80 67 117 77"/>
+    <path d="M1030 0c50 60 113 83 168 112s82 69 137 96 73 70 113 88"/>
+    <path d="M793 74c75 48 145 34 205 61s96 21 159 66 122 57 219 39" stroke-dasharray="10 12"/>
+  </g>
+  <g opacity=".75">
+    <path d="M0 683 C164 597 297 659 416 624 C547 585 648 653 748 612 C855 568 983 628 1099 594 C1241 552 1340 599 1448 560 L1448 771 L0 771 Z" fill="#dceff5"/>
+    <path d="M0 718 C190 634 331 694 474 659 C606 626 760 688 881 647 C1000 607 1155 671 1286 628 C1346 609 1395 606 1448 607 L1448 800 L0 800 Z" fill="#c9dce4" opacity=".7"/>
+    <path d="M0 756 C179 685 326 748 489 712 C660 674 793 734 955 703 C1092 677 1273 736 1448 679 L1448 825 L0 825 Z" fill="#6f8f63" opacity=".18"/>
+  </g>
+  <rect y="755" width="1448" height="331" fill="url(#water)"/>
+  <g fill="#6f8f63" opacity=".22">
+    <path d="M0 738c48-76 91-103 134-120 46 26 86 64 120 120z"/>
+    <path d="M82 741c30-58 60-83 96-101 37 23 69 57 94 101z"/>
+    <path d="M1170 742c45-59 84-82 123-96 41 19 80 49 116 96z"/>
+  </g>
+  <g stroke="#c9dce4" stroke-width="3" opacity=".72">
+    <path d="M0 804h1448"/>
+    <path d="M92 850h346"/>
+    <path d="M1011 862h315"/>
+    <path d="M283 931h444"/>
+    <path d="M858 970h378"/>
+  </g>
+  <g fill="#4f7047" opacity=".20">
+    <path d="M34 812l28-90 28 90z"/><path d="M73 812l22-68 22 68z"/><path d="M112 812l30-95 30 95z"/>
+    <path d="M1246 807l24-74 24 74z"/><path d="M1280 807l29-90 29 90z"/><path d="M1321 807l22-68 22 68z"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="724" y="365" font-family="Georgia, 'Times New Roman', serif" font-size="98" letter-spacing="-2">
+      <tspan fill="#176f8f">Blue</tspan><tspan fill="#6f8f63">Green</tspan><tspan fill="#10252e"> Guide</tspan>
+    </text>
+    <text x="724" y="435" font-family="Inter, Arial, sans-serif" font-size="26" letter-spacing="9" fill="#5a6f78">LOCATION PHOTO COMING SOON</text>
+    <line x1="562" y1="495" x2="672" y2="495" stroke="#c9dce4" stroke-width="2"/>
+    <line x1="776" y1="495" x2="886" y2="495" stroke="#c9dce4" stroke-width="2"/>
+    <g transform="translate(724 493)" fill="#6f8f63">
+      <path d="M0-19c-12 0-22 9-22 21 0 17 22 40 22 40S22 19 22 2C22-10 12-19 0-19zm0 29A9 9 0 1 1 0-8a9 9 0 0 1 0 18z"/>
+    </g>
+  </g>
+</svg>
