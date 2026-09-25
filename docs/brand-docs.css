@@ -698,165 +698,364 @@ h3 { margin-top: 0; font-size: 16px; }
   }
 }
 
+/* Desktop-only documentation treatment based directly on the approved 2026-09-25 mockup. */
+.docs-feature-grid,
+.desktop-field-guide-intro {
+  display: none;
+}
 
-/* Premium documentation standard — approved web/docs mockup, 2026-09-25 */
-@media (min-width: 701px) {
+@media (min-width: 901px) {
   body {
     background: #eef6f8;
   }
 
   .wrap {
     max-width: 1240px;
-    padding: 18px 28px 64px;
+    padding: 14px 24px 58px;
   }
 
   .site-header {
     position: sticky;
-    top: 0;
-    z-index: 20;
+    top: 10px;
+    z-index: 30;
     align-items: center;
-    margin: 0 -12px 16px;
-    padding: 10px 12px;
-    border: 1px solid rgba(201,220,228,.78);
-    border-radius: 14px;
-    background: rgba(251,253,255,.94);
+    margin: 0 0 14px;
+    padding: 9px 14px;
+    border: 1px solid rgba(201,220,228,.88);
+    border-radius: 13px;
+    background: rgba(251,253,255,.96);
     box-shadow: 0 8px 26px rgba(15,79,103,.08);
     backdrop-filter: blur(14px);
   }
 
   .site-logo {
-    width: min(310px, 34vw);
-    max-height: 58px;
+    width: 270px;
+    max-height: 52px;
     object-fit: contain;
     object-position: left center;
   }
 
-  .site-nav .button,
-  .button {
-    min-height: 40px;
-    border-radius: 9px;
-    padding: 9px 15px;
+  .site-nav {
+    gap: 8px;
   }
 
-  .hero,
-  .concept-hero {
+  .site-nav .button {
+    min-height: 38px;
+    border-radius: 8px;
+    padding: 8px 13px;
+    font-size: 11px;
+  }
+
+  .docs-home-page .docs-premium-hero {
+    position: relative;
+    display: flex;
+    min-height: 355px;
+    align-items: end;
     overflow: hidden;
-    border-color: rgba(201,220,228,.78);
-    border-radius: 16px;
-    padding: clamp(30px, 4vw, 54px);
+    border: 1px solid rgba(201,220,228,.8);
+    border-radius: 15px;
+    padding: 38px 42px 78px;
     background:
-      radial-gradient(circle at 90% 12%, rgba(111,143,99,.16), transparent 28%),
-      linear-gradient(135deg, #fbfdff 0%, #dceff5 100%);
-    box-shadow: 0 12px 34px rgba(15,79,103,.08);
+      linear-gradient(90deg, rgba(7,39,52,.82) 0%, rgba(7,39,52,.42) 48%, rgba(7,39,52,.08) 78%),
+      url("https://commons.wikimedia.org/wiki/Special:FilePath/La%20Jolla%20shores%20(6484646863).jpg?width=1600") center 56% / cover no-repeat;
+    box-shadow: 0 12px 34px rgba(15,79,103,.09);
   }
 
-  .docs-home-page .hero {
-    min-height: 320px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .docs-home-page .docs-premium-hero-copy {
+    max-width: 590px;
   }
 
-  .hero h1,
-  .concept-hero h1 {
-    max-width: 780px;
-    font-size: clamp(50px, 5.7vw, 76px);
+  .docs-home-page .docs-premium-hero .eyebrow,
+  .docs-home-page .docs-premium-hero h1,
+  .docs-home-page .docs-premium-hero p {
+    color: #fff;
   }
 
-  .hero p,
-  .concept-hero p {
-    max-width: 760px;
-    color: #38515c;
-    font-size: 15px;
+  .docs-home-page .docs-premium-hero .eyebrow {
+    margin-bottom: 8px;
+    font-size: 10px;
+    letter-spacing: .16em;
   }
 
-  .actions {
+  .docs-home-page .docs-premium-hero h1 {
+    max-width: 560px;
+    font-size: 54px;
+    line-height: .9;
+    text-wrap: balance;
+  }
+
+  .docs-home-page .docs-premium-hero p {
+    max-width: 470px;
+    margin: 12px 0 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .docs-feature-grid {
+    position: relative;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
     gap: 9px;
-    margin-top: 20px;
-  }
-
-  .wayfinding-strip {
-    gap: 10px;
-    margin: 16px 0 22px;
-  }
-
-  .wayfinding-card {
-    min-height: 74px;
-    border-radius: 12px;
-    padding: 12px 14px;
-    box-shadow: 0 5px 16px rgba(15,79,103,.045);
-  }
-
-  .grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
-    margin-top: 18px;
-  }
-
-  .card,
-  .definition-card,
-  .learn-more {
-    border-color: rgba(201,220,228,.88);
+    margin: -58px 18px 26px;
+    padding: 9px;
+    border: 1px solid rgba(201,220,228,.88);
     border-radius: 13px;
-    background: #fbfdff;
-    box-shadow: 0 7px 22px rgba(15,79,103,.055);
+    background: rgba(251,253,255,.97);
+    box-shadow: 0 12px 30px rgba(15,79,103,.09);
   }
 
-  .card {
-    display: flex;
-    min-height: 238px;
-    flex-direction: column;
-    padding: 19px;
+  .docs-feature-card {
+    display: grid;
+    grid-template-columns: 42px minmax(0,1fr) 16px;
+    min-height: 102px;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(201,220,228,.72);
+    border-radius: 10px;
+    padding: 14px;
+    background: #fff;
+    color: #10252e;
+    text-decoration: none;
   }
 
-  .card h2 {
-    margin: 2px 0 10px;
-    font-size: 28px;
-    line-height: 1;
+  .docs-feature-card:hover {
+    border-color: rgba(23,111,143,.4);
+    box-shadow: 0 7px 18px rgba(15,79,103,.07);
   }
 
-  .card p {
+  .docs-feature-icon {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border-radius: 10px;
+    background: #dceff5;
+    color: #176f8f;
+    font-size: 18px;
+  }
+
+  .docs-feature-card strong,
+  .docs-feature-card small {
+    display: block;
+  }
+
+  .docs-feature-card strong {
+    margin-bottom: 4px;
+    color: #10252e;
+    font-size: 12px;
+  }
+
+  .docs-feature-card small {
+    color: #5a6f78;
+    font-size: 9.5px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .docs-feature-card b {
+    color: #176f8f;
+    font-size: 19px;
+  }
+
+  .docs-home-page .wayfinding-strip {
+    display: none;
+  }
+
+  .docs-secondary-grid {
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 12px;
     margin-top: 0;
-    color: var(--muted);
-    font-size: 12.5px;
-    line-height: 1.55;
   }
 
-  .card p:last-child {
+  .docs-secondary-grid .card {
+    display: flex;
+    min-height: 220px;
+    flex-direction: column;
+    border-radius: 12px;
+    padding: 18px;
+    background: #fbfdff;
+    box-shadow: 0 7px 20px rgba(15,79,103,.05);
+  }
+
+  .docs-secondary-grid .card h2 {
+    margin: 2px 0 9px;
+    font-size: 27px;
+    line-height: .98;
+  }
+
+  .docs-secondary-grid .card p {
+    color: #5a6f78;
+    font-size: 11.5px;
+    line-height: 1.5;
+  }
+
+  .docs-secondary-grid .card p:last-child {
     margin-top: auto;
     margin-bottom: 0;
   }
 
-  .card p:last-child a {
+  .docs-secondary-grid .card p:last-child a {
     display: inline-flex;
-    min-height: 34px;
+    min-height: 33px;
     align-items: center;
     border-radius: 8px;
-    padding: 6px 10px;
-    background: var(--soft);
-    color: var(--blue-dark);
+    padding: 6px 9px;
+    background: #dceff5;
+    color: #0f4f67;
     text-decoration: none;
   }
 
   .note {
-    border: 1px solid rgba(217,161,92,.34);
-    border-left: 4px solid var(--warning);
-    border-radius: 10px;
-    box-shadow: none;
+    border-radius: 9px;
   }
 
-  .screen {
-    border-radius: 14px;
-    box-shadow: 0 12px 32px rgba(15,79,103,.08);
+  .user-guide-page > .wrap > .hero,
+  .user-guide-page > .wrap > .wayfinding-strip {
+    display: none;
   }
 
-  .footer {
-    padding: 18px 2px 0;
+  .desktop-field-guide-intro {
+    display: block;
+    margin-bottom: 28px;
+  }
+
+  .docs-breadcrumb {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 5px 0 13px;
+    color: #5a6f78;
+    font-size: 11px;
+  }
+
+  .docs-breadcrumb a {
+    color: #5a6f78;
+    text-decoration: none;
+  }
+
+  .desktop-field-guide-intro > h1 {
+    margin: 0;
+    font-size: 52px;
+    line-height: .95;
+  }
+
+  .desktop-field-guide-intro > p {
+    margin: 7px 0 18px;
+    color: #5a6f78;
+    font-size: 14px;
+  }
+
+  .desktop-field-tabs {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0,1fr));
+    margin-bottom: 14px;
+    border: 1px solid #c9dce4;
+    border-radius: 11px;
+    background: #fbfdff;
+    overflow: hidden;
+  }
+
+  .desktop-field-tabs a,
+  .desktop-field-tabs button {
+    display: grid;
+    min-height: 46px;
+    place-items: center;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    color: #38515c;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .desktop-field-tabs .is-active {
+    border-bottom-color: #176f8f;
+    background: #eef6f8;
+    color: #0f4f67;
+  }
+
+  .desktop-field-showcase {
+    display: grid;
+    gap: 10px;
+  }
+
+  .desktop-field-image-card {
+    display: grid;
+    min-height: 170px;
+    grid-template-columns: minmax(280px, 42%) minmax(0,1fr);
+    overflow: hidden;
+    border: 1px solid #c9dce4;
+    border-radius: 12px;
+    background: #fff;
+    color: #10252e;
+    text-decoration: none;
+    box-shadow: 0 7px 22px rgba(15,79,103,.055);
+  }
+
+  .desktop-field-image-card img {
+    width: 100%;
+    height: 100%;
+    min-height: 170px;
+    object-fit: cover;
+  }
+
+  .desktop-field-image-card > span {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 22px 24px;
+  }
+
+  .desktop-field-image-card b {
+    color: #10252e;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 27px;
+    line-height: 1;
+  }
+
+  .desktop-field-image-card small {
+    margin-top: 7px;
+    color: #5a6f78;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .desktop-field-image-card em {
+    margin-top: 16px;
+    color: #176f8f;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 800;
+  }
+
+  .user-guide-page .desktop-guide-only {
+    display: block;
+  }
+
+  .user-guide-page .grid {
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 12px;
+  }
+
+  .user-guide-page .card {
+    border-radius: 11px;
+    box-shadow: 0 6px 18px rgba(15,79,103,.045);
   }
 }
 
-@media (min-width: 701px) and (max-width: 1050px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+@media (min-width: 901px) and (max-width: 1080px) {
+  .docs-secondary-grid {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+
+  .docs-feature-grid {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    margin-top: -42px;
+  }
+
+  .desktop-field-image-card {
+    grid-template-columns: 40% minmax(0,1fr);
   }
 }
