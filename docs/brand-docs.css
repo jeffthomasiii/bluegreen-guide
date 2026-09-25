@@ -697,3 +697,166 @@ h3 { margin-top: 0; font-size: 16px; }
     max-height: 165px;
   }
 }
+
+
+/* Premium documentation standard — approved web/docs mockup, 2026-09-25 */
+@media (min-width: 701px) {
+  body {
+    background: #eef6f8;
+  }
+
+  .wrap {
+    max-width: 1240px;
+    padding: 18px 28px 64px;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    align-items: center;
+    margin: 0 -12px 16px;
+    padding: 10px 12px;
+    border: 1px solid rgba(201,220,228,.78);
+    border-radius: 14px;
+    background: rgba(251,253,255,.94);
+    box-shadow: 0 8px 26px rgba(15,79,103,.08);
+    backdrop-filter: blur(14px);
+  }
+
+  .site-logo {
+    width: min(310px, 34vw);
+    max-height: 58px;
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  .site-nav .button,
+  .button {
+    min-height: 40px;
+    border-radius: 9px;
+    padding: 9px 15px;
+  }
+
+  .hero,
+  .concept-hero {
+    overflow: hidden;
+    border-color: rgba(201,220,228,.78);
+    border-radius: 16px;
+    padding: clamp(30px, 4vw, 54px);
+    background:
+      radial-gradient(circle at 90% 12%, rgba(111,143,99,.16), transparent 28%),
+      linear-gradient(135deg, #fbfdff 0%, #dceff5 100%);
+    box-shadow: 0 12px 34px rgba(15,79,103,.08);
+  }
+
+  .docs-home-page .hero {
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero h1,
+  .concept-hero h1 {
+    max-width: 780px;
+    font-size: clamp(50px, 5.7vw, 76px);
+  }
+
+  .hero p,
+  .concept-hero p {
+    max-width: 760px;
+    color: #38515c;
+    font-size: 15px;
+  }
+
+  .actions {
+    gap: 9px;
+    margin-top: 20px;
+  }
+
+  .wayfinding-strip {
+    gap: 10px;
+    margin: 16px 0 22px;
+  }
+
+  .wayfinding-card {
+    min-height: 74px;
+    border-radius: 12px;
+    padding: 12px 14px;
+    box-shadow: 0 5px 16px rgba(15,79,103,.045);
+  }
+
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .card,
+  .definition-card,
+  .learn-more {
+    border-color: rgba(201,220,228,.88);
+    border-radius: 13px;
+    background: #fbfdff;
+    box-shadow: 0 7px 22px rgba(15,79,103,.055);
+  }
+
+  .card {
+    display: flex;
+    min-height: 238px;
+    flex-direction: column;
+    padding: 19px;
+  }
+
+  .card h2 {
+    margin: 2px 0 10px;
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  .card p {
+    margin-top: 0;
+    color: var(--muted);
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+
+  .card p:last-child {
+    margin-top: auto;
+    margin-bottom: 0;
+  }
+
+  .card p:last-child a {
+    display: inline-flex;
+    min-height: 34px;
+    align-items: center;
+    border-radius: 8px;
+    padding: 6px 10px;
+    background: var(--soft);
+    color: var(--blue-dark);
+    text-decoration: none;
+  }
+
+  .note {
+    border: 1px solid rgba(217,161,92,.34);
+    border-left: 4px solid var(--warning);
+    border-radius: 10px;
+    box-shadow: none;
+  }
+
+  .screen {
+    border-radius: 14px;
+    box-shadow: 0 12px 32px rgba(15,79,103,.08);
+  }
+
+  .footer {
+    padding: 18px 2px 0;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1050px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
