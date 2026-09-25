@@ -178,7 +178,6 @@ The underlying GitHub Pages repository URL remains part of the hosting infrastru
 │   ├── roadmap/
 │   └── project reference Markdown
 ├── alpha/
-├── chatgpt-project/
 └── .github/
 ```
 
