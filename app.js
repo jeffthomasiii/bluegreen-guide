@@ -34,11 +34,11 @@ const els = {
 };
 
 const brandedPlaceholderPhoto = {
-  url: "assets/placeholders/bluegreen-guide-location-placeholder.svg",
+  url: "assets/placeholders/bluegreen-guide-placeholder-primary.png",
   alt: "BlueGreen Guide placeholder illustration. Location photo coming soon.",
   credit: "BlueGreen Guide",
   creditUrl: "",
-  license: "BlueGreen Guide original placeholder artwork",
+  license: "BlueGreen Guide placeholder artwork",
   licenseUrl: "",
   status: "placeholder",
 };
