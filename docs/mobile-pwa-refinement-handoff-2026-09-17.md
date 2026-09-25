@@ -1,168 +1,226 @@
 # Mobile/PWA Refinement Handoff — 2026-09-17
 
-## Current state
+## Session checkpoint — end of 2026-09-18
 
-BlueGreen Guide remains in the Phase 1 maintenance and field-test stage. Phase 2 is still on hold.
+BlueGreen Guide remains in the Phase 1 maintenance and field-test stage. Phase 2 is still intentionally on hold.
 
-The approved September 2026 mobile mockup is the current UI/UX composition target for mobile browser and installed PWA work.
+The approved September 2026 mobile mockup remains the composition and visual-reference target for the mobile browser and installed PWA.
 
-Two refinement PRs were completed during this pass:
+This document is the working handoff for the next BlueGreen Guide session. Historical implementation detail is preserved in `docs/changelog.md`.
 
-- PR #23 established the initial mobile/PWA visual standard, brand treatment, typography, and service-worker update strategy.
-- PR #24 replaced the lighter restyling approach with **Mobile Shell 2.0**, a more structural mobile composition aligned to the approved mockup.
+## Where the mobile/PWA stands now
 
-PR #24 is merged to `main`. The GitHub Pages rebuild and real-device review are still pending.
-
-## Mobile Shell 2.0 now in main
-
-### Explore
-
-The intended current composition is:
-
-- Compact BlueGreen Guide app header
-- Image-led scenic hero
-- Editorial headline
-- Search overlapping the hero
-- Water, Land, and Amenities quick controls
-- Compact `Places to explore` result set
-- One larger first place card plus compact browse cards
-- Four-result progressive disclosure
-- Curated Collections after the initial discovery results
-
-### Map
-
-The intended current composition is:
-
-- Full-height map-first screen
-- Compact search and filter control at the top
-- All, Water, Land, and Near me quick controls
-- `Search this area`
-- Existing blue/green/mixed wayfinding markers
-- Compact photo-led selected-place preview above bottom navigation
-- Expansion from preview into full Place Detail
-
-### Place Detail
-
-The intended current composition is a dedicated mobile detail experience with:
-
-- Place photography
-- Place name and context
-- Verification status
-- Practical planning attributes
-- Amenities and planning notes
-- Official sources and safety-aware guidance
-
-Explore and Nearby should open full Place Detail directly. Map should first show the compact preview.
-
-### Nearby
-
-The intended current composition is:
-
-- Approximate-device-location guidance
-- Image thumbnails when supported by current data
-- Semantic fallback thumbnail treatment where imagery is unavailable
-- Place name, region/state, place type, and straight-line distance
-- Direct access to full Place Detail
+The installed PWA has been reviewed repeatedly on a real Android phone after production merges. The current shell is stable enough to stop feature work for the night.
 
 ### Navigation
 
-The current mobile navigation target is:
+The accepted mobile navigation is:
 
 - Explore
 - Map
 - Nearby
-- Guide
+- Saved
+- More
 
-No Saved Places, Trips, accounts, ratings, reviews, or other future mockup features have been added.
+### Saved Places
 
-## PWA state
+Saved Places is no longer a placeholder.
 
-The service-worker app-shell cache is now `bgg-v1.2-shell-v20`.
+Current behavior:
 
-The PWA registration flow was updated so an already-controlled page reloads when the new service worker takes control. This is intended to reduce the mixed old-JavaScript/new-CSS condition observed after PR #23.
+- Save/unsave from Nearby.
+- Save/unsave from Place Detail.
+- Saved state stays synchronized across supported mobile surfaces.
+- Saved place IDs persist locally on the device.
+- Saved cards open Place Detail.
+- Saved cards expose a compact secondary-actions menu.
+- Remove actions provide an Undo toast.
 
-BlueGreen Guide is still not a fully offline app. Leaflet map tiles and external resources remain network-driven.
+There is no account, cloud sync, or backend.
 
-## What has been verified
+### My Trips
 
-Repository validation for PR #24 passed before merge.
+My Trips is now functional as a local-first planning feature.
 
-The implementation is merged and the repository state is synchronized.
+Current behavior:
 
-## What has not been verified yet
+- Create a named trip.
+- Optional start/end dates.
+- Optional notes.
+- Add a place to an existing trip.
+- Create a new trip directly from a place.
+- Open places from a trip.
+- Reorder places with simple up/down controls.
+- Remove places.
+- Delete trips.
 
-The Mobile Shell 2.0 interface has **not yet been accepted through real-device visual testing after the production rebuild**.
+Trip data persists locally on the current device only.
 
-Do not treat the following as complete until tested on the installed PWA:
+### Nearby place actions
 
-- Explore hero composition and image treatment
-- Search overlap and quick-filter spacing
-- Compact result-card density
-- Curated Collection placement
-- Map search/filter controls
-- Marker selection and compact place preview
-- Preview-to-full-detail transition
-- Full Place Detail scrolling and hierarchy
-- Nearby thumbnail/fallback presentation
-- Four-item bottom navigation
-- Safe-area handling
-- Horizontal overflow
-- Service-worker v20 refresh behavior
+The three-dot place action menu is functional.
+
+Available actions include:
+
+- View place details
+- Add to Trip
+- Open in Maps
+- Share place
+- Open an official source when one is available
+
+The bookmark remains the primary one-tap Save action.
+
+### Settings
+
+Settings is now functional and visually accepted for this stage.
+
+Current controls:
+
+- Use device location
+- Miles / Kilometers
+- Saved Places count
+- Trips count
+- Clear Saved Places
+- Clear Trips
+- Reset local app data
+
+The compact switch and radio controls were corrected after real-device review.
+
+### More
+
+More is the mobile/PWA resource hub.
+
+Current cards:
+
+- User Guide
+- Quick Start
+- Blue + Green Spaces
+- Planning Guidance
+- Documentation
+- Settings
+
+The More-card layout was refined against the approved mockup:
+
+- white cards
+- standalone teal line icons
+- icons positioned toward the upper-left
+- title/subtitle anchored toward the lower-left
+- reduced excess whitespace
+- final icon target: 56px on standard mobile widths and 52px on narrow phones
+
+The current More screen is accepted for now.
+
+## PWA update behavior
+
+The current app-shell cache is `bgg-v1.2-shell-v28`.
+
+The mobile planning stylesheet is loaded as:
+
+`mobile-planning.css?v=28`
+
+A stale-style problem was found during the More-icon refinement. The service worker was updated so same-origin CSS, JavaScript, and manifest requests use network-first behavior with cached fallback. Other same-origin assets retain the existing cache behavior.
+
+This change is important: future UI refinements should not require repeated CSS-value changes simply to overcome a stale installed-PWA asset.
+
+BlueGreen Guide is still not a fully offline app. Leaflet tiles and other external resources remain network-driven.
+
+## PRs completed in this session
+
+The following work is merged to `main`:
+
+- PR #28 — local Saved Places, Trips, Nearby actions, and Settings
+- PR #29 — initial visual refinement for More, Settings controls, and saved-place actions
+- PR #30 — mockup alignment for More cards and corrected Settings controls
+- PR #31 — increased More icon scale
+- PR #32 — fixed PWA static-asset refresh behavior
+- PR #33 — final More icon scale increase and v28 cache-busting
+
+## What is accepted for now
+
+The following can be treated as settled enough to move forward:
+
+- five-item bottom navigation
+- functional Saved Places
+- functional local Trips
+- Nearby bookmark and overflow actions
+- Settings behavior and control sizing
+- More card composition and icon scale
+- PWA static-asset refresh strategy
+
+Do not keep iterating on these without new device feedback that identifies a specific issue.
 
 ## Next session
 
-Start with screenshots from the rebuilt installed PWA.
+Start with **documentation**, not another feature pass.
 
-Review in this order:
+### Step 1 — documentation cleanup and refinement
+
+Bring public and repository documentation into alignment with the actual current build.
+
+Important stale statements to remove or revise include references to:
+
+- Saved Places being a placeholder
+- My Trips being a placeholder
+- Save being non-persistent
+- Settings being a placeholder
+- older four-item navigation
+- older service-worker versions
+- older mobile-refinement status
+
+Review at minimum:
+
+- `README.md`
+- `docs/index.html`
+- `docs/user-guide/`
+- `docs/quick-start/`
+- `docs/release-notes/`
+- `docs/roadmap/`
+- `docs/mobile-pwa-interface-standard.md`
+- `docs/changelog.md`
+
+Documentation should clearly state that Saved Places and Trips are **device-local**, not account/cloud features.
+
+### Step 2 — holistic UX/UI refinement
+
+After the documentation is synchronized, review the mobile/PWA as one product rather than screen-by-screen patches.
+
+Review these surfaces together:
 
 1. Explore
 2. Map
-3. Place Detail
-4. Nearby
-5. PWA refresh/navigation behavior
+3. Nearby
+4. Saved Places
+5. My Trips
+6. More
+7. Settings
+8. Place Detail
 
-For each screen, compare the actual phone UI to the approved mockup and separate feedback into:
+Compare each against the approved mockup and the now-established BlueGreen visual language.
 
-- layout/composition
-- typography and spacing
-- imagery
-- controls and navigation
+Focus on:
+
+- spacing rhythm
+- typography hierarchy
+- card proportions
+- image treatment
+- control geometry
+- icon scale and consistency
+- bottom-sheet behavior
+- active states
+- empty states
+- transitions
 - information density
-- interaction behavior
-- bugs or cache issues
+- cross-screen consistency
 
-Then create one focused mobile refinement PR for the approved adjustments.
+The goal is refinement and consistency, not new feature expansion.
 
-## Scope guardrails
+## Scope guardrails for the next session
 
-For the next refinement pass:
-
-- Keep desktop deferred.
+- Keep desktop refinement deferred.
 - Do not start Phase 2.
-- Do not add accounts, Saved Places, Trips, Journal, ratings/reviews, live conditions, or AI features.
-- Keep the current static HTML/CSS/JavaScript architecture.
-- Preserve the approved Option B2 logo, brand palette, typography direction, and BlueGreen Guide Wayfinding System.
+- Do not add accounts or cloud synchronization.
+- Do not add ratings/reviews, live conditions, or AI features during the UX/UI refinement pass.
+- Keep the static HTML/CSS/JavaScript architecture.
+- Preserve the approved Option B2 identity, brand palette, typography direction, and Wayfinding System.
 - Keep safety, verification, source, and image-status wording grounded in the existing data.
-
-
-## Real-device feedback captured — 2026-09-18
-
-The first post-PR #24 device review identified several concrete refinements:
-
-- Replace pill/circle-heavy controls with rounded rectangles and square rounded filter buttons.
-- Keep Water blue, Land green, and Nearby within the approved dark-blue family.
-- Use a Home-style icon for Explore.
-- Keep the active-state top line, but also give the selected bottom-nav item a stronger full-color treatment.
-- Change bottom navigation to Explore, Map, Nearby, Saved, More.
-- Keep Saved Places and My Trips as non-persistent placeholders only.
-- Move Guide/documentation resources into More.
-- Rotate Explore hero imagery through supported places.
-- Remove the Amenities quick control until it has a dedicated interaction.
-- Make advanced filters less obtrusive.
-- Condense Explore so the first place is visible sooner.
-- Rework Place Detail toward the mockup: hero image, back arrow, compact tabs, Key Details, Get Directions, Save placeholder, and Nearby.
-- Reuse the same place/representative image pipeline for Nearby thumbnails.
-- Add Save and More actions to Nearby cards.
-- Rework public documentation for a compact mobile/PWA presentation.
-
-These items are implemented on the `mobile-refinement-round-1` branch for review. Desktop remains deferred.
+- Saved Places and Trips remain local-first/device-local unless a future phase explicitly changes the architecture.

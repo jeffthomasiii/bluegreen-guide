@@ -30,7 +30,6 @@ When sources conflict, use this order:
 3. `docs/phase-roadmap.md` for phase scope
 4. `docs/data-model.md` and `docs/development-workflow.md`
 5. Other current repository documentation
-6. `chatgpt-project/` reference files
 7. Historical plans and conversation context
 
 Do not silently reconcile contradictions. State the discrepancy and follow the higher-priority source.
@@ -72,7 +71,6 @@ Do not silently reconcile contradictions. State the discrepancy and follow the h
 │   └── validate-repo.js
 ├── docs/
 ├── alpha/
-├── chatgpt-project/
 └── .github/
 ```
 
@@ -260,7 +258,6 @@ When behavior, fields, labels, URLs, or screenshots change, review:
 - Root `README.md`
 - Public HTML documentation
 - Maintainer Markdown documentation
-- `chatgpt-project/` references when project-level guidance changes
 - `docs/changelog.md` for release-worthy changes
 
 Preserve historical release records as historical records rather than rewriting old release counts to current totals.
