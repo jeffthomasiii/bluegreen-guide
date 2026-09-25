@@ -4,7 +4,7 @@
 
 ### Changed
 
-- Replaced representative imagery with one verified actual-place image for 28 current BlueGreen Guide records where the depicted location, creator/source, and reuse terms were individually confirmed
+- Replaced representative imagery with one verified actual-place image for 44 current BlueGreen Guide records where the depicted location, creator/source, and reuse terms were individually confirmed
 - Added per-photo creator, source-page, license, license-link, alt-text, and review-note metadata
 - Preferred public-domain/CC0 imagery where suitable and used Creative Commons attribution licenses when needed
 - Kept unresolved or ambiguous places on the existing representative-image fallback rather than implying an unverified location match
