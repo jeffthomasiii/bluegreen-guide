@@ -1,20 +1,32 @@
 # Changelog
 
-## 2026-09-24 — Verified Location Photography Pass 1
+## 2026-09-18 — Local Planning, Settings, and More/PWA Refinement
+
+### Added
+
+- Device-local Saved Places with synchronized bookmark state across Nearby, Place Detail, and Saved
+- Undo feedback for save/remove actions
+- Device-local My Trips with trip name, optional dates, optional notes, Add to Trip, place reordering/removal, and trip deletion
+- Nearby overflow actions for View Place Details, Add to Trip, Open in Maps, Share Place, and official-source access when available
+- Functional mobile Settings for device-location preference, miles/kilometers, saved/trip counts, local-data clearing, and app-data reset
 
 ### Changed
 
-- Replaced representative imagery with one verified actual-place image for 44 current BlueGreen Guide records where the depicted location, creator/source, and reuse terms were individually confirmed
-- Added per-photo creator, source-page, license, license-link, alt-text, and review-note metadata
-- Preferred public-domain/CC0 imagery where suitable and used Creative Commons attribution licenses when needed
-- Replaced unresolved or ambiguous third-party representative-image fallbacks with a subdued BlueGreen Guide branded placeholder rather than implying an unverified location match
-- Renamed verified imagery to `Location photo` and unresolved imagery to `Placeholder image` so the interface clearly distinguishes real-place photography from branded fallback artwork
-- Documented the current one-primary-photo rule; multiple photos are deferred until BlueGreen Guide has an intentional gallery experience
-- Standardized `assets/placeholders/bluegreen-guide-placeholder-primary.png` as the unresolved-place placeholder and reserved `assets/placeholders/bluegreen-guide-placeholder-secondary.png` for future alternate surfaces\n- Advanced the service-worker shell cache to `bgg-v1.2-shell-v31`
+- Saved Places and My Trips are no longer placeholders; they remain local-first and require no account, backend, or cloud synchronization
+- Settings controls were resized and restyled after real-device review
+- More cards were aligned more closely to the approved mockup with standalone teal line icons, upper-left icon placement, lower-left labels, and reduced excess whitespace
+- More icons were finalized at 56px on standard mobile widths and 52px on narrow phones
+- Saved-place overflow glyph sizing was reduced so the secondary action no longer competes visually with Save
+- PWA static-asset handling now uses network-first behavior with cached fallback for same-origin CSS, JavaScript, and manifest requests
+- `mobile-planning.css` is cache-busted as `mobile-planning.css?v=28`
+- Service-worker shell cache advanced to `bgg-v1.2-shell-v28`
 
-### Scope
+### Status / next step
 
-This pass changes photography and attribution metadata only. A location photo verifies the depicted place, not access, launch suitability, amenities, rules, hazards, or current conditions.
+- PRs #28 through #33 are merged to `main`
+- Settings and More are accepted for the current mobile/PWA stage after real-device review
+- Next work begins with documentation synchronization, followed by a holistic mobile/PWA UX/UI refinement pass across Explore, Map, Nearby, Saved, Trips, More, Settings, and Place Detail
+- Desktop remains deferred and Phase 2 remains on hold
 
 ## 2026-09-18 — Mobile/PWA Refinement Round 2
 
