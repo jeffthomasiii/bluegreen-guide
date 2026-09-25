@@ -31,12 +31,35 @@
     <link rel="stylesheet" href="map-wayfinding.css" />
     <link rel="stylesheet" href="mobile-pwa-standard.css" />
     <link rel="stylesheet" href="mobile-planning.css?v=28" />
+    <link rel="stylesheet" href="premium-web.css?v=35" />
   </head>
   <body data-mobile-view="explore">
     <header class="mobile-app-bar" aria-label="BlueGreen Guide mobile header">
       <a class="mobile-brand-link" href="./" aria-label="BlueGreen Guide home">
         <img src="assets/brand/logo-package/png/bluegreen-guide-logo-mobile.png" alt="BlueGreen Guide" />
       </a>
+    </header>
+
+    <header class="desktop-app-header" aria-label="BlueGreen Guide desktop navigation">
+      <a class="desktop-brand" href="./" aria-label="BlueGreen Guide home">
+        <img src="assets/brand/logo-package/png/bluegreen-guide-logo-mobile.png" alt="BlueGreen Guide — Discover Better Outdoors" />
+      </a>
+      <nav class="desktop-primary-nav" aria-label="Primary navigation">
+        <button type="button" class="desktop-nav-item is-active" data-desktop-nav="map" aria-current="page"><span aria-hidden="true">●</span>Map</button>
+        <button type="button" class="desktop-nav-item" data-desktop-nav="saved"><span aria-hidden="true">♡</span>Saved</button>
+        <button type="button" class="desktop-nav-item" data-desktop-nav="trips"><span aria-hidden="true">▣</span>Trips</button>
+        <button type="button" class="desktop-nav-item" data-desktop-nav="collections"><span aria-hidden="true">◇</span>Collections</button>
+        <a class="desktop-nav-item" href="docs/user-guide/"><span aria-hidden="true">▤</span>Field Guide</a>
+        <a class="desktop-nav-item" href="docs/quick-start/"><span aria-hidden="true">?</span>Help</a>
+      </nav>
+      <div class="desktop-header-tools">
+        <label class="desktop-global-search">
+          <span class="sr-only">Search places, activities, or regions</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input id="desktopSearchInput" type="search" placeholder="Search places, activities, or regions..." autocomplete="off" />
+        </label>
+        <button class="desktop-menu-button" type="button" aria-label="Open menu" data-desktop-menu>☰</button>
+      </div>
     </header>
 
     <main class="app-shell">
@@ -49,6 +72,11 @@
             <a class="documentation-link" href="docs/">Documentation &amp; User Guide</a>
           </div>
         </header>
+
+        <div class="desktop-sidebar-tabs" role="tablist" aria-label="Discovery controls">
+          <button type="button" role="tab" aria-selected="true" class="is-active" data-desktop-tab="filters">Search &amp; Filter</button>
+          <button type="button" role="tab" aria-selected="false" data-desktop-tab="collections">Collections</button>
+        </div>
 
         <section class="wayfinding-key" aria-labelledby="wayfindingTitle">
           <div>
@@ -71,7 +99,7 @@
           </div>
         </section>
 
-        <section class="collections-panel" aria-labelledby="collectionsTitle">
+        <section class="collections-panel" data-desktop-section="collections" aria-labelledby="collectionsTitle">
           <div class="collections-heading">
             <div><p class="eyebrow">Curated Collections</p><h2 id="collectionsTitle">Start with a helpful shortlist</h2></div>
             <button id="clearCollectionButton" class="collection-clear" type="button" hidden>Clear</button>
@@ -80,7 +108,7 @@
           <p id="collectionDescription" class="collection-description" aria-live="polite">Choose a collection to filter the current map.</p>
         </section>
 
-        <section class="controls" aria-label="Search outdoor places">
+        <section class="controls" data-desktop-section="filters" aria-label="Search outdoor places">
           <label class="field field-full"><span>Search Places</span><input id="searchInput" type="search" placeholder="Try Mission Bay, wildlife, SUP, park..." /></label>
           <label class="field"><span>Region</span><select id="regionFilter"><option value="all">All</option></select></label>
           <label class="field"><span>Paddling Skill</span><select id="skillFilter"><option value="all">All</option><option value="Beginner">Beginner</option><option value="Intermediate">Intermediate</option><option value="Advanced">Advanced</option></select></label>
@@ -91,6 +119,10 @@
           <button id="boundsButton" class="button button-tertiary button-wide" type="button">Show places in current map view</button>
         </section>
 
+        <div class="desktop-filter-actions" aria-label="Filter actions">
+          <button type="button" class="desktop-clear-filters" data-desktop-clear-filters>Clear Filters</button>
+          <button type="button" class="desktop-show-places" data-desktop-show-places>Show <span id="desktopResultCount">0</span> Places</button>
+        </div>
         <section class="result-summary" aria-live="polite"><strong id="resultCount">0</strong><span>places shown</span></section>
         <section id="resultsList" class="results" aria-label="Outdoor place results"></section>
       </aside>
@@ -158,7 +190,7 @@
     <script src="data/utah-field-test.js"></script>
     <script src="data/launch-profile.js"></script>
     <script src="data/collections.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js?v=35"></script>
     <script src="collections-ui.js"></script>
     <script src="ui-refresh.js"></script>
     <script src="mission-bay-place-pilot.js"></script>
@@ -167,6 +199,7 @@
     <script src="mobile-compact.js"></script>
     <script src="mobile-explore-limit.js"></script>
     <script src="map-wayfinding.js"></script>
+    <script src="desktop-premium.js?v=35"></script>
     <script src="pwa.js"></script>
   </body>
 </html>

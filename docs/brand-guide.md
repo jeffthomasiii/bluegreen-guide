@@ -455,3 +455,9 @@ The PWA and public documentation should reference the package paths above rather
 - Documentation, README copy, source files, and UI should remain aligned with this guide.
 
 **Design System 2.0 is the current source of truth for the BlueGreen Guide brand.**
+
+## Premium Web and Documentation Reference
+
+The approved September 25, 2026 premium web/documentation mockup is the current visual composition standard for desktop web and public documentation. Use it as the measuring stick for layout proportions, image-to-content balance, button placement and sizing, typography scale and color, card geometry, spacing rhythm, and the relationship between map, filters, and place-detail surfaces.
+
+This desktop reference stands on its own rather than extending or reproducing the mobile/PWA composition. The accepted mobile/PWA interface remains unchanged. The desktop mockup governs desktop web and desktop documentation composition while the permanent Option B2 identity, approved palette, Inter/Cormorant Garamond typography roles, and BlueGreen Guide Wayfinding System remain authoritative. When a visual reference and a factual product/data requirement differ, preserve the factual, safety, verification, and accessibility requirement while matching the reference as closely as practical.

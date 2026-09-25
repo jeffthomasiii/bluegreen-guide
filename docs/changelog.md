@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-09-25 — Premium Web + Documentation Visual Standard
+
+### Changed
+
+- Adopted the approved premium web/documentation mockup as the visual measuring stick for desktop web and public documentation refinement
+- Added a dedicated desktop web styling layer with a three-surface composition for filters/results, map, and place detail on wide screens
+- Rebuilt the desktop web composition directly from the approved web mockup, including top navigation, global search, Search & Filter / Collections tabs, map proportions, and desktop place-detail presentation
+- Rebuilt the desktop documentation home and Field Guide composition directly from the approved documentation mockup, including image-led hero treatment, feature cards, topic tabs, and image-led place/category cards
+- Kept the accepted mobile/PWA interface unchanged; desktop web and desktop documentation now follow their own mockup-led composition
+- Advanced the service-worker shell cache to `bgg-v1.2-shell-v34`
+
+### Design reference
+
+The approved 2026-09-25 premium BlueGreen Guide mockup is the guiding reference when resolving future questions about desktop/documentation button placement, proportions, image scale, typography, spacing, and color treatment. Product data, safety wording, verification rules, and the approved Wayfinding System remain authoritative where a visual mockup cannot establish factual behavior.
+
 ## 2026-09-24 — Verified Location Photography Pass 1
 
 ### Changed
