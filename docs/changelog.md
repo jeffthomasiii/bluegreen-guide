@@ -7,10 +7,10 @@
 - Replaced representative imagery with one verified actual-place image for 44 current BlueGreen Guide records where the depicted location, creator/source, and reuse terms were individually confirmed
 - Added per-photo creator, source-page, license, license-link, alt-text, and review-note metadata
 - Preferred public-domain/CC0 imagery where suitable and used Creative Commons attribution licenses when needed
-- Kept unresolved or ambiguous places on the existing representative-image fallback rather than implying an unverified location match
-- Renamed the visible credit label from `Launch photo` to `Location photo` so photography language also fits parks, gardens, reserves, and other land places
+- Replaced unresolved or ambiguous third-party representative-image fallbacks with a subdued BlueGreen Guide branded placeholder rather than implying an unverified location match
+- Renamed verified imagery to `Location photo` and unresolved imagery to `Placeholder image` so the interface clearly distinguishes real-place photography from branded fallback artwork
 - Documented the current one-primary-photo rule; multiple photos are deferred until BlueGreen Guide has an intentional gallery experience
-- Advanced the service-worker shell cache to `bgg-v1.2-shell-v30`
+- Added `assets/placeholders/bluegreen-guide-location-placeholder.svg` as the standard unresolved-place placeholder\n- Advanced the service-worker shell cache to `bgg-v1.2-shell-v31`
 
 ### Scope
 
