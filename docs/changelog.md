@@ -10,7 +10,7 @@
 - Replaced unresolved or ambiguous third-party representative-image fallbacks with a subdued BlueGreen Guide branded placeholder rather than implying an unverified location match
 - Renamed verified imagery to `Location photo` and unresolved imagery to `Placeholder image` so the interface clearly distinguishes real-place photography from branded fallback artwork
 - Documented the current one-primary-photo rule; multiple photos are deferred until BlueGreen Guide has an intentional gallery experience
-- Added `assets/placeholders/bluegreen-guide-location-placeholder.svg` as the standard unresolved-place placeholder\n- Advanced the service-worker shell cache to `bgg-v1.2-shell-v31`
+- Standardized `assets/placeholders/bluegreen-guide-placeholder-primary.png` as the unresolved-place placeholder and reserved `assets/placeholders/bluegreen-guide-placeholder-secondary.png` for future alternate surfaces\n- Advanced the service-worker shell cache to `bgg-v1.2-shell-v31`
 
 ### Scope
 
